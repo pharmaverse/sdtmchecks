@@ -61,6 +61,7 @@ check_ae_aedecod <- function(AE,preproc=identity,...){
     mydf <- AE %>%
       select(any_of(c("USUBJID", "RAVE", "AESEQ","AESTDTC","AETERM","AEDECOD"))) %>%
       filter(is_sas_na(AEDECOD))
+
     rownames(mydf)=NULL
 
     ###Print to report

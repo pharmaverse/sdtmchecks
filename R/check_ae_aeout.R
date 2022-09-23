@@ -1,4 +1,4 @@
-#' @title Check for inconsistency between AE outcome (AEOUT) and AE death date (AEDTHDTC)
+#' @title Check for inconsistency between AE outcome (AEOUT) and death date (AEDTHDTC)
 #'
 #' @description This check looks for AEs with Death date(AEDTHDTC) but outcome
 #' (AEOUT) is not FATAL and conversely AEs with no death date (AEDTHDTC) but
@@ -21,18 +21,14 @@
 #' @examples
 #'
 #' AE <- data.frame(
-#'     STUDYID = "Study1",
 #'     USUBJID = 1:7,
 #'     AEDTHDTC = c(NA, "NA", "2015-03-12", "2017-01-22", "1999-11-07","",NA),
 #'     AEOUT = c("", "", "","FATAL","RECOVERED/RESOLVED","FATAL","FATAL"),
-#'     AESPID = rep("FORMNAME-R:13/L:13XXXX",7),
+#'     AESPID = "FORMNAME-R:13/L:13XXXX",
 #'     stringsAsFactors = FALSE
 #' )
 #'
 #' check_ae_aeout(AE)
-#' check_ae_aeout(AE,preproc=roche_derive_rave_row)
-#'
-#' AE$AESPID <- NULL
 #' check_ae_aeout(AE,preproc=roche_derive_rave_row)
 #'
 #' AE$AEDTHDTC <- NULL
@@ -42,23 +38,25 @@
 #' check_ae_aeout(AE)
 #'
 
-check_ae_aeout <- function(AE,preproc=identity,...) {
+check_ae_aeout <- function(AE,preproc=identity,...){
 
-  if (AE %lacks_any% c("USUBJID", "AEDTHDTC", "AEOUT")) {
+    if (AE %lacks_any% c("USUBJID", "AEDTHDTC", "AEOUT")) {
 
-    fail(lacks_msg(AE, c("USUBJID", "AEDTHDTC", "AEOUT" )))
+        fail(lacks_msg(AE, c("USUBJID", "AEDTHDTC", "AEOUT" )))
 
-  } else {
-
-    df <- preproc(AE,...) %>% #Apply company specific preprocessing function
-      filter((!is_sas_na(AEDTHDTC) & AEOUT != "FATAL") | (AEOUT=="FATAL" & is_sas_na(AEDTHDTC))) %>%
-      select(any_of(c("USUBJID","AEDTHDTC","AEOUT","RAVE")))
-
-    if( nrow(df) > 0 ){
-      fail(paste("AE has ", nrow(df), " record(s) with inconsistent AEDTHDTC and AEOUT. ",
-                 sep=""), df)
     } else {
-      pass()
+
+        #Apply company specific preprocessing function
+        AE = preproc(AE,...)
+
+        df <- AE %>%
+            filter((!is_sas_na(AEDTHDTC) & AEOUT != "FATAL") | (AEOUT=="FATAL" & is_sas_na(AEDTHDTC))) %>%
+            select(any_of(c("USUBJID","AEDTHDTC","AEOUT","RAVE")))
+
+        if( nrow(df) > 0 ){
+            fail("AEs with inconsistent AEDTHDTC and AEOUT found.", df)
+        } else {
+            pass()
+        }
     }
-  }
 }

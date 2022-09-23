@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_ae_aeout.R
 \name{check_ae_aeout}
 \alias{check_ae_aeout}
-\title{Check for inconsistency between AE outcome (AEOUT) and AE death date (AEDTHDTC)}
+\title{Check for inconsistency between AE outcome (AEOUT) and death date (AEDTHDTC)}
 \usage{
 check_ae_aeout(AE, preproc = identity, ...)
 }
@@ -25,18 +25,14 @@ outcome (AEOUT) is fatal
 \examples{
 
 AE <- data.frame(
-    STUDYID = "Study1",
     USUBJID = 1:7,
     AEDTHDTC = c(NA, "NA", "2015-03-12", "2017-01-22", "1999-11-07","",NA),
     AEOUT = c("", "", "","FATAL","RECOVERED/RESOLVED","FATAL","FATAL"),
-    AESPID = rep("FORMNAME-R:13/L:13XXXX",7),
+    AESPID = "FORMNAME-R:13/L:13XXXX",
     stringsAsFactors = FALSE
 )
 
 check_ae_aeout(AE)
-check_ae_aeout(AE,preproc=roche_derive_rave_row)
-
-AE$AESPID <- NULL
 check_ae_aeout(AE,preproc=roche_derive_rave_row)
 
 AE$AEDTHDTC <- NULL
