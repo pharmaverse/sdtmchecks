@@ -9,13 +9,15 @@
 #' @param preproc An optional company specific preprocessing script
 #' @param ... Other arguments passed to methods
 #'
+#' @importFrom dplyr %>% arrange filter left_join full_join mutate select slice everything
+#' @importFrom tidyselect any_of
+#'
 #' @return Boolean value for whether the check passed or failed, with 'msg'
 #'   attribute if the check failed
 #'
 #' @export
 #'
-#' @importFrom dplyr %>% arrange filter left_join full_join mutate select slice everything
-#'
+
 #' @author Nina Ting Qi
 #'
 #' @examples
@@ -78,16 +80,9 @@ check_ae_aestdtc_after_dd <- function(AE, DS, preproc=identity,...) {
         AE = preproc(AE,...)
         DS = preproc(DS,...)
 
-        # Add day of "01" to dates that are in the format of "yyyy-mm"
-        impute_day <- function(dates) {
-
-            ifelse(nchar(dates) ==7, paste0(dates, "-01"), dates)
-
-        }
-
-        AE$AEDTHDTC <- impute_day(AE$AEDTHDTC)
-        AE$AESTDTC <- impute_day(AE$AESTDTC)
-        DS$DSSTDTC <- impute_day(DS$DSSTDTC)
+        AE$AEDTHDTC <- impute_day01(AE$AEDTHDTC)
+        AE$AESTDTC <- impute_day01(AE$AESTDTC)
+        DS$DSSTDTC <- impute_day01(DS$DSSTDTC)
 
         ### Subset AE to fewer variables
         AE <- AE %>%
