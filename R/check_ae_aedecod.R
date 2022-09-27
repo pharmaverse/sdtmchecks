@@ -6,12 +6,12 @@
 #' @param preproc An optional company specific preprocessing script
 #' @param ... Other arguments passed to methods
 #'
+#' @importFrom dplyr %>% filter select
+#' @importFrom tidyselect any_of
+#'
 #' @return boolean value if check failed or passed with 'msg' attribute if the test failed
 #'
 #' @export
-#'
-#' @importFrom dplyr %>% filter select
-#' @importFrom tidyselect any_of
 #'
 #' @author Yinghui Miao, Stella Banjo(HackR 2021)
 #'
