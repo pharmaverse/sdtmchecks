@@ -1,11 +1,10 @@
 Package: sdtmchecks
-Title: What the Package Does (One Line, Title Case)
-Version: 2022-09-26
+Title: Data quality checks for SDTM datasets
+Version: 2022-09-27
 Nickname: Open Up
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Will", "Harris", , "harric17@gene.com", role = c("aut", "cre"))
+Description: This package contains functions to identify common data issues in SDTM data. These checks are intended to be generalizable, actionable, and meaningful for analysis. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
