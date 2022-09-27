@@ -24,8 +24,9 @@ AETOXGR (if applicable) when AEOUT is 'FATAL'
 }
 \examples{
 
+# AETOXGR, no AESEV
+
 AE <- data.frame(
- STUDYID = "Study1",
  USUBJID = 1:5,
  AESTDTC = "01JAN2017",
  AEDECOD = c("AE1","AE2","AE3","AE4","AE5"),
@@ -33,8 +34,7 @@ AE <- data.frame(
  AEDTHDTC = c("01FEB2017",NA,"02FEB2017","03FEB2017",NA),
  AESDTH = c("Y","Y","N","Y",NA),
  AETOXGR = c("5","5","5",NA,NA),
- AESPID = rep("FORMNAME-R:13/L:13XXXX",5),
- OTHERVAR = NA,
+ AESPID = "FORMNAME-R:12/L:2XXXX",
  stringsAsFactors = FALSE
 )
 
@@ -46,6 +46,79 @@ check_ae_fatal(AE)
 
 AE$AEDECOD <- NULL
 check_ae_fatal(AE)
+
+
+# AESEV, no AETOXGR
+
+ AE <- data.frame(
+ USUBJID = 1:5,
+ AESTDTC = "01JAN2017",
+ AEDECOD = c("AE1","AE2","AE3","AE4","AE5"),
+ AEOUT = "FATAL",
+ AEDTHDTC = c("01FEB2017","02FEB2017","03FEB2017","04FEB2017",NA),
+ AESDTH = c("Y","Y","N","Y",NA),
+ AESEV = c("SEVERE","MILD","SEVERE",NA,NA),
+ AESPID = "FORMNAME-R:12/L:2XXXX",
+ stringsAsFactors = FALSE
+)
+
+check_ae_fatal(AE)
+check_ae_fatal(AE,preproc=roche_derive_rave_row)
+
+AE$AESEV <- NULL
+check_ae_fatal(AE)
+
+# Both AESEV and AETOXGR have non-missing values
+
+AE <- data.frame(
+ USUBJID = 1:7,
+ AESTDTC = "01JAN2017",
+ AEDECOD = c("AE1","AE2","AE3","AE4","AE5","AE6","AE7"),
+ AEOUT = "FATAL",
+ AEDTHDTC = c("01FEB2017",NA,"02FEB2017","03FEB2017",NA,"04FEB2017","05FEB2017"),
+ AESDTH = c("Y","Y","N","Y",NA,"Y","Y"),
+ AESEV = c("SEVERE","MILD","SEVERE",NA,NA,"MILD","SEVERE"),
+ AETOXGR = c("5","5","5",NA,NA,"1","5"),
+ AESPID = "FORMNAME-R:12/L:2XXXX",
+ stringsAsFactors = FALSE
+)
+
+check_ae_fatal(AE)
+check_ae_fatal(AE,preproc=roche_derive_rave_row)
+
+
+# Neither AESEV or AETOXGR
+
+AE <- data.frame(
+ USUBJID = 1:5,
+ AESTDTC = "01JAN2017",
+ AEDECOD = c("AE1","AE2","AE3","AE4","AE5"),
+ AEOUT = "FATAL",
+ AEDTHDTC = c("01FEB2017",NA,"02FEB2017","03FEB2017",NA),
+ AESDTH = c("Y","Y","N","Y",NA),
+ AESPID = "FORMNAME-R:12/L:2XXXX",
+ stringsAsFactors = FALSE
+)
+
+check_ae_fatal(AE)
+
+# AETOXGR, existing but unmapped AESEV
+
+ AE <- data.frame(
+ USUBJID = 1:5,
+ AESTDTC = "01JAN2017",
+ AEDECOD = c("AE1","AE2","AE3","AE4","AE5"),
+ AEOUT = "FATAL",
+ AEDTHDTC = c("01FEB2017",NA,"02FEB2017","03FEB2017",NA),
+ AESDTH = c("Y","Y","N","Y",NA),
+ AESEV = rep(NA,5),
+ AETOXGR = c("5","5","5",NA,NA),
+ AESPID = "FORMNAME-R:12/L:2XXXX",
+ stringsAsFactors = FALSE
+)
+
+check_ae_fatal(AE)
+check_ae_fatal(AE,preproc=roche_derive_rave_row)
 
 }
 \author{

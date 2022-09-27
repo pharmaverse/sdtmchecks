@@ -90,7 +90,8 @@ check_ae_aestdtc_after_dd <- function(AE, DS, preproc=identity,...) {
         DS$DSSTDTC <- impute_day(DS$DSSTDTC)
 
         ### Subset AE to fewer variables
-        AE <- AE[,intersect(names(AE),c("USUBJID", "AETERM", "AEDECOD", "RAVE", "AEDTHDTC", "AESTDTC"))]
+        AE <- AE %>%
+            select(any_of(c("USUBJID", "AETERM", "AEDECOD", "AEDTHDTC", "AESTDTC","RAVE")))
 
 
         # Get earliest death date by USUBJID
@@ -104,7 +105,8 @@ check_ae_aestdtc_after_dd <- function(AE, DS, preproc=identity,...) {
 
 
         ### Subset DS to fewer variables
-        DS <- DS[,intersect(names(DS),c("USUBJID", "RAVE", "DSSTDTC", "DSDECOD", "DSTERM"))]
+        DS <- DS %>%
+            select(any_of(c("USUBJID", "RAVE", "DSSTDTC", "DSDECOD", "DSTERM","RAVE")))
 
         ds_dd <- DS %>%
             filter((grepl("DEATH", DS$DSDECOD, ignore.case = TRUE) | grepl("DEATH", DS$DSTERM, ignore.case = TRUE)),
@@ -114,7 +116,6 @@ check_ae_aestdtc_after_dd <- function(AE, DS, preproc=identity,...) {
         ds_dd <- unique(ds_dd)
 
         death_dates <- full_join(ae_dd, ds_dd, by = "USUBJID")
-
 
         if (nrow(death_dates) == 0) {
 

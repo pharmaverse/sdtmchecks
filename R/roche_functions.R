@@ -33,13 +33,13 @@
 #'
 
 
-roche_derive_rave_row <- function(dts,domains=c("ae","cm")) {
+roche_derive_rave_row <- function(dts,domains=c("ae","cm","ds")) {
 
   myvec <- paste0(toupper(unlist(domains)), "SPID")
 
   thevar=intersect(names(dts), myvec) #get --SPID variable of interest
 
-  if(length(thevar)==1) { #Only create RAVE column if there is a single --SPID variable
+  if(length(thevar)==1) { #Only create RAVE column if there is a --SPID variable
 
     # Extract RAVE row number, finding the last occurrence of -R:
     RAVE_ROW <- ifelse(grepl("-R:", dts[[thevar]]),
