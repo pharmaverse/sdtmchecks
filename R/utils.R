@@ -158,7 +158,7 @@ impute_day01 <- function(dates) {
 #'
 
 
-roche_derive_rave_row <- function(dts,domains=c("ae","cm","ds")) {
+roche_derive_rave_row <- function(dts,domains=c("ae","cm","ds","pr")) {
 
   myvec <- paste0(toupper(unlist(domains)), "SPID")
 
@@ -252,4 +252,16 @@ dtc_dupl_early <- function(dts, vars, groupby, dtc, ...) {
                              ifelse(mydf2$visit.order != 1 & mydf2$last.vis.dtc > mydf2[[dtc]], "Datetime earlier than last Visit", NA))
   mydf2
 }
+
+
+
+
+#' Function to check if month is missing while year and day are non-missing
+#' (i.e. would be in the format of "yyyy---dd")
+#'
+#' @param date date vector (character) in the format 2020-01-20
+#'
+#' @return vector
+#' @export
+missing_month <- function(date) { substr(date, 5, 7) == "---" }
 

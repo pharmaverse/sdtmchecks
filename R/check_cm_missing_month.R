@@ -52,9 +52,9 @@ if(CM %lacks_any% c("USUBJID", "CMTRT", "CMSTDTC","CMENDTC")){
 
         # check if CMSTDTC CMENDTC has missing month and is in format 'yyyy---dd'
         mydf <- subset(CM,
-                       (substr(CM$CMSTDTC,5,7) == '---' | substr(CM$CMENDTC,5,7) == '---' ),
+                       (missing_month(CMSTDTC) | missing_month(CMENDTC) ),
                        ) %>%
-          select(any_of(c(c("USUBJID", "CMTRT", "CMSTDTC","CMENDTC","RAVE"))))
+          select(any_of(c("USUBJID", "CMTRT", "CMSTDTC","CMENDTC","RAVE")))
         rownames(mydf)=NULL
 
       ###Print to report
