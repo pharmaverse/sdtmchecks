@@ -18,4 +18,4 @@ You can install sdtmchecks from github with:
 devtools::install_github("pharmaverse/sdtmchecks")
 ```
         
-![](logo_em.png =250x)
+![logo](logo_em.png)
