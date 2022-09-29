@@ -18,6 +18,4 @@ You can install sdtmchecks from github with:
 devtools::install_github("pharmaverse/sdtmchecks")
 ```
         
-# R version for package
-
-Please use R 3.6.3
+![logo](logo.png)
