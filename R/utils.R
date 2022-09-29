@@ -158,7 +158,7 @@ impute_day01 <- function(dates) {
 #'
 
 
-roche_derive_rave_row <- function(dts,domains=c("ae","cm","ds","pr")) {
+roche_derive_rave_row <- function(dts,domains=c("ae","cm","ds","pr","ss")) {
 
   myvec <- paste0(toupper(unlist(domains)), "SPID")
 
