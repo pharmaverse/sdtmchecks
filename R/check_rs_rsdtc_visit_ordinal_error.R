@@ -45,7 +45,7 @@ check_rs_rsdtc_visit_ordinal_error <- function(RS){
 
         fail(lacks_msg(RS, vars))
 
-    ### Dont run if VISITNUM is all missing
+        ### Dont run if VISITNUM is all missing
     } else if (length(unique(RS[["VISITNUM"]]))<=1) {
 
         fail("VISITNUM exists but only a single value. ")
@@ -56,30 +56,30 @@ check_rs_rsdtc_visit_ordinal_error <- function(RS){
 
         if(nrow(subsetdf)>0){
 
-        mydf2 <- dtc_dupl_early(dts = subsetdf, vars = vars,
-                                ### groupby variables used for grouping and visit.order derivation
-                                groupby = vars[c(1)],
-                                dtc = vars[4],
-                                ### variables used for ordering before visit.order derivation
-                                vars[1], vars[2], vars[3], vars[4])
+            mydf2 <- dtc_dupl_early(dts = subsetdf, vars = vars,
+                                    ### groupby variables used for grouping and visit.order derivation
+                                    groupby = vars[c(1)],
+                                    dtc = vars[4],
+                                    ### variables used for ordering before visit.order derivation
+                                    vars[1], vars[2], vars[3], vars[4])
 
-        ### Subset if Vis_order not equal Dtc_order
-        myout <- mydf2[!is.na(mydf2$check.flag), ]
+            ### Subset if Vis_order not equal Dtc_order
+            myout <- mydf2[!is.na(mydf2$check.flag), ]
 
-        ### Different check already doing dups
-        myout = subset(myout,myout$check.flag != "Duplicated",)
+            ### Different check already doing dups
+            myout = subset(myout,myout$check.flag != "Duplicated",)
 
 
-        ###Print to report
+            ###Print to report
 
-        ### Return message if no records with RSDTC per VISITNUM
-        if (nrow(myout) == 0) {
-            pass()
-            ### Return subset dataframe if there are records with Possible RSDTC data entry error
-        } else if (nrow(myout) > 0) {
-            rownames(myout) = NULL
-            fail(paste("RS has ",nrow(myout)," records with Possible RSDTC data entry error. ",sep = ""), myout)
-        }
+            ### Return message if no records with RSDTC per VISITNUM
+            if (nrow(myout) == 0) {
+                pass()
+                ### Return subset dataframe if there are records with Possible RSDTC data entry error
+            } else if (nrow(myout) > 0) {
+                rownames(myout) = NULL
+                fail(paste("RS has ",nrow(myout)," records with Possible RSDTC data entry error. ",sep = ""), myout)
+            }
 
         } else{fail("No records when subset to overall responses by INV. ")}
     }
