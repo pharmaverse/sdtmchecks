@@ -4,7 +4,10 @@
 \alias{roche_derive_rave_row}
 \title{Utility function to obtain Rave row}
 \usage{
-roche_derive_rave_row(dts, domains = c("ae", "cm", "ds", "lb", "pr", "ss"))
+roche_derive_rave_row(
+  dts,
+  domains = c("ae", "cm", "ds", "lb", "pr", "ss", "tr")
+)
 }
 \arguments{
 \item{dts}{dataset e.g. AE}
