@@ -21,7 +21,8 @@ flagged in P21.
 \examples{
 
 QS <- data.frame(USUBJID = c(1,1,1,2,2,2),
-                 QSDTC   = c("2015-06-30", "2015-09-30", "2015-12-30", "2015-06-30", "2015-09-30", "2015-12-30"),
+                 QSDTC   = c("2015-06-30", "2015-09-30", "2015-12-30", 
+                             "2015-06-30", "2015-09-30", "2015-12-30"),
                  QSCAT   = "A",
                  VISIT  =  c("Week 1", "Week 12", "Week 24", "Week 1", "Week 12", "Week 24"),
                  QSSTAT  = c("Not Done","NOT DONE","not done", rep("",3)),
