@@ -45,16 +45,16 @@ check_qs_qsdtc_visit_ordinal_error <- function(QS){
     vars = c("USUBJID", "QSCAT", "VISITNUM", "VISIT", "QSDTC")
     ### First check that required variables exist and return a message if they don't
     if (QS %lacks_any% vars) {
-
+        
         fail(lacks_msg(QS, vars))
-
-    ### Dont run if VISITNUM is all missing
+        
+        ### Dont run if VISITNUM is all missing
     } else if (length(unique(QS[["VISITNUM"]]))<=1) {
-
+        
         fail(msg="VISITNUM exists but only a single value. ")
-
+        
     }  else {
-
+        
         mydf2 <- dtc_dupl_early(
             dts = subset(QS,!grepl("UNSCHEDU",toupper(QS$VISIT)),),
             vars = vars,
@@ -68,12 +68,12 @@ check_qs_qsdtc_visit_ordinal_error <- function(QS){
             vars[4],
             vars[5]
         )
-
+        
         ### Subset if Vis_order not equal Dtc_order
         myout <- mydf2[!is.na(mydf2$check.flag), ]
-
+        
         ### Print to report
-
+        
         ### Return message if no records with QSDTC per VISITNUM
         if (nrow(myout) == 0) {
             pass()
