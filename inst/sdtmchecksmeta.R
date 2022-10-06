@@ -89,6 +89,8 @@ sdtmchecksmeta$pdf_return = with(sdtmchecksmeta,
                                         ifelse(domains_n==2, paste0(gsub(",", " and/or ", domains2), pdf_string),
                                                ifelse(domains_n>=3, paste0("One or more of ", gsub(",", "/", domains2), pdf_string), ""))))
 
+sdtmchecksmeta = sdtmchecksmeta %>%
+    mutate(pdf_return = ifelse(category=="COVID",paste(pdf_return,"or covid terms not found"),pdf_return))
 head(sdtmchecksmeta$pdf_return)
 
 ## -------   Derive 'fxn_in' & 'exist_string' based on 'domains' --------------------------------
@@ -114,10 +116,10 @@ head(sdtmchecksmeta[,c("fxn_in")])
 
 #======== fxn_in =========
 #The code below handles the situation where TS may or may not be available.  Its for checks that look into TS to grab MedDRA version
-sdtmchecksmeta$fxn_in=ifelse(grepl("ts",sdtmchecksmeta$domains) & sdtmchecksmeta$category=="COVID",
-                             gsub(",TS=ts",",TS=(if('ts' %in% ls(envir=.GlobalEnv)){get('ts', envir = .GlobalEnv)}else{NULL})",sdtmchecksmeta$fxn_in),
-                             sdtmchecksmeta$fxn_in
-)
+# sdtmchecksmeta$fxn_in=ifelse(grepl("ts",sdtmchecksmeta$domains) & sdtmchecksmeta$category=="COVID",
+#                              gsub(",TS=ts",",TS=(if('ts' %in% ls(envir=.GlobalEnv)){get('ts', envir = .GlobalEnv)}else{NULL})",sdtmchecksmeta$fxn_in),
+#                              sdtmchecksmeta$fxn_in
+# )
 
 
 
@@ -133,8 +135,6 @@ sdtmchecksmeta$exist_string=unlist(lapply(mylist,function(x) paste0(x,collapse="
 #sdtmchecksmeta = sdtmchecksmeta[,!grepl("^gdoc_pdf_return",names(sdtmchecksmeta))]
 sdtmchecksmeta = sdtmchecksmeta %>%
     select(-domains_n, -domains2)
-
-str(sdtmchecksmeta)
 
 
 
