@@ -1,3 +1,15 @@
+#' sdtmchecks: A package containing checks for common SDTM issues
+#'
+#'
+#' @docType package
+#' @name sdtmchecks
+#' @description Package containing checks for common SDTM issues.
+#' This package contains functions to identify common data issues in SDTM data.  
+#' These checks are intended to be generalizable, actionable, and meaningful for analysis.  
+#'
+NULL
+
+
 #' Pass object
 #'
 #' @export
@@ -264,4 +276,107 @@ dtc_dupl_early <- function(dts, vars, groupby, dtc, ...) {
 #' @return vector
 #' @export
 missing_month <- function(date) { substr(date, 5, 7) == "---" }
+
+
+
+
+
+
+
+
+#' Remove non-ASCII characters from reported term in order
+#' for Pandoc to create PDF file
+#'
+#'
+#' @param df dataframe
+#' @param var variable with non-ASCII characters
+#'
+#' @return dataframe
+#'
+#' @export
+#'
+#' @examples
+#'
+#' df <- data.frame(
+#' var = c("test", "teäst"),
+#' stringsAsFactors = FALSE
+#' )
+#'
+#' convert_var_to_ascii(df, 'var')
+#'
+#' df <- data.frame(
+#' usubjid = 1:2,
+#' var = c("test", "teästõ"),
+#' stringsAsFactors = FALSE
+#' )
+#'
+#' convert_var_to_ascii(df, 'var')
+
+convert_var_to_ascii <- function(df, var){
+  Encoding(df[[var]]) <- "latin1"
+  df[[var]]  <- iconv(df[[var]], "latin1", "ASCII", sub="")
+  return(df)
+}
+
+
+
+
+
+
+
+#' @title Utility function to truncate data in var_name
+#'
+#' @description This function will truncate the strings in variables according to the length specified
+#' @param dt dataset e.g. AE
+#'
+#' @param var_name variable name e.g. AETERM
+#'
+#' @param trunc_length  e.g. length the string will be truncated to e.g. 50
+#'
+#' @return dataset with truncated variable
+#' @export
+#'
+#' @author Stella Banjo(HackR 2021)
+#'
+#' @examples
+#'
+#' # Testing: no truncation
+#'
+#' AE <- data.frame(
+#'  USUBJID = 1:5,
+#'  DOMAIN = "AE",
+#'  AESEQ = 1:5,
+#'  AESTDTC = 1:5,
+#'  AETERM = 1:5,
+#'  AEDECOD = 1:5,
+#'  stringsAsFactors = FALSE
+#' )
+#'
+#' truncate_var_strings(AE, var_name = "AETERM", trunc_length = 50)
+#'
+#' # Testing: Truncation
+#'
+#' AE$AETERM[4] <- "THIS IS A SUPER LONG AE TERM, SO LONG IN FACT THAT ITS OVER 50 CHARACTERS."
+#' AE$AETERM[5] <- "THIS AE TERM IS WAY TOO LONG FOR A NICELY FORMATTED REPORT"
+#' 
+#' truncate_var_strings(AE, var_name = "AETERM", trunc_length = 50)
+#'
+
+
+truncate_var_strings <- function(dt, var_name, trunc_length) {
+  
+  dt <- mutate(dt,
+               !!(var_name) := ifelse(nchar(get(var_name)) > trunc_length,
+                                      unlist(lapply(get(var_name), function (x) {
+                                        
+                                        paste0(strwrap(x, width = (trunc_length - 3))[1], "...")
+                                      })),
+                                      get(var_name)
+               )
+  )
+  
+  return(dt)
+}
+
+
 
