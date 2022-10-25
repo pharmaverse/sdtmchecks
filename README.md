@@ -1,10 +1,11 @@
+
 # sdtmchecks
 
 This package contains functions to identify common data issues in SDTM data.  These checks are intended to be **generalizable**, **actionable**, and **meaningful for analysis**.  
   
 # Contributing
 
-This package has been developed internally at Roche since 2014.  Because of this it is pretty specific to Roche data standards.  Proposed additions or modifications should attempt to maintain generalizeability for slightly different data standards across companies.  For examples on how to do so and to learn more about contributing in general, please [click here](https://google.com).  
+This package has been developed internally at Roche since 2014.  There may be areas where the checks expect Roche-specific SDTM implementation choices.  Proposed additions or modifications should attempt to maintain generalizeability for slightly different data standards across companies.  For examples on how to do so and to learn more about contributing in general, please [click here](https://google.com).  
 
 If you have an idea for a new check but no time for development, please [open an 
 issue](https://github.com/pharmaverse/sdtmchecks/issues).
@@ -18,3 +19,4 @@ You can install sdtmchecks from github with:
 devtools::install_github("pharmaverse/sdtmchecks")
 ```
 
+<img src="man/figures/logo_em.png" alt="drawing" width="200"/>

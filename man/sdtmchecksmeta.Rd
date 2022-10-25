@@ -16,8 +16,9 @@ A data frame with a row for each R check in the package:
 \item{pdf_subtitle}{PDF subtitle for check, with * at the start of each subtitle line}
 \item{pdf_return}{PDF return message when SDTM domain not available}
 \item{fxn_in}{explicit string input of domain name(s) into R check function}
+\item{fxn_in_roche}{explicit string input of domain name(s) into R check function, Roche specific}
+\item{mapping}{Is this related to mapping?  i.e. Not a site issue.}
 \item{exist_string}{explicit string input to check existence of SDTM domain(s) before running check}
-\item{SPA}{Flag for data check relevant to SPA and not CDM/DSS}
 }
 }
 \usage{

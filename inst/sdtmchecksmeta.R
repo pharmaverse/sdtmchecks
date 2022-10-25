@@ -105,21 +105,22 @@ myvec=strsplit(sdtmchecksmeta$domains,",")
 #   It just defines the parameters for each function
 mylist=lapply(myvec,function(x) paste0(trimws(toupper(x)),"=",trimws(x)))
 sdtmchecksmeta$fxn_in=unlist(lapply(mylist,function(x) paste0(x,collapse=",")))
+
+###
+# Roche specific
+###
+
+# e.g. handling the situation where TS may or may not be available.
+
 sdtmchecksmeta = sdtmchecksmeta %>%
-    mutate(fxn_in = ifelse(!is.na(roche_extra_params),
+    mutate(fxn_in_roche = ifelse(!is.na(roche_extra_params),
                                paste0(fxn_in,",",roche_extra_params),
                                fxn_in)
            ) %>%
     select(-roche_extra_params)
 
 head(sdtmchecksmeta[,c("fxn_in")])
-
-#======== fxn_in =========
-#The code below handles the situation where TS may or may not be available.  Its for checks that look into TS to grab MedDRA version
-# sdtmchecksmeta$fxn_in=ifelse(grepl("ts",sdtmchecksmeta$domains) & sdtmchecksmeta$category=="COVID",
-#                              gsub(",TS=ts",",TS=(if('ts' %in% ls(envir=.GlobalEnv)){get('ts', envir = .GlobalEnv)}else{NULL})",sdtmchecksmeta$fxn_in),
-#                              sdtmchecksmeta$fxn_in
-# )
+head(sdtmchecksmeta[,c("fxn_in_roche")])
 
 
 
@@ -128,6 +129,7 @@ mylist=lapply(myvec,function(x) paste0('exists("', trimws(x), '")'))
 
 #======== exist_string ==========
 sdtmchecksmeta$exist_string=unlist(lapply(mylist,function(x) paste0(x,collapse=" & ")))
+head(sdtmchecksmeta$exist_string)
 
 ## -------   Drop temp variables -----------------------------------------------
 
@@ -203,7 +205,5 @@ if(nrow(mydf)>0){stop("Spreadsheet has duplicate Excel tab labels")}
 ## -----------------------------------------------------------------------------
 ## -------   OUTPUT: Save sdtmchecksmeta ---------------------------------------
 save(sdtmchecksmeta, file = "data/sdtmchecksmeta.RData", version=3, compress=TRUE)
-
-source("inst/domains.R")
 
 
