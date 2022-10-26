@@ -4,3 +4,4 @@
 .Ruserdata
 *.Rproj
 .Rprofile
+inst/doc

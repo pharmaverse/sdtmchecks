@@ -1,6 +1,6 @@
 Package: sdtmchecks
 Title: Data quality checks for SDTM datasets
-Version: 2022-10-25
+Version: 2022-10-25.1
 Nickname: Open Up
 Authors@R: 
     person("Will", "Harris", , "harric17@gene.com", role = c("aut", "cre"))
@@ -13,3 +13,7 @@ RoxygenNote: 7.1.1
 Imports: 
     dplyr,
     tidyselect
+Suggests: 
+    rmarkdown,
+    knitr
+VignetteBuilder: knitr

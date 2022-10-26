@@ -1,0 +1,95 @@
+---
+title: "Writing a New Check"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Writing a new check}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Background
+
+Clinical trial datasets can contain a million different types of incorrect data.  This package does not intend to comprehensively cover all scenarios in which data may be wrong.  Instead the data checks in this package are intended to be **generalizable**, **actionable**, and **meaningful for analysis**.  For example many clinical trials contain the `CO` domain, however the `sdtmchecks` package does not have any functionality around this domain as it is usually not meaningful for analysis.
+
+## Existing Checks
+
+The `sdtmchecksmeta` dataset lists existing checks and contains helpful additional information
+
+```{r, message=FALSE, eval=FALSE}
+#Just type this in
+sdtmchecksmeta
+```
+
+```{r, message=FALSE, echo=FALSE}
+library(sdtmchecks)
+meta<-subset(sdtmchecksmeta, select=c("check","domains","xls_title","pdf_title"))
+colnames(meta)<-c("check","domains","title", "description")
+head(meta,n=10)
+    
+``` 
+
+## Good Practices
+
+- When writing a new check, the function name should start with the word 'check' and contain key dataset information plus a 1-2 word description, i.e. `check_[dataset1]_..._[datasetN]_[brief description]`.  For example:
+   - `check_dm_race <- function(DM){...}`
+   - `check_dv_ae_covid <- function(DV, AE){...}`
+
+- Each function should at minimum take the datasets being investigated as parameters, e.g. `check_ae_aedecod <- function(AE){...}`
+
+- Each function should start with a check for required variables.  The following internal functions may be helpful for this: `%lacks_all%`,`%lacks_any%`,`%has_all%`, or `%has_any%`.
+
+-  All checks should use the internal `pass()` and `fail()` functions to return either `TRUE` or `FALSE` depending on check results.  These functions enable attributes to be attached to the boolean result, e.g. a message or a listing of flagged records.
+
+- `sdtmchecks` intentionally attempts to minimize external dependencies.  This is something to keep in mind when developing a new check.  Currently the only dependencies are `dplyr` and `tidyselect`.
+
+## Example Check
+
+If you are writing your first check it might be helpful to start by editing an existing one, for example the one below.
+
+```{r,  message=FALSE, error=FALSE, warning=FALSE}
+#' Title
+#'
+#' @param DM 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+check_dm_age_missing <- function(DM){
+  ###First check that required variables exist and return a message if they don't
+  if(DM %lacks_any% c("USUBJID","AGE")){
+      fail(lacks_msg(DM, c("USUBJID","AGE")))
+  }else{
+    ### Subset DM to only records with missing AGE
+    mydf_0 = subset(DM, is_sas_na(DM$AGE), c("USUBJID","AGE"))
+    ### Subset DM to only records with AGE<18
+    mydf_1 = subset(DM, !is_sas_na(DM$AGE) & DM$AGE<18, c("USUBJID","AGE"))
+    ### Subset DM to only records with AGE>90
+    mydf_2 = subset(DM, !is_sas_na(DM$AGE) & DM$AGE>=90, c("USUBJID","AGE"))
+    ### Combine records with abnormal AGE
+    mydf3 = rbind(mydf_0, mydf_1, mydf_2)
+    mydf = mydf3[order(mydf3$USUBJID),]
+    rownames(mydf)=NULL
+    ###Print to report
+    ### Return message if no records with missing AGE, AGE<18 or AGE>90
+    if(nrow(mydf)==0){
+      pass()
+      ### Return subset dataframe if there are records with missing AGE, AGE<18 or AGE>90
+    }else if(nrow(mydf)>0){
+        fail(paste("There are ",length(unique(mydf$USUBJID)),
+                   " patients with suspicious age values. ",sep=""),
+             mydf)
+        }
+  }
+}
+```
+
+
+## Additional Considerations
+
+- Is this check impactful for analysis?  Checking little used aspects of SDTM data can cause unnecessary work.
+- Will this check be meaningful across many trials or is specific to just a small number of trials?
+- Are false positives being minimized?  The check will not be useful if end users need to sift through a large number of incorrectly flagged records to find a one or two correctly flagged records.
+- Do SDTM IG or MedDRA versions need to be considered?
+
+

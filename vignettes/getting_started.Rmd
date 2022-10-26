@@ -1,0 +1,134 @@
+---
+title: "Getting Started"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+The purpose of the `sdtmchecks` package is to help detect and investigate potential analysis relevant issues in SDTM data. This is done using a set of data check functions. These check functions are intended to be **generalizable**, **actionable**, and **meaningful for analysis**.
+
+## To start using `sdtmchecks` first install the latest version from GitHub
+```{r, message=FALSE,eval=FALSE}
+devtools::install_github("pharmaverse/sdtmchecks")
+```
+
+## Then just load the package
+```{r, message=FALSE}
+library(sdtmchecks) 
+```
+
+## Here's how to access the help page for the package
+```{r, message=FALSE}
+# type ??sdtmchecks into the console
+??sdtmchecks 
+``` 
+ 
+## The package comes with the `sdtmchecksmeta` dataset which contains metadata on each check function
+
+It contains details like function name, category, priority, and descriptions
+
+Each function is given a **Category** (Cross Therapeutic Area, Oncology, Covid-19, Patient Reported Outcomes, Ophthalmology) and a **Priority** (High, Medium, Low).
+
+```{r, message=FALSE, eval=FALSE}
+#Just type this in
+sdtmchecksmeta
+```
+
+```{r, message=FALSE, echo=FALSE}
+meta<-subset(sdtmchecksmeta, select=c("check","xls_title","category","priority","domains"))
+colnames(meta)<-c("check","title","category","priority", "domains")
+head(meta,n=10)
+    
+``` 
+
+
+## Let's do an example using `check_ae_ds_partial_death_dates(AE,DS)`
+
+This check flags records with partial death dates (i.e. length <10) in AE and DS. If any are found, then data check returns `FALSE` with attributes containing a list of flagged records as well as a brief message explaining the result. If no issues are detected the check returns `TRUE`.
+
+```{r, message=FALSE, echo=FALSE}
+# Create sample data frames
+ AE <- data.frame(
+  USUBJID = 1:3,
+  AEDECOD = c("AE1","AE2","AE3"),
+  AEDTHDTC = c("2017-01-01","2017",NA),
+  stringsAsFactors=FALSE
+ )
+ DS <- data.frame(
+  USUBJID = 4:7,
+  DSSCAT = "STUDY DISCON", 
+  DSDECOD = "DEATH",
+  DSSTDTC = c("2018-01-01","2017-03-03","2018-01-02","2016-10"),
+  stringsAsFactors=FALSE
+ )
+``` 
+
+```{r, message=FALSE}
+# Use sample data frames.
+AE
+DS
+# Run the data check.
+check_ae_ds_partial_death_dates(AE,DS)
+```  
+
+## Running all the checks on your data is super easy
+
+Just use the `run_all_checks` function.
+
+This function assumes you have all of your sdtm datasets as objects in your global environment, e.g. `ae`,`dm`,`ex`,etc
+
+```{r, message=FALSE, error=FALSE, warning=FALSE, eval=FALSE }
+
+# Read data to your global environment
+AE = haven::read_sas("path/to/ae.sas7bdat")
+DS = haven::read_sas("path/to/ds.sas7bdat")
+
+# Run the checks and save as an object called "myreport"
+myreport=run_all_checks(metads = sdtmchecksmeta,
+               priority = c("High", "Medium", "Low"), #subset checks based on priority
+               type = c("ALL", "ONC", "COVID", "PRO", "OPHTH"), #subset checks based category
+               verbose = TRUE)
+
+class(myreport) #results in a list object
+names(myreport) #each check result is saved in a slot of the list
+myreport[["check_ae_aedecod"]] #investigate the results of a check
+``` 
+
+
+The `run_all_checks` function lets you easily subset on category or priority
+
+```{r, message=FALSE, error=FALSE, warning=FALSE, eval=FALSE }
+
+myreport=run_all_checks(metads = sdtmchecksmeta,
+               priority = c("High"),
+               type = c("ONC"),
+               verbose = TRUE)
+``` 
+
+## Here's a way to get started with some checks that should work fairly well for most datasets
+
+```{r, message=FALSE, error=FALSE, warning=FALSE, eval=FALSE }
+
+# Read data to your global environment
+AE = haven::read_sas("path/to/ae.sas7bdat")
+CM = haven::read_sas("path/to/cm.sas7bdat")
+DM = haven::read_sas("path/to/dm.sas7bdat")
+
+# Subset to checks that should work OK for most datasets
+metads = sdtmchecksmeta %>%
+  filter(check %in% c("check_ae_aedecod",
+                      "check_ae_aetoxgr",
+                      "check_ae_dup",
+                      "check_cm_cmdecod",
+                      "check_cm_missing_month",
+                      "check_dm_age_missing",
+                      "check_dm_usubjid_dup",
+                      "check_dm_armcd"
+                      ))
+
+myreport=run_all_checks(metads = metads,
+               verbose = TRUE)
+``` 
