@@ -5,7 +5,7 @@ This package contains functions to identify common data issues in SDTM data.  Th
   
 # Contributing
 
-This package has been developed internally at Roche since 2014.  There may be areas where the checks expect Roche-specific SDTM implementation choices.  Proposed additions or modifications should attempt to maintain generalizeability for slightly different data standards across companies.  For examples on how to do so and to learn more about contributing in general, please [click here](https://google.com).  
+This package has been developed internally at Roche since 2014.  There may be areas where the checks expect Roche-specific SDTM implementation choices.  Proposed additions or modifications should attempt to maintain generalizeability for slightly different data standards across companies.  For examples on how to do so and to learn more about contributing in general, please [click here](https://pharmaverse.github.io/sdtmchecks/articles/write_a_check.html).  
 
 If you have an idea for a new check but no time for development, please [open an 
 issue](https://github.com/pharmaverse/sdtmchecks/issues).
