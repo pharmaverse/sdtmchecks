@@ -2,7 +2,7 @@
 title: "Writing a New Check"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Writing a new check}
+  %\VignetteIndexEntry{Writing a New Check}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
