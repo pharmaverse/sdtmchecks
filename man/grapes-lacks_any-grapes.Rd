@@ -17,3 +17,4 @@ boolean
 \description{
 Check if data frame has at least one variable from a set of specified variables
 }
+\keyword{internal}

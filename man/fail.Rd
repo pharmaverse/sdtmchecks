@@ -17,3 +17,4 @@ Boolean with msg and data attributes
 \description{
 With Message and part of the Data that is responsible for the check to fail
 }
+\keyword{internal}

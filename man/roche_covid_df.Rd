@@ -41,5 +41,5 @@ ts4 <- data.frame(TSPARMCD = "AEDICT", TSVAL = c("MedDRA v40.1"))
 roche_covid_df(TS=ts4)
 }
 
-
 }
+\keyword{internal}

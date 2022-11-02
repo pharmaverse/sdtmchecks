@@ -17,3 +17,4 @@ boolean
 \description{
 Check if data frame has all specified variables
 }
+\keyword{internal}

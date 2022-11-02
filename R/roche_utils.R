@@ -8,10 +8,10 @@
 #'
 #' @return dataset with rave row number
 #'
-#' @export
 #'
 #' @author Stella Banjo (HackR 2021)
-#'
+#' @export
+#' @keywords internal
 #' @examples
 #'
 #' AE <- data.frame(
@@ -78,7 +78,7 @@ roche_derive_rave_row <- function(dts,domains=c("ae","cm","ds","lb","pr","ss","t
 #' @return dataframe
 #' @param TS Trial Summary SDTM dataset (optional) with variables TSPARMCD, TSVAL
 #' @export
-#'
+#' @keywords internal
 #' @examples
 #'
 #'\dontrun{
@@ -102,7 +102,6 @@ roche_derive_rave_row <- function(dts,domains=c("ae","cm","ds","lb","pr","ss","t
 #' roche_covid_df(TS=ts4)
 #' }
 #' 
-#'
 
 
 roche_covid_df <- function(TS=NULL){

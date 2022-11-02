@@ -21,3 +21,4 @@ is_sas_na(c(1,2,NA))
 
 is_sas_na(c("a", NA, "NA", ""))
 }
+\keyword{internal}

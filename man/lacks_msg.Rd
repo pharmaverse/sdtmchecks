@@ -19,3 +19,4 @@ character string saying which variables are missing
 Check data frame for mandatory variables and specify which are missing in
 message
 }
+\keyword{internal}

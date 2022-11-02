@@ -12,9 +12,10 @@ NULL
 
 #' Pass object
 #'
-#' @export
 #'
 #' @return a boolean TRUE
+#' @export
+#' @keywords internal
 pass <- function() {
   TRUE
 }
@@ -28,10 +29,10 @@ pass <- function() {
 #' @param msg character strings with fail message
 #' @param data a data frame to be printed with the fail message
 #'
-#' @export
 #'
 #' @return Boolean with msg and data attributes
-#'
+#' @export
+#' @keywords internal
 fail <- function(msg, data = NULL) {
   structure(FALSE, msg = msg, data = data)
 }
@@ -49,7 +50,7 @@ fail <- function(msg, data = NULL) {
 #' @return logical vector
 #'
 #' @export
-#'
+#' @keywords internal
 #' @examples
 #' is_sas_na(c(1,2,NA))
 #'
@@ -67,8 +68,8 @@ is_sas_na <- function(x) {
 #' @param varnames a vector with variable names
 #'
 #' @return boolean
-#'
 #' @export
+#' @keywords internal
 #'
 `%lacks_all%` <- function(df, varnames) {
   all(!(varnames %in% names(df)))
@@ -78,8 +79,8 @@ is_sas_na <- function(x) {
 #'
 #' @inheritParams %lacks_all%
 #' @return boolean
-#'
 #' @export
+#' @keywords internal
 #'
 `%lacks_any%` <- function(df, varnames) {
   any(!(varnames %in% names(df)))
@@ -91,6 +92,8 @@ is_sas_na <- function(x) {
 #' @inheritParams %lacks_all%
 #' @return character string saying which variables are missing
 #' @export
+#' @keywords internal
+
 lacks_msg <- function(df, varnames) {
   data_name <- deparse(substitute(df))
 
@@ -111,6 +114,8 @@ lacks_msg <- function(df, varnames) {
 #' @inheritParams %lacks_all%
 #' @return boolean
 #' @export
+#' @keywords internal
+
 `%has_all%` <- function(df, varnames) {
   all(varnames %in% names(df))
 }
@@ -119,13 +124,20 @@ lacks_msg <- function(df, varnames) {
 #' @inheritParams %lacks_all%
 #' @return boolean
 #' @export
+#' @keywords internal
+
 `%has_any%` <- function(df, varnames) {
   any(varnames %in% names(df))
 }
 
 
 
-# Add day of "01" to dates that are in the format of "yyyy-mm"
+#'
+#' Add day of "01" to dates that are in the format of "yyyy-mm"
+#' @return string
+#' @export
+#' @keywords internal
+
 impute_day01 <- function(dates) {
 
   ifelse(nchar(dates) ==7, paste0(dates, "-01"), dates)
@@ -156,11 +168,12 @@ impute_day01 <- function(dates) {
 #' @param dtc the date variable
 #' @param ... variables used for ordering before visit.order derivation
 #'
-#' @export
 #'
 #' @return dataframe with records of duplicated or earlier than last visit date
 #'
 #' @author James Zhang
+#' @export
+#' @keywords internal
 #'
 dtc_dupl_early <- function(dts, vars, groupby, dtc, ...) {
   # dots are for ordering variables
@@ -208,6 +221,8 @@ dtc_dupl_early <- function(dts, vars, groupby, dtc, ...) {
 #'
 #' @return vector
 #' @export
+#' @keywords internal
+
 missing_month <- function(date) { substr(date, 5, 7) == "---" }
 
 
@@ -225,8 +240,8 @@ missing_month <- function(date) { substr(date, 5, 7) == "---" }
 #' @param var variable with non-ASCII characters
 #'
 #' @return dataframe
-#'
 #' @export
+#' @keywords internal
 #'
 #' @examples
 #'
@@ -267,10 +282,10 @@ convert_var_to_ascii <- function(df, var){
 #' @param trunc_length  e.g. length the string will be truncated to e.g. 50
 #'
 #' @return dataset with truncated variable
-#' @export
 #'
 #' @author Stella Banjo(HackR 2021)
-#'
+#' @export
+#' @keywords internal
 #' @examples
 #'
 #' # Testing: no truncation
@@ -311,5 +326,39 @@ truncate_var_strings <- function(dt, var_name, trunc_length) {
   return(dt)
 }
 
+
+#' Remove non-ASCII characters from reported term in order
+#' for Pandoc to create PDF file
+#'
+#'
+#' @param df dataframe
+#' @param var variable with non-ASCII characters
+#'
+#' @return dataframe
+#' @export
+#' @keywords internal
+#'
+#' @examples
+#'
+#' df <- data.frame(
+#' var = c("test", "teäst"),
+#' stringsAsFactors = FALSE
+#' )
+#'
+#' df <- convert_var_to_ascii(df, 'var')
+#'
+#' df <- data.frame(
+#' usubjid = 1:2,
+#' var = c("test", "teästõ"),
+#' stringsAsFactors = FALSE
+#' )
+#'
+#' df <- convert_var_to_ascii(df, 'var')
+
+convert_var_to_ascii <- function(df, var){
+  Encoding(df[[var]]) <- "latin1"
+  df[[var]]  <- iconv(df[[var]], "latin1", "ASCII", sub="")
+  return(df)
+}
 
 

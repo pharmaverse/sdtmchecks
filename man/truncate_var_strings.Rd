@@ -46,3 +46,4 @@ truncate_var_strings(AE, var_name = "AETERM", trunc_length = 50)
 \author{
 Stella Banjo(HackR 2021)
 }
+\keyword{internal}

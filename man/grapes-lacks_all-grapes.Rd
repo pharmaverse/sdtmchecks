@@ -17,3 +17,4 @@ boolean
 \description{
 Check if data frame is missing any of the specified variables
 }
+\keyword{internal}
