@@ -40,8 +40,8 @@ check_tu_tudtc_across_visit <- function(TU) {
             select(USUBJID, TUDTC, VISIT)
         }else{
         tusub = TU %>%
-            select(USUBJID, TUDTC, VISIT) %>%
-            filter(toupper(TU$TUEVAL) == "INVESTIGATOR" | is_sas_na(TU$TUEVAL))
+            filter(toupper(TUEVAL) == "INVESTIGATOR" | is_sas_na(TUEVAL)) %>%
+            select(USUBJID, TUDTC, VISIT) 
         }
 
 

@@ -41,12 +41,12 @@ check_tr_trdtc_across_visit <- function(TR) {
 
         if(TR %lacks_any% "TREVAL"){
         trsub = TR %>%
-            select(USUBJID, TRDTC, VISIT, TRTESTCD) %>%
-            filter(TRTESTCD == "LDIAM")
+            filter(TRTESTCD == "LDIAM") %>%
+            select(USUBJID, TRDTC, VISIT, TRTESTCD)
         }else{
         trsub = TR %>%
-            select(USUBJID, TRDTC, VISIT, TRTESTCD) %>%
-            filter(TRTESTCD == "LDIAM" & (toupper(TREVAL) == "INVESTIGATOR" | is_sas_na(TREVAL)))
+            filter(TRTESTCD == "LDIAM" & (toupper(TREVAL) == "INVESTIGATOR" | is_sas_na(TREVAL))) %>%
+            select(USUBJID, TRDTC, VISIT, TRTESTCD)
         }
 
         if(nrow(trsub)>0){

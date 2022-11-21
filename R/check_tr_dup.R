@@ -52,8 +52,8 @@ check_tr_dup <- function(TR){
         }else{
             tr1 <- TR %>%
                 arrange_at(myvars) %>%
-                select(any_of(myvars)) %>%
-                filter(toupper(TREVAL) == "INVESTIGATOR" | is_sas_na(TREVAL))
+                filter(toupper(TREVAL) == "INVESTIGATOR" | is_sas_na(TREVAL)) %>%
+                select(any_of(myvars))
         }
 
         # check if there are duplicate TR records

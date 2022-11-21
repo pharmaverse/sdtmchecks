@@ -58,13 +58,13 @@ check_tu_tuloc_missing <- function(TU,preproc=identity,...) {
         if(TU %lacks_any% "TUEVAL"){
             ### Subset TU to only target lesions with missing TULOC
             mydf = TU %>%
-                select(any_of(c("USUBJID", "TUDTC","VISIT","TUORRES","TULOC", "RAVE"))) %>%
-                filter(is_sas_na(TULOC),toupper(TUORRES)=="TARGET")
+                filter(is_sas_na(TULOC),toupper(TUORRES)=="TARGET") %>%
+                select(any_of(c("USUBJID", "TUDTC","VISIT","TUORRES","TULOC", "RAVE")))
 
         }else{
             mydf = TU %>%
-                select(any_of(c("USUBJID", "TUDTC","VISIT","TUORRES","TULOC", "RAVE"))) %>%
-                filter(is_sas_na(TULOC),toupper(TUORRES)=="TARGET",toupper(TUEVAL) == "INVESTIGATOR" | is_sas_na(TUEVAL))
+                filter(is_sas_na(TULOC),toupper(TUORRES)=="TARGET",toupper(TUEVAL) == "INVESTIGATOR" | is_sas_na(TUEVAL)) %>%
+                select(any_of(c("USUBJID", "TUDTC","VISIT","TUORRES","TULOC", "RAVE")))
         }
 
         rownames(mydf)=NULL

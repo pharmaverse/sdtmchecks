@@ -58,12 +58,14 @@ check_rs_rsdtc_visit <- function(RS){
         if(RS %lacks_any% "RSEVAL"){
         ### Subset to only records with missing RSDTC or missing VISIT
         mydf <- RS %>%
-                select(USUBJID, RSDTC, RSORRES, VISIT, RSSTAT) %>%
-                filter((is_sas_na(RSDTC) | is_sas_na(VISIT)) &!is_sas_na(RSORRES) & toupper(RSSTAT) != "NOT DONE")
+            filter((is_sas_na(RSDTC) | is_sas_na(VISIT)) &!is_sas_na(RSORRES) & toupper(RSSTAT) != "NOT DONE") %>%
+            select(USUBJID, RSDTC, RSORRES, VISIT, RSSTAT) 
+                
         }else{
             mydf <- RS %>%
-                select(USUBJID, RSDTC, RSORRES, VISIT, RSSTAT,RSEVAL) %>%
-                filter((is_sas_na(RSDTC) | is_sas_na(VISIT)) &!is_sas_na(RSORRES) & toupper(RSSTAT) != "NOT DONE" & (toupper(RSEVAL) == "INVESTIGATOR" | is_sas_na(RSEVAL))   )
+                filter((is_sas_na(RSDTC) | is_sas_na(VISIT)) &!is_sas_na(RSORRES) & toupper(RSSTAT) != "NOT DONE" & (toupper(RSEVAL) == "INVESTIGATOR" | is_sas_na(RSEVAL))   ) %>%
+                select(USUBJID, RSDTC, RSORRES, VISIT, RSSTAT,RSEVAL)
+                
         }
 
         rownames(mydf)=NULL
