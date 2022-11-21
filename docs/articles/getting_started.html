@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2022-11-02</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2022-11-21</span>
       </span>
     </div>
 
@@ -114,19 +114,20 @@
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="co">#Just type this in</span>
 <span class="va">sdtmchecksmeta</span></pre></div>
-<pre><code>## # A tibble: 10 x 5
-##    check                         title                 category priority domains
-##    &lt;chr&gt;                         &lt;chr&gt;                 &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;  
-##  1 check_ae_aeacn_ds_disctx_cov… COVID AE trt discon   COVID    Low      ae, ds 
-##  2 check_ae_aeacnoth             AE AEACNOTH multiple  ALL      Low      ae     
-##  3 check_ae_aeacnoth_ds_stddisc… COVID AE study discon COVID    Low      ae, ds 
-##  4 check_ae_aedecod              AE Missing PT         ALL      High     ae     
-##  5 check_ae_aedthdtc_aesdth      AE Death Date vs Ind… ALL      High     ae     
-##  6 check_ae_aedthdtc_ds_death    DS Death Dates in AE  ALL      High     ae, ds 
-##  7 check_ae_aelat                AE AELAT Missing      OPHTH    High     ae     
-##  8 check_ae_aeout                AE Death Outcome      ALL      High     ae     
-##  9 check_ae_aeout_aeendtc_aedth… Fatal AE Resolution … ALL      High     ae     
-## 10 check_ae_aerel                AE AEREL              ALL      Medium   ae</code></pre>
+<pre><code>## # A tibble: 10 × 5
+##    check                              title              categ…¹ prior…² domains
+##    &lt;chr&gt;                              &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+##  1 check_ae_aeacn_ds_disctx_covid     COVID AE trt disc… COVID   Low     ae, ds 
+##  2 check_ae_aeacnoth                  AE AEACNOTH multi… ALL     Low     ae     
+##  3 check_ae_aeacnoth_ds_stddisc_covid COVID AE study di… COVID   Low     ae, ds 
+##  4 check_ae_aedecod                   AE Missing PT      ALL     High    ae     
+##  5 check_ae_aedthdtc_aesdth           AE Death Date vs … ALL     High    ae     
+##  6 check_ae_aedthdtc_ds_death         DS Death Dates in… ALL     High    ae, ds 
+##  7 check_ae_aelat                     AE AELAT Missing   OPHTH   High    ae     
+##  8 check_ae_aeout                     AE Death Outcome   ALL     High    ae     
+##  9 check_ae_aeout_aeendtc_aedthdtc    Fatal AE Resoluti… ALL     High    ae     
+## 10 check_ae_aerel                     AE AEREL           ALL     Medium  ae     
+## # … with abbreviated variable names ¹​category, ²​priority</code></pre>
 </div>
 <div id="lets-do-an-example-using-check_ae_ds_partial_death_datesaeds" class="section level2">
 <h2 class="hasAnchor">

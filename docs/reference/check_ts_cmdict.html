@@ -73,7 +73,7 @@ if it's present, also checking it's the current version" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2022-11-02</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2022-11-21</span>
       </span>
     </div>
 
@@ -193,37 +193,37 @@ test failed</p>
 <span class='fu'>check_ts_cmdict</span><span class='op'>(</span><span class='va'>TS1</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] FALSE
 #&gt; attr(,"msg")
-#&gt; [1] "WHODrug version in TS.TSVAL where TS.TSPARMCD=CMDICT is not latest version as of 2022-11-02 or not an exact string match."
+#&gt; [1] "WHODrug version in TS.TSVAL where TS.TSPARMCD=CMDICT is not latest version as of 2022-11-21 or not an exact string match."
 #&gt; attr(,"data")
-#&gt;   TSPARMCD                           TSVAL             Current_WHODRUG_ver
-#&gt; 1   CMDICT WHODRUG GLOBAL B3 MARCH 1, 2021 WHODRUG GLOBAL B3 MARCH 1, 2022</div><div class='input'><span class='fu'>check_ts_cmdict</span><span class='op'>(</span><span class='va'>TS2</span><span class='op'>)</span>
+#&gt;   TSPARMCD                           TSVAL                 Current_WHODRUG_ver
+#&gt; 1   CMDICT WHODRUG GLOBAL B3 MARCH 1, 2021 WHODRUG GLOBAL B3 SEPTEMBER 1, 2022</div><div class='input'><span class='fu'>check_ts_cmdict</span><span class='op'>(</span><span class='va'>TS2</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] FALSE
 #&gt; attr(,"msg")
 #&gt; [1] "No value in TS.TSVAL where TS.TSPARMCD=CMDICT. "
 #&gt; attr(,"data")
-#&gt;   TSPARMCD TSVAL             Current_WHODRUG_ver
-#&gt; 1   CMDICT       WHODRUG GLOBAL B3 MARCH 1, 2022</div><div class='input'><span class='fu'>check_ts_cmdict</span><span class='op'>(</span><span class='va'>TS3</span><span class='op'>)</span>
+#&gt;   TSPARMCD TSVAL                 Current_WHODRUG_ver
+#&gt; 1   CMDICT       WHODRUG GLOBAL B3 SEPTEMBER 1, 2022</div><div class='input'><span class='fu'>check_ts_cmdict</span><span class='op'>(</span><span class='va'>TS3</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] FALSE
 #&gt; attr(,"msg")
 #&gt; [1] "No value in TS.TSVAL where TS.TSPARMCD=CMDICT. "
 #&gt; attr(,"data")
-#&gt;   TSPARMCD TSVAL             Current_WHODRUG_ver
-#&gt; 1   CMDICT       WHODRUG GLOBAL B3 MARCH 1, 2022</div><div class='input'><span class='fu'>check_ts_cmdict</span><span class='op'>(</span><span class='va'>TS4</span><span class='op'>)</span>
+#&gt;   TSPARMCD TSVAL                 Current_WHODRUG_ver
+#&gt; 1   CMDICT       WHODRUG GLOBAL B3 SEPTEMBER 1, 2022</div><div class='input'><span class='fu'>check_ts_cmdict</span><span class='op'>(</span><span class='va'>TS4</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] FALSE
 #&gt; attr(,"msg")
 #&gt; [1] "No record where TS.TSPARMCD=CMDICT. "</div><div class='input'><span class='fu'>check_ts_cmdict</span><span class='op'>(</span><span class='va'>TS5</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] FALSE
 #&gt; attr(,"msg")
-#&gt; [1] "WHODrug version in TS.TSVAL where TS.TSPARMCD=CMDICT is not latest version as of 2022-11-02 or not an exact string match."
+#&gt; [1] "WHODrug version in TS.TSVAL where TS.TSPARMCD=CMDICT is not latest version as of 2022-11-21 or not an exact string match."
 #&gt; attr(,"data")
-#&gt;   TSPARMCD       TSVAL             Current_WHODRUG_ver
-#&gt; 1   CMDICT meddra 24.0 WHODRUG GLOBAL B3 MARCH 1, 2022</div><div class='input'><span class='fu'>check_ts_cmdict</span><span class='op'>(</span><span class='va'>TS6</span><span class='op'>)</span>
+#&gt;   TSPARMCD       TSVAL                 Current_WHODRUG_ver
+#&gt; 1   CMDICT meddra 24.0 WHODRUG GLOBAL B3 SEPTEMBER 1, 2022</div><div class='input'><span class='fu'>check_ts_cmdict</span><span class='op'>(</span><span class='va'>TS6</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] FALSE
 #&gt; attr(,"msg")
-#&gt; [1] "WHODrug version in TS.TSVAL where TS.TSPARMCD=CMDICT is not latest version as of 2022-11-02 or not an exact string match."
+#&gt; [1] "WHODrug version in TS.TSVAL where TS.TSPARMCD=CMDICT is not latest version as of 2022-11-21 or not an exact string match."
 #&gt; attr(,"data")
-#&gt;   TSPARMCD                            TSVAL             Current_WHODRUG_ver
-#&gt; 1   CMDICT WHODRUG vGLOBAL B3 MARCH 1, 2021 WHODRUG GLOBAL B3 MARCH 1, 2022</div><div class='input'><span class='fu'>check_ts_cmdict</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>TS1</span>,<span class='va'>TS1</span><span class='op'>)</span><span class='op'>)</span>
+#&gt;   TSPARMCD                            TSVAL                 Current_WHODRUG_ver
+#&gt; 1   CMDICT WHODRUG vGLOBAL B3 MARCH 1, 2021 WHODRUG GLOBAL B3 SEPTEMBER 1, 2022</div><div class='input'><span class='fu'>check_ts_cmdict</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>TS1</span>,<span class='va'>TS1</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] FALSE
 #&gt; attr(,"msg")
 #&gt; [1] "Multiple records where TS.TSPARMCD=CMDICT. "

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2022-11-02</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2022-11-21</span>
       </span>
     </div>
 
@@ -152,15 +152,15 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>sdtmchecksmeta</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>sdtmchecksmeta</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 5</span><span>
-#&gt;   check                         category priority domains xls_title             
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                         </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                 
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> check_ae_aeacn_ds_disctx_cov… COVID    Low      ae, ds  COVID AE trt discon   
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> check_ae_aeacnoth             ALL      Low      ae      AE AEACNOTH multiple  
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> check_ae_aeacnoth_ds_stddisc… COVID    Low      ae, ds  COVID AE study discon 
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> check_ae_aedecod              ALL      High     ae      AE Missing PT         
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> check_ae_aedthdtc_aesdth      ALL      High     ae      AE Death Date vs Indi…
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> check_ae_aedthdtc_ds_death    ALL      High     ae, ds  DS Death Dates in AE  </div><div class='input'>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 × 5</span><span>
+#&gt;   check                              category priority domains xls_title        
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                              </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> check_ae_aeacn_ds_disctx_covid     COVID    Low      ae, ds  COVID AE trt dis…
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> check_ae_aeacnoth                  ALL      Low      ae      AE AEACNOTH mult…
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> check_ae_aeacnoth_ds_stddisc_covid COVID    Low      ae, ds  COVID AE study d…
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> check_ae_aedecod                   ALL      High     ae      AE Missing PT    
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> check_ae_aedthdtc_aesdth           ALL      High     ae      AE Death Date vs…
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> check_ae_aedthdtc_ds_death         ALL      High     ae, ds  DS Death Dates i…</div><div class='input'>
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
  <span class='va'>sdtmchecksmeta</span>
 <span class='op'>}</span>

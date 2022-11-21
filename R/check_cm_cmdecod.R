@@ -48,9 +48,9 @@
 check_cm_cmdecod <- function(CM,preproc=identity,...){
 
   ###First check that required variables exist and return a message if they don't
-  if(CM %lacks_any% c("USUBJID","CMTRT","CMDECOD")){
+  if(CM %lacks_any% c("USUBJID","CMTRT","CMDECOD","CMCAT")){
 
-    fail(lacks_msg(CM, c("USUBJID","CMTRT","CMDECOD")))
+    fail(lacks_msg(CM, c("USUBJID","CMTRT","CMDECOD","CMCAT")))
 
   }else {
 
@@ -59,6 +59,7 @@ check_cm_cmdecod <- function(CM,preproc=identity,...){
 
     ### Subset domain to only records with missing coded term (CMDECOD)
     mydf <- CM %>%
+      filter(grepl("CONCOMITANT",CMCAT)) %>%
       select(any_of(c("USUBJID", "CMSEQ","CMSTDTC","CMTRT","CMDECOD", "CMPRESP", "CMOCCUR", "RAVE"))) %>%
       filter(is_sas_na(CMDECOD))
     rownames(mydf)=NULL

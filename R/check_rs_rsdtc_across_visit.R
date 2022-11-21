@@ -43,8 +43,8 @@ check_rs_rsdtc_across_visit <- function(RS) {
             select(USUBJID, RSDTC,VISIT)
         }else{
         rssub = RS %>%
-                select(USUBJID, RSDTC,VISIT) %>%
-                filter(toupper(RSEVAL) == "INVESTIGATOR" | is_sas_na(RSEVAL))
+            filter(toupper(RSEVAL) == "INVESTIGATOR" | is_sas_na(RSEVAL)) %>%
+            select(USUBJID,RSDTC,VISIT) 
         }
 
         if(nrow(rssub)>0){
