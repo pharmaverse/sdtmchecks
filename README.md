@@ -1,7 +1,7 @@
 
 # sdtmchecks
 
-This package contains functions to identify common data issues in SDTM data.  These checks are intended to be **generalizable**, **actionable**, and **meaningful for analysis**.  
+This package contains functions to identify common data issues in SDTM data.  These checks are intended to be **generalizable**, **actionable**, and **meaningful for analysis**.
   
 # Contributing
 
