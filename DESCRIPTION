@@ -1,7 +1,6 @@
 Package: sdtmchecks
 Title: Data quality checks for SDTM datasets
 Version: 0.1.0
-Nickname: Open Up
 Authors@R: 
     person("Will", "Harris", , "harric17@gene.com", role = c("aut", "cre"))
 Description: This package contains functions to identify common data issues in SDTM data. These checks are intended to be generalizable, actionable, and meaningful for analysis. 
