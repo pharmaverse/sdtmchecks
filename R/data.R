@@ -33,3 +33,17 @@
 #' }
 
 "sdtmchecksmeta"
+
+
+
+#' Nickname for package version
+#'
+#' A nickname associated with the package version.  Previously lived in the description file.
+#' 
+#' @docType data
+#' @name nickname
+#' @keywords internal
+#'
+#'
+
+"nickname"
