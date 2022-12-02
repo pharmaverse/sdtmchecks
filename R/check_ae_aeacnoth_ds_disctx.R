@@ -16,8 +16,6 @@
 #'
 #' @examples
 #'
-#' # test with sample data
-#'
 #' AE <- data.frame(
 #'     STUDYID  = "1001",
 #'     USUBJID  = c("1","2","3","4","5","1"),
@@ -38,36 +36,6 @@
 #' )
 #'
 #' check_ae_aeacnoth_ds_disctx(AE, DS)
-#'
-#'\dontrun{
-#'
-#' rice::rice_session_open()
-#'
-#' AE1 = rice::rice_read("root/clinical_studies/RO5541077/CDPT7898/GO29365/data_analysis/armg_report4/data/sdtmv/ae.sas7bdat", prolong = T)
-#' AE2 = rice::rice_read("root/clinical_studies/RO5541267/CDT30019/GO29436/data_analysis/3rd_os/data/sdtmv/ae.sas7bdat", prolong = T)
-#' AE3 = rice::rice_read("root/clinical_studies/RO7200394/CDPT7921/BP40923/data_analysis/CSR/data/sdtmv/ae.sas7bdat", prolong = T)
-#' AE4 = rice::rice_read("root/clinical_studies/RO5541267/CDPT3852/GO29537/data_analysis/events/data/sdtmv/ae.sas7bdat", prolong = T)
-#' AE5 = rice::rice_read("root/clinical_studies/RO0220912/CDT30061/GA29960/data_analysis/final_vads/data/sdtmv/ae.sas7bdat", prolong = T)
-#' AE6 = rice::rice_read("root/clinical_studies/RO7200220/CDT70193/BP40899/data_analysis/CSR_P123/data/sdtmv/ae.sas7bdat", prolong = T)
-#' AE7 = rice::rice_read("root/clinical_studies/RO5490261/CDPT7437/GA29144/data_analysis/CSR_FINAL/data/sdtmv/ae.sas7bdat")
-#'
-#' DS1 = rice::rice_read("root/clinical_studies/RO5541077/CDPT7898/GO29365/data_analysis/armg_report4/data/sdtmv/ds.sas7bdat", prolong = T)
-#' DS2 = rice::rice_read("root/clinical_studies/RO5541267/CDT30019/GO29436/data_analysis/3rd_os/data/sdtmv/ds.sas7bdat", prolong = T)
-#' DS3 = rice::rice_read("root/clinical_studies/RO7200394/CDPT7921/BP40923/data_analysis/CSR/data/sdtmv/ds.sas7bdat", prolong = T)
-#' DS4 = rice::rice_read("root/clinical_studies/RO5541267/CDPT3852/GO29537/data_analysis/events/data/sdtmv/ds.sas7bdat", prolong = T)
-#' DS5 = rice::rice_read("root/clinical_studies/RO0220912/CDT30061/GA29960/data_analysis/final_vads/data/sdtmv/ds.sas7bdat", prolong = T)
-#' DS6 = rice::rice_read("root/clinical_studies/RO7200220/CDT70193/BP40899/data_analysis/CSR_P123/data/sdtmv/ds.sas7bdat", prolong = T)
-#' DS7 = rice::rice_read("root/clinical_studies/RO5490261/CDPT7437/GA29144/data_analysis/CSR_FINAL/data/sdtmv/ds.sas7bdat")
-#' rice::rice_session_close()
-#'
-#' check_ae_aeacnoth_ds_disctx(AE1,DS1)
-#' check_ae_aeacnoth_ds_disctx(AE2,DS2)
-#' check_ae_aeacnoth_ds_disctx(AE3,DS3)
-#' check_ae_aeacnoth_ds_disctx(AE4,DS4)
-#' check_ae_aeacnoth_ds_disctx(AE5,DS5)
-#' check_ae_aeacnoth_ds_disctx(AE6,DS6)
-#'
-#'}
 #'
 check_ae_aeacnoth_ds_disctx <- function(AE, DS){
   
@@ -100,7 +68,7 @@ check_ae_aeacnoth_ds_disctx <- function(AE, DS){
     ds1 <- DS %>% select(c("USUBJID", "DSCAT", "DSSCAT","DSDECOD"))
     
     # Filter for DS records indicating subject didn't complete the study
-    ds2 <- ds1 %>% filter(grepl("DISCON", str_to_upper(DSSCAT)) & DSDECOD != "COMPLETED") 
+    ds2 <- ds1 %>% filter(grepl("DISCON", toupper(DSSCAT)) & DSDECOD != "COMPLETED") 
     
     # Merge AE and DS to cross-check records
     ae_ds <- ae2 %>% left_join(ds2, by = c("USUBJID"))
