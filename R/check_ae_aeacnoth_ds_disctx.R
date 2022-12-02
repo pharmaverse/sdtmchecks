@@ -7,6 +7,10 @@
 #'
 #' @param AE Adverse Events SDTM dataset with variables USUBJID, AEDECOD, AEACNOTx
 #' @param DS Disposition SDTM dataset with variables USUBJID, DSCAT, DSSCAT, DSDECOD
+#' @param preproc An optional company specific preprocessing script
+#' @param ... Other arguments passed to methods
+#' 
+#' @importFrom tidyselect any_of
 #'
 #' @return boolean value if check returns 0 obs, otherwise return subset dataframe.
 #'
@@ -25,9 +29,11 @@
 #'                  "SUBJECT DISCONTINUED FROM STUDY", "SUBJECT DISCONTINUED FROM STUDY"),
 #'     AEACNOT1 = c("", "", "PROCEDURE/SURGERY", "", "", ""),
 #'     AEACNOT2 = c("", "", "SUBJECT DISCONTINUED FROM STUDY", "", "", ""),
+#'     AESPID = "FORMNAME-R:13/L:13XXXX",
 #'     stringsAsFactors = FALSE
 #' )
-# 'DS <- data.frame(
+#' 
+#' DS <- data.frame(
 #'     USUBJID = c("1","5"),
 #'     DSCAT   = c("DISPOSITION EVENT", "DISPOSITION EVENT"),
 #'     DSSCAT  = c("STUDY COMPLETION/EARLY DISCONTINUATION", "STUDY COMPLETION/EARLY DISCONTINUATION"),
@@ -36,8 +42,9 @@
 #' )
 #'
 #' check_ae_aeacnoth_ds_disctx(AE, DS)
+#' check_ae_aeacnoth_ds_disctx(AE, DS, preproc=roche_derive_rave_row)
 #'
-check_ae_aeacnoth_ds_disctx <- function(AE, DS){
+check_ae_aeacnoth_ds_disctx <- function(AE, DS, preproc=identity,...){
   
   # First check that required variables exist and return a message if they don't
   if( AE %lacks_any% c("USUBJID", "AEDECOD", "AEACNOTH")){
@@ -50,12 +57,15 @@ check_ae_aeacnoth_ds_disctx <- function(AE, DS){
     
   } else{
     
+    #Apply company specific preprocessing function
+    AE = preproc(AE,...)
+    
     # Get all AEACNOTx (x = "H", "1", "2", etc) columns
     aeacnotx_cols <- c("AEACNOTH", grep("AEACNOT[0-9]", names(AE), value = TRUE))
     
     # Keep only AE columns that are needed
     ae1 <- AE %>%
-      select(c("USUBJID", "AEDECOD", "AESTDTC", aeacnotx_cols))
+      select(any_of(c("USUBJID", "AEDECOD", "AESTDTC", aeacnotx_cols, "RAVE")))
     
     # Filter for AE records where any of AEACNOTHx (x = "", "1", "2", etc) is "SUBJECT DISCONTINUED FROM STUDY"
     ae1$subj_discont_fl <- apply(ae1[aeacnotx_cols] == "SUBJECT DISCONTINUED FROM STUDY", 1, any)
@@ -68,7 +78,10 @@ check_ae_aeacnoth_ds_disctx <- function(AE, DS){
     ds1 <- DS %>% select(c("USUBJID", "DSCAT", "DSSCAT","DSDECOD"))
     
     # Filter for DS records indicating subject didn't complete the study
-    ds2 <- ds1 %>% filter(grepl("DISCON", toupper(DSSCAT)) & DSDECOD != "COMPLETED") 
+    ds2 <- ds1 %>% filter(grepl("DISCON", toupper(DSSCAT)) &
+                          !grepl("DRUG", toupper(DSSCAT)) &
+                          !grepl("TREATMENT", toupper(DSSCAT)) 
+                          & DSDECOD != "COMPLETED") 
     
     # Merge AE and DS to cross-check records
     ae_ds <- ae2 %>% left_join(ds2, by = c("USUBJID"))
