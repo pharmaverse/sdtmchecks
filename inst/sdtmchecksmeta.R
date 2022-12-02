@@ -206,4 +206,7 @@ if(nrow(mydf)>0){stop("Spreadsheet has duplicate Excel tab labels")}
 ## -------   OUTPUT: Save sdtmchecksmeta ---------------------------------------
 save(sdtmchecksmeta, file = "data/sdtmchecksmeta.RData", version=3, compress=TRUE)
 
+### Keep a nickname
+nickname="Open Up"
+save(nickname, file = "data/nickname.RData")
 

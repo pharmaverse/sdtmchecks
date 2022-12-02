@@ -11,6 +11,13 @@ vignette: >
 
 Clinical trial datasets can contain a million different types of incorrect data.  This package does not intend to comprehensively cover all scenarios in which data may be wrong.  Instead the data checks in this package are intended to be **generalizable**, **actionable**, and **meaningful for analysis**.  For example many clinical trials contain the `CO` domain, however the `sdtmchecks` package does not have any functionality around this domain as it is usually not meaningful for analysis.
 
+## Working in GitHub
+
+The `main` branch contains the latest released version and should not be used for development.
+
+The `devel` is the default branch and contains the latest development version of the package. To start contributing, please make a feature branch off of `devel`.  When your code is ready to be incorporated please pull request it back into `devel`.
+
+
 ## Existing Checks
 
 The `sdtmchecksmeta` dataset lists existing checks and contains helpful additional information

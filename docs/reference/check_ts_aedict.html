@@ -73,7 +73,7 @@ if it's present, also checking it's the current version" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2022-11-21</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -86,6 +86,9 @@ if it's present, also checking it's the current version" />
   </a>
 </li>
 <li>
+  <a href="../articles/sdtmchecks.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -95,9 +98,6 @@ if it's present, also checking it's the current version" />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/getting_started.html">Getting Started</a>
-    </li>
     <li>
       <a href="../articles/write_a_check.html">Writing a New Check</a>
     </li>
@@ -193,7 +193,7 @@ test failed</p>
 <span class='fu'>check_ts_aedict</span><span class='op'>(</span><span class='va'>TS1</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] FALSE
 #&gt; attr(,"msg")
-#&gt; [1] "MedDRA version in TS.TSVAL where TS.TSPARMCD=AEDICT is not the latest version as of 2022-11-21"
+#&gt; [1] "MedDRA version in TS.TSVAL where TS.TSPARMCD=AEDICT is not the latest version as of 2022-12-02"
 #&gt; attr(,"data")
 #&gt;   TSPARMCD       TSVAL Current_MedDRA_version
 #&gt; 1   AEDICT MedDRA 22.0                   25.1</div><div class='input'><span class='fu'>check_ts_aedict</span><span class='op'>(</span><span class='va'>TS2</span><span class='op'>)</span>
@@ -214,13 +214,13 @@ test failed</p>
 #&gt; [1] "No record where TS.TSPARMCD=AEDICT."</div><div class='input'><span class='fu'>check_ts_aedict</span><span class='op'>(</span><span class='va'>TS5</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] FALSE
 #&gt; attr(,"msg")
-#&gt; [1] "MedDRA version in TS.TSVAL where TS.TSPARMCD=AEDICT is not the latest version as of 2022-11-21"
+#&gt; [1] "MedDRA version in TS.TSVAL where TS.TSPARMCD=AEDICT is not the latest version as of 2022-12-02"
 #&gt; attr(,"data")
 #&gt;   TSPARMCD       TSVAL Current_MedDRA_version
 #&gt; 1   AEDICT meddra 24.0                   25.1</div><div class='input'><span class='fu'>check_ts_aedict</span><span class='op'>(</span><span class='va'>TS6</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] FALSE
 #&gt; attr(,"msg")
-#&gt; [1] "MedDRA version in TS.TSVAL where TS.TSPARMCD=AEDICT is not the latest version as of 2022-11-21"
+#&gt; [1] "MedDRA version in TS.TSVAL where TS.TSPARMCD=AEDICT is not the latest version as of 2022-12-02"
 #&gt; attr(,"data")
 #&gt;   TSPARMCD                 TSVAL Current_MedDRA_version
 #&gt; 1   AEDICT     meddra    23.0                      25.1</div><div class='input'><span class='fu'>check_ts_aedict</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>TS1</span>,<span class='va'>TS1</span><span class='op'>)</span><span class='op'>)</span>
