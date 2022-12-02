@@ -1,8 +1,8 @@
 ---
-title: "Getting Started"
+title: "Introduction to sdtmchecks"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Getting Started}
+  %\VignetteIndexEntry{Introduction to sdtmchecks}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
