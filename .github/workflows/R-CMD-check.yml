@@ -45,6 +45,9 @@ jobs:
       - name: Get branch names
         id: branch-name
         uses: tj-actions/branch-names@v5.4
+      
+      - name: Setup pandoc
+        uses: r-lib/actions/setup-pandoc@v1
 
       - name: Checkout repo (PR) 🛎
         uses: actions/checkout@v3
