@@ -5,3 +5,4 @@ logo_em.png
 archive
 docs
 .github
+^\.github$
