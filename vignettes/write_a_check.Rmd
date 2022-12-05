@@ -51,7 +51,7 @@ head(meta,n=10)
 
 ## Example Check
 
-If you are writing your first check it might be helpful to start by editing an existing one, for example the one below.
+If you are writing your first check it might be helpful to start by editing an existing one, for example the one below:
 
 ```{r,  message=FALSE, error=FALSE, warning=FALSE}
 #' Title
