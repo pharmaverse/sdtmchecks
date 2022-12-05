@@ -83,8 +83,8 @@ This function assumes you have all of your sdtm datasets as objects in your glob
 ```{r, message=FALSE, error=FALSE, warning=FALSE, eval=FALSE }
 
 # Read data to your global environment
-AE = haven::read_sas("path/to/ae.sas7bdat")
-DS = haven::read_sas("path/to/ds.sas7bdat")
+ae = haven::read_sas("path/to/ae.sas7bdat")
+ds = haven::read_sas("path/to/ds.sas7bdat")
 
 # Run the checks and save as an object called "myreport"
 myreport=run_all_checks(metads = sdtmchecksmeta,
@@ -113,9 +113,9 @@ myreport=run_all_checks(metads = sdtmchecksmeta,
 ```{r, message=FALSE, error=FALSE, warning=FALSE, eval=FALSE }
 
 # Read data to your global environment
-AE = haven::read_sas("path/to/ae.sas7bdat")
-CM = haven::read_sas("path/to/cm.sas7bdat")
-DM = haven::read_sas("path/to/dm.sas7bdat")
+ae = haven::read_sas("path/to/ae.sas7bdat")
+cm = haven::read_sas("path/to/cm.sas7bdat")
+dm = haven::read_sas("path/to/dm.sas7bdat")
 
 # Subset to checks that should work OK for most datasets
 metads = sdtmchecksmeta %>%
@@ -132,3 +132,11 @@ metads = sdtmchecksmeta %>%
 myreport=run_all_checks(metads = metads,
                verbose = TRUE)
 ``` 
+
+## You can then write results out to an xlsx for easy sharing
+
+```{r, message=FALSE, error=FALSE, warning=FALSE, eval=FALSE }
+
+report_to_xlsx(res=myreport,outfile="check_report.xlsx")
+
+```
