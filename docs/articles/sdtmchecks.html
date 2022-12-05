@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -119,7 +119,7 @@
 ##    &lt;chr&gt;                              &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
 ##  1 check_ae_aeacn_ds_disctx_covid     COVID AE trt disc… COVID   Low     ae, ds 
 ##  2 check_ae_aeacnoth                  AE AEACNOTH multi… ALL     Low     ae     
-##  3 check_ae_aeacnoth_ds_disctx        AE AEACNOTx Discon ALL     Low     ae     
+##  3 check_ae_aeacnoth_ds_disctx        AE AEACNOTx Discon ALL     Low     ae, ds 
 ##  4 check_ae_aeacnoth_ds_stddisc_covid COVID AE study di… COVID   Low     ae, ds 
 ##  5 check_ae_aedecod                   AE Missing PT      ALL     High    ae     
 ##  6 check_ae_aedthdtc_aesdth           AE Death Date vs … ALL     High    ae     
@@ -166,8 +166,8 @@
 <p>This function assumes you have all of your sdtm datasets as objects in your global environment, e.g. <code>ae</code>,<code>dm</code>,<code>ex</code>,etc</p>
 <div class="sourceCode" id="cb12"><pre class="downlit">
 <span class="co"># Read data to your global environment</span>
-<span class="va">AE</span> <span class="op">=</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas</a></span><span class="op">(</span><span class="st">"path/to/ae.sas7bdat"</span><span class="op">)</span>
-<span class="va">DS</span> <span class="op">=</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas</a></span><span class="op">(</span><span class="st">"path/to/ds.sas7bdat"</span><span class="op">)</span>
+<span class="va">ae</span> <span class="op">=</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas</a></span><span class="op">(</span><span class="st">"path/to/ae.sas7bdat"</span><span class="op">)</span>
+<span class="va">ds</span> <span class="op">=</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas</a></span><span class="op">(</span><span class="st">"path/to/ds.sas7bdat"</span><span class="op">)</span>
 
 <span class="co"># Run the checks and save as an object called "myreport"</span>
 <span class="va">myreport</span><span class="op">=</span><span class="fu"><a href="../reference/run_all_checks.html">run_all_checks</a></span><span class="op">(</span>metads <span class="op">=</span> <span class="va">sdtmchecksmeta</span>,
@@ -190,9 +190,9 @@
 <a href="#heres-a-way-to-get-started-with-some-checks-that-should-work-fairly-well-for-most-datasets" class="anchor"></a>Here’s a way to get started with some checks that should work fairly well for most datasets</h2>
 <div class="sourceCode" id="cb14"><pre class="downlit">
 <span class="co"># Read data to your global environment</span>
-<span class="va">AE</span> <span class="op">=</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas</a></span><span class="op">(</span><span class="st">"path/to/ae.sas7bdat"</span><span class="op">)</span>
-<span class="va">CM</span> <span class="op">=</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas</a></span><span class="op">(</span><span class="st">"path/to/cm.sas7bdat"</span><span class="op">)</span>
-<span class="va">DM</span> <span class="op">=</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas</a></span><span class="op">(</span><span class="st">"path/to/dm.sas7bdat"</span><span class="op">)</span>
+<span class="va">ae</span> <span class="op">=</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas</a></span><span class="op">(</span><span class="st">"path/to/ae.sas7bdat"</span><span class="op">)</span>
+<span class="va">cm</span> <span class="op">=</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas</a></span><span class="op">(</span><span class="st">"path/to/cm.sas7bdat"</span><span class="op">)</span>
+<span class="va">dm</span> <span class="op">=</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas</a></span><span class="op">(</span><span class="st">"path/to/dm.sas7bdat"</span><span class="op">)</span>
 
 <span class="co"># Subset to checks that should work OK for most datasets</span>
 <span class="va">metads</span> <span class="op">=</span> <span class="va">sdtmchecksmeta</span> <span class="op">%&gt;%</span>
@@ -208,6 +208,12 @@
 
 <span class="va">myreport</span><span class="op">=</span><span class="fu"><a href="../reference/run_all_checks.html">run_all_checks</a></span><span class="op">(</span>metads <span class="op">=</span> <span class="va">metads</span>,
                verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></pre></div>
+</div>
+<div id="you-can-then-write-results-out-to-an-xlsx-for-easy-sharing" class="section level2">
+<h2 class="hasAnchor">
+<a href="#you-can-then-write-results-out-to-an-xlsx-for-easy-sharing" class="anchor"></a>You can then write results out to an xlsx for easy sharing</h2>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="fu"><a href="../reference/report_to_xlsx.html">report_to_xlsx</a></span><span class="op">(</span>res<span class="op">=</span><span class="va">myreport</span>,outfile<span class="op">=</span><span class="st">"check_report.xlsx"</span><span class="op">)</span></pre></div>
 </div>
   </div>
 
