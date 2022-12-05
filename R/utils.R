@@ -407,7 +407,7 @@ summary_data_0<-as.data.frame(do.call(rbind,summary_cols))
 summary_data = summary_data_0 %>% 
   mutate(version="") %>% select(-any_of("pdf_subtitle"))
 summary_data[,"nrec"]<-as.numeric(summary_data[,"nrec"])
-summary_data[1,"version"]<-packageDescription("sdtmchecks")[["Nickname"]]
+summary_data[1,"version"]<-nickname
 
 # assign column names
 colnames(summary_data)<-c("Data check (Tab name)",
