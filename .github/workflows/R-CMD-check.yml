@@ -69,14 +69,10 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
-      - name: Restore cache
-        uses: actions/cache@v3
+      - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          path: |
-            ${{ env.R_LIBS_USER }}
-            ~/.staged.dependencies
-          key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('DESCRIPTION') }}
-          restore-keys: ${{ runner.os }}-r-${{ matrix.config.r }}
+          extra-packages: any::rcmdcheck
+          needs: check
 
       - name: Check
         env:
@@ -84,8 +80,6 @@ jobs:
           _R_CHECK_FORCE_SUGGESTS_: false
         run: |
           if (!requireNamespace("rcmdcheck", quietly = TRUE)) install.packages("rcmdcheck",dependencies=TRUE)
-          if (!requireNamespace("dplyr", quietly = TRUE)) install.packages("dplyr",dependencies=TRUE)
-          if (!requireNamespace("openxlsx", quietly = TRUE)) install.packages("openxlsx",dependencies=TRUE)
           options(crayon.enabled = TRUE)
           check_error_on <- "${{ inputs.error-on }}"
           if (check_error_on == "") {
