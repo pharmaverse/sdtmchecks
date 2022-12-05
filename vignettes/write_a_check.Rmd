@@ -54,14 +54,20 @@ head(meta,n=10)
 If you are writing your first check it might be helpful to start by editing an existing one, for example see the one below.
 
 ```{r,  message=FALSE, error=FALSE, warning=FALSE}
-#' Title
+#' Example check
 #'
 #' @param DM 
 #'
-#' @return
+#' @return boolean
 #' @export
 #'
 #' @examples
+#'
+#' \dontrun{
+#'    check_dm_age_missing(DM)
+#'   }
+#'
+
 check_dm_age_missing <- function(DM){
   ###First check that required variables exist and return a message if they don't
   if(DM %lacks_any% c("USUBJID","AGE")){
