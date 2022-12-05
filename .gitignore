@@ -5,3 +5,4 @@
 *.Rproj
 .Rprofile
 inst/doc
+docs

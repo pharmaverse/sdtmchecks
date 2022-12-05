@@ -6,3 +6,6 @@ archive
 docs
 .github
 ^\.github$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
