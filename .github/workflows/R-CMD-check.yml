@@ -85,6 +85,7 @@ jobs:
         run: |
           if (!requireNamespace("rcmdcheck", quietly = TRUE)) install.packages("rcmdcheck",dependencies=TRUE)
           if (!requireNamespace("dplyr", quietly = TRUE)) install.packages("dplyr",dependencies=TRUE)
+          if (!requireNamespace("openxlsx", quietly = TRUE)) install.packages("openxlsx",dependencies=TRUE)
           options(crayon.enabled = TRUE)
           check_error_on <- "${{ inputs.error-on }}"
           if (check_error_on == "") {
