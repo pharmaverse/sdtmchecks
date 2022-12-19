@@ -17,7 +17,8 @@ utils::globalVariables(c(
 "TOTAL","TOT_1M","TOT_4M","TRDTC","TREVAL","TRTESTCD","TSPARMCD","TSVAL","TUDTC","TUEVAL",
 "TULOC","TUORRES","USUBJID","VISIT","VISITNUM","VSDTC","VSDTC.SYSBP","VSORRES","VSSPID",
 "VSSTRESN","VSTEST","VSTESTCD","Var1","Var2","check_stat","icdate","issue",
-"lowvision_ind","max_STDEND","num_of_dates","sdtmchecksmeta", "subj_discont_fl","subject_id"
+"lowvision_ind","max_STDEND","num_of_dates","sdtmchecksmeta", "subj_discont_fl","subject_id",
+"check","fxn_in"
 
 
 
