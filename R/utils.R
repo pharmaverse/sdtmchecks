@@ -508,3 +508,77 @@ return(invisible())
 
 
 
+
+
+
+#' @title Create .R file with sdtmchecks function calls
+#'
+#' @description Function that uses sdtmchecksmeta as input and creates .R file with function calls
+#'
+#' @param metads sdtmchecksmeta file
+#' @param file filename and/or path to save to
+#'
+#' @return R script with user specified sdtmchecks based on sdtmchecksmeta file
+#'
+#' @export
+#'
+#' @importFrom dplyr %>% mutate row_number
+#'
+#' @author Monarch Shah
+#'
+#' @examples
+#' 
+#' \dontrun{
+#'
+#' create_R_script(file = "run_the_checks.R")
+#' 
+#' # Only include selected checks
+#' mymetads = sdtmchecksmeta %>% 
+#' filter(category == "ALL" & priority == "High")
+#' 
+#' create_R_script(metads = mymetads, file = "run_the_checks.R")
+#' 
+#' #Roche specific function calls
+#' mymetads = sdtmchecksmeta %>% 
+#' mutate(fxn_in=fxn_in_roche)
+#' 
+#' create_R_script(metads = mymetads, file = "run_the_checks.R")
+#' 
+#' }
+
+create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R") {
+  
+  filterchecks <- metads %>%
+    mutate(
+      n=row_number(),
+      check_args = paste0(check, '(', fxn_in, ')',ifelse(n!=nrow(metads),",",""))
+    )
+  
+  write_this <-
+    c(
+      "# load packages",
+      "library(sdtmchecks)",
+      "library(dplyr)",
+      "",
+      "# Read your SDTM Domains, e.g.:",
+      "# dm = haven::read_sas('path/to/sdtms/dm.sas7bdat')",
+      "# ae = haven::read_sas('path/to/sdtms/ae.sas7bdat')",
+      "",
+      "# Run selected checks",
+      "res = list(",
+      paste("  ",eval(filterchecks$check_args)),
+      ")",
+      "",
+      "# Write results to an excel file",
+      "report_to_xlsx(res=res,outfile='check_results.xlsx')"
+    )
+  
+  fileConn <- file(file)
+  cat("sdtmchecks calls R script written here:", file)
+  writeLines(write_this, fileConn)
+  close(fileConn)
+  
+  return(invisible())
+  
+}
+
