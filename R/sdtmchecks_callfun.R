@@ -20,15 +20,13 @@
 #' sdtmchecks_callfun(sdtmcheckmeta = sdtmchecksmeta %>% filter(category == "ALL") %>% filter(priority == "High"), outfileloc = paste0("~/sdtmchecks/") )
 
 sdtmchecks_callfun <- function(sdtmcheckmeta, outfileloc) {
-  library(sdtmchecks)
-  library(dplyr)
   
   filterchecks <- sdtmcheckmeta %>%
-    dplyr::mutate(check_args = paste0(check, '(', fxn_in, ')'))
+    mutate(check_args = paste0(check, '(', fxn_in, ')'))
   
   write_this <-
     c(
-      " # load packages",
+      "# load packages",
       "library(sdtmchecks)",
       "library(dplyr)",
       "",
