@@ -140,3 +140,11 @@ myreport=run_all_checks(metads = metads,
 report_to_xlsx(res=myreport,outfile="check_report.xlsx")
 
 ```
+
+## There's also a convenient helper function to write out a user friendly R script with all the check function calls
+
+```{r, message=FALSE, error=FALSE, warning=FALSE, eval=FALSE }
+
+create_R_script(file = "run_the_checks.R")
+
+```
