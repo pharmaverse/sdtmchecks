@@ -76,8 +76,24 @@ check_tr_trstresn_ldiam <- function(TR,preproc=identity,...) {
             pass()
 
         } else {
+            
+            #x not done
+            x = nrow(df[df$TRORRES %in% c("NOT DONE","ND"),])
+            if("TRSTAT" %in% names(df)){
+                x = x + nrow(df[df$TRSTAT=="NOT DONE",])
+            }
+            #y not evaluable
+            y = nrow(df[df$TRORRES %in% c("NOT EVALUABLE","NE"),])
+            #z done but missing 
+            z = nrow(df)-x-y
 
-            fail(paste0("TR has ", nrow(df), " record(s) with missing TRSTRESN values for LDIAM assessment. "), df)
+            fail(paste0("TR has ", 
+                        nrow(df), 
+                        " record(s) with missing TRSTRESN values for LDIAM assessment. ",
+                        x," record(s) indicate 'NOT DONE'. ",
+                        y," record(s) indicate 'NOT EVALUABLE. ",
+                        z," records(s) indicate done and evaluable but otherwise missing."
+                        ), df)
         }
     }
 }

@@ -66,26 +66,31 @@ check_lb_lbstresu <- function(LB,preproc=identity,...){
 
         #Apply company specific preprocessing function
         LB = preproc(LB,...)
-
-        # Subset LB to fewer variables
-        LB <- LB %>%
-            select(any_of(c('USUBJID','LBTESTCD','LBORRES','LBSTRESU','LBSTRESC','LBDTC','RAVE','VISIT')))
-
+        
         # Exclude records with qualitative results
         if ("LBMETHOD" %in% names(LB)) {
-            df <- LB %>%
+            LB <- LB %>%
                 filter(!grepl("QUALITATIVE", LBMETHOD))
-        }else {
-            df <- LB
         }
+        
+        # Exclude records marked as not done
+        if ("LBSTAT" %in% names(LB)) {
+            LB <- LB %>%
+                filter(!grepl("NOT DONE", LBSTAT,ignore.case=TRUE))
+        }
+        
+
+        # Subset LB to fewer variables
+        df <- LB %>%
+            select(any_of(c('USUBJID','LBTESTCD','LBORRES','LBSTRESU','LBSTRESC','LBDTC','RAVE','VISIT')))
 
         ### Exclude particular labs known to be unitless
         df <- df %>%
-            filter(LBTESTCD != "PH" & LBTESTCD != "SPGRAV")
-
+            filter(LBTESTCD != "PH" & LBTESTCD != "SPGRAV" & !grepl("^NEGATIVE$|^POSITIVE$|^NOT DONE$",LBORRES,ignore.case=TRUE))
+        
         ### Subset LB to records with missing lab units and non-missing lab test results
         missingunit <- df %>%
-            filter(is_sas_na(df$LBSTRESU) & !is_sas_na(df$LBORRES))
+            filter(is_sas_na(LBSTRESU) & !is_sas_na(LBORRES))
 
         rownames(missingunit) = NULL
 
