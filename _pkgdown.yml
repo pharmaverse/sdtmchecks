@@ -1,2 +1,41 @@
 url: https://pharmaverse.github.io/sdtmchecks/
 
+#name: "sdtmchecks"
+#navbar:
+#  title: "sdtmchecks"
+
+reference:
+- title: "Package"
+  desc: "Reference for package."
+- contents:
+  - sdtmchecks
+- title: "Data checks"
+  desc: "Functions for data checks."
+- contents:
+  - starts_with("check_")
+- title: "Utility functions"
+  desc: "Helper functions for data checks."
+- contents:
+  - starts_with("util")
+  - starts_with("%")
+  - starts_with("`%")
+  - starts_with("lacks_")
+  - matches("convert_var_to_ascii()")
+  - matches("dtc_dupl_early()")
+  - matches("impute_day01()")
+  - matches("fail()")
+  - matches("is_sas_na()")
+  - matches("pass()")
+  - matches("truncate_var_strings()")
+  - matches("roche_utils()")
+- title: "Metadata"
+  desc: "Datasets used with the package."
+- contents:
+  - matches("sdtmchecksmeta")
+  - matches("nickname")
+  #- starts_with("domains")
+- title: "Example programs"
+  desc: "Samples for using the package."
+- contents:
+  - starts_with("run_all_checks")
+  - matches("run_check()")
