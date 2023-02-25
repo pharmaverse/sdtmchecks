@@ -31,6 +31,7 @@ reference:
   - matches("missing_month()")
   - matches("pass()")
   - matches("truncate_var_strings()")  
+  - starts_with("create_R_script")
   
 - title: "Company-specific utility functions"
   desc: "Helper functions for data checks tailored to company-specific data inputs."
