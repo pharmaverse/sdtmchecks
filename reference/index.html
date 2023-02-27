@@ -38,6 +38,9 @@
       <a href="../articles/write_a_check.html">Writing a New Check</a>
     </li>
   </ul></li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -51,8 +54,16 @@
     </div>
 
     <table class="ref-index"><colgroup><col class="alias"><col class="title"></colgroup><tbody><tr><th colspan="2">
-          <h2 id="all-functions">All functions <a href="#all-functions" class="anchor" aria-hidden="true"></a></h2>
-          <p class="section-desc"></p>
+          <h2 id="package">Package <a href="#package" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Reference for package.</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="sdtmchecks.html">sdtmchecks</a></code> </p>
+        </td>
+        <td><p>sdtmchecks: A package containing checks for common SDTM issues</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="data-checks">Data checks <a href="#data-checks" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Functions for data checks.</p>
         </th>
       </tr></tbody><tbody><tr><td>
           <p><code><a href="check_ae_aeacn_ds_disctx_covid.html">check_ae_aeacn_ds_disctx_covid()</a></code> </p>
@@ -496,26 +507,54 @@ visit's (possible datetime data entry error)</p></td>
           <p><code><a href="check_vs_vsdtc_after_dd.html">check_vs_vsdtc_after_dd()</a></code> </p>
         </td>
         <td><p>Check for VS dates occurring after death date</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="utility-functions">Utility functions <a href="#utility-functions" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Helper functions for data checks.</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="check_cm_missing_month.html">check_cm_missing_month()</a></code> </p>
+        </td>
+        <td><p>Check for conmed dates with year and day known but month unknown</p></td>
+      </tr><tr><td>
+          <p><code><a href="check_lb_missing_month.html">check_lb_missing_month()</a></code> </p>
+        </td>
+        <td><p>Check for lab dates with year and day known but month unknown</p></td>
+      </tr><tr><td>
+          <p><code><a href="check_mh_missing_month.html">check_mh_missing_month()</a></code> </p>
+        </td>
+        <td><p>Check for MH dates with year and day known but month unknown</p></td>
+      </tr><tr><td>
+          <p><code><a href="check_pr_missing_month.html">check_pr_missing_month()</a></code> </p>
+        </td>
+        <td><p>Check for procedure dates with year and day known but month unknown</p></td>
       </tr><tr><td>
           <p><code><a href="create_R_script.html">create_R_script()</a></code> </p>
         </td>
         <td><p>Create .R file with sdtmchecks function calls</p></td>
-      </tr><tr><td>
-          <p><code><a href="report_to_xlsx.html">report_to_xlsx()</a></code> </p>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="company-specific-utility-functions">Company-specific utility functions <a href="#company-specific-utility-functions" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Helper functions for data checks tailored to company-specific data inputs.</p>
+        </th>
+      </tr></tbody><tbody></tbody><tbody><tr><th colspan="2">
+          <h2 id="metadata">Metadata <a href="#metadata" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Datasets used with the package.</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="sdtmchecksmeta.html">sdtmchecksmeta</a></code> </p>
         </td>
-        <td><p>Save report as an xlsx file</p></td>
-      </tr><tr><td>
+        <td><p>Metadata for sdtmchecks</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="example-programs">Example programs <a href="#example-programs" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Samples for using the package.</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
           <p><code><a href="run_all_checks.html">run_all_checks()</a></code> </p>
         </td>
         <td><p>Run all checks in sdtmchecks package using parallel processing</p></td>
       </tr><tr><td>
-          <p><code><a href="sdtmchecks.html">sdtmchecks</a></code> </p>
+          <p><code><a href="report_to_xlsx.html">report_to_xlsx()</a></code> </p>
         </td>
-        <td><p>sdtmchecks: A package containing checks for common SDTM issues</p></td>
-      </tr><tr><td>
-          <p><code><a href="sdtmchecksmeta.html">sdtmchecksmeta</a></code> </p>
-        </td>
-        <td><p>Metadata for sdtmchecks</p></td>
+        <td><p>Save report as an xlsx file</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
