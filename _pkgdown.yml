@@ -8,46 +8,56 @@ reference:
 
 - title: "Package"
   desc: "Reference for package."
-- contents:
+  contents:
   - sdtmchecks
   
 - title: "Data checks"
   desc: "Functions for data checks."
-- contents:
-  - starts_with("check_")
+  contents:
+  - matches("^check_")
   
-- title: "Utility functions"
+- title: "Data check utility functions"
   desc: "Helper functions for data checks."
-- contents:
-  - starts_with("util")
-  - starts_with("%")
-  - starts_with("`%")
-  - starts_with("lacks_")
-  - matches("convert_var_to_ascii()")
-  - matches("dtc_dupl_early()")
-  - matches("fail()")
-  - matches("impute_day01()")
-  - matches("is_sas_na()")
-  - matches("missing_month()")
-  - matches("pass()")
-  - matches("truncate_var_strings()")  
-  - starts_with("create_R_script")
+  contents:
+  - starts_with("util_")
+  - pass
+  - fail
+  - is_sas_na
+  - "%lacks_all%"
+  - "%lacks_any%"
+  - lacks_msg
+  - "%has_all%"
+  - "%has_any%"
+  - impute_day01
+  - dtc_dupl_early 
+  - missing_month
+  
+
+- title: "Metadata"
+  desc: "Datasets used with the package."
+  contents:
+  - sdtmchecksmeta
+  - nickname
+  
+  
+- title: "Example programs for running data checks"
+  desc: "Samples for using the package."
+  contents:
+  - run_all_checks
+  - run_check
+  - report_to_xlsx
+  
+  
+- title: "Reporting-related utility functions"
+  desc: "Samples for using the package."
+  contents:
+  - create_R_script
+  - convert_var_to_ascii 
+  - truncate_var_strings
+  
   
 - title: "Company-specific utility functions"
   desc: "Helper functions for data checks tailored to company-specific data inputs."
-- contents:
-  - starts_with("roche")  
-  
-- title: "Metadata"
-  desc: "Datasets used with the package."
-- contents:
-  - matches("sdtmchecksmeta")
-  - matches("nickname")
-  #- starts_with("domains")
-  
-- title: "Example programs"
-  desc: "Samples for using the package."
-- contents:
-  - starts_with("run_all_checks")
-  - matches("run_check()")
-  - matches("report_to_xlsx()")
+  contents:
+  - roche_derive_rave_row
+  - roche_covid_df
