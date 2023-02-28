@@ -3,23 +3,24 @@
 ##  Refinements of existing checks
 
 * Updated existing data checks
-  - `check_lb_lbstresu.R` - add more text strings (NEGATIVE, POSITIVE, NOT DONE) allowed for LBORRES to reduce false positives (#27)
-  - `check_tr_trstresn_ldiam.R` - include a return message that summarizes total TR records that are missing, NOT DONE, NOT EVALUABLE to help with interpreting the output (#27) 
+  - `check_lb_lbstresu()` - add more text strings (NEGATIVE, POSITIVE, NOT DONE) allowed for LBORRES to reduce false positives ([#27](https://github.com/pharmaverse/sdtmchecks/issues/27))
+  - `check_tr_trstresn_ldiam()` - include a return message that summarizes total TR records that are missing, NOT DONE, NOT EVALUABLE to help with interpreting the output ([#27](https://github.com/pharmaverse/sdtmchecks/issues/27))
 
 ## New functions
 
 * New helper function utilities added to `util.R`
-  + `create_R_script()` can use `sdtmchecksmeta.RData` as input to programmatically generate an R script with function calls (#22)
-  + `report_to_xlsx()` to generate the output results from selected data check functions as an .xlsx file including a tab for each check with potential discrepancies flagged and a summary page with conditional formatting to provide an overview of the results (#11)
+  + `create_R_script()` can use `sdtmchecksmeta.RData` as input to programmatically generate an R script with function calls ([#22](https://github.com/pharmaverse/sdtmchecks/issues/22))
+  + `report_to_xlsx()` to generate the output results from selected data check functions as an .xlsx file including a tab for each check with potential discrepancies flagged and a summary page with conditional formatting to provide an overview of the results ([#11](https://github.com/pharmaverse/sdtmchecks/issues/11))
 
 ## New documentation
 
-* Vignette "Writing a New Check" published to https://pharmaverse.github.io/sdtmchecks/articles/write_a_check.html (#5)
+* Vignette "Writing a New Check" published to https://pharmaverse.github.io/sdtmchecks/articles/write_a_check.html ([#5](https://github.com/pharmaverse/sdtmchecks/issues/5))
 
 ## Misc updates
 
-* Add CI/CD workflow (#2, #8)
-* Add package nickname as `nickname.RData` and reference in `data.R`, `globals.R` (#12)
+* Add CI/CD workflow ([#2](https://github.com/pharmaverse/sdtmchecks/issues/2), [#8](https://github.com/pharmaverse/sdtmchecks/issues/8))
+* Add package nickname as `nickname.RData` and reference in `data.R`, `globals.R` ([#12](https://github.com/pharmaverse/sdtmchecks/issues/12))
+* Remove repeated occurrence of `convert_var_to_ascii()` from utils.R ([#31](https://github.com/pharmaverse/sdtmchecks/issues/31))
 
 
 
@@ -51,9 +52,9 @@
   + `impute_day01()`
   + `convert_var_to_ascii()`
   + `%lacks_all%()`, `%lacks_any%()`, `lacks_msg()`, `%has_all%()`,  and `%has_any%()` (from `lacks_has.R`) 
-* README, LICENSE, DESCRIPTION, _pkgdown.yml, vignette files tailored to github.com/pharmaverse (#1)
+* README, LICENSE, DESCRIPTION, _pkgdown.yml, vignette files tailored to github.com/pharmaverse ([#1](https://github.com/pharmaverse/sdtmchecks/issues/1))
 * Package logo added to man/figures
 * Package site created via Pkgdown
 
 ## New data check functions (post-migration)
-* `check_ae_aeacnoth_ds_disctx.R` flags if an AE record indicates person discontinued from study but there is no corresponding DS record indicating study discontinuation (`where DS.DSSCAT = "STUDY COMPLETION/EARLY DISCONTINUATION" and DS.DSDECOD != "COMPLETED"`) (#3)
+* `check_ae_aeacnoth_ds_disctx()` flags if an AE record indicates person discontinued from study but there is no corresponding DS record indicating study discontinuation (`where DS.DSSCAT = "STUDY COMPLETION/EARLY DISCONTINUATION" and DS.DSDECOD != "COMPLETED"`) ([#3](https://github.com/pharmaverse/sdtmchecks/issues/3))
