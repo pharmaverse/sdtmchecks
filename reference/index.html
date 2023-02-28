@@ -508,34 +508,56 @@ visit's (possible datetime data entry error)</p></td>
         </td>
         <td><p>Check for VS dates occurring after death date</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
-          <h2 id="utility-functions">Utility functions <a href="#utility-functions" class="anchor" aria-hidden="true"></a></h2>
+          <h2 id="data-check-utility-functions">Data check utility functions <a href="#data-check-utility-functions" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Helper functions for data checks.</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="check_cm_missing_month.html">check_cm_missing_month()</a></code> </p>
+          <p><code><a href="pass.html">pass()</a></code> </p>
         </td>
-        <td><p>Check for conmed dates with year and day known but month unknown</p></td>
+        <td><p>Pass object</p></td>
       </tr><tr><td>
-          <p><code><a href="check_lb_missing_month.html">check_lb_missing_month()</a></code> </p>
+          <p><code><a href="fail.html">fail()</a></code> </p>
         </td>
-        <td><p>Check for lab dates with year and day known but month unknown</p></td>
+        <td><p>Fail object</p></td>
       </tr><tr><td>
-          <p><code><a href="check_mh_missing_month.html">check_mh_missing_month()</a></code> </p>
+          <p><code><a href="is_sas_na.html">is_sas_na()</a></code> </p>
         </td>
-        <td><p>Check for MH dates with year and day known but month unknown</p></td>
+        <td><p>Check if the elements could be of any SAS missing data variant</p></td>
       </tr><tr><td>
-          <p><code><a href="check_pr_missing_month.html">check_pr_missing_month()</a></code> </p>
+          <p><code><a href="grapes-lacks_all-grapes.html">`%lacks_all%`</a></code> </p>
         </td>
-        <td><p>Check for procedure dates with year and day known but month unknown</p></td>
+        <td><p>Check if data frame is missing any of the specified variables</p></td>
       </tr><tr><td>
-          <p><code><a href="create_R_script.html">create_R_script()</a></code> </p>
+          <p><code><a href="grapes-lacks_any-grapes.html">`%lacks_any%`</a></code> </p>
         </td>
-        <td><p>Create .R file with sdtmchecks function calls</p></td>
+        <td><p>Check if data frame has at least one variable from a set of specified variables</p></td>
+      </tr><tr><td>
+          <p><code><a href="lacks_msg.html">lacks_msg()</a></code> </p>
+        </td>
+        <td><p>Check data frame for mandatory variables and specify which are missing in
+message</p></td>
+      </tr><tr><td>
+          <p><code><a href="grapes-has_all-grapes.html">`%has_all%`</a></code> </p>
+        </td>
+        <td><p>Check if data frame has all specified variables</p></td>
+      </tr><tr><td>
+          <p><code><a href="grapes-has_any-grapes.html">`%has_any%`</a></code> </p>
+        </td>
+        <td><p>Check if data frame has at least one of the specified variables</p></td>
+      </tr><tr><td>
+          <p><code><a href="impute_day01.html">impute_day01()</a></code> </p>
+        </td>
+        <td><p>Add day of "01" to dates that are in the format of "yyyy-mm"</p></td>
+      </tr><tr><td>
+          <p><code><a href="dtc_dupl_early.html">dtc_dupl_early()</a></code> </p>
+        </td>
+        <td><p>Check if start dates are duplicated or earlier than prior visit date</p></td>
+      </tr><tr><td>
+          <p><code><a href="missing_month.html">missing_month()</a></code> </p>
+        </td>
+        <td><p>Function to check if month is missing while year and day are non-missing
+(i.e. would be in the format of "yyyy---dd")</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
-          <h2 id="company-specific-utility-functions">Company-specific utility functions <a href="#company-specific-utility-functions" class="anchor" aria-hidden="true"></a></h2>
-          <p class="section-desc"></p><p>Helper functions for data checks tailored to company-specific data inputs.</p>
-        </th>
-      </tr></tbody><tbody></tbody><tbody><tr><th colspan="2">
           <h2 id="metadata">Metadata <a href="#metadata" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Datasets used with the package.</p>
         </th>
@@ -543,8 +565,12 @@ visit's (possible datetime data entry error)</p></td>
           <p><code><a href="sdtmchecksmeta.html">sdtmchecksmeta</a></code> </p>
         </td>
         <td><p>Metadata for sdtmchecks</p></td>
+      </tr><tr><td>
+          <p><code><a href="nickname.html">nickname</a></code> </p>
+        </td>
+        <td><p>Nickname for package version</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
-          <h2 id="example-programs">Example programs <a href="#example-programs" class="anchor" aria-hidden="true"></a></h2>
+          <h2 id="example-programs-for-running-data-checks">Example programs for running data checks <a href="#example-programs-for-running-data-checks" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Samples for using the package.</p>
         </th>
       </tr></tbody><tbody><tr><td>
@@ -552,9 +578,42 @@ visit's (possible datetime data entry error)</p></td>
         </td>
         <td><p>Run all checks in sdtmchecks package using parallel processing</p></td>
       </tr><tr><td>
+          <p><code><a href="run_check.html">run_check()</a></code> </p>
+        </td>
+        <td><p>Run a single check in sdtmchecks package</p></td>
+      </tr><tr><td>
           <p><code><a href="report_to_xlsx.html">report_to_xlsx()</a></code> </p>
         </td>
         <td><p>Save report as an xlsx file</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="reporting-related-utility-functions">Reporting-related utility functions <a href="#reporting-related-utility-functions" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Samples for using the package.</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="create_R_script.html">create_R_script()</a></code> </p>
+        </td>
+        <td><p>Create .R file with sdtmchecks function calls</p></td>
+      </tr><tr><td>
+          <p><code><a href="convert_var_to_ascii.html">convert_var_to_ascii()</a></code> <code><a href="convert_var_to_ascii.html">convert_var_to_ascii()</a></code> </p>
+        </td>
+        <td><p>Remove non-ASCII characters from reported term in order
+for Pandoc to create PDF file</p></td>
+      </tr><tr><td>
+          <p><code><a href="truncate_var_strings.html">truncate_var_strings()</a></code> </p>
+        </td>
+        <td><p>Utility function to truncate data in var_name</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="company-specific-utility-functions">Company-specific utility functions <a href="#company-specific-utility-functions" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Helper functions for data checks tailored to company-specific data inputs.</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="roche_derive_rave_row.html">roche_derive_rave_row()</a></code> </p>
+        </td>
+        <td><p>Utility function to obtain Rave row</p></td>
+      </tr><tr><td>
+          <p><code><a href="roche_covid_df.html">roche_covid_df()</a></code> </p>
+        </td>
+        <td><p>Check MedDRA version in TS and return dataframe with covid terms according to this version</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
