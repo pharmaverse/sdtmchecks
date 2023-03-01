@@ -1,8 +1,15 @@
 url: https://pharmaverse.github.io/sdtmchecks/
 
-#name: "sdtmchecks"
-#navbar:
-#  title: "sdtmchecks"
+template:
+  bootstrap: 5
+  bootswatch: flatly
+
+navbar:
+  type: default
+  title: "sdtmchecks"  
+  right:
+    - icon: fa-github fa-lg
+      href: https://github.com/pharmaverse/sdtmchecks
 
 reference:
 # Subcategories for the Reference page
