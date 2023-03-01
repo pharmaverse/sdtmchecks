@@ -98,7 +98,7 @@ check_ae_aeacnoth_ds_disctx <- function(AE, DS, preproc=identity,...){
     }else if(nrow(mydf)>0){
       
       return(fail(paste(length(unique(mydf$USUBJID)),
-                        " patient(s) with AEs leading to Study Discontinutation but no corresponding record in DS. ",
+                        " patient(s) with AEs leading to Study Discontinuation but no corresponding record in DS. ",
                         sep = ""),
                   mydf))
       
