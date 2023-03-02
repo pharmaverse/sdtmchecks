@@ -6,8 +6,6 @@
 for Pandoc to create PDF file}
 \usage{
 convert_var_to_ascii(df, var)
-
-convert_var_to_ascii(df, var)
 }
 \arguments{
 \item{df}{dataframe}
@@ -16,13 +14,8 @@ convert_var_to_ascii(df, var)
 }
 \value{
 dataframe
-
-dataframe
 }
 \description{
-Remove non-ASCII characters from reported term in order
-for Pandoc to create PDF file
-
 Remove non-ASCII characters from reported term in order
 for Pandoc to create PDF file
 }
@@ -42,20 +35,5 @@ stringsAsFactors = FALSE
 )
 
 convert_var_to_ascii(df, 'var')
-
-df <- data.frame(
-var = c("test", "teäst"),
-stringsAsFactors = FALSE
-)
-
-df <- convert_var_to_ascii(df, 'var')
-
-df <- data.frame(
-usubjid = 1:2,
-var = c("test", "teästõ"),
-stringsAsFactors = FALSE
-)
-
-df <- convert_var_to_ascii(df, 'var')
 }
 \keyword{internal}
