@@ -91,8 +91,8 @@ check_tr_trstresn_ldiam <- function(TR,preproc=identity,...) {
                         nrow(df), 
                         " record(s) with missing TRSTRESN values for LDIAM assessment. ",
                         x," record(s) indicate 'NOT DONE'. ",
-                        y," record(s) indicate 'NOT EVALUABLE. ",
-                        z," records(s) indicate done and evaluable but otherwise missing."
+                        y," record(s) indicate 'NOT EVALUABLE'. ",
+                        z," record(s) indicate done and evaluable but otherwise missing."
             ), df)
         }
     }
