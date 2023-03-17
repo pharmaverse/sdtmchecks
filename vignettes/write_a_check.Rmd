@@ -15,7 +15,8 @@ Clinical trial datasets can contain a million different types of incorrect data.
 
 The `main` branch contains the latest released version and should not be used for development.
 
-The `devel` is the default branch and contains the latest development version of the package. To start contributing, please make a feature branch off of `devel`.  When your code is ready to be incorporated please pull request it back into `devel`.
+The `devel` is the default branch and contains the latest development version of the package. To start contributing, please make a feature branch off of `devel`. When your code is ready to be incorporated please open a pull request that another person will review prior to merging the update into `devel`. If you do not have write access to the repository, please work off of a forked repo and [open a pull request from the fork]( 
+https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
 
 
 ## Existing Checks
