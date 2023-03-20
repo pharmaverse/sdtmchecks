@@ -1,7 +1,7 @@
 #' @title Check DS with multiple death records with death dates, where death dates do not match
 #'
 #' @description This check looks for patients in DS who have multiple records indicating
-#'   death, with mismatching death dates in DSSTDTC.
+#'   death, with non-missing mismatching death dates in DSSTDTC.
 #'   
 #' @param DS Disposition SDTMv dataset with variables USUBJID, DSDECOD,
 #'   DSSCAT and DSSTDTC
@@ -60,7 +60,7 @@ check_ds_multdeath_dsstdtc <- function(DS) {
       
     } else {
       
-      fail("DS has multiple records death dates recorded in DSSTDTC that do not match. ", df)
+      fail("DS has multiple non-missing death dates in DSSTDTC that do not match. ", df)
       
     }
   }
