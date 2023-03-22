@@ -24,13 +24,12 @@
 #'   DSSTDTC = c("", "2016-01-01", "", "", "2016-01-02","2016-01-01"),
 #'   stringsAsFactors = FALSE)
 #'
-#' DSerror2 <- data.frame(STUDYID = rep(1, 6),
+#' DS_error2 <- data.frame(STUDYID = rep(1, 6),
 #'   USUBJID = c(1, 1, 1, 2, 1,1),
 #'   DSDECOD = c("DEATH", "DEATH", rep("", 2),"DEATH","DEATH"),
 #'   DSSCAT = LETTERS[1:6],
 #'   DSSTDTC = c("", "2016-01", "", "", "2016-01-01","2016-01-01"),
 #'   stringsAsFactors = FALSE)
-#'   check_ds_multdeath_dsstdtc(DS_noerror)
 #'   
 #'  DS_noerror <- data.frame(STUDYID = rep(1, 6),
 #'                         USUBJID = c(1, 1, 1, 2, 1,1),
@@ -39,9 +38,9 @@
 #'                         DSSTDTC = c("", "2016-01-01", "", "", "2016-01-01","2016-01-01"),
 #'                         stringsAsFactors = FALSE)
 #'
-#' check_ds_multdeath_dsstdtc(DS_noerror)
 #' check_ds_multdeath_dsstdtc(DS_error1)
 #' check_ds_multdeath_dsstdtc(DS_error2)
+#' check_ds_multdeath_dsstdtc(DS_noerror)
 
 
 check_ds_multdeath_dsstdtc <- function(DS) {
