@@ -9,7 +9,7 @@
 #' @return Boolean value for whether the check passed or failed, with 'msg'
 #'   attribute if the test failed
 #'
-#' @importFrom dplyr %>% filter select
+#' @importFrom dplyr %>% filter select group_by n
 #'
 #' @export
 #'
