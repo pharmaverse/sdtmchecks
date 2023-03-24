@@ -3,8 +3,7 @@
 #' @description This check looks for patients in DS who have multiple records indicating
 #'   death, with non-missing mismatching death dates in DSSTDTC.
 #'   
-#' @param DS Disposition SDTMv dataset with variables USUBJID, DSDECOD,
-#'   DSSCAT and DSSTDTC
+#' @param DS Disposition SDTMv dataset with variables USUBJID, DSDECOD, and DSSTDTC
 #' @param preproc An optional company specific preprocessing script
 #' @param ... Other arguments passed to methods
 #'
@@ -12,6 +11,7 @@
 #'   attribute if the test failed
 #'
 #' @importFrom dplyr %>% filter select group_by n
+#' @importFrom tidyselect any_of
 #'
 #' @export
 #'
@@ -47,16 +47,19 @@
 
 check_ds_multdeath_dsstdtc <- function(DS,preproc=identity,...) {
   
-  if (DS %lacks_any% c("USUBJID", "DSDECOD", "DSSCAT", "DSSTDTC")) {
+  if (DS %lacks_any% c("USUBJID", "DSDECOD", "DSSTDTC")) {
     
-    fail(lacks_msg(DS, c("USUBJID", "DSDECOD", "DSSCAT", "DSSTDTC")))
+    fail(lacks_msg(DS, c("USUBJID", "DSDECOD", "DSSTDTC")))
     
   } else {
+    
+    #Apply company specific preprocessing function
+    DS = preproc(DS,...)
     
     #Get all records with a death date
     death_dates <- DS %>%
       filter(DSDECOD == "DEATH" & !is_sas_na(DSSTDTC)) %>%
-      select(USUBJID,DSDECOD,DSSTDTC) 
+      select(any_of(c("USUBJID","DSDECOD","DSSTDTC","RAVE")))
     
     #Get all patients where death dates don't match
     df <- death_dates %>%
