@@ -5,6 +5,8 @@
 #'   
 #' @param DS Disposition SDTMv dataset with variables USUBJID, DSDECOD,
 #'   DSSCAT and DSSTDTC
+#' @param preproc An optional company specific preprocessing script
+#' @param ... Other arguments passed to methods
 #'
 #' @return Boolean value for whether the check passed or failed, with 'msg'
 #'   attribute if the test failed
@@ -43,7 +45,7 @@
 #' check_ds_multdeath_dsstdtc(DS_noerror)
 
 
-check_ds_multdeath_dsstdtc <- function(DS) {
+check_ds_multdeath_dsstdtc <- function(DS,preproc=identity,...) {
   
   if (DS %lacks_any% c("USUBJID", "DSDECOD", "DSSCAT", "DSSTDTC")) {
     
@@ -54,7 +56,7 @@ check_ds_multdeath_dsstdtc <- function(DS) {
     #Get all records with a death date
     death_dates <- DS %>%
       filter(DSDECOD == "DEATH" & !is_sas_na(DSSTDTC)) %>%
-      select("USUBJID","DSDECOD","DSSTDTC") 
+      select(USUBJID,DSDECOD,DSSTDTC) 
     
     #Get all patients where death dates don't match
     df <- death_dates %>%
