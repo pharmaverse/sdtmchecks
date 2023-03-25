@@ -10,7 +10,7 @@
 #'
 #' @export
 #'
-#' @importFrom dplyr %>% filter select rename mutate distinct slice group_by
+#' @importFrom dplyr %>% filter select rename mutate distinct slice group_by n
 #'
 #' @author Yuliia Bahatska
 #'
