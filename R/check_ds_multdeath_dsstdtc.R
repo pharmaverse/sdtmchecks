@@ -59,7 +59,7 @@ check_ds_multdeath_dsstdtc <- function(DS,preproc=identity,...) {
     #Get all records with a death date
     death_dates <- DS %>%
       filter(DSDECOD == "DEATH" & !is_sas_na(DSSTDTC)) %>%
-      select(any_of(c("USUBJID","DSDECOD","DSSTDTC","RAVE")))
+      select(any_of(c("USUBJID","DSSCAT","DSDECOD","DSSTDTC","RAVE")))
     
     #Get all patients where death dates don't match
     df <- death_dates %>%
