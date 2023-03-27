@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sdtmchecks</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,10 +101,14 @@ meaningful for analysis.</p>
 </h2>
 <p>The <code>main</code> branch contains the latest released version and
 should not be used for development.</p>
-<p>The <code>devel</code> is the default branch and contains the latest
-development version of the package. To start contributing, please make a
-feature branch off of <code>devel</code>. When your code is ready to be
-incorporated please pull request it back into <code>devel</code>.</p>
+<p>The <code>devel</code> branch is the default branch and contains the
+latest development version of the package. To start contributing, please
+make a feature branch off of <code>devel</code>. When your code is ready
+to be incorporated please open a pull request that another person will
+review prior to merging the update into <code>devel</code>. If you do
+not have write access to the repository, please work off of a forked
+repo and <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork" class="external-link">open
+a pull request from the fork</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="existing-checks">Existing Checks<a class="anchor" aria-label="anchor" href="#existing-checks"></a>
@@ -115,19 +119,18 @@ contains helpful additional information</p>
 <code class="sourceCode R"><span><span class="co">#Just type this in</span></span>
 <span><span class="va">sdtmchecksmeta</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 10 × 4</span></span></span>
-<span><span class="co">##    check                              domains title                      descr…¹</span></span>
-<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> check_ae_aeacn_ds_disctx_covid     ae, ds  COVID AE trt discon        Check …</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> check_ae_aeacnoth                  ae      AE AEACNOTH multiple       Check …</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> check_ae_aeacnoth_ds_disctx        ae, ds  AE AEACNOTx Discon         Check …</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> check_ae_aeacnoth_ds_stddisc_covid ae, ds  COVID AE study discon      Check …</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> check_ae_aedecod                   ae      AE Missing PT              Check …</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> check_ae_aedthdtc_aesdth           ae      AE Death Date vs Indicator Check …</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> check_ae_aedthdtc_ds_death         ae, ds  DS Death Dates in AE       Check …</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> check_ae_aelat                     ae      AE AELAT Missing           OPHTHA…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> check_ae_aeout                     ae      AE Death Outcome           Check …</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">10</span> check_ae_aeout_aeendtc_aedthdtc    ae      Fatal AE Resolution Date   Check …</span></span>
-<span><span class="co">## <span style="color: #949494;"># … with abbreviated variable name ¹​description</span></span></span></code></pre>
+<span><span class="co">##    check                              domains title                  description</span></span>
+<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> check_ae_aeacn_ds_disctx_covid     ae, ds  COVID AE trt discon    Check pati…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> check_ae_aeacnoth                  ae      AE AEACNOTH multiple   Check for …</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> check_ae_aeacnoth_ds_disctx        ae, ds  AE AEACNOTx Discon     Check for …</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> check_ae_aeacnoth_ds_stddisc_covid ae, ds  COVID AE study discon  Check pati…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> check_ae_aedecod                   ae      AE Missing PT          Check for …</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> check_ae_aedthdtc_aesdth           ae      AE Death Date vs Indi… Check for …</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> check_ae_aedthdtc_ds_death         ae, ds  DS Death Dates in AE   Check that…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> check_ae_aelat                     ae      AE AELAT Missing       OPHTHALMOL…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> check_ae_aeout                     ae      AE Death Outcome       Check for …</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span> check_ae_aeout_aeendtc_aedthdtc    ae      Fatal AE Resolution D… Check for …</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="good-practices">Good Practices<a class="anchor" aria-label="anchor" href="#good-practices"></a>

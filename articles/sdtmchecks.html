@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sdtmchecks</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -122,19 +122,18 @@ a <strong>Priority</strong> (High, Medium, Low).</p>
 <code class="sourceCode R"><span><span class="co">#Just type this in</span></span>
 <span><span class="va">sdtmchecksmeta</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 10 × 5</span></span></span>
-<span><span class="co">##    check                              title              categ…¹ prior…² domains</span></span>
-<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> check_ae_aeacn_ds_disctx_covid     COVID AE trt disc… COVID   Low     ae, ds </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> check_ae_aeacnoth                  AE AEACNOTH multi… ALL     Low     ae     </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> check_ae_aeacnoth_ds_disctx        AE AEACNOTx Discon ALL     Low     ae, ds </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> check_ae_aeacnoth_ds_stddisc_covid COVID AE study di… COVID   Low     ae, ds </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> check_ae_aedecod                   AE Missing PT      ALL     High    ae     </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> check_ae_aedthdtc_aesdth           AE Death Date vs … ALL     High    ae     </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> check_ae_aedthdtc_ds_death         DS Death Dates in… ALL     High    ae, ds </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> check_ae_aelat                     AE AELAT Missing   OPHTH   High    ae     </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> check_ae_aeout                     AE Death Outcome   ALL     High    ae     </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">10</span> check_ae_aeout_aeendtc_aedthdtc    Fatal AE Resoluti… ALL     High    ae     </span></span>
-<span><span class="co">## <span style="color: #949494;"># … with abbreviated variable names ¹​category, ²​priority</span></span></span></code></pre>
+<span><span class="co">##    check                              title            category priority domains</span></span>
+<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> check_ae_aeacn_ds_disctx_covid     COVID AE trt di… COVID    Low      ae, ds </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> check_ae_aeacnoth                  AE AEACNOTH mul… ALL      Low      ae     </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> check_ae_aeacnoth_ds_disctx        AE AEACNOTx Dis… ALL      Low      ae, ds </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> check_ae_aeacnoth_ds_stddisc_covid COVID AE study … COVID    Low      ae, ds </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> check_ae_aedecod                   AE Missing PT    ALL      High     ae     </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> check_ae_aedthdtc_aesdth           AE Death Date v… ALL      High     ae     </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> check_ae_aedthdtc_ds_death         DS Death Dates … ALL      High     ae, ds </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> check_ae_aelat                     AE AELAT Missing OPHTH    High     ae     </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> check_ae_aeout                     AE Death Outcome ALL      High     ae     </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span> check_ae_aeout_aeendtc_aedthdtc    Fatal AE Resolu… ALL      High     ae</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="lets-do-an-example-using-check_ae_ds_partial_death_datesaeds">Let’s do an example using
