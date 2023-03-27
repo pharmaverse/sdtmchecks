@@ -1,6 +1,28 @@
+# sdtmchecks 0.1.5 "Hunter Pi"
+
+## New data check functions
+
+* `check_ds_multdeath_dsstdtc()` - flags if DS has multiple non-missing death dates in DSSTDTC that do not match ([#62](https://github.com/pharmaverse/sdtmchecks/issues/62))
+
+## Refinements of existing data check functions
+
+* Updated existing data checks to list the `n` function from dplyr in the header ([#67](https://github.com/pharmaverse/sdtmchecks/issues/67)):
+  - `check_dm_usubjid_dup()`
+  - `check_qs_dup()`
+
+## Metadata updates
+
+* Metadata corresponding to new data check added to [`sdtmchecksmeta.RData`](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) ([#63](https://github.com/pharmaverse/sdtmchecks/pull/63))
+
+## Misc updates
+
+* Clarification added to "Writing a New Check" [Vignette](https://pharmaverse.github.io/sdtmchecks/articles/write_a_check.html) if contributor does not have write access to the repo ([#65](https://github.com/pharmaverse/sdtmchecks/issues/65))
+
+
+
 # sdtmchecks 0.1.4 "Very Cool Nickname"
 
-##  Refinements of existing data check functions
+## Refinements of existing data check functions
 
 * Updated existing data checks
   - `check_lb_lbstresu()` - add more text strings (NEGATIVE, POSITIVE, NOT DONE) allowed for LBORRES to reduce false positives ([#27](https://github.com/pharmaverse/sdtmchecks/issues/27))

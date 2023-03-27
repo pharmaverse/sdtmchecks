@@ -9,7 +9,7 @@
 #'
 #' @export
 #'
-#' @importFrom dplyr %>% count filter mutate select group_by ungroup
+#' @importFrom dplyr %>% count filter mutate select group_by ungroup n
 #'
 #' @author Madeleine Ma, Stella Banjo (HackR 2021)
 #'
@@ -31,7 +31,7 @@
 #'                               "GO12345-11111-1002"),
 #'              stringAsFactors = FALSE)
 #'
-#'  check_dm_usubjid_dup(DM2)
+#' check_dm_usubjid_dup(DM2)
 #'
 #'
 #' ## duplicates for 2-part USUBJID
