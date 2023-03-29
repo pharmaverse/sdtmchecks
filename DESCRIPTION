@@ -18,3 +18,4 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 URL: https://pharmaverse.github.io/sdtmchecks/, https://github.com/pharmaverse/sdtmchecks
+BugReports: https://github.com/pharmaverse/sdtmchecks/issues
