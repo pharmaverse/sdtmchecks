@@ -14,7 +14,7 @@ Imports:
     tidyselect,
     openxlsx
 Suggests: 
-    knitr,
+    knitr (>= 2.7),
     rmarkdown
 VignetteBuilder: knitr
 URL: https://pharmaverse.github.io/sdtmchecks/
