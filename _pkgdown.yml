@@ -61,6 +61,7 @@ reference:
   - create_R_script
   - convert_var_to_ascii 
   - truncate_var_strings
+  - xlsx2list
   
   
 - title: "Company-specific utility functions"
