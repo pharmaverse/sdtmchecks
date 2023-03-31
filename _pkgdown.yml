@@ -6,27 +6,28 @@ template:
 
 navbar:
   type: default
-  title: "sdtmchecks"  
+  title: sdtmchecks  
   right:
     - icon: fa-github fa-lg
       href: https://github.com/pharmaverse/sdtmchecks
 
 reference:
 # Subcategories for the Reference page
-- title: "Package"
-  desc: "Reference for package."
+- title: Package
+  desc: Reference for package.
   contents:
   - sdtmchecks
   
-- title: "Data checks"
-  desc: "Functions for data checks."
+- title: Data checks
+  desc: Functions for data checks.
   contents:
   - matches("^check_")
+#keyword: check
   
-- title: "Data check utility functions"
-  desc: "Helper functions used within data check functions."
+- title: Data check utility functions
+  desc: Helper functions used within data check functions.
   contents:
-  - starts_with("util_")
+  #- starts_with("util_")
   - pass
   - fail
   - is_sas_na
@@ -38,34 +39,39 @@ reference:
   - impute_day01
   - dtc_dupl_early 
   - missing_month
-  
+#keyword: utils_check
 
-- title: "Metadata"
-  desc: "Datasets used with the package."
+- title: Metadata
+  desc: Datasets used with the package.
   contents:
   - sdtmchecksmeta
   - nickname
+#keyword: metadata  
   
-  
-- title: "Example programs for running data checks"
-  desc: "Samples for creating output reports with data checks functions."
+- title: Example programs for running data checks
+  desc: Samples for creating output reports with data checks functions.
+  # contents:
+  # - run_all_checks
+  # - run_check
+  # - report_to_xlsx
   contents:
-  - run_all_checks
-  - run_check
-  - report_to_xlsx
+  - has_keyword("ex_rpt")  
   
-  
-- title: "Reporting-related utility functions"
-  desc: "Helper functions for running reports or reading in output report results."
+- title: Reporting-related utility functions
+  desc: Helper functions for running reports or reading in output report results.
+  # contents:
+  # - convert_var_to_ascii 
+  # - truncate_var_strings
+  # - create_R_script
+  # - xlsx2list
   contents:
-  - convert_var_to_ascii 
-  - truncate_var_strings
-  - create_R_script
-  - xlsx2list
+  - has_keyword("utils_rpt")
   
   
-- title: "Company-specific utility functions"
-  desc: "Helper functions for data checks tailored to company-specific data inputs."
+- title: Company-specific utility functions
+  desc: Helper functions for data checks tailored to company-specific data inputs.
+  
+  subtitle: Roche-specific
   contents:
   - roche_derive_rave_row
   - roche_covid_df
