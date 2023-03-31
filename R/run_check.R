@@ -27,6 +27,7 @@
 #' @return list with results from the check.
 #' @export
 #' @keywords internal
+#' @family {Example programs for running data checks}
 #' @examples
 #'
 #' \dontrun{
@@ -53,17 +54,17 @@ run_check = function(check,
                      pdf_subtitle,
                      pdf_return,
                      verbose){
-
+    
     if (verbose == TRUE) { # have to print in this workaround way since cat doesn't work while parallel processing
         system(sprintf('echo "%s"', paste0("Running:", check)))
     }
-
+    
     # run a data check
     result <-
         try(eval(parse(text = paste0(
             check, "(", fxn_in, ")"
         ))), silent = TRUE)
-
+    
     # check if returned data is data frame
     if (!is.null(attributes(result)$data) & !is.data.frame(attributes(result)$data)){
         warning(paste0(
@@ -72,13 +73,13 @@ run_check = function(check,
             "."
         ))
     }
-
+    
     # read the message, resulting dataset and other variables
     msg <- as.character(attributes(result)$msg)
     data <- as.data.frame(attributes(result)$data)
     xls_title <- substr(xls_title, start = 1, stop = 31)
     notes <- " "
-
+    
     # determine n of recs in the data check dataset. This will be used for the summary page.
     if (any(grepl("try-error",class(result)))) {
         nrec = 0
@@ -88,13 +89,13 @@ run_check = function(check,
         nrec <-
             0 # set to 0 if resulting dataset was not created in case where
         # no bad records found or check failed due to missing variables.
-
+        
         # if check failed due to missing variables then alert user
         if (result != TRUE)
             notes <-
                 paste0("ATTENTION! Check was not run: ",
                        attributes(result)$msg)
-
+        
     } else{
         # get number of issues using nrow() for dataframes/tibbles and length for vectors
         nrec <-
@@ -104,7 +105,7 @@ run_check = function(check,
             nrow(attributes(result)$data),
             length(attributes(result)$data))
     }
-
+    
     # create a list with items related to individual check
     rec <-
         list(
@@ -116,7 +117,7 @@ run_check = function(check,
             msg = msg,
             data = data
         )
-
+    
     return(rec)
-
+    
 }
