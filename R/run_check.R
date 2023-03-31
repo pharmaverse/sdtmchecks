@@ -27,7 +27,7 @@
 #' @return list with results from the check.
 #' @export
 #' @keywords internal
-#' @family {Example programs for running data checks}
+#' @family ex_rpt
 #' @examples
 #'
 #' \dontrun{

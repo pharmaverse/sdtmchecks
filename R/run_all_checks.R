@@ -18,7 +18,7 @@
 #'
 #' @importFrom parallel mcmapply
 #' 
-#' @family {Example programs for running data checks}
+#' @family ex_rpt
 #'
 #' @export
 #'
