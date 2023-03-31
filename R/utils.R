@@ -544,3 +544,52 @@ create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R") 
   
 }
 
+
+
+
+#' @title Create lists from spreadsheets *xlsx
+#'
+#' @description This creates a list based on the sdtmchecks_yyyy-mm-dd.xlsx file
+#'
+#' @param rptwb List of check results in newer report read in via openxlsx::loadWorkbook
+#' @param firstrow Set to default startRow of 1 in openxlsx::read.xlsx with option to specify a different row
+#' 
+#' @return list named xlsxfile
+#'
+#' @export
+#'
+#' @importFrom openxlsx read.xlsx
+#'
+#' @examples
+#'
+#' \dontrun{
+#'
+#' library(openxlsx)
+#'
+#' rptfile <- "Downloads/sdtmchecks_GO12345_2021-03-12.xlsx"
+#' rptwb <- openxlsx::loadWorkbook(rptfile)
+#' names(rptwb)
+#' rptwb
+#'
+#' xlsx2list(rptwb=rptwb, firstrow=1)
+#'
+#' }
+
+xlsx2list <-function(rptwb, firstrow=1){
+  
+  rptlist <- list()
+  
+  for (rpttab in names(rptwb)){
+    print(names(rptwb))
+    
+    #startRow is the row with variable/column names
+    #default is 1
+    rptsheet <- openxlsx::read.xlsx(xlsxFile = rptwb, sheet = rpttab, startRow=firstrow, skipEmptyRows = TRUE, detectDates = TRUE)
+    rptlist[[rpttab]] <- list(rptsheet)
+  }
+  
+  print("xlsx")
+  return(rptlist)
+}
+
+
