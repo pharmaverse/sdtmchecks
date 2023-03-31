@@ -24,7 +24,7 @@ reference:
   - matches("^check_")
   
 - title: "Data check utility functions"
-  desc: "Helper functions for data checks."
+  desc: "Helper functions used within data check functions."
   contents:
   - starts_with("util_")
   - pass
@@ -48,7 +48,7 @@ reference:
   
   
 - title: "Example programs for running data checks"
-  desc: "Samples for using the package."
+  desc: "Samples for creating output reports with data checks functions."
   contents:
   - run_all_checks
   - run_check
@@ -56,11 +56,11 @@ reference:
   
   
 - title: "Reporting-related utility functions"
-  desc: "Samples for using the package."
+  desc: "Helper functions for running reports or reading in output report results."
   contents:
-  - create_R_script
   - convert_var_to_ascii 
   - truncate_var_strings
+  - create_R_script
   - xlsx2list
   
   
