@@ -22,7 +22,6 @@ reference:
   desc: Functions for data checks.
   contents:
   - matches("^check_")
-#keyword: check
   
 - title: Data check utility functions
   desc: Helper functions used within data check functions.
@@ -48,30 +47,27 @@ reference:
   - nickname
 #keyword: metadata  
   
-- title: Example programs for running data checks
-  desc: Samples for creating output reports with data checks functions.
-  # contents:
+- title: Reporting-related programs
+- subtitle: Example programs for running data checks
+  desc: Run one check or multiple checks
+  contents:
+  - has_keyword("ex_rpt")
   # - run_all_checks
   # - run_check
   # - report_to_xlsx
-  contents:
-  - has_keyword("ex_rpt")  
   
-- title: Reporting-related utility functions
+- subtitle: Reporting-related utility functions
   desc: Helper functions for running reports or reading in output report results.
-  # contents:
+  contents:
+  - has_keyword("utils_rpt")
+  - create_R_script
   # - convert_var_to_ascii 
   # - truncate_var_strings
   # - create_R_script
   # - xlsx2list
-  contents:
-  - has_keyword("utils_rpt")
-  
   
 - title: Company-specific utility functions
   desc: Helper functions for data checks tailored to company-specific data inputs.
-  
-  subtitle: Roche-specific
   contents:
   - roche_derive_rave_row
   - roche_covid_df
