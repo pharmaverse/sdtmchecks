@@ -19,6 +19,8 @@
 #' @importFrom parallel mcmapply
 #' 
 #' @family ex_rpt
+#' 
+#' @keywords ex_rpt
 #'
 #' @export
 #'

@@ -25,9 +25,13 @@
 #' @details to look up documentation for the data checks package, please use command ??sdtmchecks
 #'
 #' @return list with results from the check.
+#' 
 #' @export
-#' @keywords internal
+#' 
 #' @family ex_rpt
+#' 
+#' @keywords ex_rpt
+#' 
 #' @examples
 #'
 #' \dontrun{

@@ -236,7 +236,7 @@ missing_month <- function(date) { substr(date, 5, 7) == "---" }
 #'
 #' @return dataframe
 #' @export
-#' @keywords internal
+#' @keywords internal utils_rpt
 #' 
 #' @family utils_rpt
 #'
@@ -282,7 +282,7 @@ convert_var_to_ascii <- function(df, var){
 #'
 #' @author Stella Banjo(HackR 2021)
 #' @export
-#' @keywords internal
+#' @keywords internal utils_rpt
 #' @family utils_rpt
 #' @examples
 #'
@@ -343,7 +343,7 @@ truncate_var_strings <- function(dt, var_name, trunc_length) {
 #' @export
 #' 
 #' @family ex_rpt
-#' @keywords 
+#' @keywords internal ex_rpt
 #'
 #' @examples
 #' 
@@ -489,6 +489,8 @@ report_to_xlsx = function(res,outfile){
 #'
 #' @author Monarch Shah
 #' 
+#' @keywords utils_rpt
+#' 
 #' @family utils_rpt
 #'
 #' @examples
@@ -549,13 +551,13 @@ create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R") 
 
 
 
-
-#' @title Create lists from spreadsheets *xlsx
+#' @title Create list from tabs of spreadsheet (*xlsx)
 #'
-#' @description This creates a list based on the sdtmchecks_yyyy-mm-dd.xlsx file, created via report_to_xlsx() 
+#' @description This creates a list based on the sdtmchecks_yyyy-mm-dd.xlsx file, such as report created via `report_to_xlsx()` 
 #'
 #' @param rptwb List of check results in newer report read in via openxlsx::loadWorkbook
-#' @param firstrow Set to default startRow of 1 in openxlsx::read.xlsx with option to specify a different row
+#' 
+#' @param firstrow Row input for startRow parameter of openxlsx::read.xlsx, default is 1
 #' 
 #' @return list named xlsxfile
 #'
@@ -563,9 +565,9 @@ create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R") 
 #'
 #' @importFrom openxlsx read.xlsx
 #' 
-#' @keywords internal
+#' @keywords utils_rpt
 #' 
-#' @family 
+#' @family utils_rpt
 #'
 #' @examples
 #'
