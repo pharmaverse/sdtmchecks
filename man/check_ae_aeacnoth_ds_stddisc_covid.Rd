@@ -2,8 +2,7 @@
 % Please edit documentation in R/check_ae_aeacnoth_ds_stddisc_covid.R
 \name{check_ae_aeacnoth_ds_stddisc_covid}
 \alias{check_ae_aeacnoth_ds_stddisc_covid}
-\title{Check if patient with COVID-related AE leading to STUDY discon
-and also has STUDY Discon record in DS}
+\title{Check for COVID-related AE leading to Study Discon without DS Study Discon}
 \usage{
 check_ae_aeacnoth_ds_stddisc_covid(AE, DS, covid_df = NULL)
 }

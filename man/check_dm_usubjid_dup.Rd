@@ -34,7 +34,7 @@ DM2 <- data.frame(USUBJID = c("GO12345-00000-1000",
                               "GO12345-11111-1002"),
              stringAsFactors = FALSE)
 
- check_dm_usubjid_dup(DM2)
+check_dm_usubjid_dup(DM2)
 
 
 ## duplicates for 2-part USUBJID
