@@ -52,7 +52,7 @@ if it's present, also checking it's the current version"><!-- mathjax --><script
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Check for missing WHODrug version in TS</h1>
-      
+      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/sdtmchecks/blob/HEAD/R/check_ts_cmdict.R" class="external-link"><code>R/check_ts_cmdict.R</code></a></small>
       <div class="d-none name"><code>check_ts_cmdict.Rd</code></div>
     </div>
 
@@ -130,24 +130,24 @@ test failed</p>
 <span class="r-in"><span><span class="fu">check_ts_cmdict</span><span class="op">(</span><span class="va">TS1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "WHODrug version in TS.TSVAL where TS.TSPARMCD=CMDICT is not latest version as of 2023-03-27 or not an exact string match."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "WHODrug version in TS.TSVAL where TS.TSPARMCD=CMDICT is not latest version as of 2023-05-03 or not an exact string match."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   TSPARMCD                           TSVAL                 Current_WHODRUG_ver</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   CMDICT WHODRUG GLOBAL B3 MARCH 1, 2021 WHODRUG GLOBAL B3 SEPTEMBER 1, 2022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TSPARMCD                           TSVAL             Current_WHODRUG_ver</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   CMDICT WHODRUG GLOBAL B3 MARCH 1, 2021 WHODRUG GLOBAL B3 MARCH 1, 2023</span>
 <span class="r-in"><span><span class="fu">check_ts_cmdict</span><span class="op">(</span><span class="va">TS2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "No value in TS.TSVAL where TS.TSPARMCD=CMDICT. "</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   TSPARMCD TSVAL                 Current_WHODRUG_ver</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   CMDICT       WHODRUG GLOBAL B3 SEPTEMBER 1, 2022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TSPARMCD TSVAL             Current_WHODRUG_ver</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   CMDICT       WHODRUG GLOBAL B3 MARCH 1, 2023</span>
 <span class="r-in"><span><span class="fu">check_ts_cmdict</span><span class="op">(</span><span class="va">TS3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "No value in TS.TSVAL where TS.TSPARMCD=CMDICT. "</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   TSPARMCD TSVAL                 Current_WHODRUG_ver</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   CMDICT       WHODRUG GLOBAL B3 SEPTEMBER 1, 2022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TSPARMCD TSVAL             Current_WHODRUG_ver</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   CMDICT       WHODRUG GLOBAL B3 MARCH 1, 2023</span>
 <span class="r-in"><span><span class="fu">check_ts_cmdict</span><span class="op">(</span><span class="va">TS4</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
@@ -155,17 +155,17 @@ test failed</p>
 <span class="r-in"><span><span class="fu">check_ts_cmdict</span><span class="op">(</span><span class="va">TS5</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "WHODrug version in TS.TSVAL where TS.TSPARMCD=CMDICT is not latest version as of 2023-03-27 or not an exact string match."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "WHODrug version in TS.TSVAL where TS.TSPARMCD=CMDICT is not latest version as of 2023-05-03 or not an exact string match."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   TSPARMCD       TSVAL                 Current_WHODRUG_ver</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   CMDICT meddra 24.0 WHODRUG GLOBAL B3 SEPTEMBER 1, 2022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TSPARMCD       TSVAL             Current_WHODRUG_ver</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   CMDICT meddra 24.0 WHODRUG GLOBAL B3 MARCH 1, 2023</span>
 <span class="r-in"><span><span class="fu">check_ts_cmdict</span><span class="op">(</span><span class="va">TS6</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "WHODrug version in TS.TSVAL where TS.TSPARMCD=CMDICT is not latest version as of 2023-03-27 or not an exact string match."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "WHODrug version in TS.TSVAL where TS.TSPARMCD=CMDICT is not latest version as of 2023-05-03 or not an exact string match."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   TSPARMCD                            TSVAL                 Current_WHODRUG_ver</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   CMDICT WHODRUG vGLOBAL B3 MARCH 1, 2021 WHODRUG GLOBAL B3 SEPTEMBER 1, 2022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TSPARMCD                            TSVAL             Current_WHODRUG_ver</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   CMDICT WHODRUG vGLOBAL B3 MARCH 1, 2021 WHODRUG GLOBAL B3 MARCH 1, 2023</span>
 <span class="r-in"><span><span class="fu">check_ts_cmdict</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">TS1</span>,<span class="va">TS1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
