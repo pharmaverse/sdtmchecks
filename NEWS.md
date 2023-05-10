@@ -13,7 +13,7 @@
 ## Metadata updates
 
 * Metadata corresponding to new data check added to [`sdtmchecksmeta.RData`](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) ([#63](https://github.com/pharmaverse/sdtmchecks/pull/63))
-* Update [`sdtmchecksmeta.RData`](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) to reference MedDRA v26.0 instead of v25.1  ([#90](https://github.com/pharmaverse/sdtmchecks/pull/90))
+* Update [`sdtmchecksmeta.RData`](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) to reference MedDRA v26.0 instead of v25.1  ([#89](https://github.com/pharmaverse/sdtmchecks/issues/89))
 
 ## Misc updates
 
