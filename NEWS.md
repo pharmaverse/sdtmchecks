@@ -1,4 +1,4 @@
-# sdtmchecks 0.1.5 "Hunter Pi"
+# sdtmchecks 0.1.5 "Hunter Pi" 
 
 ## New data check functions
 
