@@ -6,7 +6,7 @@
 
 ## Metadata updates
 
-* Update [`sdtmchecksmeta.RData`](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) as version=2 not version=3 for backwards compatibility with R < 3.5.0  ([#84](https://github.com/pharmaverse/sdtmchecks/issues/84))
+* Update [`sdtmchecksmeta.RData`](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) as version=2 not version=3 for backwards compatibility with R < 3.5.0 ([#84](https://github.com/pharmaverse/sdtmchecks/issues/84))
 
 
 
