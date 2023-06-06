@@ -27,14 +27,41 @@
 #'
 #' RS <- data.frame(
 #'  USUBJID = 1:2,
-#'  RSTESTCD = "OVRLRESP",
 #'  RSSTRESC = c("SD","NE")
 #' )
 #'
+#' # required variable is missing 
+#' check_tu_rs_new_lesions(RS,TU)
+#'
+#' library(dplyr)
+#' RS <- RS %>%
+#'   mutate(RSTESTCD = 'OVRLRESP')
+#' 
+#' 
+#' # flag USUBJIDs with NEW 
 #' check_tu_rs_new_lesions(RS,TU)
 #'
 #'
-
+#' RS$RSSTRESC[2] = "PD"
+#' 
+#' # flag USUBJID with NEW and without PD
+#' check_tu_rs_new_lesions(RS,TU)
+#' 
+#' TU <- TU %>%
+#' mutate(TUEVAL = "INDEPENDENT ASSESSOR")
+#' 
+#' RS <- RS %>% 
+#' mutate(RSEVAL = "INDEPENDENT ASSESSOR")
+#' 
+#' ## pass if by IRF, even if NEW in TU
+#' check_tu_rs_new_lesions(RS,TU)
+#'
+#' 
+#' RS <- NULL
+#' 
+#' # required dataset missing 
+#' check_tu_rs_new_lesions(RS,TU)
+#' 
 
 
 check_tu_rs_new_lesions <- function(RS, TU) {
@@ -60,11 +87,12 @@ check_tu_rs_new_lesions <- function(RS, TU) {
     if (RS %lacks_any% "RSEVAL") {
         myrs = unique(subset(RS, RS$RSTESTCD == "OVRLRESP" & RS$RSSTRESC == "PD", "USUBJID"))
     } else {
-        myrs = unique(subset(RS, RS$RSTESTCD == "OVRLRESP" & RS$RSSTRESC == "PD" & (toupper(RS$RSEVAL) == "INVESTIGATOR" | is_sas_na(RS$RSEVAL)), "USUBJID"))
+        myrs = unique(subset(RS, RS$RSTESTCD == "OVRLRESP" & RS$RSSTRESC == "PD" & (toupper(RS$RSEVAL) == "INVESTIGATOR" | is_sas_na(RS$RSEVAL)), c("USUBJID")))
     }
 
     mydf = subset(mytu, !(mytu$USUBJID %in% myrs$USUBJID))
     rownames(mydf) = NULL
+    
 
     ###Print to report
 
@@ -75,7 +103,7 @@ check_tu_rs_new_lesions <- function(RS, TU) {
         ### Return subset dataframe if there are records with inconsistency
     } else if (nrow(mydf) > 0) {
 
-        fail(paste(length(unique(mydf$USUBJID)),
+        fail(paste("TU has ", length(unique(mydf$USUBJID)),
                    " patient(s) with a new lesion but no overall response of PD. ",sep = ""),
              mydf)
     }
