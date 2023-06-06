@@ -1,8 +1,9 @@
 #' @title Check for consistency between new lesions and overall PD response
 #'
-#' @description This checks for patients with new lesions in TU (TUSTRESC='NEW')
-#'   but no overall response of PD in RS. Only applies to assessments by
-#'   investigator.
+#' @description This checks for patients with new lesions in TU (TUSTRESC=='NEW')
+#'   but no overall response of PD (RSTESTCD == 'OVRLRESP' and RSSTRESC = 'PD') 
+#'   in RS. Only applies to assessments by investigator, if TUEVAL and 
+#'   RSEVAL variables available.
 #'
 #' @param TU Tumor Identification SDTM dataset with variables USUBJID, TUSTRESC,
 #'   TUDTC
@@ -48,7 +49,7 @@ check_tu_rs_new_lesions <- function(RS, TU) {
     }
 
 
-    ### Find new lesions in TU and overall PD responses in RS
+    ### Find new lesions in TU and overall PD responses in RS 
 
     if (TU %lacks_any% "TUEVAL") {
         mytu = unique(subset(TU, TU$TUSTRESC == "NEW", c("USUBJID", "TUDTC")))
@@ -74,8 +75,8 @@ check_tu_rs_new_lesions <- function(RS, TU) {
         ### Return subset dataframe if there are records with inconsistency
     } else if (nrow(mydf) > 0) {
 
-        fail(paste("There are ",length(unique(mydf$USUBJID)),
-                   " patients with new lesions but no overall response of PD. ",sep = ""),
+        fail(paste(length(unique(mydf$USUBJID)),
+                   " patient(s) with a new lesion but no overall response of PD. ",sep = ""),
              mydf)
     }
 }
