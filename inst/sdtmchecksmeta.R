@@ -52,7 +52,7 @@ sdtmchecksmeta <- googlesheets4::read_sheet(sdtmchecksmeta_url)
 # only update this in May and November when updating and re-running covid.R
 ## MedDRA &MEDDRV. COVID-19 SMQ (Narrow) --> MedDRA v23.1 COVID-19 SMQ (Narrow)
 
-MEDDRV <- "v25.1"
+MEDDRV <- "v26.0"
 sdtmchecksmeta$pdf_subtitle <- gsub("&MEDDRV.", MEDDRV, sdtmchecksmeta$pdf_subtitle)
 
 
@@ -207,6 +207,6 @@ if(nrow(mydf)>0){stop("Spreadsheet has duplicate Excel tab labels")}
 save(sdtmchecksmeta, file = "data/sdtmchecksmeta.RData", version=3, compress=TRUE)
 
 ### Keep a nickname
-nickname="Very Cool Nickname"
+nickname="Hunter Pi"
 save(nickname, file = "data/nickname.RData")
 

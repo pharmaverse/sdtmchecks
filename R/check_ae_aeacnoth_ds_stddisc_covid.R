@@ -1,5 +1,4 @@
-#' @title Check if patient with COVID-related AE leading to STUDY discon
-#'        and also has STUDY Discon record in DS
+#' @title Check for COVID-related AE leading to Study Discon without DS Study Discon
 #'
 #'
 #' @description Flag if patient has a record with COVID-related AE where AE.AEDECOD matches covid.REFTERM
@@ -119,7 +118,7 @@ check_ae_aeacnoth_ds_stddisc_covid <- function(AE,DS,covid_df = NULL){
             ### Otherwise return subset dataframe/message
         }else if(nrow(mydf)>0){
             fail((paste("Found", length(unique(mydf$USUBJID)),
-                        "patient(s) with COVID-related AEs leading to Study Discon, but no corresponding Study Discon recs in DS. ")),
+                        "patient(s) with COVID-related AE(s) leading to Study Discon, but no corresponding Study Discon in DS. ")),
                  mydf)
         }
     }
