@@ -331,7 +331,6 @@ truncate_var_strings <- function(dt, var_name, trunc_length) {
 
 #' @title Save report as an xlsx file
 #'
-#'
 #' @param res results list created by run_all_checks
 #' @param outfile file path/name to write to
 #' 
