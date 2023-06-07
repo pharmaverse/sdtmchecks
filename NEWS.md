@@ -1,3 +1,15 @@
+# sdtmchecks 0.1.6 --- not deployed yet  
+
+## Refinements of existing data check functions
+
+* Minor update to return message for `check_tu_rs_new_lesions()` ([#98](https://github.com/pharmaverse/sdtmchecks/issues/98))
+
+## Metadata updates
+
+* Update [`sdtmchecksmeta.RData`](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) as version=2 not version=3 for backwards compatibility with R < 3.5.0 ([#84](https://github.com/pharmaverse/sdtmchecks/issues/84))
+
+
+
 # sdtmchecks 0.1.5 "Hunter Pi" 
 
 ## New data check functions
