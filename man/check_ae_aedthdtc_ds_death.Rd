@@ -16,7 +16,7 @@ boolean value if check failed or passed with 'msg' attribute if the
 test failed
 }
 \description{
-This check looks for missing AEDTHDTC values if a patients has a
+This check looks for missing AEDTHDTC values if a patient has a
 DS record where DSDECOD=DEATH and DSTERM contains ADVERSE EVENT
 }
 \examples{
@@ -26,6 +26,8 @@ AE <- data.frame(
  AEDTHDTC = c(NA,NA,1)
 )
 
+
+# older mapping 
 DS <- data.frame(
  USUBJID = 1:4,
  DSTERM = c("DEATH DUE TO ADVERSE EVENT","DEATH DUE TO PROGRESSIVE DISEASE",
@@ -39,6 +41,19 @@ check_ae_aedthdtc_ds_death(AE,DS)
 
 DS$DSSTDTC = NULL
 
+check_ae_aedthdtc_ds_death(AE,DS)
+
+# newer mapping that  
+DS <- data.frame(
+ USUBJID = 1:4,
+ DSTERM = c("DEATH DUE TO MYOCARDIAL INFARCTION","DEATH DUE TO PROGRESSIVE DISEASE",
+            "DEATH DUE TO COVID-19","DEATH")
+            ,
+ DSDECOD = rep("DEATH",4),
+ DSSTDTC = "2020-01-01"
+ )
+ 
+# pass for study with newer mapping, as another function (check_dd_death_date.R) covers this
 check_ae_aedthdtc_ds_death(AE,DS)
 
 
