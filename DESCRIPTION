@@ -8,15 +8,15 @@ License: Apache License (>= 2)
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 Imports: 
     dplyr,
     tidyselect,
-    openxlsx,
-    reactable (>= 0.4.0)
+    openxlsx
 Suggests: 
     knitr,
-    rmarkdown (>= 2.7)
+    rmarkdown (>= 2.7),
+    reactable (>= 0.4.0)
 VignetteBuilder: knitr
 URL: https://pharmaverse.github.io/sdtmchecks/, https://github.com/pharmaverse/sdtmchecks
 BugReports: https://github.com/pharmaverse/sdtmchecks/issues
