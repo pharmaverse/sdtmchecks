@@ -96,9 +96,9 @@ is_sas_na <- function(x) {
 
 lacks_msg <- function(df, varnames) {
   data_name <- deparse(substitute(df))
-
+  
   lacking <- varnames[!(varnames %in% names(df))]
-
+  
   if (length(lacking) == 0) {
     paste(data_name, "is not missing any variable.")
   } else if (length(lacking) == 1) {
@@ -139,15 +139,10 @@ lacks_msg <- function(df, varnames) {
 #' @keywords internal
 
 impute_day01 <- function(dates) {
-
+  
   ifelse(nchar(dates) ==7, paste0(dates, "-01"), dates)
-
+  
 }
-
-
-
-
-
 
 
 
@@ -179,14 +174,14 @@ dtc_dupl_early <- function(dts, vars, groupby, dtc, ...) {
   # dots are for ordering variables
   ### Subset to only records without missing DTC
   mydf <- dts[!is_sas_na(dts[[dtc]]) & !is_sas_na(dts[["VISIT"]]) & !is_sas_na(dts[["VISITNUM"]]) & substr(dts[["VISIT"]], 1, 5) != "UNSCH", vars]
-
+  
   ### Subset no duplicated records
   mydf1 <- mydf[!duplicated(mydf[, vars]), ]
-
+  
   ### Sort by
   ord <- paste0("order(", paste0("mydf1[['", list(...), "']]", collapse = ', '), ")")
   mydf2 <- mydf1[eval(parse(text = ord)), ]
-
+  
   ### Add Vis_order
   splitter <- mydf2[groupby]
   mydf2l <- lapply(split(mydf2, splitter, drop = TRUE), function(x) {
@@ -202,10 +197,10 @@ dtc_dupl_early <- function(dts, vars, groupby, dtc, ...) {
       cbind(x, last.vis.dtc = c(NA, x[2:nrow(x) - 1, dtc]), last.vis = c(NA, x[2:nrow(x) - 1, "VISIT"]), visit.order = seq(1, nrow(x)), stringsAsFactors = FALSE)
     }
   })
-
+  
   # need to stack all chunks together
   mydf2 <- Reduce(rbind, mydf2l)
-
+  
   mydf2$check.flag <- ifelse(mydf2$visit.order != 1 & mydf2$last.vis.dtc == mydf2[[dtc]], "Duplicated",
                              ifelse(mydf2$visit.order != 1 & mydf2$last.vis.dtc > mydf2[[dtc]], "Datetime earlier than last Visit", NA))
   mydf2
@@ -241,7 +236,9 @@ missing_month <- function(date) { substr(date, 5, 7) == "---" }
 #'
 #' @return dataframe
 #' @export
-#' @keywords internal
+#' @keywords internal utils_rpt
+#' 
+#' @family utils_rpt
 #'
 #' @examples
 #'
@@ -285,7 +282,8 @@ convert_var_to_ascii <- function(df, var){
 #'
 #' @author Stella Banjo(HackR 2021)
 #' @export
-#' @keywords internal
+#' @keywords internal utils_rpt
+#' @family utils_rpt
 #' @examples
 #'
 #' # Testing: no truncation
@@ -331,8 +329,7 @@ truncate_var_strings <- function(dt, var_name, trunc_length) {
 
 
 
-#' Save report as an xlsx file
-#'
+#' @title Save report as an xlsx file
 #'
 #' @param res results list created by run_all_checks
 #' @param outfile file path/name to write to
@@ -343,6 +340,9 @@ truncate_var_strings <- function(dt, var_name, trunc_length) {
 #'
 #' @return xlsx file
 #' @export
+#' 
+#' @family ex_rpt
+#' @keywords internal ex_rpt
 #'
 #' @examples
 #' 
@@ -358,99 +358,58 @@ truncate_var_strings <- function(dt, var_name, trunc_length) {
 #' 
 #' 
 #' }
-#' 
-#' 
+
+
 report_to_xlsx = function(res,outfile){
-
-# prepare summary page
-# pull columns (xls_title, pdf_title, nrec, notes) from the list and create a summary data frame
-summary_cols<-lapply(res,'[', c("xls_title","pdf_title","nrec","notes","pdf_subtitle"))
-summary_data_0<-as.data.frame(do.call(rbind,summary_cols)) 
-summary_data = summary_data_0 %>% 
-  mutate(version="") %>% select(-any_of("pdf_subtitle"))
-summary_data[,"nrec"]<-as.numeric(summary_data[,"nrec"])
-summary_data[1,"version"]<-nickname
-
-# assign column names
-colnames(summary_data)<-c("Data check (Tab name)",
-                          "Description", 
-                          "N of Failed records", 
-                          "Notes",
-                          paste0("sdtmchecks v.",packageDescription("sdtmchecks")[["Version"]])
-)
-
-# create workbook
-wb<-createWorkbook()
-
-# add some formatting to summary page
-addWorksheet(wb, "Summary results")
-
-setColWidths(wb, "Summary results", cols=1, widths=30)
-setColWidths(wb, "Summary results", cols=2, widths=65)
-setColWidths(wb, "Summary results", cols=3, widths=20)
-setColWidths(wb, "Summary results", cols=4, widths=35)
-setColWidths(wb, "Summary results", cols=5, widths=25)
-
-addFilter(wb, "Summary results", cols=1:ncol(summary_data), rows=1 )
-
-# write summary data on the 1st page of XLS file
-writeData(wb, "Summary results", as.data.frame(summary_data), startRow = 1, startCol = 1, headerStyle=createStyle(textDecoration = "bold"))
-
-# Highlight the rows with problematic queries ( i.e. have non-missing comments at column D)
-redStyle<-createStyle(fontColour = "#9C0006", bgFill = "#FFC7CE")
-orangeStyle<-createStyle(fontColour = "#000000", bgFill = "#fac966")
-boldnickname<-createStyle(textDecoration = "bold")
-
-conditionalFormatting(wb, "Summary results", cols=1:4 ,  rows=1:nrow(summary_data)+1, rule='$D2!=" "', style=redStyle)
-conditionalFormatting(wb, "Summary results", cols=2:4 ,  rows=1:nrow(summary_data)+1, rule='$C2>0', style=orangeStyle)
-conditionalFormatting(wb, "Summary results", cols=1 ,  rows=1:nrow(summary_data)+1, rule='$C2>0', style=orangeStyle)
-conditionalFormatting(wb, "Summary results", cols=5 ,  rows=2, rule='$E2!=""', style=boldnickname)
-
-# Add comments with PDF subtitles to summary results page
-for(i in 1:nrow(summary_data_0)){
   
-  writeComment(wb, "Summary results", col=2, row=i+1,
-               comment=createComment(
-                 unlist(summary_data_0[i,"pdf_subtitle"]),
-                 author = "sdtmchecks",
-                 visible = FALSE,
-                 width = 2,
-                 height = 4
-               ))
+  # prepare summary page
+  # pull columns (xls_title, pdf_title, nrec, notes) from the list and create a summary data frame
+  summary_cols<-lapply(res,'[', c("xls_title","pdf_title","nrec","notes","pdf_subtitle"))
+  summary_data_0<-as.data.frame(do.call(rbind,summary_cols)) 
+  summary_data = summary_data_0 %>% 
+    mutate(version="") %>% select(-any_of("pdf_subtitle"))
+  summary_data[,"nrec"]<-as.numeric(summary_data[,"nrec"])
+  summary_data[1,"version"]<-nickname
   
-}
-
-#loop through the data checks results and write them into separated sheet in xls file.
-for (i in 1:length(res)){
+  # assign column names
+  colnames(summary_data)<-c("Data check (Tab name)",
+                            "Description", 
+                            "N of Failed records", 
+                            "Notes",
+                            paste0("sdtmchecks v.",packageDescription("sdtmchecks")[["Version"]])
+  )
   
-  # do not create xls sheet for data checks with 0 results
-  if(res[[i]]$nrec != 0) {
+  # create workbook
+  wb<-createWorkbook()
+  
+  # add some formatting to summary page
+  addWorksheet(wb, "Summary results")
+  
+  setColWidths(wb, "Summary results", cols=1, widths=30)
+  setColWidths(wb, "Summary results", cols=2, widths=65)
+  setColWidths(wb, "Summary results", cols=3, widths=20)
+  setColWidths(wb, "Summary results", cols=4, widths=35)
+  setColWidths(wb, "Summary results", cols=5, widths=25)
+  
+  addFilter(wb, "Summary results", cols=1:ncol(summary_data), rows=1 )
+  
+  # write summary data on the 1st page of XLS file
+  writeData(wb, "Summary results", as.data.frame(summary_data), startRow = 1, startCol = 1, headerStyle=createStyle(textDecoration = "bold"))
+  
+  # Highlight the rows with problematic queries ( i.e. have non-missing comments at column D)
+  redStyle<-createStyle(fontColour = "#9C0006", bgFill = "#FFC7CE")
+  orangeStyle<-createStyle(fontColour = "#000000", bgFill = "#fac966")
+  boldnickname<-createStyle(textDecoration = "bold")
+  
+  conditionalFormatting(wb, "Summary results", cols=1:4 ,  rows=1:nrow(summary_data)+1, rule='$D2!=" "', style=redStyle)
+  conditionalFormatting(wb, "Summary results", cols=2:4 ,  rows=1:nrow(summary_data)+1, rule='$C2>0', style=orangeStyle)
+  conditionalFormatting(wb, "Summary results", cols=1 ,  rows=1:nrow(summary_data)+1, rule='$C2>0', style=orangeStyle)
+  conditionalFormatting(wb, "Summary results", cols=5 ,  rows=2, rule='$E2!=""', style=boldnickname)
+  
+  # Add comments with PDF subtitles to summary results page
+  for(i in 1:nrow(summary_data_0)){
     
-    addWorksheet(wb, res[[i]]$xls_title)
-    
-    
-    # Begin writing individual xls tab at row 2.
-    # Row=1 will be used to create a HYPERLINK back to 'Summary results' sheet.
-    # writeData(wb, res[[i]]$xls_title, as.data.frame(res[[i]]$data), startRow = 2, startCol = 1)
-    writeData(wb, res[[i]]$xls_title, as.data.frame(res[[i]]$data), startRow = 1, startCol = 1)
-    
-    # create a HYPERLINK between a row on 'Summary results' sheet and individual tab
-    # need to have i+1 because the 1st row on 'Summary results' sheet has column names
-    
-    # writeFormula(wb, sheet="Summary results", startRow=i+1, startCol=1,
-    #              x=makeHyperlinkString(sheet=res[[i]]$xls_title, row=1, col=1, text=res[[i]]$xls_title ))
-    
-    writeData(wb, sheet="Summary results", startRow=i+1, startCol=1,
-              x=res[[i]]$xls_title )
-    
-    
-    # create a HYPERLINK between an individual tab and the row on 'Summary results' sheet
-    # need to have i+1 because the 1st row on 'Summary results' sheet has column names
-    # writeFormula(wb, sheet=res[[i]]$xls_title, startRow=1,
-    #              x=makeHyperlinkString(sheet="Summary results", row=i+1, col=5, text="Link to Summary Tab" ))
-    
-    # Add comments with PDF sub titles to each individual page
-    writeComment(wb, res[[i]]$xls_title, col=1, row=1,
+    writeComment(wb, "Summary results", col=2, row=i+1,
                  comment=createComment(
                    unlist(summary_data_0[i,"pdf_subtitle"]),
                    author = "sdtmchecks",
@@ -459,13 +418,54 @@ for (i in 1:length(res)){
                    height = 4
                  ))
     
+  }
+  
+  #loop through the data checks results and write them into separated sheet in xls file.
+  for (i in 1:length(res)){
     
-  } # end of if
-} # end of loop
-
-saveWorkbook(wb, file = outfile, overwrite = TRUE)
-return(invisible())
-
+    # do not create xls sheet for data checks with 0 results
+    if(res[[i]]$nrec != 0) {
+      
+      addWorksheet(wb, res[[i]]$xls_title)
+      
+      
+      # Begin writing individual xls tab at row 2.
+      # Row=1 will be used to create a HYPERLINK back to 'Summary results' sheet.
+      # writeData(wb, res[[i]]$xls_title, as.data.frame(res[[i]]$data), startRow = 2, startCol = 1)
+      writeData(wb, res[[i]]$xls_title, as.data.frame(res[[i]]$data), startRow = 1, startCol = 1)
+      
+      # create a HYPERLINK between a row on 'Summary results' sheet and individual tab
+      # need to have i+1 because the 1st row on 'Summary results' sheet has column names
+      
+      # writeFormula(wb, sheet="Summary results", startRow=i+1, startCol=1,
+      #              x=makeHyperlinkString(sheet=res[[i]]$xls_title, row=1, col=1, text=res[[i]]$xls_title ))
+      
+      writeData(wb, sheet="Summary results", startRow=i+1, startCol=1,
+                x=res[[i]]$xls_title )
+      
+      
+      # create a HYPERLINK between an individual tab and the row on 'Summary results' sheet
+      # need to have i+1 because the 1st row on 'Summary results' sheet has column names
+      # writeFormula(wb, sheet=res[[i]]$xls_title, startRow=1,
+      #              x=makeHyperlinkString(sheet="Summary results", row=i+1, col=5, text="Link to Summary Tab" ))
+      
+      # Add comments with PDF sub titles to each individual page
+      writeComment(wb, res[[i]]$xls_title, col=1, row=1,
+                   comment=createComment(
+                     unlist(summary_data_0[i,"pdf_subtitle"]),
+                     author = "sdtmchecks",
+                     visible = FALSE,
+                     width = 2,
+                     height = 4
+                   ))
+      
+      
+    } # end of if
+  } # end of loop
+  
+  saveWorkbook(wb, file = outfile, overwrite = TRUE)
+  return(invisible())
+  
 }
 
 
@@ -487,6 +487,10 @@ return(invisible())
 #' @importFrom dplyr %>% mutate row_number
 #'
 #' @author Monarch Shah
+#' 
+#' @keywords utils_rpt
+#' 
+#' @family utils_rpt
 #'
 #' @examples
 #' 
@@ -543,4 +547,57 @@ create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R") 
   return(invisible())
   
 }
+
+
+
+#' @title Create list from tabs of spreadsheet (*xlsx)
+#'
+#' @description This creates a list based on the sdtmchecks_yyyy-mm-dd.xlsx file, such as report created via `report_to_xlsx()` 
+#'
+#' @param rptwb List of check results in newer report read in via openxlsx::loadWorkbook
+#' 
+#' @param firstrow Row input for startRow parameter of openxlsx::read.xlsx, default is 1
+#' 
+#' @return list named xlsxfile
+#'
+#' @export
+#'
+#' @importFrom openxlsx read.xlsx
+#' 
+#' @keywords utils_rpt
+#' 
+#' @family utils_rpt
+#'
+#' @examples
+#'
+#' \dontrun{
+#'
+#' library(openxlsx)
+#'
+#' rptfile <- "Downloads/sdtmchecks_GO12345_2021-03-12.xlsx"
+#' rptwb <- openxlsx::loadWorkbook(rptfile)
+#' names(rptwb)
+#' rptwb
+#'
+#' xlsx2list(rptwb=rptwb, firstrow=1)
+#'
+#' }
+
+xlsx2list <-function(rptwb, firstrow=1){
+  
+  rptlist <- list()
+  
+  for (rpttab in names(rptwb)){
+    print(names(rptwb))
+    
+    # startRow is the row with variable/column names
+    # default is 1
+    rptsheet <- openxlsx::read.xlsx(xlsxFile = rptwb, sheet = rpttab, startRow=firstrow, skipEmptyRows = TRUE, detectDates = TRUE)
+    rptlist[[rpttab]] <- list(rptsheet)
+  }
+  
+  print("xlsx")
+  return(rptlist)
+}
+
 

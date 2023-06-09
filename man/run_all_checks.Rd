@@ -45,3 +45,10 @@ all_rec<-run_all_checks(metads=sdtmchecksmeta,
                         type=c("ONC", "COVID", "PRO"))
 }
 }
+\seealso{
+Example programs for running data checks
+\code{\link{report_to_xlsx}()},
+\code{\link{run_check}()}
+}
+\concept{ex_rpt}
+\keyword{ex_rpt}
