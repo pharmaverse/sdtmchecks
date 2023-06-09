@@ -44,6 +44,7 @@
 #' DS[1, "DSDECOD"] <- 'ADVERSE EVENT'
 #' check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df)
 #'
+#'
 
 check_ae_aeacn_ds_disctx_covid <- function(AE,DS,covid_df = NULL){
 
