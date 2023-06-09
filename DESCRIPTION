@@ -13,7 +13,7 @@ Imports:
     dplyr,
     tidyselect,
     openxlsx,
-    reactable (>=0.4.0)
+    reactable (>= 0.4.0)
 Suggests: 
     knitr,
     rmarkdown (>= 2.7)
