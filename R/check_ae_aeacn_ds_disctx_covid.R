@@ -1,7 +1,7 @@
 #' @title Check if COVID-19 AE action DRUG WITHDRAWN then Trt Discon indicates AE
 #'
 #' @description This code checks if a patient has COVID-19 AE reported with 
-#' AEACN[x]=DRUG WITHDRAWN then there should also be a corresponding DS record 
+#' AEACN*=DRUG WITHDRAWN then there should also be a corresponding DS record 
 #' indicating DS.DSDECOD with 'ADVERSE EVENT' on the DISCTX form. This uses DS.DSSPID 
 #' to identify DISCTX records to differentiate them form 
 #'
