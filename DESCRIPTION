@@ -12,7 +12,8 @@ RoxygenNote: 7.1.1
 Imports: 
     dplyr,
     tidyselect,
-    openxlsx
+    openxlsx,
+    reactable (>=0.4.0)
 Suggests: 
     knitr,
     rmarkdown (>= 2.7)
