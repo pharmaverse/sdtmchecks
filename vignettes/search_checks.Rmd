@@ -11,11 +11,8 @@ vignette: >
 
 ```{r setup, echo=FALSE, warning=FALSE, message=FALSE, include=FALSE}
 
-library(sdtmchecks) 
-# library(shiny)
-library(DT) 
-#library(reactable)
-library(dplyr)
+library(sdtmchecks)  
+library(DT)  
 
 sdtmchecksmeta
 
@@ -23,7 +20,7 @@ sdtmchecksmeta
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 
-showvars <- c("check", "domains", "pdf_title",  "pdf_subtitle", "category", "priority")
+showvars <- c("check","pdf_title",  "pdf_subtitle", "domains", "category", "priority")
 sdtmchecksmetasm <- sdtmchecksmeta[showvars]
 
 sdtmchecksmetasm$category <- gsub("ALL", "Cross TA", sdtmchecksmetasm$category)
@@ -33,49 +30,23 @@ sdtmchecksmetasm$category <- gsub("OPHTH", "Ophthalmology", sdtmchecksmetasm$cat
 
 sdtmchecksmetasm$domains <- toupper(sdtmchecksmetasm$domains)
 
-sdtmchecksmetasm$pdf_subtitle <- gsub("\\*", "<br/>*", sdtmchecksmetasm$pdf_subtitle)
+sdtmchecksmetasm$pdf_subtitle <- gsub("\\n", "<br/>", sdtmchecksmetasm$pdf_subtitle)
+#sdtmchecksmetasm$pdf_subtitle
 
-    #update table column names
-    # sdtmchecksmetasm <- sdtmchecksmetasm %>%
-    #   rename('Check name' = check,
-    #          'Category' = category,
-    #          'Priority' = priority,
-    #          'Description' = pdf_title,
-    #          'SDTM domain(s)' = domains,
-    #          'Details' = pdf_subtitle
-    #          )
-    
-    
-# reactable(sdtmchecksmetasm,
-#           searchable=TRUE,
-#           sortable=TRUE,
-#           filterable=TRUE,
-#           resizable=TRUE,
-#           bordered=TRUE,
-#           highlight=TRUE,
-#  columns = list( 
-#                  check = colDef(name='Check name', minWidth=120, sticky="left")
-#                 ,domains = colDef(name='Domains', minWidth=40)
-#                 ,pdf_title = colDef(name='Description', minWidth=180)
-#                 ,pdf_subtitle = colDef(name='Details', minWidth=220)
-#                 ,category = colDef(name='Category', minWidth=42)
-#                 ,priority = colDef(name='Priority', minWidth=40)
-#  )
-# )
- 
 
 DT::datatable(sdtmchecksmetasm, 
               colnames = c('Check name' = 'check',
-                           'Domain(s)' = 'domains',
                            'Description' = 'pdf_title',
                            'Details' = 'pdf_subtitle',
+                           'Domain(s)' = 'domains',
                            'Category' = 'category',
                            'Priority' = 'priority'
                            ),
               filter = 'top', 
               escape = FALSE,
               options = list(pageLength = 30, 
-                             autowidth = TRUE)
+                             autowidth = TRUE
+                             )
               )
 
 ```
