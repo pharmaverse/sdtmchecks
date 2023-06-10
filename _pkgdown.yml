@@ -11,7 +11,7 @@ template:
 
 navbar:
   type: default
-  title: "sdtmchecks"  
+  title: sdtmchecks  
   right:
     - icon: fa-github fa-lg
       href: https://github.com/pharmaverse/sdtmchecks
@@ -40,7 +40,7 @@ reference:
   desc: "Helper functions for data checks."
   navbar: ~
   contents:
-  - starts_with("util_")
+  #- starts_with("util_")
   - pass
   - fail
   - is_sas_na
@@ -52,32 +52,38 @@ reference:
   - impute_day01
   - dtc_dupl_early 
   - missing_month
+#keyword: utils_check
 
-- title: "Metadata"
-  desc: "Datasets used with the package."
+- title: Metadata
+  desc: Datasets used with the package.
   navbar: ~
   contents:
   - sdtmchecksmeta
   - nickname
+#keyword: metadata  
   
-- title: "Example programs for running data checks"
-  desc: "Samples for using the package."
+- title: Reporting-related programs
+- subtitle: Example programs for running data checks
+  desc: Run one check or multiple checks
   contents:
-  - run_all_checks
-  - run_check
-  - report_to_xlsx
+  - has_keyword("ex_rpt")
+  # - run_all_checks
+  # - run_check
+  # - report_to_xlsx
   
 - title: "Reporting-related utility functions"
   desc: "Samples for using the package."
+  desc: Helper functions for running reports or reading in output report results.
   navbar: ~
   contents:
-  - create_R_script
-  - convert_var_to_ascii 
-  - truncate_var_strings
+  - has_keyword("utils_rpt")
+  # - convert_var_to_ascii 
+  # - truncate_var_strings
+  # - create_R_script
+  # - xlsx2list
   
-- title: "Company-specific utility functions"
-  desc: "Helper functions for data checks tailored to company-specific data inputs."
-  navbar: ~
+- title: Company-specific utility functions
+  desc: Helper functions for data checks tailored to company-specific data inputs.
   contents:
   - roche_derive_rave_row
   - roche_covid_df
