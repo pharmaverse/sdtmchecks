@@ -18,7 +18,7 @@ boolean value if check returns 0 obs, otherwise return subset dataframe.
 }
 \description{
 This code checks if a patient has COVID-19 AE reported with
-AEACN\link{x}=DRUG WITHDRAWN then there should also be a corresponding DS record
+AEACN*=DRUG WITHDRAWN then there should also be a corresponding DS record
 indicating DS.DSDECOD with 'ADVERSE EVENT' on the DISCTX form. This uses DS.DSSPID
 to identify DISCTX records to differentiate them form
 }
@@ -50,6 +50,7 @@ check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df)
 
 DS[1, "DSDECOD"] <- 'ADVERSE EVENT'
 check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df)
+
 
 }
 \author{
