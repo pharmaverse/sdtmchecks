@@ -31,6 +31,12 @@ report_to_xlsx(res=all_rec,outfile="check_results.xlsx")
 
 
 }
-
-
 }
+\seealso{
+Example programs for running data checks
+\code{\link{run_all_checks}()},
+\code{\link{run_check}()}
+}
+\concept{ex_rpt}
+\keyword{ex_rpt}
+\keyword{internal}

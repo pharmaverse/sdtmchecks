@@ -63,4 +63,10 @@ rec <- run_check(
 )
 }
 }
-\keyword{internal}
+\seealso{
+Example programs for running data checks
+\code{\link{report_to_xlsx}()},
+\code{\link{run_all_checks}()}
+}
+\concept{ex_rpt}
+\keyword{ex_rpt}

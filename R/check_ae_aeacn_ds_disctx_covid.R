@@ -1,8 +1,9 @@
-#' @title Check if COVID-19 AE indicated DRUG WITHDRAWN then Treatment Discon
-#' indicates ADVERSE EVENT
+#' @title Check if COVID-19 AE action DRUG WITHDRAWN then Trt Discon indicates AE
 #'
-#' @description This code checks if a patient has COVID-19 AE with AEACN=DRUG WITHDRAWN
-#'              then there should also be a corresponding DS.DSDECOD with ADVERSE EVENT.
+#' @description This code checks if a patient has COVID-19 AE reported with 
+#' AEACN*=DRUG WITHDRAWN then there should also be a corresponding DS record 
+#' indicating DS.DSDECOD with 'ADVERSE EVENT' on the DISCTX form. This uses DS.DSSPID 
+#' to identify DISCTX records to differentiate them form 
 #'
 #' @param AE Adverse Events SDTM dataset with variables USUBJID,AETERM,AEDECOD,AESTDTC,AEACNx
 #' @param DS Disposition SDTM dataset with variables USUBJID,DSSPID,DSCAT,DSDECOD
@@ -43,12 +44,13 @@
 #' DS[1, "DSDECOD"] <- 'ADVERSE EVENT'
 #' check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df)
 #'
+#'
 
 check_ae_aeacn_ds_disctx_covid <- function(AE,DS,covid_df = NULL){
 
     if(is.null(covid_df)){
        
-        fail("Did not detect covid Terms") 
+        fail("Did not detect Covid-19 Preferred Terms") 
         
     }else if( AE %lacks_any% c("USUBJID", "AETERM", "AEDECOD", "AESTDTC","AEACN")){
 
