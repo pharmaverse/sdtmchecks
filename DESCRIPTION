@@ -15,7 +15,8 @@ Imports:
     openxlsx
 Suggests: 
     knitr,
-    rmarkdown (>= 2.7)
+    rmarkdown (>= 2.7),
+    testthat
 VignetteBuilder: knitr
 URL: https://pharmaverse.github.io/sdtmchecks/, https://github.com/pharmaverse/sdtmchecks
 BugReports: https://github.com/pharmaverse/sdtmchecks/issues
