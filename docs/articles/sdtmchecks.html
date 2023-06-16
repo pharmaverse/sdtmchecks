@@ -4,241 +4,280 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="sdtmchecks">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Introduction to sdtmchecks • sdtmchecks</title>
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to sdtmchecks">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to sdtmchecks">
 <meta property="og:description" content="sdtmchecks">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
-    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
+<body data-spy="scroll" data-target="#toc">
+    <div class="container template-article">
+      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">sdtmchecks</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5.1</span>
+      </span>
+    </div>
 
-    <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-primary"><div class="container">
-    
-    <a class="navbar-brand me-2" href="../index.html">sdtmchecks</a>
-
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.5</small>
-
-    
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto">
-<li class="active nav-item">
-  <a class="nav-link" href="../articles/sdtmchecks.html">Get started</a>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+<li>
+  <a href="../index.html">
+    <span class="fas fa fas fa-home fa-lg"></span>
+     
+  </a>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
+<li>
+  <a href="../articles/sdtmchecks.html">Get started</a>
 </li>
-<li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/search_checks.html">Search Data Check Functions</a>
-    <a class="dropdown-item" href="../articles/write_a_check.html">Writing a New Check</a>
-  </div>
+<li>
+  <a href="../reference/index.html">Reference</a>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/write_a_check.html">Writing a New Check</a>
+    </li>
+    <li>
+      <a href="../articles/search_checks.html">Search Data Check Functions</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li class="dropdown-header">Releases</li>
+    <li class="dropdown-header">sdtmchecks 0.1.5</li>
+    <li>
+      <a href="https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-015-hunter-pi"></a>
+    </li>
+    <li class="dropdown-header">sdtmchecks 0.1.2-0.1.4</li>
+    <li>
+      <a href="https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-014-very-cool-nickname"></a>
+    </li>
+    <li class="dropdown-header">sdtmchecks 0.1.1</li>
+    <li>
+      <a href="https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-011-open-up"></a>
+    </li>
+    <li class="divider">
+    <li>
+      <a href="../news/index.html">Changelog</a>
+    </li>
+  </ul>
 </li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/pharmaverse/sdtmchecks">
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/pharmaverse/sdtmchecks">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
       </ul>
 </div>
-
-    
+<!--/.nav-collapse -->
   </div>
-</nav><div class="container template-article">
+<!--/.container -->
+</div>
+<!--/.navbar -->
 
+      
 
-
-
-<div class="row">
-  <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>Introduction to sdtmchecks</h1>
+      </header><script src="sdtmchecks_files/header-attrs-2.5/header-attrs.js"></script><link href="sdtmchecks_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="sdtmchecks_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+  <div class="col-md-9 contents">
+    <div class="page-header toc-ignore">
+      <h1 data-toc-skip>Introduction to sdtmchecks</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/sdtmchecks/blob/HEAD/vignettes/sdtmchecks.Rmd" class="external-link"><code>vignettes/sdtmchecks.Rmd</code></a></small>
-      <div class="d-none name"><code>sdtmchecks.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/sdtmchecks/blob/master/vignettes/sdtmchecks.Rmd"><code>vignettes/sdtmchecks.Rmd</code></a></small>
+      <div class="hidden name"><code>sdtmchecks.Rmd</code></div>
+
     </div>
 
     
     
 <p>The purpose of the <code>sdtmchecks</code> package is to help detect and investigate potential analysis relevant issues in SDTM data. This is done using a set of data check functions. These check functions are intended to be <strong>generalizable</strong>, <strong>actionable</strong>, and <strong>meaningful for analysis</strong>.</p>
-<div class="section level2">
-<h2 id="to-start-using-sdtmchecks-first-install-the-latest-version-from-github">To start using <code>sdtmchecks</code> first install the latest version from GitHub<a class="anchor" aria-label="anchor" href="#to-start-using-sdtmchecks-first-install-the-latest-version-from-github"></a>
-</h2>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"pharmaverse/sdtmchecks"</span><span class="op">)</span></span></code></pre></div>
+<div id="setting-up" class="section level2">
+<h2 class="hasAnchor">
+<a href="#setting-up" class="anchor"></a>Setting Up</h2>
+<p>To start using <code>sdtmchecks</code> first install the latest version from GitHub</p>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"pharmaverse/sdtmchecks"</span><span class="op">)</span></pre></div>
+<p>Then just load the package</p>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pharmaverse.github.io/sdtmchecks/">sdtmchecks</a></span><span class="op">)</span> </pre></div>
 </div>
-<div class="section level2">
-<h2 id="then-just-load-the-package">Then just load the package<a class="anchor" aria-label="anchor" href="#then-just-load-the-package"></a>
-</h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pharmaverse.github.io/sdtmchecks/">sdtmchecks</a></span><span class="op">)</span> </span></code></pre></div>
+<div id="documentation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#documentation" class="anchor"></a>Documentation</h2>
+<p>Here’s how to access the help page for the package</p>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co"># type ??sdtmchecks into the console</span>
+<span class="op">?</span><span class="op">?</span><span class="va">sdtmchecks</span> </pre></div>
 </div>
-<div class="section level2">
-<h2 id="heres-how-to-access-the-help-page-for-the-package">Here’s how to access the help page for the package<a class="anchor" aria-label="anchor" href="#heres-how-to-access-the-help-page-for-the-package"></a>
-</h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># type ??sdtmchecks into the console</span></span>
-<span><span class="op">?</span><span class="op">?</span><span class="va">sdtmchecks</span> </span></code></pre></div>
+<div id="metadata" class="section level2">
+<h2 class="hasAnchor">
+<a href="#metadata" class="anchor"></a>Metadata</h2>
+<p>The package comes with the <code>sdtmchecksmeta</code> dataset which contains metadata on each check function. It contains details like function name, category, priority, and descriptions. Each function is given a <strong>Category</strong> (Cross Therapeutic Area, Oncology, Covid-19, Patient Reported Outcomes, Ophthalmology) and a <strong>Priority</strong> (High, Medium, Low).</p>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="co">#Just type this in</span>
+<span class="va">sdtmchecksmeta</span></pre></div>
+<pre><code>## # A tibble: 10 × 5
+##    check                              title              categ…¹ prior…² domains
+##    &lt;chr&gt;                              &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+##  1 check_ae_aeacn_ds_disctx_covid     COVID AE trt disc… COVID   Low     ae, ds 
+##  2 check_ae_aeacnoth                  AE AEACNOTH multi… ALL     Low     ae     
+##  3 check_ae_aeacnoth_ds_disctx        AE AEACNOTx Discon ALL     Low     ae, ds 
+##  4 check_ae_aeacnoth_ds_stddisc_covid COVID AE study di… COVID   Low     ae, ds 
+##  5 check_ae_aedecod                   AE Missing PT      ALL     High    ae     
+##  6 check_ae_aedthdtc_aesdth           AE Death Date vs … ALL     High    ae     
+##  7 check_ae_aedthdtc_ds_death         DS Death Dates in… ALL     High    ae, ds 
+##  8 check_ae_aelat                     AE AELAT Missing   OPHTH   High    ae     
+##  9 check_ae_aeout                     AE Death Outcome   ALL     High    ae     
+## 10 check_ae_aeout_aeendtc_aedthdtc    Fatal AE Resoluti… ALL     High    ae     
+## # … with abbreviated variable names ¹​category, ²​priority</code></pre>
 </div>
-<div class="section level2">
-<h2 id="the-package-comes-with-the-sdtmchecksmeta-dataset-which-contains-metadata-on-each-check-function">The package comes with the <code>sdtmchecksmeta</code> dataset which contains metadata on each check function<a class="anchor" aria-label="anchor" href="#the-package-comes-with-the-sdtmchecksmeta-dataset-which-contains-metadata-on-each-check-function"></a>
-</h2>
-<p>It contains details like function name, category, priority, and descriptions</p>
-<p>Each function is given a <strong>Category</strong> (Cross Therapeutic Area, Oncology, Covid-19, Patient Reported Outcomes, Ophthalmology) and a <strong>Priority</strong> (High, Medium, Low).</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#Just type this in</span></span>
-<span><span class="va">sdtmchecksmeta</span></span></code></pre></div>
-<pre><code><span><span class="co">## # A tibble: 10 x 5</span></span>
-<span><span class="co">##    check                         title                 category priority domains</span></span>
-<span><span class="co">##    &lt;chr&gt;                         &lt;chr&gt;                 &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;  </span></span>
-<span><span class="co">##  1 check_ae_aeacn_ds_disctx_cov… COVID AE trt discon   COVID    Low      ae, ds </span></span>
-<span><span class="co">##  2 check_ae_aeacnoth             AE AEACNOTH multiple  ALL      Low      ae     </span></span>
-<span><span class="co">##  3 check_ae_aeacnoth_ds_disctx   AE AEACNOTx Discon    ALL      Low      ae, ds </span></span>
-<span><span class="co">##  4 check_ae_aeacnoth_ds_stddisc… COVID AE study discon COVID    Low      ae, ds </span></span>
-<span><span class="co">##  5 check_ae_aedecod              AE Missing PT         ALL      High     ae     </span></span>
-<span><span class="co">##  6 check_ae_aedthdtc_aesdth      AE Death Date vs Ind… ALL      High     ae     </span></span>
-<span><span class="co">##  7 check_ae_aedthdtc_ds_death    DS Death Dates in AE  ALL      High     ae, ds </span></span>
-<span><span class="co">##  8 check_ae_aelat                AE AELAT Missing      OPHTH    High     ae     </span></span>
-<span><span class="co">##  9 check_ae_aeout                AE Death Outcome      ALL      High     ae     </span></span>
-<span><span class="co">## 10 check_ae_aeout_aeendtc_aedth… Fatal AE Resolution … ALL      High     ae</span></span></code></pre>
-</div>
-<div class="section level2">
-<h2 id="lets-do-an-example-using-check_ae_ds_partial_death_datesaeds">Let’s do an example using <code>check_ae_ds_partial_death_dates(AE,DS)</code><a class="anchor" aria-label="anchor" href="#lets-do-an-example-using-check_ae_ds_partial_death_datesaeds"></a>
-</h2>
+<div id="running-a-check" class="section level2">
+<h2 class="hasAnchor">
+<a href="#running-a-check" class="anchor"></a>Running a Check</h2>
+<p>Let’s do an example using <code><a href="../reference/check_ae_ds_partial_death_dates.html">check_ae_ds_partial_death_dates(AE,DS)</a></code></p>
 <p>This check flags records with partial death dates (i.e. length &lt;10) in AE and DS. If any are found, then data check returns <code>FALSE</code> with attributes containing a list of flagged records as well as a brief message explaining the result. If no issues are detected the check returns <code>TRUE</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Use sample data frames.</span></span>
-<span><span class="va">AE</span></span></code></pre></div>
-<pre><code><span><span class="co">##   USUBJID AEDECOD   AEDTHDTC</span></span>
-<span><span class="co">## 1       1     AE1 2017-01-01</span></span>
-<span><span class="co">## 2       2     AE2       2017</span></span>
-<span><span class="co">## 3       3     AE3       &lt;NA&gt;</span></span></code></pre>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">DS</span></span></code></pre></div>
-<pre><code><span><span class="co">##   USUBJID       DSSCAT DSDECOD    DSSTDTC</span></span>
-<span><span class="co">## 1       4 STUDY DISCON   DEATH 2018-01-01</span></span>
-<span><span class="co">## 2       5 STUDY DISCON   DEATH 2017-03-03</span></span>
-<span><span class="co">## 3       6 STUDY DISCON   DEATH 2018-01-02</span></span>
-<span><span class="co">## 4       7 STUDY DISCON   DEATH    2016-10</span></span></code></pre>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Run the data check.</span></span>
-<span><span class="fu"><a href="../reference/check_ae_ds_partial_death_dates.html">check_ae_ds_partial_death_dates</a></span><span class="op">(</span><span class="va">AE</span>,<span class="va">DS</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] FALSE</span></span>
-<span><span class="co">## attr(,"msg")</span></span>
-<span><span class="co">## [1] "There are 2 patients with partial death dates. "</span></span>
-<span><span class="co">## attr(,"data")</span></span>
-<span><span class="co">##   USUBJID       DSSCAT DSDECOD DSSTDTC AEDECOD AEDTHDTC</span></span>
-<span><span class="co">## 1       2         &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;     AE2     2017</span></span>
-<span><span class="co">## 2       7 STUDY DISCON   DEATH 2016-10    &lt;NA&gt;     &lt;NA&gt;</span></span></code></pre>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="co"># Use sample data frames.</span>
+<span class="va">AE</span></pre></div>
+<pre><code>##   USUBJID AEDECOD   AEDTHDTC
+## 1       1     AE1 2017-01-01
+## 2       2     AE2       2017
+## 3       3     AE3       &lt;NA&gt;</code></pre>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="va">DS</span></pre></div>
+<pre><code>##   USUBJID       DSSCAT DSDECOD    DSSTDTC
+## 1       4 STUDY DISCON   DEATH 2018-01-01
+## 2       5 STUDY DISCON   DEATH 2017-03-03
+## 3       6 STUDY DISCON   DEATH 2018-01-02
+## 4       7 STUDY DISCON   DEATH    2016-10</code></pre>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="co"># Run the data check.</span>
+<span class="fu"><a href="../reference/check_ae_ds_partial_death_dates.html">check_ae_ds_partial_death_dates</a></span><span class="op">(</span><span class="va">AE</span>,<span class="va">DS</span><span class="op">)</span></pre></div>
+<pre><code>## [1] FALSE
+## attr(,"msg")
+## [1] "There are 2 patients with partial death dates. "
+## attr(,"data")
+##   USUBJID       DSSCAT DSDECOD DSSTDTC AEDECOD AEDTHDTC
+## 1       2         &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;     AE2     2017
+## 2       7 STUDY DISCON   DEATH 2016-10    &lt;NA&gt;     &lt;NA&gt;</code></pre>
 </div>
-<div class="section level2">
-<h2 id="running-all-the-checks-on-your-data-is-super-easy">Running all the checks on your data is super easy<a class="anchor" aria-label="anchor" href="#running-all-the-checks-on-your-data-is-super-easy"></a>
-</h2>
-<p>Just use the <code>run_all_checks</code> function.</p>
-<p>This function assumes you have all of your sdtm datasets as objects in your global environment, e.g. <code>ae</code>,<code>dm</code>,<code>ex</code>,etc</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Read data to your global environment</span></span>
-<span><span class="va">ae</span> <span class="op">=</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html" class="external-link">read_sas</a></span><span class="op">(</span><span class="st">"path/to/ae.sas7bdat"</span><span class="op">)</span></span>
-<span><span class="va">ds</span> <span class="op">=</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html" class="external-link">read_sas</a></span><span class="op">(</span><span class="st">"path/to/ds.sas7bdat"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Run the checks and save as an object called "myreport"</span></span>
-<span><span class="va">myreport</span><span class="op">=</span><span class="fu"><a href="../reference/run_all_checks.html">run_all_checks</a></span><span class="op">(</span>metads <span class="op">=</span> <span class="va">sdtmchecksmeta</span>,</span>
-<span>               priority <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"High"</span>, <span class="st">"Medium"</span>, <span class="st">"Low"</span><span class="op">)</span>, <span class="co">#subset checks based on priority</span></span>
-<span>               type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ALL"</span>, <span class="st">"ONC"</span>, <span class="st">"COVID"</span>, <span class="st">"PRO"</span>, <span class="st">"OPHTH"</span><span class="op">)</span>, <span class="co">#subset checks based category</span></span>
-<span>               verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">myreport</span><span class="op">)</span> <span class="co">#results in a list object</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">myreport</span><span class="op">)</span> <span class="co">#each check result is saved in a slot of the list</span></span>
-<span><span class="va">myreport</span><span class="op">[[</span><span class="st">"check_ae_aedecod"</span><span class="op">]</span><span class="op">]</span> <span class="co">#investigate the results of a check</span></span></code></pre></div>
-<p>The <code>run_all_checks</code> function lets you easily subset on category or priority</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">myreport</span><span class="op">=</span><span class="fu"><a href="../reference/run_all_checks.html">run_all_checks</a></span><span class="op">(</span>metads <span class="op">=</span> <span class="va">sdtmchecksmeta</span>,</span>
-<span>               priority <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"High"</span><span class="op">)</span>,</span>
-<span>               type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ONC"</span><span class="op">)</span>,</span>
-<span>               verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<div id="running-many-checks" class="section level2">
+<h2 class="hasAnchor">
+<a href="#running-many-checks" class="anchor"></a>Running Many Checks</h2>
+<p>Running all the checks on your data is super easy. Just use the <code>run_all_checks</code> function. This function assumes you have all of your sdtm datasets as objects in your global environment, e.g. <code>ae</code>,<code>dm</code>,<code>ex</code>,etc.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="co"># Read data to your global environment</span>
+<span class="va">ae</span> <span class="op">=</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas</a></span><span class="op">(</span><span class="st">"path/to/ae.sas7bdat"</span><span class="op">)</span>
+<span class="va">ds</span> <span class="op">=</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas</a></span><span class="op">(</span><span class="st">"path/to/ds.sas7bdat"</span><span class="op">)</span>
+
+<span class="co"># Run the checks and save as an object called "myreport"</span>
+<span class="va">myreport</span><span class="op">=</span><span class="fu"><a href="../reference/run_all_checks.html">run_all_checks</a></span><span class="op">(</span>metads <span class="op">=</span> <span class="va">sdtmchecksmeta</span>,
+               priority <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"High"</span>, <span class="st">"Medium"</span>, <span class="st">"Low"</span><span class="op">)</span>, <span class="co">#subset checks based on priority</span>
+               type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ALL"</span>, <span class="st">"ONC"</span>, <span class="st">"COVID"</span>, <span class="st">"PRO"</span>, <span class="st">"OPHTH"</span><span class="op">)</span>, <span class="co">#subset checks based category</span>
+               verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">myreport</span><span class="op">)</span> <span class="co">#results in a list object</span>
+<span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/names.html">names</a></span><span class="op">(</span><span class="va">myreport</span><span class="op">)</span> <span class="co">#each check result is saved in a slot of the list</span>
+<span class="va">myreport</span><span class="op">[[</span><span class="st">"check_ae_aedecod"</span><span class="op">]</span><span class="op">]</span> <span class="co">#investigate the results of a check</span></pre></div>
+<p>The <code>run_all_checks</code> function also lets you easily subset on category or priority</p>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="va">myreport</span><span class="op">=</span><span class="fu"><a href="../reference/run_all_checks.html">run_all_checks</a></span><span class="op">(</span>metads <span class="op">=</span> <span class="va">sdtmchecksmeta</span>,
+               priority <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"High"</span><span class="op">)</span>,
+               type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ONC"</span><span class="op">)</span>,
+               verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></pre></div>
+<p>You can also choose specific checks to run. Here’s a way to get started with some checks that should work fairly well for most datasets</p>
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="co"># Read data to your global environment</span>
+<span class="va">ae</span> <span class="op">=</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas</a></span><span class="op">(</span><span class="st">"path/to/ae.sas7bdat"</span><span class="op">)</span>
+<span class="va">cm</span> <span class="op">=</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas</a></span><span class="op">(</span><span class="st">"path/to/cm.sas7bdat"</span><span class="op">)</span>
+<span class="va">dm</span> <span class="op">=</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html">read_sas</a></span><span class="op">(</span><span class="st">"path/to/dm.sas7bdat"</span><span class="op">)</span>
+
+<span class="co"># Subset to checks that should work OK for most datasets</span>
+<span class="va">metads</span> <span class="op">=</span> <span class="va">sdtmchecksmeta</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">check</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"check_ae_aedecod"</span>,
+                      <span class="st">"check_ae_aetoxgr"</span>,
+                      <span class="st">"check_ae_dup"</span>,
+                      <span class="st">"check_cm_cmdecod"</span>,
+                      <span class="st">"check_cm_missing_month"</span>,
+                      <span class="st">"check_dm_age_missing"</span>,
+                      <span class="st">"check_dm_usubjid_dup"</span>,
+                      <span class="st">"check_dm_armcd"</span>
+                      <span class="op">)</span><span class="op">)</span>
+
+<span class="va">myreport</span><span class="op">=</span><span class="fu"><a href="../reference/run_all_checks.html">run_all_checks</a></span><span class="op">(</span>metads <span class="op">=</span> <span class="va">metads</span>,
+               verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></pre></div>
 </div>
-<div class="section level2">
-<h2 id="heres-a-way-to-get-started-with-some-checks-that-should-work-fairly-well-for-most-datasets">Here’s a way to get started with some checks that should work fairly well for most datasets<a class="anchor" aria-label="anchor" href="#heres-a-way-to-get-started-with-some-checks-that-should-work-fairly-well-for-most-datasets"></a>
-</h2>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Read data to your global environment</span></span>
-<span><span class="va">ae</span> <span class="op">=</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html" class="external-link">read_sas</a></span><span class="op">(</span><span class="st">"path/to/ae.sas7bdat"</span><span class="op">)</span></span>
-<span><span class="va">cm</span> <span class="op">=</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html" class="external-link">read_sas</a></span><span class="op">(</span><span class="st">"path/to/cm.sas7bdat"</span><span class="op">)</span></span>
-<span><span class="va">dm</span> <span class="op">=</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_sas.html" class="external-link">read_sas</a></span><span class="op">(</span><span class="st">"path/to/dm.sas7bdat"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Subset to checks that should work OK for most datasets</span></span>
-<span><span class="va">metads</span> <span class="op">=</span> <span class="va">sdtmchecksmeta</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">check</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"check_ae_aedecod"</span>,</span>
-<span>                      <span class="st">"check_ae_aetoxgr"</span>,</span>
-<span>                      <span class="st">"check_ae_dup"</span>,</span>
-<span>                      <span class="st">"check_cm_cmdecod"</span>,</span>
-<span>                      <span class="st">"check_cm_missing_month"</span>,</span>
-<span>                      <span class="st">"check_dm_age_missing"</span>,</span>
-<span>                      <span class="st">"check_dm_usubjid_dup"</span>,</span>
-<span>                      <span class="st">"check_dm_armcd"</span></span>
-<span>                      <span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">myreport</span><span class="op">=</span><span class="fu"><a href="../reference/run_all_checks.html">run_all_checks</a></span><span class="op">(</span>metads <span class="op">=</span> <span class="va">metads</span>,</span>
-<span>               verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<div id="writing-out-results" class="section level2">
+<h2 class="hasAnchor">
+<a href="#writing-out-results" class="anchor"></a>Writing Out Results</h2>
+<p>You can then write results out to an xlsx for easy sharing.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="fu"><a href="../reference/report_to_xlsx.html">report_to_xlsx</a></span><span class="op">(</span>res<span class="op">=</span><span class="va">myreport</span>,outfile<span class="op">=</span><span class="st">"check_report.xlsx"</span><span class="op">)</span></pre></div>
 </div>
-<div class="section level2">
-<h2 id="you-can-then-write-results-out-to-an-xlsx-for-easy-sharing">You can then write results out to an xlsx for easy sharing<a class="anchor" aria-label="anchor" href="#you-can-then-write-results-out-to-an-xlsx-for-easy-sharing"></a>
-</h2>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/report_to_xlsx.html">report_to_xlsx</a></span><span class="op">(</span>res<span class="op">=</span><span class="va">myreport</span>,outfile<span class="op">=</span><span class="st">"check_report.xlsx"</span><span class="op">)</span></span></code></pre></div>
+<div id="making-a-customizable-script" class="section level2">
+<h2 class="hasAnchor">
+<a href="#making-a-customizable-script" class="anchor"></a>Making a Customizable Script</h2>
+<p>There’s also a convenient helper function to write out a user friendly R script with all the check function calls.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit">
+<span class="fu"><a href="../reference/create_R_script.html">create_R_script</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"run_the_checks.R"</span><span class="op">)</span></pre></div>
 </div>
-<div class="section level2">
-<h2 id="theres-also-a-convenient-helper-function-to-write-out-a-user-friendly-r-script-with-all-the-check-function-calls">There’s also a convenient helper function to write out a user friendly R script with all the check function calls<a class="anchor" aria-label="anchor" href="#theres-also-a-convenient-helper-function-to-write-out-a-user-friendly-r-script-with-all-the-check-function-calls"></a>
-</h2>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/create_R_script.html">create_R_script</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"run_the_checks.R"</span><span class="op">)</span></span></code></pre></div>
+  </div>
+
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
-    </nav></aside>
+
 </div>
 
 
 
-    <footer><div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by Will Harris.</p>
+      <footer><div class="copyright">
+  <p>Developed by Will Harris.</p>
 </div>
 
-<div class="pkgdown-footer-right">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<div class="pkgdown">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
-    </footer>
+      </footer>
 </div>
 
   
 
-  
 
   </body>
 </html>
