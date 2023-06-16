@@ -73,7 +73,6 @@ reference:
   
 - title: "Reporting-related utility functions"
   desc: "Samples for using the package."
-  desc: Helper functions for running reports or reading in output report results.
   navbar: ~
   contents:
   - has_keyword("utils_rpt")
