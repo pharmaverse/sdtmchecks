@@ -7,6 +7,9 @@
     <loc>https://pharmaverse.github.io/sdtmchecks/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://pharmaverse.github.io/sdtmchecks/articles/Articles/write_a_check.html</loc>
+  </url>
+  <url>
     <loc>https://pharmaverse.github.io/sdtmchecks/articles/getting_started.html</loc>
   </url>
   <url>
@@ -14,6 +17,9 @@
   </url>
   <url>
     <loc>https://pharmaverse.github.io/sdtmchecks/articles/sdtmchecks.html</loc>
+  </url>
+  <url>
+    <loc>https://pharmaverse.github.io/sdtmchecks/articles/search_checks.html</loc>
   </url>
   <url>
     <loc>https://pharmaverse.github.io/sdtmchecks/articles/write_a_check.html</loc>
@@ -155,6 +161,9 @@
   </url>
   <url>
     <loc>https://pharmaverse.github.io/sdtmchecks/reference/check_ds_ex_after_discon.html</loc>
+  </url>
+  <url>
+    <loc>https://pharmaverse.github.io/sdtmchecks/reference/check_ds_multdeath_dsstdtc.html</loc>
   </url>
   <url>
     <loc>https://pharmaverse.github.io/sdtmchecks/reference/check_ds_sc_strat.html</loc>
@@ -413,5 +422,8 @@
   </url>
   <url>
     <loc>https://pharmaverse.github.io/sdtmchecks/reference/truncate_var_strings.html</loc>
+  </url>
+  <url>
+    <loc>https://pharmaverse.github.io/sdtmchecks/reference/xlsx2list.html</loc>
   </url>
 </urlset>
