@@ -55,13 +55,6 @@ DT::datatable(sdtmchecksmetasm
               ,options = list(
                 searchHighlight = TRUE
                 ,pageLength = 30
-                #,autowidth = TRUE
-                # ,columnDefs = list(
-                #   list(
-                #     width = '1000px'
-                    #, targets = c(3)
-                    # )
-                  )
                 # ,searchCols = list(
                 #   NULL,
                 #   NULL, 
