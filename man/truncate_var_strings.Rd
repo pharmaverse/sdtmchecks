@@ -43,7 +43,15 @@ AE$AETERM[5] <- "THIS AE TERM IS WAY TOO LONG FOR A NICELY FORMATTED REPORT"
 truncate_var_strings(AE, var_name = "AETERM", trunc_length = 50)
 
 }
+\seealso{
+Reporting-related utility functions
+\code{\link{convert_var_to_ascii}()},
+\code{\link{create_R_script}()},
+\code{\link{xlsx2list}()}
+}
 \author{
 Stella Banjo(HackR 2021)
 }
+\concept{utils_rpt}
 \keyword{internal}
+\keyword{utils_rpt}

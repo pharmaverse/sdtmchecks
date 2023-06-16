@@ -2,8 +2,7 @@
 % Please edit documentation in R/check_ae_aeacn_ds_disctx_covid.R
 \name{check_ae_aeacn_ds_disctx_covid}
 \alias{check_ae_aeacn_ds_disctx_covid}
-\title{Check if COVID-19 AE indicated DRUG WITHDRAWN then Treatment Discon
-indicates ADVERSE EVENT}
+\title{Check if COVID-19 AE action DRUG WITHDRAWN then Trt Discon indicates AE}
 \usage{
 check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df = NULL)
 }
@@ -18,8 +17,10 @@ check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df = NULL)
 boolean value if check returns 0 obs, otherwise return subset dataframe.
 }
 \description{
-This code checks if a patient has COVID-19 AE with AEACN=DRUG WITHDRAWN
-then there should also be a corresponding DS.DSDECOD with ADVERSE EVENT.
+This code checks if a patient has COVID-19 AE reported with
+AEACN*=DRUG WITHDRAWN then there should also be a corresponding DS record
+indicating DS.DSDECOD with 'ADVERSE EVENT' on the DISCTX form. This uses DS.DSSPID
+to identify DISCTX records to differentiate them form
 }
 \examples{
 
@@ -49,6 +50,7 @@ check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df)
 
 DS[1, "DSDECOD"] <- 'ADVERSE EVENT'
 check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df)
+
 
 }
 \author{

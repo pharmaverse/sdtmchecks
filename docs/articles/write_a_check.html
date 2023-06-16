@@ -19,8 +19,6 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -33,12 +31,18 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+<li>
+  <a href="../index.html">
+    <span class="fas fa fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
 <li>
   <a href="../articles/sdtmchecks.html">Get started</a>
 </li>
@@ -55,13 +59,46 @@
 <li>
       <a href="../articles/write_a_check.html">Writing a New Check</a>
     </li>
+    <li>
+      <a href="../articles/search_checks.html">Search Data Check Functions</a>
+    </li>
   </ul>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li class="dropdown-header">Releases</li>
+    <li class="dropdown-header">sdtmchecks 0.1.5</li>
+    <li>
+      <a href="https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-015-hunter-pi"></a>
+    </li>
+    <li class="dropdown-header">sdtmchecks 0.1.2-0.1.4</li>
+    <li>
+      <a href="https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-014-very-cool-nickname"></a>
+    </li>
+    <li class="dropdown-header">sdtmchecks 0.1.1</li>
+    <li>
+      <a href="https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-011-open-up"></a>
+    </li>
+    <li class="divider">
+    <li>
+      <a href="../news/index.html">Changelog</a>
+    </li>
+  </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/pharmaverse/sdtmchecks">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -71,58 +108,56 @@
 
       
 
-      </header><div class="row">
+      </header><script src="write_a_check_files/header-attrs-2.5/header-attrs.js"></script><link href="write_a_check_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="write_a_check_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Writing a New Check</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/sdtmchecks/blob/master/vignettes/write_a_check.Rmd"><code>vignettes/write_a_check.Rmd</code></a></small>
       <div class="hidden name"><code>write_a_check.Rmd</code></div>
 
     </div>
 
     
     
-<div class="section level2">
-<h2 id="background">Background<a class="anchor" aria-label="anchor" href="#background"></a>
-</h2>
+<div id="background" class="section level2">
+<h2 class="hasAnchor">
+<a href="#background" class="anchor"></a>Background</h2>
 <p>Clinical trial datasets can contain a million different types of incorrect data. This package does not intend to comprehensively cover all scenarios in which data may be wrong. Instead the data checks in this package are intended to be <strong>generalizable</strong>, <strong>actionable</strong>, and <strong>meaningful for analysis</strong>. For example many clinical trials contain the <code>CO</code> domain, however the <code>sdtmchecks</code> package does not have any functionality around this domain as it is usually not meaningful for analysis.</p>
 </div>
-<div class="section level2">
-<h2 id="working-in-github">Working in GitHub<a class="anchor" aria-label="anchor" href="#working-in-github"></a>
-</h2>
+<div id="working-in-github" class="section level2">
+<h2 class="hasAnchor">
+<a href="#working-in-github" class="anchor"></a>Working in GitHub</h2>
 <p>The <code>main</code> branch contains the latest released version and should not be used for development.</p>
-<p>The <code>devel</code> is the default branch and contains the latest development version of the package. To start contributing, please make a feature branch off of <code>devel</code>. When your code is ready to be incorporated please pull request it back into <code>devel</code>.</p>
+<p>The <code>devel</code> branch is the default branch and contains the latest development version of the package. To start contributing, please make a feature branch off of <code>devel</code>. When your code is ready to be incorporated please open a pull request that another person will review prior to merging the update into <code>devel</code>. If you do not have write access to the repository, please work off of a forked repo and <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork">open a pull request from the fork</a>.</p>
 </div>
-<div class="section level2">
-<h2 id="existing-checks">Existing Checks<a class="anchor" aria-label="anchor" href="#existing-checks"></a>
-</h2>
+<div id="existing-checks" class="section level2">
+<h2 class="hasAnchor">
+<a href="#existing-checks" class="anchor"></a>Existing Checks</h2>
 <p>The <code>sdtmchecksmeta</code> dataset lists existing checks and contains helpful additional information</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#Just type this in</span></span>
-<span><span class="va">sdtmchecksmeta</span></span></code></pre></div>
-<pre><code><span><span class="co">## Warning: replacing previous import 'lifecycle::last_warnings' by</span></span>
-<span><span class="co">## 'rlang::last_warnings' when loading 'pillar'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: replacing previous import 'lifecycle::last_warnings' by</span></span>
-<span><span class="co">## 'rlang::last_warnings' when loading 'tibble'</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 10 × 4</span></span></span>
-<span><span class="co">##    check                              domains title                      description</span></span>
-<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> check_ae_aeacn_ds_disctx_covid     ae, ds  COVID AE trt discon        Check pati…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> check_ae_aeacnoth                  ae      AE AEACNOTH multiple       Check for …</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> check_ae_aeacnoth_ds_disctx        ae, ds  AE AEACNOTx Discon         Check for …</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> check_ae_aeacnoth_ds_stddisc_covid ae, ds  COVID AE study discon      Check pati…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> check_ae_aedecod                   ae      AE Missing PT              Check for …</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> check_ae_aedthdtc_aesdth           ae      AE Death Date vs Indicator Check for …</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> check_ae_aedthdtc_ds_death         ae, ds  DS Death Dates in AE       Check that…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> check_ae_aelat                     ae      AE AELAT Missing           OPHTHALMOL…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> check_ae_aeout                     ae      AE Death Outcome           Check for …</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">10</span> check_ae_aeout_aeendtc_aedthdtc    ae      Fatal AE Resolution Date   Check for …</span></span></code></pre>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co">#Just type this in</span>
+<span class="va">sdtmchecksmeta</span></pre></div>
+<pre><code>## # A tibble: 10 × 4
+##    check                              domains title                      descr…¹
+##    &lt;chr&gt;                              &lt;chr&gt;   &lt;chr&gt;                      &lt;chr&gt;  
+##  1 check_ae_aeacn_ds_disctx_covid     ae, ds  COVID AE trt discon        Check …
+##  2 check_ae_aeacnoth                  ae      AE AEACNOTH multiple       Check …
+##  3 check_ae_aeacnoth_ds_disctx        ae, ds  AE AEACNOTx Discon         Check …
+##  4 check_ae_aeacnoth_ds_stddisc_covid ae, ds  COVID AE study discon      Check …
+##  5 check_ae_aedecod                   ae      AE Missing PT              Check …
+##  6 check_ae_aedthdtc_aesdth           ae      AE Death Date vs Indicator Check …
+##  7 check_ae_aedthdtc_ds_death         ae, ds  DS Death Dates in AE       Check …
+##  8 check_ae_aelat                     ae      AE AELAT Missing           OPHTHA…
+##  9 check_ae_aeout                     ae      AE Death Outcome           Check …
+## 10 check_ae_aeout_aeendtc_aedthdtc    ae      Fatal AE Resolution Date   Check …
+## # … with abbreviated variable name ¹​description</code></pre>
 </div>
-<div class="section level2">
-<h2 id="good-practices">Good Practices<a class="anchor" aria-label="anchor" href="#good-practices"></a>
-</h2>
+<div id="good-practices" class="section level2">
+<h2 class="hasAnchor">
+<a href="#good-practices" class="anchor"></a>Good Practices</h2>
 <ul>
 <li>
 <p>When writing a new check, the function name should start with the word ‘check’ and contain key dataset information plus a 1-2 word description, i.e. <code>check_[dataset1]_..._[datasetN]_[brief description]</code>. For example:</p>
@@ -132,61 +167,61 @@
 </ul>
 </li>
 <li><p>Each function should at minimum take the datasets being investigated as parameters, e.g. <code>check_ae_aedecod &lt;- function(AE){...}</code></p></li>
-<li><p>Each function should start with a check for required variables. The following internal functions may be helpful for this: <code>%lacks_all%</code>,<code>%lacks_any%</code>,<code>%has_all%</code>, or <code>%has_any%</code>.</p></li>
+<li><p>Each function should start with a check for required variables. The following internal functions may be helpful for this: <code><a href="../reference/%lacks_all%.html">%lacks_all%</a></code>,<code><a href="../reference/%lacks_any%.html">%lacks_any%</a></code>,<code><a href="../reference/%has_all%.html">%has_all%</a></code>, or <code><a href="../reference/%has_any%.html">%has_any%</a></code>.</p></li>
 <li><p>All checks should use the internal <code><a href="../reference/pass.html">pass()</a></code> and <code><a href="../reference/fail.html">fail()</a></code> functions to return either <code>TRUE</code> or <code>FALSE</code> depending on check results. These functions enable attributes to be attached to the boolean result, e.g. a message or a listing of flagged records.</p></li>
 <li><p><code>sdtmchecks</code> intentionally attempts to minimize external dependencies. This is something to keep in mind when developing a new check. Currently the only dependencies are <code>dplyr</code> and <code>tidyselect</code>.</p></li>
 </ul>
 </div>
-<div class="section level2">
-<h2 id="example-check">Example Check<a class="anchor" aria-label="anchor" href="#example-check"></a>
-</h2>
+<div id="example-check" class="section level2">
+<h2 class="hasAnchor">
+<a href="#example-check" class="anchor"></a>Example Check</h2>
 <p>If you are writing your first check it might be helpful to start by editing an existing one, for example the one below:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#' Example check</span></span>
-<span><span class="co">#'</span></span>
-<span><span class="co">#' @param DM </span></span>
-<span><span class="co">#'</span></span>
-<span><span class="co">#' @return boolean</span></span>
-<span><span class="co">#' @export</span></span>
-<span><span class="co">#'</span></span>
-<span><span class="co">#' @examples</span></span>
-<span><span class="co">#'</span></span>
-<span><span class="co">#' \dontrun{</span></span>
-<span><span class="co">#'    check_dm_age_missing(DM)</span></span>
-<span><span class="co">#'   }</span></span>
-<span><span class="co">#'</span></span>
-<span></span>
-<span><span class="va">check_dm_age_missing</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">DM</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="co">###First check that required variables exist and return a message if they don't</span></span>
-<span>  <span class="kw">if</span><span class="op">(</span><span class="va">DM</span> <span class="op"><a href="../reference/grapes-lacks_any-grapes.html">%lacks_any%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>,<span class="st">"AGE"</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span>      <span class="fu"><a href="../reference/fail.html">fail</a></span><span class="op">(</span><span class="fu"><a href="../reference/lacks_msg.html">lacks_msg</a></span><span class="op">(</span><span class="va">DM</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>,<span class="st">"AGE"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="op">}</span><span class="kw">else</span><span class="op">{</span></span>
-<span>    <span class="co">### Subset DM to only records with missing AGE</span></span>
-<span>    <span class="va">mydf_0</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">DM</span>, <span class="fu"><a href="../reference/is_sas_na.html">is_sas_na</a></span><span class="op">(</span><span class="va">DM</span><span class="op">$</span><span class="va">AGE</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>,<span class="st">"AGE"</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="co">### Subset DM to only records with AGE&lt;18</span></span>
-<span>    <span class="va">mydf_1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">DM</span>, <span class="op">!</span><span class="fu"><a href="../reference/is_sas_na.html">is_sas_na</a></span><span class="op">(</span><span class="va">DM</span><span class="op">$</span><span class="va">AGE</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">DM</span><span class="op">$</span><span class="va">AGE</span><span class="op">&lt;</span><span class="fl">18</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>,<span class="st">"AGE"</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="co">### Subset DM to only records with AGE&gt;90</span></span>
-<span>    <span class="va">mydf_2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">DM</span>, <span class="op">!</span><span class="fu"><a href="../reference/is_sas_na.html">is_sas_na</a></span><span class="op">(</span><span class="va">DM</span><span class="op">$</span><span class="va">AGE</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">DM</span><span class="op">$</span><span class="va">AGE</span><span class="op">&gt;=</span><span class="fl">90</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>,<span class="st">"AGE"</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="co">### Combine records with abnormal AGE</span></span>
-<span>    <span class="va">mydf3</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">mydf_0</span>, <span class="va">mydf_1</span>, <span class="va">mydf_2</span><span class="op">)</span></span>
-<span>    <span class="va">mydf</span> <span class="op">=</span> <span class="va">mydf3</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">mydf3</span><span class="op">$</span><span class="va">USUBJID</span><span class="op">)</span>,<span class="op">]</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">mydf</span><span class="op">)</span><span class="op">=</span><span class="cn">NULL</span></span>
-<span>    <span class="co">###Print to report</span></span>
-<span>    <span class="co">### Return message if no records with missing AGE, AGE&lt;18 or AGE&gt;90</span></span>
-<span>    <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">mydf</span><span class="op">)</span><span class="op">==</span><span class="fl">0</span><span class="op">)</span><span class="op">{</span></span>
-<span>      <span class="fu"><a href="../reference/pass.html">pass</a></span><span class="op">(</span><span class="op">)</span></span>
-<span>      <span class="co">### Return subset dataframe if there are records with missing AGE, AGE&lt;18 or AGE&gt;90</span></span>
-<span>    <span class="op">}</span><span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">mydf</span><span class="op">)</span><span class="op">&gt;</span><span class="fl">0</span><span class="op">)</span><span class="op">{</span></span>
-<span>        <span class="fu"><a href="../reference/fail.html">fail</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"There are "</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">mydf</span><span class="op">$</span><span class="va">USUBJID</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>                   <span class="st">" patients with suspicious age values. "</span>,sep<span class="op">=</span><span class="st">""</span><span class="op">)</span>,</span>
-<span>             <span class="va">mydf</span><span class="op">)</span></span>
-<span>        <span class="op">}</span></span>
-<span>  <span class="op">}</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co">#' Example check</span>
+<span class="co">#'</span>
+<span class="co">#' @param DM </span>
+<span class="co">#'</span>
+<span class="co">#' @return boolean</span>
+<span class="co">#' @export</span>
+<span class="co">#'</span>
+<span class="co">#' @examples</span>
+<span class="co">#'</span>
+<span class="co">#' \dontrun{</span>
+<span class="co">#'    check_dm_age_missing(DM)</span>
+<span class="co">#'   }</span>
+<span class="co">#'</span>
+
+<span class="va">check_dm_age_missing</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">DM</span><span class="op">)</span><span class="op">{</span>
+  <span class="co">###First check that required variables exist and return a message if they don't</span>
+  <span class="kw">if</span><span class="op">(</span><span class="va">DM</span> <span class="op">%lacks_any%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>,<span class="st">"AGE"</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+      <span class="fu"><a href="../reference/fail.html">fail</a></span><span class="op">(</span><span class="fu"><a href="../reference/lacks_msg.html">lacks_msg</a></span><span class="op">(</span><span class="va">DM</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>,<span class="st">"AGE"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  <span class="op">}</span><span class="kw">else</span><span class="op">{</span>
+    <span class="co">### Subset DM to only records with missing AGE</span>
+    <span class="va">mydf_0</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">DM</span>, <span class="fu"><a href="../reference/is_sas_na.html">is_sas_na</a></span><span class="op">(</span><span class="va">DM</span><span class="op">$</span><span class="va">AGE</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>,<span class="st">"AGE"</span><span class="op">)</span><span class="op">)</span>
+    <span class="co">### Subset DM to only records with AGE&lt;18</span>
+    <span class="va">mydf_1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">DM</span>, <span class="op">!</span><span class="fu"><a href="../reference/is_sas_na.html">is_sas_na</a></span><span class="op">(</span><span class="va">DM</span><span class="op">$</span><span class="va">AGE</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">DM</span><span class="op">$</span><span class="va">AGE</span><span class="op">&lt;</span><span class="fl">18</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>,<span class="st">"AGE"</span><span class="op">)</span><span class="op">)</span>
+    <span class="co">### Subset DM to only records with AGE&gt;90</span>
+    <span class="va">mydf_2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">DM</span>, <span class="op">!</span><span class="fu"><a href="../reference/is_sas_na.html">is_sas_na</a></span><span class="op">(</span><span class="va">DM</span><span class="op">$</span><span class="va">AGE</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">DM</span><span class="op">$</span><span class="va">AGE</span><span class="op">&gt;=</span><span class="fl">90</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>,<span class="st">"AGE"</span><span class="op">)</span><span class="op">)</span>
+    <span class="co">### Combine records with abnormal AGE</span>
+    <span class="va">mydf3</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">mydf_0</span>, <span class="va">mydf_1</span>, <span class="va">mydf_2</span><span class="op">)</span>
+    <span class="va">mydf</span> <span class="op">=</span> <span class="va">mydf3</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">mydf3</span><span class="op">$</span><span class="va">USUBJID</span><span class="op">)</span>,<span class="op">]</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">mydf</span><span class="op">)</span><span class="op">=</span><span class="cn">NULL</span>
+    <span class="co">###Print to report</span>
+    <span class="co">### Return message if no records with missing AGE, AGE&lt;18 or AGE&gt;90</span>
+    <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">mydf</span><span class="op">)</span><span class="op">==</span><span class="fl">0</span><span class="op">)</span><span class="op">{</span>
+      <span class="fu"><a href="../reference/pass.html">pass</a></span><span class="op">(</span><span class="op">)</span>
+      <span class="co">### Return subset dataframe if there are records with missing AGE, AGE&lt;18 or AGE&gt;90</span>
+    <span class="op">}</span><span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">mydf</span><span class="op">)</span><span class="op">&gt;</span><span class="fl">0</span><span class="op">)</span><span class="op">{</span>
+        <span class="fu"><a href="../reference/fail.html">fail</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"There are "</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">mydf</span><span class="op">$</span><span class="va">USUBJID</span><span class="op">)</span><span class="op">)</span>,
+                   <span class="st">" patients with suspicious age values. "</span>,sep<span class="op">=</span><span class="st">""</span><span class="op">)</span>,
+             <span class="va">mydf</span><span class="op">)</span>
+        <span class="op">}</span>
+  <span class="op">}</span>
+<span class="op">}</span></pre></div>
 </div>
-<div class="section level2">
-<h2 id="additional-considerations">Additional Considerations<a class="anchor" aria-label="anchor" href="#additional-considerations"></a>
-</h2>
+<div id="additional-considerations" class="section level2">
+<h2 class="hasAnchor">
+<a href="#additional-considerations" class="anchor"></a>Additional Considerations</h2>
 <ul>
 <li>Is this check impactful for analysis? Checking little used aspects of SDTM data can cause unnecessary work.</li>
 <li>Will this check be meaningful across many trials or is specific to just a small number of trials?</li>
@@ -207,13 +242,11 @@
 
 
       <footer><div class="copyright">
-  <p></p>
-<p>Developed by Will Harris.</p>
+  <p>Developed by Will Harris.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
@@ -221,8 +254,6 @@
 
   
 
-
-  
 
   </body>
 </html>

@@ -17,6 +17,10 @@
 #' @return list with results from individual checks
 #'
 #' @importFrom parallel mcmapply
+#' 
+#' @family ex_rpt
+#' 
+#' @keywords ex_rpt
 #'
 #' @export
 #'
@@ -34,18 +38,18 @@
 #' }
 
 run_all_checks <- function(metads = sdtmchecksmeta,
-                                    priority = c("High", "Medium", "Low"),
-                                    type = c("ALL", "ONC", "COVID", "PRO", "OPHTH"),
-                                    verbose = TRUE,
-                                    ncores = 1) {
-
+                           priority = c("High", "Medium", "Low"),
+                           type = c("ALL", "ONC", "COVID", "PRO", "OPHTH"),
+                           verbose = TRUE,
+                           ncores = 1) {
+    
     if (!is.null(priority) & !all(priority %in% c("High", "Medium", "Low"))) {
         stop("priority argument should only take values 'High','Medium', or 'Low'")
     }
     if (!is.null(type) & !all(type %in% c("ALL", "ONC", "COVID", "PRO","OPHTH"))) {
         stop("type argument should only take values 'ALL', 'ONC', 'COVID', 'PRO', 'OPHTH'")
     }
-
+    
     # subset meta dataset for specific Type and Priority
     if(!is.null(priority)){
         metads <-subset(metads,metads$priority %in% priority)
@@ -53,13 +57,13 @@ run_all_checks <- function(metads = sdtmchecksmeta,
     if(!is.null(type)){
         metads <-subset(metads,metads$category %in% type)
     }
-
+    
     #Identify missing expected domains to cat out to the user later
     expected.domains = sort(unique(strsplit(gsub(" ","",paste(unique(metads$domains),collapse=",")),",")[[1]]))
     missing.domains = expected.domains[!(expected.domains %in% ls(envir = .GlobalEnv))]
-
+    
     # Run checks
-
+    
     all_rec <- mcmapply(
         FUN = run_check,
         metads$check, metads$fxn_in, metads$xls_title, metads$pdf_title, metads$pdf_subtitle, metads$pdf_return, verbose,
@@ -67,7 +71,7 @@ run_all_checks <- function(metads = sdtmchecksmeta,
         USE.NAMES = TRUE,  # generates list names
         mc.cores = ncores
     )
-
+    
     if (verbose == TRUE & length(missing.domains) > 0) {
         cat(
             paste0(
@@ -77,10 +81,10 @@ run_all_checks <- function(metads = sdtmchecksmeta,
             )
         )
     }
-
+    
     cat("\n")
-
+    
     # return the final list
     return(all_rec)
-
+    
 } # end of function
