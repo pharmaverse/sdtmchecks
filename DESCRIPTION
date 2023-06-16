@@ -16,6 +16,7 @@ Imports:
 Suggests: 
     knitr,
     rmarkdown (>= 2.7),
+    DT,
     testthat
 VignetteBuilder: knitr
 URL: https://pharmaverse.github.io/sdtmchecks/, https://github.com/pharmaverse/sdtmchecks
