@@ -20,7 +20,9 @@ articles:
 - title: "Contributing to this project"
   navbar: ~
   contents:
+  - sdtmchecks
   - write_a_check
+  - search_checks
 
 reference:
 # Subcategories for the Reference page
