@@ -1,8 +1,13 @@
 url: https://pharmaverse.github.io/sdtmchecks/
 
+#development:
+  #mode: devel
+  # devel mode writes to docs/dev/
+  
 template:
-  bootstrap: 5
+  #bootstrap: 5
   bootswatch: flatly
+  noindex: true
 
 navbar:
   type: default
@@ -11,20 +16,29 @@ navbar:
     - icon: fa-github fa-lg
       href: https://github.com/pharmaverse/sdtmchecks
 
+articles:
+- title: "Contributing to this project"
+  navbar: ~
+  contents:
+  - write_a_check
+
 reference:
 # Subcategories for the Reference page
-- title: Package
-  desc: Reference for package.
+- title: "Package"
+  desc: "Reference for package."
+  navbar: ~
   contents:
   - sdtmchecks
   
-- title: Data checks
-  desc: Functions for data checks.
+- title: "Data checks"
+  desc: "Functions for data checks."
+  navbar: ~
   contents:
   - matches("^check_")
   
-- title: Data check utility functions
-  desc: Helper functions used within data check functions.
+- title: "Data check utility functions"
+  desc: "Helper functions for data checks."
+  navbar: ~
   contents:
   #- starts_with("util_")
   - pass
@@ -42,6 +56,7 @@ reference:
 
 - title: Metadata
   desc: Datasets used with the package.
+  navbar: ~
   contents:
   - sdtmchecksmeta
   - nickname
@@ -56,11 +71,12 @@ reference:
   # - run_check
   # - report_to_xlsx
   
-- subtitle: Reporting-related utility functions
+- title: "Reporting-related utility functions"
+  desc: "Samples for using the package."
   desc: Helper functions for running reports or reading in output report results.
+  navbar: ~
   contents:
   - has_keyword("utils_rpt")
-  - create_R_script
   # - convert_var_to_ascii 
   # - truncate_var_strings
   # - create_R_script
@@ -71,3 +87,13 @@ reference:
   contents:
   - roche_derive_rave_row
   - roche_covid_df
+
+
+news:
+ releases:
+ - text: "sdtmchecks 0.1.5"  
+ - href: https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-015-hunter-pi
+ - text: "sdtmchecks 0.1.2-0.1.4"
+ - href: https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-014-very-cool-nickname
+ - text: "sdtmchecks 0.1.1"
+ - href: https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-011-open-up
