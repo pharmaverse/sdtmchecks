@@ -3,7 +3,7 @@
 .RData
 .Ruserdata
 *.Rproj
-.Rprofile
+#.Rprofile
 inst/doc
 docs
 inst/test_code.R
