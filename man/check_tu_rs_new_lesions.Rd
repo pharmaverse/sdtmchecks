@@ -17,9 +17,10 @@ TRUE if check is passed and FALSE if check failed + 'msg' and 'data'
 attributes
 }
 \description{
-This checks for patients with new lesions in TU (TUSTRESC='NEW')
-but no overall response of PD in RS. Only applies to assessments by
-investigator.
+This checks for patients with new lesions in TU (TUSTRESC=='NEW')
+but no overall response of PD (RSTESTCD == 'OVRLRESP' and RSSTRESC = 'PD')
+in RS. Only applies to assessments by investigator, if TUEVAL and
+RSEVAL variables available.
 }
 \examples{
 
@@ -31,12 +32,40 @@ TU <- data.frame(
 
 RS <- data.frame(
  USUBJID = 1:2,
- RSTESTCD = "OVRLRESP",
  RSSTRESC = c("SD","NE")
 )
 
+# required variable is missing 
 check_tu_rs_new_lesions(RS,TU)
 
+library(dplyr)
+RS <- RS \%>\%
+  mutate(RSTESTCD = 'OVRLRESP')
+
+
+# flag USUBJIDs with NEW 
+check_tu_rs_new_lesions(RS,TU)
+
+
+RS$RSSTRESC[2] = "PD"
+
+# flag USUBJID with NEW and without PD
+check_tu_rs_new_lesions(RS,TU)
+
+TU <- TU \%>\%
+mutate(TUEVAL = "INDEPENDENT ASSESSOR")
+
+RS <- RS \%>\% 
+mutate(RSEVAL = "INDEPENDENT ASSESSOR")
+
+## pass if by IRF, even if NEW in TU
+check_tu_rs_new_lesions(RS,TU)
+
+
+RS <- NULL
+
+# required dataset missing 
+check_tu_rs_new_lesions(RS,TU)
 
 }
 \author{

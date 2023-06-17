@@ -1,0 +1,80 @@
+---
+title: "Search Data Check Functions"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Search Data Check Functions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+
+```{r setup, echo=FALSE, warning=FALSE, message=FALSE, include=FALSE}
+
+library(sdtmchecks)  
+library(DT)  
+
+sdtmchecksmeta
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+showvars <- c("check","pdf_title",  "pdf_subtitle", "domains", "category", "priority")
+sdtmchecksmetasm <- sdtmchecksmeta[showvars]
+
+sdtmchecksmetasm$category <- gsub("ALL", "Cross TA", sdtmchecksmetasm$category)
+sdtmchecksmetasm$category <- gsub("ONC", "Onco", sdtmchecksmetasm$category)
+sdtmchecksmetasm$category <- gsub("COVID", "Covid-19", sdtmchecksmetasm$category)
+sdtmchecksmetasm$category <- gsub("OPHTH", "Ophthalmology", sdtmchecksmetasm$category)
+sdtmchecksmetasm$category <- factor(sdtmchecksmetasm$category, c('Cross TA', 'Onco', 'Covid-19', 'Ophthalmology'))
+
+sdtmchecksmetasm$priority <- factor(sdtmchecksmetasm$priority, c('High', 'Medium', 'Low'))
+
+sdtmchecksmetasm$domains <- toupper(sdtmchecksmetasm$domains)
+sdtmchecksmetasm$domains <- gsub(",", ",<br/>", sdtmchecksmetasm$domains)
+
+sdtmchecksmetasm$pdf_subtitle <- gsub("\\n", "<br/>", sdtmchecksmetasm$pdf_subtitle)
+
+
+
+#sdtmchecksmetasm$pdf_subtitle
+
+#head(sdtmchecksmetasm)
+
+DT::datatable(sdtmchecksmetasm
+              ,colnames = c('Check name' = 'check',
+                           'Description' = 'pdf_title',
+                           'Details' = 'pdf_subtitle',
+                           'Domain(s)' = 'domains',
+                           'Category' = 'category',
+                           'Priority' = 'priority'
+                           )
+              ,filter = list(position = 'top', clear = TRUE)
+              ,escape = FALSE
+              ,options = list(
+                searchHighlight = TRUE
+                ,pageLength = 30
+                # ,searchCols = list(
+                #   NULL,
+                #   NULL, 
+                #   NULL, 
+                #   NULL,
+                #   NULL,
+                #   NULL
+                # )
+                ,initComplete = JS(
+                  "function(settings, json) {",
+                  "$(this.api().table().header()).css({'background-color': '#61c398', 'color': '#fff'});",
+                  "}")
+                )
+              ) %>%
+  formatStyle('Check name', fontWeight = 'bold') 
+# %>%
+#   formatStyle('Description', fontWeight = 'bold') 
+
+
+  
+
+```
+ 
