@@ -64,9 +64,9 @@ reference:
   - nickname
 #keyword: metadata  
   
-- title: Reporting-related programs
-- subtitle: Example programs for running data checks
-  desc: Run one check or multiple checks
+- title: "Reporting-related programs"
+  desc: Example programs for running one or more data checks
+  navbar: ~
   contents:
   - has_keyword("ex_rpt")
   # - run_all_checks
@@ -83,8 +83,9 @@ reference:
   # - create_R_script
   # - xlsx2list
   
-- title: Company-specific utility functions
+- title: "Company-specific utility functions"
   desc: Helper functions for data checks tailored to company-specific data inputs.
+  navbar: ~
   contents:
   - roche_derive_rave_row
   - roche_covid_df
@@ -93,8 +94,8 @@ reference:
 news:
  releases:
  - text: "sdtmchecks 0.1.5"  
- - href: https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-015-hunter-pi
+   href: https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-015-hunter-pi
  - text: "sdtmchecks 0.1.2-0.1.4"
- - href: https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-014-very-cool-nickname
+   href: https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-014-very-cool-nickname
  - text: "sdtmchecks 0.1.1"
- - href: https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-011-open-up
+   href: https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-011-open-up
