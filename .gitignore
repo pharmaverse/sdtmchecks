@@ -8,3 +8,4 @@ inst/doc
 docs
 inst/test_code.R
 zzz*
+renv/library
