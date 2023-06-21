@@ -8,6 +8,19 @@
 
 * Update [`sdtmchecksmeta.RData`](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) as version=2 not version=3 for backwards compatibility with R < 3.5.0 ([#84](https://github.com/pharmaverse/sdtmchecks/issues/84))
 
+## Documentation updates
+
+* Search of data check functions (`check_xx....R`) published as [Vignette](https://pharmaverse.github.io/sdtmchecks/articles/search_checks.html) ([#71](https://github.com/pharmaverse/sdtmchecks/issues/71))
+* Remove template in _pkgdown.yml file ([#104](https://github.com/pharmaverse/sdtmchecks/issues/104))
+* Add clickable version releases as links in News dropdown of pkgdown site ([#121](https://github.com/pharmaverse/sdtmchecks/pull/121))
+* Updates to sdtmchecks.Rmd ([#114](https://github.com/pharmaverse/sdtmchecks/pull/114))
+* Roxygen2 header updates
+
+## Misc package updates
+
+* Add unit testing (copied in from earlier internal package version) ([#126](https://github.com/pharmaverse/sdtmchecks/pull/126), [#112](https://github.com/pharmaverse/sdtmchecks/pull/112))
+* Update DESCRIPTION for new dependencies (testthat, DT) and Repository parameter
+<!-- * Use [{renv}](https://rstudio.github.io/renv/articles/renv.html) for package dependency management, adding renvignore, renv.lock, renv subfolder and including updated .Rprofile ([#111](https://github.com/pharmaverse/sdtmchecks/issues/111))--> 
 
 
 # sdtmchecks 0.1.5 "Hunter Pi" 
