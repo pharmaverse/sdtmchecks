@@ -2,38 +2,50 @@
 
 ## Refinements of existing data check functions
 
-* Minor update to return message for `check_tu_rs_new_lesions()` ([#98](https://github.com/pharmaverse/sdtmchecks/issues/98))
+* Minor update to return message for ([`check_tu_rs_new_lesions()`](https://pharmaverse.github.io/sdtmchecks/reference/check_tu_rs_new_lesions.html)) and more header examples added ([#98](https://github.com/pharmaverse/sdtmchecks/issues/98))
+
+## New functions
+* Added [`xls2list()`](https://pharmaverse.github.io/sdtmchecks/reference/xlsx2list.html) reporting function to create a list from spreadsheet tabs using the {openxlsx} package ([#85](https://github.com/pharmaverse/sdtmchecks/pull/85))
 
 ## Metadata updates
 
-* Update [`sdtmchecksmeta.RData`](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) as version=2 not version=3 for backwards compatibility with R < 3.5.0 ([#84](https://github.com/pharmaverse/sdtmchecks/issues/84))
+* [`sdtmchecksmeta.RData`](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) saves as version=2 not version=3 for backwards compatibility with R < 3.5.0 when .RData loaded ([#84](https://github.com/pharmaverse/sdtmchecks/issues/84))
+<!-- * Add new nickname for 0.1.6 --> 
 
 ## Documentation updates
 
-* Search of data check functions (`check_xx....R`) published as [Vignette](https://pharmaverse.github.io/sdtmchecks/articles/search_checks.html) ([#71](https://github.com/pharmaverse/sdtmchecks/issues/71))
-* Remove template in _pkgdown.yml file ([#104](https://github.com/pharmaverse/sdtmchecks/issues/104))
-* Add clickable version releases as links in News dropdown of pkgdown site ([#121](https://github.com/pharmaverse/sdtmchecks/pull/121))
-* Updates to sdtmchecks.Rmd ([#114](https://github.com/pharmaverse/sdtmchecks/pull/114))
-* Roxygen2 header updates
+* **New feature:** [Search Data Check Functions](https://pharmaverse.github.io/sdtmchecks/articles/search_checks.html) published as article on pkgdown site to allow users to search data check functions (`check_xx....R`) ([#71](https://github.com/pharmaverse/sdtmchecks/issues/71))
+* Other minor updates: 
+  * Edited `@title` of `check_ae_aeacn_ds_disctx_covid()` to be single line to address warning during package build
+  * Commented out template assigned in [_pkgdown.yml](https://github.com/pharmaverse/sdtmchecks/blob/main/_pkgdown.yml) file ([#104](https://github.com/pharmaverse/sdtmchecks/issues/104))
+  * Added clickable version releases as links in News dropdown of pkgdown site ([#121](https://github.com/pharmaverse/sdtmchecks/pull/121))
+  * Edited headings in [Get started article](https://pharmaverse.github.io/sdtmchecks/articles/sdtmchecks.html) ([#114](https://github.com/pharmaverse/sdtmchecks/pull/114))
+  * Updated [pkgdown site](https://pharmaverse.github.io/sdtmchecks/index.html) based on latest version of {Roxygen2} ([v7.2.3](https://github.com/r-lib/roxygen2/releases/tag/v7.2.3)) instead of ([v7.1.1](https://github.com/r-lib/roxygen2/releases/tag/v7.1.1)). DESCRIPTION reflects version in RoxygenNote, and associated man/*.Rd files updated. 
+  * Roxygen2 header updates to include `@family` and `@keyword` for functions in run_all_checks.R, run_check.R, utils.R ([#85](https://github.com/pharmaverse/sdtmchecks/pull/85))
 
 ## Misc package updates
 
 * Add unit testing (copied in from earlier internal package version) ([#126](https://github.com/pharmaverse/sdtmchecks/pull/126), [#112](https://github.com/pharmaverse/sdtmchecks/pull/112))
-* Update DESCRIPTION for new dependencies (testthat, DT) and Repository parameter
+* Update DESCRIPTION to specify:
+  * New dependencies ([{testthat}](https://testthat.r-lib.org/), [{DT}](https://rstudio.github.io/DT/), [{openxlsx}](https://ycphs.github.io/openxlsx/)) 
+  * GitHub as Repository for sdtmchecks
 <!-- * Use [{renv}](https://rstudio.github.io/renv/articles/renv.html) for package dependency management, adding renvignore, renv.lock, renv subfolder and including updated .Rprofile ([#111](https://github.com/pharmaverse/sdtmchecks/issues/111))--> 
+<!-- * Deployed under 0.1.5.1 -->
+
+
 
 
 # sdtmchecks 0.1.5 "Hunter Pi" 
 
 ## New data check functions
 
-* `check_ds_multdeath_dsstdtc()` - flags if DS has multiple non-missing death dates in DSSTDTC that do not match ([#62](https://github.com/pharmaverse/sdtmchecks/issues/62))
+* ([`check_ds_multdeath_dsstdtc()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ds_multdeath_dsstdtc.html)) - flags if DS has multiple non-missing death dates in DSSTDTC that do not match ([#62](https://github.com/pharmaverse/sdtmchecks/issues/62))
 
 ## Refinements of existing data check functions
 
 * Updated existing data checks to list the `n` function from dplyr in the header ([#67](https://github.com/pharmaverse/sdtmchecks/issues/67)):
-  - `check_dm_usubjid_dup()`
-  - `check_qs_dup()`
+  - ([`check_dm_usubjid_dup()`](https://pharmaverse.github.io/sdtmchecks/reference/check_dm_usubjid_dup.html))
+  - ([`check_qs_dup()`](https://pharmaverse.github.io/sdtmchecks/reference/check_qs_dup.html))
 
 ## Metadata updates
 
