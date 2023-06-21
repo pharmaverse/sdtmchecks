@@ -5,14 +5,6 @@
       {
         "Name": "CRAN",
         "URL": "https://cloud.r-project.org"
-      },
-      {
-        "Name": "GitHub",
-        "URL": "https://github.com"
-      },
-      {
-        "Name": "V1",
-        "URL": "https://jeroen.r-universe.dev"
       }
     ]
   },
