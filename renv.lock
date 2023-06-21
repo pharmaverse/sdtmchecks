@@ -207,14 +207,13 @@
     },
     "curl": {
       "Package": "curl",
-      "Version": "5.0.1",
-      "Source": "URL",
-      "RemoteType": "url",
-      "RemoteUrl": "https://github.com/jeroen/curl/archive/master.tar.gz",
+      "Version": "5.0.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
       "Requirements": [
         "R"
       ],
-      "Hash": "122dc855754958a559c9ecba30075fb9"
+      "Hash": "e4f97056611e8e6b8b852d13b7400cf1"
     },
     "desc": {
       "Package": "desc",
