@@ -5,6 +5,14 @@
       {
         "Name": "CRAN",
         "URL": "https://cloud.r-project.org"
+      },
+      {
+        "Name": "GitHub",
+        "URL": "https://github.com"
+      },
+      {
+        "Name": "V1",
+        "URL": "https://jeroen.r-universe.dev"
       }
     ]
   },
@@ -200,12 +208,13 @@
     "curl": {
       "Package": "curl",
       "Version": "5.0.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
+      "Source": "URL",
+      "RemoteType": "url",
+      "RemoteUrl": "https://github.com/jeroen/curl/archive/master.tar.gz",
       "Requirements": [
         "R"
       ],
-      "Hash": "2118af9cb164c8d2dddc7b89eaf732d9"
+      "Hash": "122dc855754958a559c9ecba30075fb9"
     },
     "desc": {
       "Package": "desc",
