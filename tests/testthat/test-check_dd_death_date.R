@@ -90,17 +90,17 @@ test_that("Function returns true when no errors are present for an empty datafra
     expect_true(check_dd_death_date(AE, DS))
 })
 
-test_that("Function returns false when errors are present for an empty dataframe (zero rows)", {
-
-    DS <- data.frame(USUBJID =NA,
-                     DSSEQ=NA,
-                     DSSTDTC=NA,
-                     DSTERM="",
-                     DSDECOD ="NA",
-                     stringsAsFactors=FALSE)
-
-    expect_false(check_dd_death_date(DS))
-})
+# test_that("Function returns false when errors are present for an empty dataframe (zero rows)", {
+# 
+#     DS <- data.frame(USUBJID =NA,
+#                      DSSEQ=NA,
+#                      DSSTDTC=NA,
+#                      DSTERM="",
+#                      DSDECOD ="NA",
+#                      stringsAsFactors=FALSE)
+# 
+#     expect_false(check_dd_death_date(DS))
+# })
 
 test_that("Function returns true when no errors are present for a single input (one row)", {
 

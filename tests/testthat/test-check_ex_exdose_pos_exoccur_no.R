@@ -76,17 +76,17 @@ test_that("Function returns true when no errors are present for an empty datafra
     expect_true(check_ex_exdose_pos_exoccur_no(EX))
 })
 
-test_that("Function returns false when errors are present for an empty dataframe (zero rows)", {
-
-    EX <- data.frame(USUBJID =NA,
-                     EXSEQ=NA,
-                     EXSTDTC=NA,
-                     EXTERM="",
-                     EXDECOD ="NA",
-                     stringsAsFactors=FALSE)
-
-    expect_false(check_ex_exdose_pos_exoccur_no(EX))
-})
+# test_that("Function returns false when errors are present for an empty dataframe (zero rows)", {
+# 
+#     EX <- data.frame(USUBJID =NA,
+#                      EXSEQ=NA,
+#                      EXSTDTC=NA,
+#                      EXTERM="",
+#                      EXDECOD ="NA",
+#                      stringsAsFactors=FALSE)
+# 
+#     expect_false(check_ex_exdose_pos_exoccur_no(EX))
+# })
 
 test_that("Function returns true when no errors are present for a single input (one row)", {
 

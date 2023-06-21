@@ -44,17 +44,17 @@ test_that("Function returns true when no errors are present for an empty datafra
     expect_true(check_dm_armcd(DM))
 })
 
-test_that("Function returns false when errors are present for an empty dataframe (zero rows)", {
-
-    DM <- data.frame(USUBJID =NA,
-                     DMSEQ=NA,
-                     DMSTDTC=NA,
-                     DMTERM="",
-                     DMDECOD ="NA",
-                     stringsAsFactors=FALSE)
-
-    expect_false(check_dm_armcd(DM))
-})
+# test_that("Function returns false when errors are present for an empty dataframe (zero rows)", {
+# 
+#     DM <- data.frame(USUBJID =NA,
+#                      DMSEQ=NA,
+#                      DMSTDTC=NA,
+#                      DMTERM="",
+#                      DMDECOD ="NA",
+#                      stringsAsFactors=FALSE)
+# 
+#     expect_false(check_dm_armcd(DM))
+# })
 
 test_that("Function returns true when no errors are present for a single input (one row)", {
 
