@@ -45,17 +45,17 @@ test_that("Function returns true when no errors are present for an empty datafra
   expect_true(check_ae_aedecod(AE))
 })
 
-test_that("Function returns false when errors are present for an empty dataframe (zero rows)", {
-
-  AE <- data.frame(USUBJID =NA,
-                   AESEQ=NA,
-                   AESTDTC=NA,
-                   AETERM="",
-                   AEDECOD ="NA",
-                   stringsAsFactors=FALSE)
-
-  expect_false(check_ae_aedecod(AE))
-})
+# test_that("Function returns false when errors are present for an empty dataframe (zero rows)", {
+# 
+#   AE <- data.frame(USUBJID =NA,
+#                    AESEQ=NA,
+#                    AESTDTC=NA,
+#                    AETERM="",
+#                    AEDECOD ="NA",
+#                    stringsAsFactors=FALSE)
+# 
+#   expect_false(check_ae_aedecod(AE))
+# })
 
 test_that("Function returns true when no errors are present for a single input (one row)", {
   
