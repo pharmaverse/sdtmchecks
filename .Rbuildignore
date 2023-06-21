@@ -12,3 +12,6 @@ docs
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+zzz*
+.renvignore
+inst\test*
