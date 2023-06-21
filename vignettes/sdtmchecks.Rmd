@@ -10,26 +10,32 @@ vignette: >
 
 The purpose of the `sdtmchecks` package is to help detect and investigate potential analysis relevant issues in SDTM data. This is done using a set of data check functions. These check functions are intended to be **generalizable**, **actionable**, and **meaningful for analysis**.
 
-## To start using `sdtmchecks` first install the latest version from GitHub
+## Setting Up
+
+To start using `sdtmchecks` first install the latest version from GitHub
+
 ```{r, message=FALSE,eval=FALSE}
 devtools::install_github("pharmaverse/sdtmchecks")
 ```
 
-## Then just load the package
+Then just load the package
+
 ```{r, message=FALSE}
 library(sdtmchecks) 
 ```
 
-## Here's how to access the help page for the package
+## Documentation
+
+Here's how to access the help page for the package
 ```{r, message=FALSE}
 # type ??sdtmchecks into the console
 ??sdtmchecks 
 ``` 
  
-## The package comes with the `sdtmchecksmeta` dataset which contains metadata on each check function
+## Metadata
 
-It contains details like function name, category, priority, and descriptions
-
+The package comes with the `sdtmchecksmeta` dataset which contains metadata on each check function.
+It contains details like function name, category, priority, and descriptions.
 Each function is given a **Category** (Cross Therapeutic Area, Oncology, Covid-19, Patient Reported Outcomes, Ophthalmology) and a **Priority** (High, Medium, Low).
 
 ```{r, message=FALSE, eval=FALSE}
@@ -45,7 +51,9 @@ head(meta,n=10)
 ``` 
 
 
-## Let's do an example using `check_ae_ds_partial_death_dates(AE,DS)`
+## Running a Check
+
+Let's do an example using `check_ae_ds_partial_death_dates(AE,DS)`
 
 This check flags records with partial death dates (i.e. length <10) in AE and DS. If any are found, then data check returns `FALSE` with attributes containing a list of flagged records as well as a brief message explaining the result. If no issues are detected the check returns `TRUE`.
 
@@ -74,11 +82,11 @@ DS
 check_ae_ds_partial_death_dates(AE,DS)
 ```  
 
-## Running all the checks on your data is super easy
+## Running Many Checks
 
+Running all the checks on your data is super easy.
 Just use the `run_all_checks` function.
-
-This function assumes you have all of your sdtm datasets as objects in your global environment, e.g. `ae`,`dm`,`ex`,etc
+This function assumes you have all of your sdtm datasets as objects in your global environment, e.g. `ae`,`dm`,`ex`,etc.
 
 ```{r, message=FALSE, error=FALSE, warning=FALSE, eval=FALSE }
 
@@ -98,7 +106,7 @@ myreport[["check_ae_aedecod"]] #investigate the results of a check
 ``` 
 
 
-The `run_all_checks` function lets you easily subset on category or priority
+The `run_all_checks` function also lets you easily subset on category or priority
 
 ```{r, message=FALSE, error=FALSE, warning=FALSE, eval=FALSE }
 
@@ -108,7 +116,7 @@ myreport=run_all_checks(metads = sdtmchecksmeta,
                verbose = TRUE)
 ``` 
 
-## Here's a way to get started with some checks that should work fairly well for most datasets
+You can also choose specific checks to run.  Here's a way to get started with some checks that should work fairly well for most datasets
 
 ```{r, message=FALSE, error=FALSE, warning=FALSE, eval=FALSE }
 
@@ -133,7 +141,9 @@ myreport=run_all_checks(metads = metads,
                verbose = TRUE)
 ``` 
 
-## You can then write results out to an xlsx for easy sharing
+## Writing Out Results
+
+You can then write results out to an xlsx for easy sharing.
 
 ```{r, message=FALSE, error=FALSE, warning=FALSE, eval=FALSE }
 
@@ -141,7 +151,9 @@ report_to_xlsx(res=myreport,outfile="check_report.xlsx")
 
 ```
 
-## There's also a convenient helper function to write out a user friendly R script with all the check function calls
+## Making a Customizable Script
+
+There's also a convenient helper function to write out a user friendly R script with all the check function calls.
 
 ```{r, message=FALSE, error=FALSE, warning=FALSE, eval=FALSE }
 
