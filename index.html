@@ -58,6 +58,9 @@
     <li>
       <a href="articles/search_checks.html">Search Data Check Functions</a>
     </li>
+    <li>
+      <a href="articles/faqs.html">Frequently Asked Questions (FAQs)</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -104,26 +107,36 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-
 <div class="section level1">
 <div class="page-header"><h1 id="sdtmchecks">sdtmchecks<a class="anchor" aria-label="anchor" href="#sdtmchecks"></a>
 </h1></div>
+<!-- badges: start -->
+
+<p><img src="reference/figures/logo_em.png" alt="drawing" align="right" width="200"></p>
 <p>This package contains functions to identify common data issues in SDTM data. These checks are intended to be <strong>generalizable</strong>, <strong>actionable</strong>, and <strong>meaningful for analysis</strong>.</p>
+<div class="section level3">
+<h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h3>
+<p>You can install sdtmchecks from GitHub with:</p>
+<pre class="{r}"><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"pharmaverse/sdtmchecks"</span><span class="op">)</span></span></code></pre>
 </div>
-<div class="section level1">
-<h1 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
-</h1>
-<p>This package has been developed internally at Roche since 2014. There may be areas where the checks expect Roche-specific SDTM implementation choices. Proposed additions or modifications should attempt to maintain generalizeability for slightly different data standards across companies. For examples on how to do so and to learn more about contributing in general, please <a href="https://pharmaverse.github.io/sdtmchecks/articles/write_a_check.html">click here</a>.</p>
+<div class="section level3">
+<h3 id="use-the-package">Use the package<a class="anchor" aria-label="anchor" href="#use-the-package"></a>
+</h3>
+<p>The <a href="https://pharmaverse.github.io/sdtmchecks/articles/sdtmchecks.html">Get started page</a> walks you through how the package can be used.</p>
+</div>
+<div class="section level3">
+<h3 id="data-checks-in-the-package">Data checks in the package<a class="anchor" aria-label="anchor" href="#data-checks-in-the-package"></a>
+</h3>
+<p>To search available data check functions, please see <a href="https://pharmaverse.github.io/sdtmchecks/articles/search_checks.html">this search page</a>.</p>
+</div>
+<div class="section level3">
+<h3 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
+</h3>
+<p>This package has been developed internally at Roche since 2014. There may be areas where the checks expect Roche-specific SDTM implementation choices. Proposed additions or modifications should attempt to maintain generalizability for slightly different data standards across companies. For examples on how to do so and to learn more about contributing in general, please <a href="https://pharmaverse.github.io/sdtmchecks/articles/write_a_check.html">click here</a>.</p>
 <p>If you have an idea for a new check but no time for development, please <a href="https://github.com/pharmaverse/sdtmchecks/issues" class="external-link">open an issue</a>.</p>
 </div>
-<div class="section level1">
-<h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h1>
-<p>You can install sdtmchecks from github with:</p>
-<pre class="{r}"><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"pharmaverse/sdtmchecks"</span><span class="op">)</span></span></code></pre>
-<p><img src="reference/figures/logo_em.png" alt="drawing" width="200"></p>
 </div>
-
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -158,7 +171,13 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/pharmaverse/sdtmchecks/actions/workflows/R-CMD-check.yml" class="external-link"><img src="https://github.com/pharmaverse/sdtmchecks/actions/workflows/R-CMD-check.yml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://cran.r-project.org/package=sdtmchecks" class="external-link"><img src="https://www.r-pkg.org/badges/version/sdtmchecks" alt="CRAN status"></a></li>
+</ul>
+</div>
 
   </div>
 </div>
