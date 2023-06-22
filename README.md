@@ -15,7 +15,7 @@ This package contains functions to identify common data issues in SDTM data.  Th
 
 ### Installation
 
-You can install sdtmchecks from github with:
+You can install sdtmchecks from GitHub with:
 
 ```{r}
 devtools::install_github("pharmaverse/sdtmchecks")
