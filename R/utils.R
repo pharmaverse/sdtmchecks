@@ -1,15 +1,3 @@
-#' sdtmchecks: A package containing checks for common SDTM issues
-#'
-#'
-#' @docType package
-#' @name sdtmchecks
-#' @description Package containing checks for common SDTM issues.
-#' This package contains functions to identify common data issues in SDTM data.  
-#' These checks are intended to be generalizable, actionable, and meaningful for analysis.  
-#'
-NULL
-
-
 #' Pass object
 #'
 #'
@@ -23,10 +11,10 @@ pass <- function() {
 
 #' Fail object
 #'
-#' With Message and part of the Data that is responsible for the check to fail
+#' With fail message and dataframe portion responsible for the check failure result
 #'
 #'
-#' @param msg character strings with fail message
+#' @param msg character string with fail message
 #' @param data a data frame to be printed with the fail message
 #'
 #'
@@ -153,7 +141,7 @@ impute_day01 <- function(dates) {
 
 #' @title Check if start dates are duplicated or earlier than prior visit date
 #'
-#' @description this is a core function for checking if start dates are
+#' @description This is a core function for checking if start dates are
 #' duplicated or earlier than last visit's (possible datetime data entry error),
 #' can be used in separate checks for each domain
 #'

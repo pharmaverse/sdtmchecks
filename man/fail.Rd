@@ -7,7 +7,7 @@
 fail(msg, data = NULL)
 }
 \arguments{
-\item{msg}{character strings with fail message}
+\item{msg}{character string with fail message}
 
 \item{data}{a data frame to be printed with the fail message}
 }
@@ -15,6 +15,6 @@ fail(msg, data = NULL)
 Boolean with msg and data attributes
 }
 \description{
-With Message and part of the Data that is responsible for the check to fail
+With fail message and dataframe portion responsible for the check failure result
 }
 \keyword{internal}

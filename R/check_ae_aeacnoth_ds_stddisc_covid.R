@@ -1,14 +1,13 @@
 #' @title Check for COVID-related AE leading to Study Discon without DS Study Discon
 #'
+#' @description Flag if patient has a record with COVID-related AE where 
+#' AE.AEDECOD matches covid.REFTERM with event action of Study Discontinuation 
+#' (AE.AEACNOT*=SUBJECT DISCONTINUED FROM STUDY) but missing Study Discontinuation
+#' record in DS (DS.DSSCAT=STUDY DISCONTINUATION)
 #'
-#' @description Flag if patient has a record with COVID-related AE where AE.AEDECOD matches covid.REFTERM
-#'        and leads to STUDY discon
-#'        (AE.AEACNOT*=SUBJECT DISCONTINUED FROM STUDY) but has no STUDY Discon record in DS
-#'        (DS.DSSCAT=STUDY DISCONTINUATION)
-#'
-#' @param AE Adverse Events SDTM dataset with variables USUBJID,AEDECOD,AEACNOT* (can be multiple vars)
-#' @param DS Discon SDTM dataset with variables USUBJID,DSSCAT,DSDECOD
-#' @param covid_df Dataframe of AE terms identify covid, contains variable REFTERM
+#' @param AE Adverse Events SDTM dataset with variables USUBJID, AEDECOD, AEACNOT* (can be multiple vars)
+#' @param DS Disposition SDTM dataset with variables USUBJID, DSSCAT, DSDECOD
+#' @param covid_df dataframe of AE terms identify Covid-19, contains variable REFTERM
 #'
 #' @return boolean value if check failed or passed with 'msg' attribute if the
 #'   test failed
@@ -60,7 +59,7 @@ check_ae_aeacnoth_ds_stddisc_covid <- function(AE,DS,covid_df = NULL){
 
     if(is.null(covid_df)){
         
-        fail("Did not detect covid Terms") 
+        fail("Did not detect COVID-19 Terms") 
         
     }else if( AE %lacks_any% c("USUBJID","AEDECOD","AEACNOTH")){
 
@@ -82,7 +81,7 @@ check_ae_aeacnoth_ds_stddisc_covid <- function(AE,DS,covid_df = NULL){
         attr(covid_ae$AEDECOD, "label") <- "Dictionary-Derived Term"
         #attributes(covid_ae$AEDECOD)
 
-        # Select AE recs where uppercased AE.AEDECOD matches COVID-related terms COVID_AE.AEDECOD
+        # Select AE records where uppercased AE.AEDECOD matches COVID-related terms COVID_AE.AEDECOD
         attr(AE$AEDECOD, "label") <- "Dictionary-Derived Term"
         ae0 <- AE %>%
             mutate(AEDECOD=toupper(AEDECOD)) %>%
