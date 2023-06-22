@@ -4,10 +4,9 @@
 \name{sdtmchecks-package}
 \alias{sdtmchecks}
 \alias{sdtmchecks-package}
-\title{A package containing checks for common SDTM issues}
+\title{sdtmchecks: Data Quality Checks for SDTM Datasets}
 \description{
-This package contains functions to identify common data issues in SDTM data.
-These checks are intended to be generalizable, actionable, and meaningful for analysis.
+Functions to identify common data issues in SDTM data. These checks are intended to be generalizable, actionable, and meaningful for analysis.
 }
 \seealso{
 Useful links:
