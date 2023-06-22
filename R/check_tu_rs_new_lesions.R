@@ -1,7 +1,7 @@
 #' @title Check for consistency between new lesions and overall PD response
 #'
 #' @description This checks for patients with new lesions in TU (TUSTRESC=='NEW')
-#'   but no overall response of PD (RSTESTCD == 'OVRLRESP' and RSSTRESC = 'PD') 
+#'   but no overall response of PD (RSTESTCD=='OVRLRESP' and RSSTRESC=='PD') 
 #'   in RS. Only applies to assessments by investigator, if TUEVAL and 
 #'   RSEVAL variables available.
 #'
