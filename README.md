@@ -1,4 +1,10 @@
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/pharmaverse/sdtmchecks/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/pharmaverse/sdtmchecks/actions/workflows/R-CMD-check.yml)
+<!--Code coverage status -->
+<!--Test status -->
+[![CRAN status](https://www.r-pkg.org/badges/version/sdtmchecks)](https://cran.r-project.org/package=sdtmchecks)
+
 <!-- badges: end -->
 
 # sdtmchecks
