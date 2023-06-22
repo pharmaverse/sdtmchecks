@@ -44,11 +44,16 @@ head(meta,n=10)
 
 - Each function should at minimum take the datasets being investigated as parameters, e.g. `check_ae_aedecod <- function(AE){...}`
 
-- Each function should start with a check for required variables.  The following internal functions may be helpful for this: `%lacks_all%`,`%lacks_any%`,`%has_all%`, or `%has_any%`.
+- Each function should start with a check for required variables.  The following internal functions may be helpful for this: `%lacks_all%`, `%lacks_any%`, `%has_all%`, or `%has_any%`.
 
 -  All checks should use the internal `pass()` and `fail()` functions to return either `TRUE` or `FALSE` depending on check results.  These functions enable attributes to be attached to the boolean result, e.g. a message or a listing of flagged records.
 
-- `sdtmchecks` intentionally attempts to minimize external dependencies.  This is something to keep in mind when developing a new check.  Currently the only dependencies are `dplyr` and `tidyselect`.
+- `sdtmchecks` intentionally attempts to minimize external dependencies.  This is something to keep in mind when developing a new check.  Currently the only dependencies within data check functions are `dplyr` and `tidyselect`.
+
+- Include examples with **dummied** dataframes in the header that test the logic, assumptions, and robustness of the data check function.  
+
+- Even better, include unit tests to accompany the code. 
+
 
 ## Example Check
 
@@ -90,8 +95,8 @@ check_dm_age_missing <- function(DM){
       pass()
       ### Return subset dataframe if there are records with missing AGE, AGE<18 or AGE>90
     }else if(nrow(mydf)>0){
-        fail(paste("There are ",length(unique(mydf$USUBJID)),
-                   " patients with suspicious age values. ",sep=""),
+      fail(paste("DM has ",length(unique(mydf$USUBJID)),
+                   " patient(s) with suspicious age value(s). ",sep=""),
              mydf)
         }
   }
@@ -101,9 +106,14 @@ check_dm_age_missing <- function(DM){
 
 ## Additional Considerations
 
+- Can any variables be considered optional rather than required? 
+- Is enough information returned that identify the issue source? For example, returning only a patient ID may not enable easy identification of the problem records. 
 - Is this check impactful for analysis?  Checking little used aspects of SDTM data can cause unnecessary work.
-- Will this check be meaningful across many trials or is specific to just a small number of trials?
+- Will this check be meaningful across many trials or is specific to just a small number of trials? 
 - Are false positives being minimized?  The check will not be useful if end users need to sift through a large number of incorrectly flagged records to find a one or two correctly flagged records.
 - Do SDTM IG or MedDRA versions need to be considered?
+
+
+
 
 
