@@ -17,6 +17,7 @@ navbar:
       href: https://github.com/pharmaverse/sdtmchecks
 
 articles:
+- title: Articles
   navbar: ~
   contents:
   - write_a_check
