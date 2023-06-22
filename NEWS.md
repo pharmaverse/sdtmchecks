@@ -3,7 +3,7 @@
 ## Refinements of existing data check functions
 
 * Minor update to return message for ([`check_tu_rs_new_lesions()`](https://pharmaverse.github.io/sdtmchecks/reference/check_tu_rs_new_lesions.html)) and more header examples added ([#98](https://github.com/pharmaverse/sdtmchecks/issues/98))
-* Update function header for [`check_ae_aeacnoth_ds_stddisc_covid()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeacnoth_ds_stddisc_covid.html)
+
 
 ## New functions
 * Added [`xls2list()`](https://pharmaverse.github.io/sdtmchecks/reference/xlsx2list.html) reporting function to create a list from spreadsheet tabs using the {openxlsx} package ([#85](https://github.com/pharmaverse/sdtmchecks/pull/85))
@@ -19,13 +19,15 @@
   * [FAQ page](https://pharmaverse.github.io/sdtmchecks/articles/faqs.html)([#130](https://github.com/pharmaverse/sdtmchecks/pull/130))
 
 * Other minor updates: 
-  * Edited `@title` of `check_ae_aeacn_ds_disctx_covid()` to be single line to address warning during package build
+  * Edited `@title` of `check_ae_aeacn_ds_disctx_covid()`, `check_ae_aeacnoth_ds_stddisc_covid()` to be single line to address warning during package build
+  * Edited headers of `dtc_dupl_early()` and `fail()` in utils.R
   * Commented out template assigned in [_pkgdown.yml](https://github.com/pharmaverse/sdtmchecks/blob/main/_pkgdown.yml) file ([#104](https://github.com/pharmaverse/sdtmchecks/issues/104))
   * Added clickable version releases as links in News dropdown of pkgdown site ([#121](https://github.com/pharmaverse/sdtmchecks/pull/121))
   * Edited headings in [Get started article](https://pharmaverse.github.io/sdtmchecks/articles/sdtmchecks.html) ([#114](https://github.com/pharmaverse/sdtmchecks/pull/114))
+  * Added a few bullet points to [Writing a New Check](https://r.roche.com/s/75335867330e8e3b52af3/files/pharmaverse/sdtmchecks/docs/articles/write_a_check.html)
   * Updated [pkgdown site](https://pharmaverse.github.io/sdtmchecks/index.html) based on latest version of {Roxygen2} ([v7.2.3](https://github.com/r-lib/roxygen2/releases/tag/v7.2.3)) instead of ([v7.1.1](https://github.com/r-lib/roxygen2/releases/tag/v7.1.1)). DESCRIPTION reflects version in RoxygenNote, and associated man/*.Rd files updated. 
   * Roxygen2 header updates to include `@family` and `@keyword` for functions in run_all_checks.R, run_check.R, utils.R ([#85](https://github.com/pharmaverse/sdtmchecks/pull/85))
-  * Moved package reference from utils.R to sdtmchecks-package.R 
+  * Moved sdtmchecks package information from `utils.R` to `sdtmchecks-package.R` 
 
 ## Misc package updates
 
