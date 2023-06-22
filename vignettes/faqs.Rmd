@@ -1,0 +1,108 @@
+---
+title: "Frequently Asked Questions (FAQs)"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{FAQ}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+ 
+## Using the package
+
+**Q: How do I run data checks in the package?**
+
+**A:** Please see the [Getting started](https://pharmaverse.github.io/sdtmchecks/articles/sdtmchecks.html) page of the package.
+
+<br>
+
+**Q: Can the data check functions be used on SDTM studies with SUPPQUAL domains?**
+
+**A:** The package is typically used on transformed SDTM data that has SUPPQUAL variables appended to the parent domain. Most check functions but not all check functions should work if the input data uses SUPPQUAL domains. 
+
+<br>
+
+**Q: How is the designation of priority of High, Medium, Low assigned?**
+
+**A:** The [`sdtmchecksmeta.RData` dataset](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) includes designation of priority. High priority typically is assigned for data checks related to death, disposition, and key safety concepts. Please note that this assignment is subjective and the package has general checks but may not cover critical domains that are study-specific. The priority level designation can be searched via the "Priority" column in [Search Data Check Functions page](https://pharmaverse.github.io/sdtmchecks/articles/search_checks.html). 
+
+<br>
+
+**Q: Why doesn't the package install from CRAN properly?**
+
+**A:** The package is not available on CRAN and needs to be installed from GitHub. The syntax `devtools::install_github("pharmaverse/sdtmchecks")` can be used.
+
+<br>
+ 
+## Data checks
+
+**Q: What data checks are included in the package?**
+
+**A:** The list of data checks are listed on the [Reference section](https://pharmaverse.github.io/sdtmchecks/reference/index.html#data-checks), with functions beginning with `check_...`. These check functions can be searched via the [Search Data Check Functions page](https://pharmaverse.github.io/sdtmchecks/articles/search_checks.html). 
+
+<br>
+
+## Relationship to other tools and data standards
+
+**Q: What is the difference between data checks of Pinnacle 21 (P21) and the sdtmchecks packages?**
+
+**A:** [P21 validation checks](https://www.pinnacle21.com/validation-rules/sdtm) are for CDISC conformance and quite comprehensive for eSubmission, whereas the sdtmchecks package aims to cover variables impacting analysis. There may be some overlap in checks from these two tools. CDISC codelist versions are not used as  reference for the sdtmchecks package. 
+
+<br>
+
+**Q: Can the data checks in this package be run in lieu of P21 validation checks?**
+
+**A:** No! The checks of this package might be considered complementary. There are definitely coverage gaps. 
+
+<br> 
+
+**Q: What are the coverage gaps in the data checks in the package?**
+
+**A:** In general, non-standard data are not covered by these checks. In oncology Response (RS) domain data, the emphasis is on investigator-based results rather than independent review facility data reported by a vendor in light of the former typically being more standardized. 
+
+<br>
+
+
+**Q: Does SDTM IG version information need to be entered in order to use the package?**
+
+**A:** No, the data checks do not require version information as initial input. 
+
+<br>
+
+**Q: What versions of SDTM are covered in the sdtmchecks package?**
+
+**A:** The existing data checks are intended to broadly flag data issues. Some workarounds have been incorporated in data checks that include the EXOCCUR variable, which is not in SDTM IG 1.4 but was in Exposure (EX) domains based on earlier IG versions. Most checks run regardless of the study build date and SDTM version. Please feel free to share recommendations on making the checks more robust via logging an [issue](https://github.com/pharmaverse/sdtmchecks/issues).
+
+We plan to augment the package documentation in coming weeks to include more information on SDTM IG coverage. 
+
+<br>
+
+**Q: Which SDTM Implementation Guide (IG) version is used as the basis of the checks?**
+
+**A:** The data checks are intended to run regardless of SDTM IG version. There are a few checks that only apply to a specific version. For example, "Check for EXDOSE>0 when EXOCCUR is not 'Y'" will return "EX is missing the variable: EXOCCUR" for SDTM IG 3.2+ studies. 
+
+<br>
+
+## Package maintenance and release schedule
+ 
+
+**Q: What is the package update release schedule?**
+
+**A:** The release schedule is TBD.
+
+<br>
+
+## Contributing
+
+
+**Q: How can I contribute to the package?**
+
+**A:** Please feel free to share issues and suggestions on the [Issues](https://github.com/pharmaverse/sdtmchecks/issues) of the sdtmchecks GitHub repo. Refer to the [Writing a New Check](https://pharmaverse.github.io/sdtmchecks/articles/write_a_check.html) guidance to contribute to the codebase.
+
+<br>
+
+**Q: Can I contribute study-specific checks to the package?**
+
+**A:** Data checks that are overly-specific and not as generalizable likely will not be added to the package, but information may be included in the documentation for users to incorporate ad hoc checks. 
+
+<br>
