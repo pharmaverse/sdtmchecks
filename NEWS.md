@@ -14,7 +14,10 @@
 
 ## Documentation updates
 
-* **New feature:** [Search Data Check Functions](https://pharmaverse.github.io/sdtmchecks/articles/search_checks.html) published as article on pkgdown site to allow users to search data check functions (`check_xx....R`) ([#71](https://github.com/pharmaverse/sdtmchecks/issues/71))
+* **New features:** 
+  * [Search Data Check Functions](https://pharmaverse.github.io/sdtmchecks/articles/search_checks.html) published as article on pkgdown site to allow users to search data check functions (`check_xx....R`) ([#71](https://github.com/pharmaverse/sdtmchecks/issues/71))
+  * FAQ page ([#130](https://github.com/pharmaverse/sdtmchecks/pull/130))
+
 * Other minor updates: 
   * Edited `@title` of `check_ae_aeacn_ds_disctx_covid()` to be single line to address warning during package build
   * Commented out template assigned in [_pkgdown.yml](https://github.com/pharmaverse/sdtmchecks/blob/main/_pkgdown.yml) file ([#104](https://github.com/pharmaverse/sdtmchecks/issues/104))
@@ -25,10 +28,11 @@
 
 ## Misc package updates
 
-* Add unit testing (copied in from earlier internal package version) ([#126](https://github.com/pharmaverse/sdtmchecks/pull/126), [#112](https://github.com/pharmaverse/sdtmchecks/pull/112))
-* Update DESCRIPTION to specify:
+* Added unit testing (copied in from earlier internal package version) ([#126](https://github.com/pharmaverse/sdtmchecks/pull/126), [#112](https://github.com/pharmaverse/sdtmchecks/pull/112))
+* Updated DESCRIPTION to specify:
   * New dependencies ([{testthat}](https://testthat.r-lib.org/), [{DT}](https://rstudio.github.io/DT/), [{openxlsx}](https://ycphs.github.io/openxlsx/)) 
   * GitHub as Repository for sdtmchecks
+* Included badges on README for R CMD Check and CRAN status ([#132](https://github.com/pharmaverse/sdtmchecks/pull/132))
 <!-- * Use [{renv}](https://rstudio.github.io/renv/articles/renv.html) for package dependency management, adding renvignore, renv.lock, renv subfolder and including updated .Rprofile ([#111](https://github.com/pharmaverse/sdtmchecks/issues/111))--> 
 <!-- * Deployed under 0.1.5.1 -->
 
