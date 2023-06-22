@@ -17,12 +17,12 @@ navbar:
       href: https://github.com/pharmaverse/sdtmchecks
 
 articles:
-- title: "Contributing to this project"
+- title: Articles
   navbar: ~
   contents:
-  - sdtmchecks
   - write_a_check
   - search_checks
+  - faqs
 
 reference:
 # Subcategories for the Reference page
