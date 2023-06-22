@@ -1,0 +1,6 @@
+inst/*
+data/* 
+!/R
+!/vignettes
+!/docs
+zzz*
