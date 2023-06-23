@@ -1,5 +1,3 @@
-context("test-check_ex_extrt_exoccur")
-
 test_that("function errors when given bad input", {
 
     expect_error(check_ex_extrt_exoccur(data.frame(

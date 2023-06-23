@@ -1,5 +1,3 @@
-context("test-check_ae_aeout")
-
 test_that("function errors when given bad input", {
     #expect_error(check_ae_aeout(list()))
     expect_error(check_ae_aeout(data.frame(USUBJID = 1:6,

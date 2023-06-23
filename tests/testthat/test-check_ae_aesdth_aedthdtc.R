@@ -1,5 +1,3 @@
-context("test-check_ae_aesdth_aedthdtc")
-
 test_that("function errors when given bad input", {
     # expect_error(check_ae_aesdth_aedthdtc(list()))
     expect_error(check_ae_aesdth_aedthdtc(data.frame(USUBJID = c(1:6), AEDTHDTC = c(1:2, NA, "NA", 3),

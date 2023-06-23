@@ -1,5 +1,3 @@
-context("test-check_ae_aedecod")
-
 # test_that("function errors when given a bad input", {
 #   expect_error(check_ae_aedecod(list()))
 #

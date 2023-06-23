@@ -1,5 +1,3 @@
-context("test-check_ae_death_ds_discon")
-
 test_that("function errors when given bad input", {
     #expect_error(check_ae_death_ds_discon(list()))
 

@@ -1,5 +1,3 @@
-context("test-check_dd_ae_aedthdtc_ds_dsstdtc")
-
 test_that("function errors when given bad input", {
     #expect_error(check_dd_ae_aedthdtc_ds_dsstdtc(list()))
 
