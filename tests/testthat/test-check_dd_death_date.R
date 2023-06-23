@@ -1,5 +1,3 @@
-context("test-check_dd_death_date")
-
 test_that("function errors when given bad input", {
     #expect_error(check_dd_death_date(list()))
 

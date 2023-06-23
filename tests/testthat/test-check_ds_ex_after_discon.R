@@ -1,5 +1,3 @@
-context("test-check_ds_ex_after_discon")
-
 test_that("Function returns TRUE when study discontinuation occurs after last
           treatment date",{
               

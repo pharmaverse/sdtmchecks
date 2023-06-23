@@ -1,5 +1,3 @@
-context("test-check_qs_qsstat_qsreasnd")
-
 incorrect_parameters_qsstat <- data.frame("BadVar1" = c("NOT DONE", "NOT DONE"), "QSREASND" = c("", ""))
 
 #' QS <- data.frame(USUBJID = c(1,1,1,2,2,2),

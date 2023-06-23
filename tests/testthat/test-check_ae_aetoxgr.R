@@ -1,5 +1,3 @@
-context("test-check_ae_aetoxgr")
-
 test_that("function errors when given bad input", {
     #expect_error(check_ae_aetoxgr(list()))
     expect_error(check_ae_aetoxgr(data.frame(USUBJID = 1:4,

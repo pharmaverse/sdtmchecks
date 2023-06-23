@@ -1,5 +1,3 @@
-context("test-check_rs_rsdtc_visit")
-
 test_that("function errors when given bad input", {
     #expect_error(check_rs_rsdtc_visit(list()))
 

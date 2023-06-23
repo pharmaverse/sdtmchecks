@@ -1,5 +1,3 @@
-context("test-check_ae_dup")
-
 test_that("check_ae_dup function works when AELAT included but not populated, other variables have no duplicate", {
 
     AE <- data.frame(USUBJID = c(1,1:3), AESTDTC = c(1,1:3),
