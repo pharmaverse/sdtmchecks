@@ -19,8 +19,8 @@ test failed
 }
 \description{
 This check looks for AEs with a present End date(AEENDTC) but outcome
-(AEOUT) is not one of the following: "Fatal", "Recovered/Resolved", "Recovered/Resolved with 'xxyyzz'"
-If AE End date is missing AEENDTC missing, AEOUT should be one of "Unknown", "Not Recovered/Not Resolved", "Recovering/Resolving"
+(AEOUT) is not one of the following: "FATAL", "RECOVERED/RESOLVED", "RECOVERED/RESOLVED WITH SEQUELAE"
+If AE End date is missing AEENDTC missing, AEOUT should be one of "UNKNOWN", "NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING"
 }
 \examples{
 
