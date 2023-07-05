@@ -26,7 +26,7 @@ test_that("Function returns false when errors are present", {
                   RSSTAT="",
                   stringsAsFactors=FALSE)
   
-  # adding cases with earler date
+  # adding cases with earlier date
   RS$RSDTC[RS$USUBJID == 101 & RS$VISIT == "Cycle 3"] <- "2017-01-02T08:25"
   RS$RSDTC[RS$USUBJID == 102 & RS$VISIT == "Cycle 1"] <- "2017-01-01T06:25"
 
