@@ -12,7 +12,9 @@ test_that("Returns true when no errors present", {
     stringsAsFactors = FALSE
   )
   
+  SS <- SS[1,]
   
+  expect_true(check_ss_ssstat_ssorres(SS))
   
 })
 
@@ -31,9 +33,7 @@ test_that("Returns false when errors present - 1", {
     stringsAsFactors = FALSE
   )
   
-  SS <- SS[1,]
-  
-  expect_true(check_ss_ssstat_ssorres(SS))
+  expect_false(check_ss_ssstat_ssorres(SS))
   
 })
 
