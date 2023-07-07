@@ -1,4 +1,4 @@
-test_that("Returns true when no errors present", {
+test_that("Returns true when no errors present - 1", {
   
   SS <- data.frame(
     STUDYID = 1,
@@ -15,8 +15,50 @@ test_that("Returns true when no errors present", {
   SS <- SS[1,]
   
   expect_true(check_ss_ssstat_ssorres(SS))
+
   
 })
+
+test_that("Returns true when no errors present - 2", {
+  
+  SS <- data.frame(
+    STUDYID = 1,
+    USUBJID = c(rep(1,6),rep(2,6)),
+    SSSTRESC = c("ALIVE", "DEAD", "ALIVE", "", "", "U"),
+    SSORRES = c("ALIVE", "DEAD", "ALIVE", "", "", "U"),
+    VISIT = rep(c("SURVIVAL FOLLOW UP 3 MONTHS"),6),
+    SSSTAT = rep(c("","NOT DONE"),6),
+    SSDTC = "2016-01-01",
+    SSSPID = "",
+    stringsAsFactors = FALSE
+  )
+  
+  SS$SSSPID="FORMNAME-R:5/L:5XXXX"
+  SS <- SS[1,]
+  
+  expect_true(check_ss_ssstat_ssorres(SS,preproc=roche_derive_rave_row))
+  
+})
+
+test_that("Returns true when no errors present - 3", {
+  
+  SS <- data.frame(
+    STUDYID = 1,
+    USUBJID = c(rep(1,6),rep(2,6)),
+    SSSTRESC = c("ALIVE", "DEAD", "ALIVE", "", "", "U"),
+    SSORRES = c("ALIVE", "DEAD", "ALIVE", "", "", "U"),
+    VISIT = rep(c("SURVIVAL FOLLOW UP 3 MONTHS"),6),
+    SSSTAT = rep(c("","", "", "NOT DONE", "NOT DONE", ""),2),
+    SSDTC = "2016-01-01",
+    SSSPID = "",
+    stringsAsFactors = FALSE
+  )
+  
+  SS$SSORRES[2]=NA
+  
+  expect_true(check_ss_ssstat_ssorres(SS))
+})
+
 
  
 test_that("Returns false when errors present - 1", {
@@ -38,6 +80,7 @@ test_that("Returns false when errors present - 1", {
 })
 
 
+
 test_that("Returns false when errors present - 2", {
   
   SS <- data.frame(
@@ -46,7 +89,7 @@ test_that("Returns false when errors present - 2", {
     SSSTRESC = c("ALIVE", "DEAD", "ALIVE", "", "", "U"),
     SSORRES = c("ALIVE", "DEAD", "ALIVE", "", "", "U"),
     VISIT = rep(c("SURVIVAL FOLLOW UP 3 MONTHS"),6),
-    SSSTAT = rep(c("","NOT DONE"),6),
+    SSSTAT = rep(c("", "NOT DONE"),6),
     SSDTC = "2016-01-01",
     SSSPID = "",
     stringsAsFactors = FALSE
