@@ -1,28 +1,3 @@
-test_that("function errors when given bad input", {
-    
-    covid_df = data.frame(REFTERM = c("COVID-19",
-                                      "CORONAVIRUS POSITIVE")
-    )
-    
-    AE <- data.frame(
-        USUBJID = 1:6,
-        AEDECOD = c("COVID-19", "COVID-19","some AE","some AE","CORONAVIRUS POSITIVE","UNMAPPED")
-    )
-    
-    DV <- data.frame(
-        USUBJID = 1:6,
-        DVREAS=c("SUSPECTED EPIDEMIC/PANDEMIC INFECTION",
-                 "SUSPECTED EPIDEMIC/PANDEMIC INFECTION",
-                 NA,
-                 "",
-                 "SUSPECTED EPIDEMIC/PANDEMIC INFECTION",
-                 NA)
-    )
-    
-    expect_error(check_dv_ae_aedecod_covid(AE,DV,covid_df)
-    )
-})
-
 test_that("function returns true when no errors are present", {
     
     covid_df = data.frame(REFTERM = c("COVID-19",

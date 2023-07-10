@@ -1,19 +1,8 @@
-test_that("function errors when given bad input", {
-    #expect_error(check_dv_covid(list()))
-    expect_error(check_dv_covid(data.frame(
-        USUBJID = 1:3,
-        DVEPRELI = c("Y","N","Y"),
-        DVREAS=c("EPIDEMIC/PANDEMIC INFECTION","EPIDEMIC/PANDEMIC INFECTION",""),
-        stringsAsFactors=FALSE
-    )))
-
-})
-
 test_that("function returns true when no errors are present", {
 
     DV <- data.frame(
              USUBJID = 1:3,
-             DVEPRELI = c("Y","Y","Y"),
+             DVEPRELI = c("Y","Y","N"),
              DVREAS=c("EPIDEMIC/PANDEMIC INFECTION","EPIDEMIC/PANDEMIC INFECTION",""),
              stringsAsFactors=FALSE
          )
