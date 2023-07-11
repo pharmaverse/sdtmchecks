@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.6</span>
       </span>
     </div>
 
@@ -71,6 +71,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li class="dropdown-header">Releases</li>
+    <li>
+      <a href="https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-016-bubble-and-squeak">sdtmchecks 0.1.6</a>
+    </li>
     <li>
       <a href="https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-015-hunter-pi">sdtmchecks 0.1.5</a>
     </li>
@@ -187,8 +190,8 @@ investigated as parameters,
 e.g. <code>check_ae_aedecod &lt;- function(AE){...}</code></p></li>
 <li><p>Each function should start with a check for required variables.
 The following internal functions may be helpful for this:
-<code>%lacks_all%</code>,<code>%lacks_any%</code>,<code>%has_all%</code>,
-or <code>%has_any%</code>.</p></li>
+<code>%lacks_all%</code>, <code>%lacks_any%</code>,
+<code>%has_all%</code>, or <code>%has_any%</code>.</p></li>
 <li><p>All checks should use the internal <code><a href="../reference/pass.html">pass()</a></code> and
 <code><a href="../reference/fail.html">fail()</a></code> functions to return either <code>TRUE</code> or
 <code>FALSE</code> depending on check results. These functions enable
@@ -196,8 +199,12 @@ attributes to be attached to the boolean result, e.g. a message or a
 listing of flagged records.</p></li>
 <li><p><code>sdtmchecks</code> intentionally attempts to minimize
 external dependencies. This is something to keep in mind when developing
-a new check. Currently the only dependencies are <code>dplyr</code> and
-<code>tidyselect</code>.</p></li>
+a new check. Currently the only dependencies within data check functions
+are <code>dplyr</code> and <code>tidyselect</code>.</p></li>
+<li><p>Include examples with <strong>dummied</strong> dataframes in the
+header that test the logic, assumptions, and robustness of the data
+check function.</p></li>
+<li><p>Even better, include unit tests to accompany the code.</p></li>
 </ul>
 </div>
 <div class="section level2">
@@ -241,8 +248,8 @@ editing an existing one, for example the one below:</p>
 <span>      <span class="fu"><a href="../reference/pass.html">pass</a></span><span class="op">(</span><span class="op">)</span></span>
 <span>      <span class="co">### Return subset dataframe if there are records with missing AGE, AGE&lt;18 or AGE&gt;90</span></span>
 <span>    <span class="op">}</span><span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">mydf</span><span class="op">)</span><span class="op">&gt;</span><span class="fl">0</span><span class="op">)</span><span class="op">{</span></span>
-<span>        <span class="fu"><a href="../reference/fail.html">fail</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"There are "</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">mydf</span><span class="op">$</span><span class="va">USUBJID</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>                   <span class="st">" patients with suspicious age values. "</span>,sep<span class="op">=</span><span class="st">""</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="../reference/fail.html">fail</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"DM has "</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">mydf</span><span class="op">$</span><span class="va">USUBJID</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                   <span class="st">" patient(s) with suspicious age value(s). "</span>,sep<span class="op">=</span><span class="st">""</span><span class="op">)</span>,</span>
 <span>             <span class="va">mydf</span><span class="op">)</span></span>
 <span>        <span class="op">}</span></span>
 <span>  <span class="op">}</span></span>
@@ -252,6 +259,10 @@ editing an existing one, for example the one below:</p>
 <h2 id="additional-considerations">Additional Considerations<a class="anchor" aria-label="anchor" href="#additional-considerations"></a>
 </h2>
 <ul>
+<li>Can any variables be considered optional rather than required?</li>
+<li>Is enough information returned that identify the issue source? For
+example, returning only a patient ID may not enable easy identification
+of the problem records.</li>
 <li>Is this check impactful for analysis? Checking little used aspects
 of SDTM data can cause unnecessary work.</li>
 <li>Will this check be meaningful across many trials or is specific to
