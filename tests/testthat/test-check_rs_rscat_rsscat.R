@@ -1,5 +1,3 @@
-context("test-check_rs_rscat_rsscat")
-
 test_that("function returns false when rscat is populated but rsscat has missing values",{
     expect_false(
         check_rs_rscat_rsscat(

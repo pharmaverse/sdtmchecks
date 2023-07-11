@@ -1,5 +1,3 @@
-context("test-check_vs_vsdtc_after_dd")
-
 test_that("function errors when given bad input", {
     expect_error(check_vs_vsdtc_after_dd(list()))
 

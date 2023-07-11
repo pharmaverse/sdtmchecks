@@ -21,7 +21,7 @@ dtc_dupl_early(dts, vars, groupby, dtc, ...)
 dataframe with records of duplicated or earlier than last visit date
 }
 \description{
-this is a core function for checking if start dates are
+This is a core function for checking if start dates are
 duplicated or earlier than last visit's (possible datetime data entry error),
 can be used in separate checks for each domain
 }

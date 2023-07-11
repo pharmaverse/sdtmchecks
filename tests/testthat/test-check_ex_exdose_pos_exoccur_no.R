@@ -1,5 +1,3 @@
-context("test-check_ex_exdose_pos_exoccur_no")
-
 test_that("function errors when given bad input", {
     #expect_error(check_ex_exdose_pos_exoccur_no(list()))
 

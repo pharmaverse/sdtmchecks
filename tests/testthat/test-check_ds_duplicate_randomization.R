@@ -1,5 +1,3 @@
-context("test-check_ds_duplicate_randomization")
-
 test_that("function errors when given bad input", {
     #expect_error(check_ds_duplicate_randomization(list()))
 

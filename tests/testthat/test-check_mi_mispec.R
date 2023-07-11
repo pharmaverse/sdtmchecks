@@ -1,6 +1,3 @@
-context("test-check_mi_mispec")
-
-
 MI <- data.frame(
     USUBJID = c(1:3),
     DOMAIN = c("MI"),

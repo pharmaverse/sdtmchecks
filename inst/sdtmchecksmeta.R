@@ -210,5 +210,6 @@ save(sdtmchecksmeta, file = "data/sdtmchecksmeta.RData", version=2, compress=TRU
 ## -----------------------------------------------------------------------------
 ## -------   OUTPUT: Save nickname.RData ---------------------------------------
 ### Keep a nickname
-nickname="Hunter Pi"
+
+nickname="Bubble and Squeak"
 save(nickname, file = "data/nickname.RData", version=2)

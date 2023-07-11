@@ -1,5 +1,3 @@
-context("test-check_dm_usubjid_dup")
-
 test_that("function errors when given bad input", {
     #expect_error(check_dm_usubjid_dup(list()))
     expect_error(check_dm_usubjid_dup(data.frame(USUBJID = c(LETTERS[1:4], "A"),

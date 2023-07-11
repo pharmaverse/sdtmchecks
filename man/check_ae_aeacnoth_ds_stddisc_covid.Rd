@@ -7,21 +7,21 @@
 check_ae_aeacnoth_ds_stddisc_covid(AE, DS, covid_df = NULL)
 }
 \arguments{
-\item{AE}{Adverse Events SDTM dataset with variables USUBJID,AEDECOD,AEACNOT* (can be multiple vars)}
+\item{AE}{Adverse Events SDTM dataset with variables USUBJID, AEDECOD, AEACNOT* (can be multiple vars)}
 
-\item{DS}{Discon SDTM dataset with variables USUBJID,DSSCAT,DSDECOD}
+\item{DS}{Disposition SDTM dataset with variables USUBJID, DSSCAT, DSDECOD}
 
-\item{covid_df}{Dataframe of AE terms identify covid, contains variable REFTERM}
+\item{covid_df}{dataframe of AE terms identify Covid-19, contains variable REFTERM}
 }
 \value{
 boolean value if check failed or passed with 'msg' attribute if the
 test failed
 }
 \description{
-Flag if patient has a record with COVID-related AE where AE.AEDECOD matches covid.REFTERM
-and leads to STUDY discon
-(AE.AEACNOT*=SUBJECT DISCONTINUED FROM STUDY) but has no STUDY Discon record in DS
-(DS.DSSCAT=STUDY DISCONTINUATION)
+Flag if patient has a record with COVID-related AE where
+AE.AEDECOD matches covid.REFTERM with event action of Study Discontinuation
+(AE.AEACNOT*=SUBJECT DISCONTINUED FROM STUDY) but missing Study Discontinuation
+record in DS (DS.DSSCAT=STUDY DISCONTINUATION)
 }
 \examples{
 
