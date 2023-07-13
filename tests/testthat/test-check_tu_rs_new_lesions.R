@@ -139,7 +139,7 @@ test_that("Returns false when expected dataset missing", {
   RS <- data.frame(
     USUBJID = 1:2,
     RSSTRESC = c("SD","NE"),
-    RSTESTCD = 'OVRLRESP's
+    RSTESTCD = 'OVRLRESP'
   )
   
   
