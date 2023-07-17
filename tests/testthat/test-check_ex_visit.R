@@ -32,7 +32,7 @@ test_that("function returns false when no errors are present and optional variab
 test_that("function returns false when mandatory variable missing", {
     
     EX2 <- EX
-    EX2$EXOCCUR=NULL
+    EX2$VISIT=NULL
     
     expect_false(check_ex_visit(EX2))
     
@@ -56,7 +56,7 @@ test_that("function returns true when no errors are present", {
 })
 
 
-test_that("function returns false when only 1 error is present", {
+test_that("function returns false when only 1 error is present (VISIT = NA)", {
     
     EX4 <- data.frame(
         USUBJID = 1:3,
@@ -118,5 +118,22 @@ test_that("function returns true when VISIT populated with literal string 'MISSI
     
     
     expect_true(check_ex_visit(EX7))
+    
+})
+
+
+test_that("function returns false when only 1 error is present (VISIT = '')", {
+    
+    EX8 <- data.frame(
+        USUBJID = 1:3,
+        EXTRT = 1:3,
+        EXSTDTC = 1:3,
+        EXOCCUR = "Y",
+        VISIT = c("VISIT 1", "VISIT 2", ""), 
+        stringsAsFactors = FALSE
+    )
+    
+    
+    expect_false(check_ex_visit(EX8))
     
 })
