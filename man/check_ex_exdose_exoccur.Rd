@@ -8,7 +8,7 @@ check_ex_exdose_exoccur(EX, drug = NULL)
 }
 \arguments{
 \item{EX}{Exposure SDTM dataset with variables USUBJID, EXTRT, EXSTDTC,
-and EXDOSE}
+EXDOSE, and optional variable EXOCCUR and optional variable VISIT}
 
 \item{drug}{Drug name for EXTRT; used to subset the dataset.
 Default value is NULL (i.e. no filtering by drug)}
