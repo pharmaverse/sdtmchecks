@@ -4,7 +4,7 @@
 #' @description This check identifies EXSTDTC values that are
 #' earlier than last visit's. Unscheduled visits are excluded.
 #'
-#' @param EX Exposure SDTM dataset with variables USUBJID, EXTRT, VISITNUM, VISIT, EXDTC
+#' @param EX Exposure dataset with variables USUBJID, EXTRT, VISITNUM, VISIT, EXDTC, optional variable EXOCCUR
 #'
 #' @return boolean value if check failed or passed with 'msg' attribute if the
 #'   test failed
@@ -25,7 +25,7 @@
 #'                 stringsAsFactors = FALSE)
 #' check_ex_exstdtc_visit_ordinal_error(EX)
 #'
-#' # adding cases with earler date
+#' # adding cases with earlier date
 #' EX$EXSTDTC[EX$USUBJID == 101 & EX$VISIT == "Cycle 4"] <- "2017-01-10T08:25"
 #' EX$EXSTDTC[EX$USUBJID == 102 & EX$VISIT == "Cycle 2"] <- "2017-01-01T06:25"
 #' check_ex_exstdtc_visit_ordinal_error(EX)
