@@ -1,8 +1,8 @@
-#' @title Check for inconsistency between AE outcome (AEOUT) and AE end date (AEENDTC)
+#' @title Check for inconsistency between AE outcome (AEOUT) and AE end date (AEENDTC) for non-fatal AEs
 #'
-#' @description This check looks for AEs with a present End date(AEENDTC) but outcome
-#' (AEOUT) is not one of the following: "FATAL", "RECOVERED/RESOLVED", "RECOVERED/RESOLVED WITH SEQUELAE" 
-#' If AE End date is missing AEENDTC missing, AEOUT should be one of "UNKNOWN", "NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING"
+#' @description This check looks for non-fatal AEs with a populated End date(AEENDTC) but outcome
+#' (AEOUT) is not one of the following: "RECOVERED/RESOLVED", "RECOVERED/RESOLVED WITH SEQUELAE" 
+#' If AE End date is not populated (AEENDTC), AEOUT should be one of "UNKNOWN", "NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING"
 #' 
 #' @param AE Adverse Events SDTM dataset with variables USUBJID, AEENDTC, AEOUT
 #' @param preproc An optional company specific preprocessing script
@@ -41,9 +41,9 @@
 
 check_ae_aeout_aeendtc <- function(AE,preproc=identity,...){
   
-  if (AE %lacks_any% c("USUBJID", "AEENDTC", "AEOUT")) {
+  if (AE %lacks_any% c("USUBJID", "AESTDTC", "AETERM", "AEENDTC", "AEOUT")) {
     
-    fail(lacks_msg(AE, c("USUBJID", "AEENDTC", "AEOUT" )))
+    fail(lacks_msg(AE, c("USUBJID", "AESTDTC", "AETERM", "AEENDTC", "AEOUT" )))
     
   } else {
     
@@ -51,12 +51,12 @@ check_ae_aeout_aeendtc <- function(AE,preproc=identity,...){
     AE = preproc(AE,...)
     
     df <- AE %>%
-      filter((is_sas_na(AEENDTC)  & AEOUT %in% c("FATAL", "RECOVERED/RESOLVED", "RECOVERED/RESOLVED WITH SEQUELAE")) |  
+      filter((is_sas_na(AEENDTC)  & AEOUT %in% c("RECOVERED/RESOLVED", "RECOVERED/RESOLVED WITH SEQUELAE")) |  
              (!is_sas_na(AEENDTC) & AEOUT %in% c("UNKNOWN", "NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING"))) %>%
-      select(any_of(c("USUBJID","AEENDTC","AEOUT","RAVE")))
+      select(any_of(c("USUBJID","AETERM", "AESTDTC", "AEENDTC","AEOUT","RAVE")))
     
     if( nrow(df) > 0 ){
-      fail("AEs with inconsistent AEENDTC and AEOUT found.", df)
+      fail("AE(s) with inconsistent AEENDTC and AEOUT found. ", df)
     } else {
       pass()
     }
