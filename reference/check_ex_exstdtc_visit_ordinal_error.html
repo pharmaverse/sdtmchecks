@@ -104,7 +104,7 @@ earlier than last visit's. Unscheduled visits are excluded.</p>
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>EX</dt>
-<dd><p>Exposure SDTM dataset with variables USUBJID, EXTRT, VISITNUM, VISIT, EXDTC</p></dd>
+<dd><p>Exposure dataset with variables USUBJID, EXTRT, VISITNUM, VISIT, EXDTC, optional variable EXOCCUR</p></dd>
 
 </dl></div>
     <div id="value">
@@ -133,7 +133,7 @@ test failed</p>
 <span class="r-in"><span><span class="fu">check_ex_exstdtc_visit_ordinal_error</span><span class="op">(</span><span class="va">EX</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># adding cases with earler date</span></span></span>
+<span class="r-in"><span><span class="co"># adding cases with earlier date</span></span></span>
 <span class="r-in"><span><span class="va">EX</span><span class="op">$</span><span class="va">EXSTDTC</span><span class="op">[</span><span class="va">EX</span><span class="op">$</span><span class="va">USUBJID</span> <span class="op">==</span> <span class="fl">101</span> <span class="op">&amp;</span> <span class="va">EX</span><span class="op">$</span><span class="va">VISIT</span> <span class="op">==</span> <span class="st">"Cycle 4"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"2017-01-10T08:25"</span></span></span>
 <span class="r-in"><span><span class="va">EX</span><span class="op">$</span><span class="va">EXSTDTC</span><span class="op">[</span><span class="va">EX</span><span class="op">$</span><span class="va">USUBJID</span> <span class="op">==</span> <span class="fl">102</span> <span class="op">&amp;</span> <span class="va">EX</span><span class="op">$</span><span class="va">VISIT</span> <span class="op">==</span> <span class="st">"Cycle 2"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"2017-01-01T06:25"</span></span></span>
 <span class="r-in"><span><span class="fu">check_ex_exstdtc_visit_ordinal_error</span><span class="op">(</span><span class="va">EX</span><span class="op">)</span></span></span>
