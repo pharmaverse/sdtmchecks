@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_ae_aeout_aeendtc.R
 \name{check_ae_aeout_aeendtc}
 \alias{check_ae_aeout_aeendtc}
-\title{Check for inconsistency between AE outcome (AEOUT) and AE end date (AEENDTC)}
+\title{Check for inconsistency between AE outcome (AEOUT) and AE end date (AEENDTC) for non-fatal AEs}
 \usage{
 check_ae_aeout_aeendtc(AE, preproc = identity, ...)
 }
@@ -18,9 +18,9 @@ boolean value if check failed or passed with 'msg' attribute if the
 test failed
 }
 \description{
-This check looks for AEs with a present End date(AEENDTC) but outcome
-(AEOUT) is not one of the following: "FATAL", "RECOVERED/RESOLVED", "RECOVERED/RESOLVED WITH SEQUELAE"
-If AE End date is missing AEENDTC missing, AEOUT should be one of "UNKNOWN", "NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING"
+This check looks for non-fatal AEs with a populated End date(AEENDTC) but outcome
+(AEOUT) is not one of the following: "RECOVERED/RESOLVED", "RECOVERED/RESOLVED WITH SEQUELAE"
+If AE End date is not populated (AEENDTC), AEOUT should be one of "UNKNOWN", "NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING"
 }
 \examples{
 
