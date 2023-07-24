@@ -16,4 +16,5 @@ zzz*
 .renvignore
 inst\test*
 inst\dev\*
+inst\sdtmchecks_covr_report.R
 ^\*\zzz_*
