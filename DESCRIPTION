@@ -12,7 +12,10 @@ RoxygenNote: 7.2.3
 Imports: 
     dplyr,
     tidyselect,
-    openxlsx
+    openxlsx,
+    miniUI (>= 0.1.1),
+    rstudioapi (>= 0.5),
+    shiny (>= 0.13)
 Suggests: 
     knitr,
     rmarkdown (>= 2.7),
@@ -23,4 +26,3 @@ VignetteBuilder: knitr
 URL: https://pharmaverse.github.io/sdtmchecks/, https://github.com/pharmaverse/sdtmchecks
 BugReports: https://github.com/pharmaverse/sdtmchecks/issues
 Repository: GitHub
-
