@@ -6,7 +6,7 @@
 #'   in the dataset
 #'
 #' @param EX Exposure SDTM dataset with variables USUBJID, EXTRT, EXSTDTC,
-#'    and EXDOSE
+#'    EXDOSE, and optional variable EXOCCUR and optional variable VISIT
 #' @param drug Drug name for EXTRT; used to subset the dataset.
 #'   Default value is NULL (i.e. no filtering by drug)
 #'

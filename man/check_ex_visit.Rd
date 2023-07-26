@@ -7,7 +7,7 @@
 check_ex_visit(EX)
 }
 \arguments{
-\item{EX}{Exposure SDTM dataset with variables USUBJID,EXTRT,EXSTDTC,VISIT}
+\item{EX}{Exposure SDTM dataset with variables USUBJID,EXTRT,EXSTDTC,VISIT, and optional variable EXOCCUR}
 }
 \description{
 This check looks missing EX.VISIT values when EX.EXOCCUR=Y (or EX.EXOCCUR doesn't exist)

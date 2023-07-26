@@ -48,7 +48,7 @@ check_tr_dup <- function(TR){
         # leave only variabls on which we want to check duplicate TR records
         tr1 <- TR %>%
             arrange_at(myvars) %>%
-            select(myvars)
+            select(any_of(myvars))
         }else{
             tr1 <- TR %>%
                 arrange_at(myvars) %>%

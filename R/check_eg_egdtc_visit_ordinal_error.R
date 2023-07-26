@@ -26,7 +26,7 @@
 #'                 stringsAsFactors=FALSE)
 #' check_eg_egdtc_visit_ordinal_error(EG)
 #'
-#' # Cases with earler datetime
+#' # Cases with earlier datetime
 #' EG$EGDTC[EG$USUBJID == 101 & EG$VISIT == "Cycle 3"] <- "2017-01-10T08:25"
 #' EG$EGDTC[EG$USUBJID == 102 & EG$VISIT == "Cycle 1"] <- "2017-01-01T06:25"
 #' check_eg_egdtc_visit_ordinal_error(EG)
