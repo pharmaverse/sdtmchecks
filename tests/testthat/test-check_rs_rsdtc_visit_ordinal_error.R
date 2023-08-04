@@ -53,7 +53,7 @@ test_that("Function returns false when errors are present", {
 })
 
 
-test_that("Function returns false when expected column not present", {
+test_that("Function returns false when expected column (USUBJID) not present", {
   
   RS<- data.frame(USUBJID = 101:102,
                   RSDTC=rep(c("2017-01-01T08:25", "2017-01-05T09:25",
@@ -79,12 +79,10 @@ test_that("Function returns false when no Investigator (INV) records", {
                   VISITNUM=rep(1:5,2),
                   VISIT=rep(c("Screening", "Cycle 1", "Cycle 2","Cycle 3","Follow-up"),2),
                   RSTESTCD="OVRLRESP",
-                  RSEVAL="INDEPENDENT REVIEW FACILITY",
+                  RSEVAL="INDEPENDENT ASSESSOR",
                   RSEVALID = "RADIOLOGIST 1", 
                   RSSTAT="",
-                  stringsAsFactors=FALSE)
-  
-  RS$USUBJID = NULL
+                  stringsAsFactors=FALSE) 
   
   expect_false(check_rs_rsdtc_visit_ordinal_error(RS))
 })
@@ -101,9 +99,7 @@ test_that("Function returns false when Investigator (INV) records but not OVRLRE
                   RSTESTCD="DRCRIND",
                   RSEVAL="INVESTIGATOR",
                   RSSTAT="",
-                  stringsAsFactors=FALSE)
-  
-  RS$USUBJID = NULL
+                  stringsAsFactors=FALSE) 
   
   expect_false(check_rs_rsdtc_visit_ordinal_error(RS))
 })
