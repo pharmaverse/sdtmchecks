@@ -2,9 +2,8 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/pharmaverse/sdtmchecks/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/pharmaverse/sdtmchecks/actions/workflows/R-CMD-check.yml)
-<!--Code coverage status -->
-<!--Test status -->
-[![CRAN status](https://www.r-pkg.org/badges/version/sdtmchecks)](https://cran.r-project.org/package=sdtmchecks)
+<!--Code coverage status -->[![codecov](https://codecov.io/github/pharmaverse/sdtmchecks/branch/devel/graph/badge.svg?token=ICYI400VDZ)](https://codecov.io/github/pharmaverse/sdtmchecks) 
+<!--Test status -->[![CRAN status](https://www.r-pkg.org/badges/version/sdtmchecks)](https://cran.r-project.org/package=sdtmchecks)
 <!-- badges: end -->
 
 <img src="man/figures/logo_em.png" alt="drawing" align="right" width="200"/>
