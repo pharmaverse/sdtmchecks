@@ -10,15 +10,15 @@ roche_derive_rave_row(
 )
 }
 \arguments{
-\item{dts}{dataset e.g. AE}
+\item{dts}{dataframe e.g. AE}
 
-\item{domains}{domains you wish to identify a SPID variable from}
+\item{domains}{domains you wish to identify a xxSPID variable from}
 }
 \value{
-dataset with rave row number
+dataframe with Rave row number
 }
 \description{
-This function derives the Rave row number from XXSPID
+This function derives the Rave row number from xxSPID
 }
 \examples{
 
@@ -35,7 +35,8 @@ AE <- data.frame(
              "FORMNAME-R:19/L:19XXXX",
              "FORMNAME-R:5/L:5XXXX",
              "FORMNAME-R:20/L:20XXXX"),
-  AESTDTC = c(rep("2020-01-01", 6))
+  AESTDTC = c(rep("2020-01-01", 6)),
+  stringsAsFactors = FALSE
 )
 
 roche_derive_rave_row(AE)

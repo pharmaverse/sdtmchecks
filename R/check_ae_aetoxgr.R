@@ -75,7 +75,7 @@ check_ae_aetoxgr <- function(AE,preproc=identity,...) {
             df <- AE[which(has_na),] %>%
                 select(any_of(c("USUBJID", "AETERM", "AESTDTC", "AEDECOD", "AETOXGR", "AESEV","RAVE")))
 
-            fail("AE has recrods where both AESEV and AETOXGR have missing values. ", df)
+            fail("AE has records where both AESEV and AETOXGR have missing values. ", df)
         } else {
             pass() #No records where AETOXGR and AESEV both have missing values.
         }
