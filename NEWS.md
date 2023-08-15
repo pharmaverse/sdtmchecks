@@ -2,7 +2,7 @@
 
 ## Refinements of existing data check functions
 
-* Minor update to return message for [`check_tu_rs_new_lesions()`](https://pharmaverse.github.io/sdtmchecks/reference/check_tu_rs_new_lesions.html) and more header examples added ([#98](https://github.com/pharmaverse/sdtmchecks/issues/98))
+* Minor update to return message for `check_tu_rs_new_lesions()` and more header examples added (#98) ([#98](https://github.com/pharmaverse/sdtmchecks/issues/98))
 * Typo in return message corrected for [`check_ae_aetoxgr()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aetoxgr.html) ([#187](https://github.com/pharmaverse/sdtmchecks/issues/187))
 
 
@@ -40,6 +40,7 @@
   * Added test coverage badge on README based on report from [{covr}](https://covr.r-lib.org/index.html) ([#122](https://github.com/pharmaverse/sdtmchecks/issues/122), [#133](https://github.com/pharmaverse/sdtmchecks/issues/133))
   * Included badges on README for R CMD Check and CRAN status ([#132](https://github.com/pharmaverse/sdtmchecks/pull/132))
   * README.Rmd added to render README.md ([#172](https://github.com/pharmaverse/sdtmchecks/issues/172))
+  * Add installation from "https://pharmaverse.r-universe.dev" [#195](https://github.com/pharmaverse/sdtmchecks/issues/195)
 * Updated **DESCRIPTION** to specify: 
   * New dependencies ([{testthat}](https://testthat.r-lib.org/), [{DT}](https://rstudio.github.io/DT/), [{openxlsx}](https://ycphs.github.io/openxlsx/)) 
   * GitHub as Repository for sdtmchecks ([#123](https://github.com/pharmaverse/sdtmchecks/issues/123))

@@ -19,7 +19,13 @@ in SDTM data. These checks are intended to be **generalizable**,
 
 ## Installation
 
-You can install {sdtmchecks} from [GitHub](https://github.com/) with:
+You can install {sdtmchecks} via:
+
+``` r
+install.packages("sdtmchecks", repos = "https://pharmaverse.r-universe.dev")
+```
+
+Or, you can install {sdtmchecks} from [GitHub](https://github.com/):
 
 ``` r
 # install.packages("devtools")
