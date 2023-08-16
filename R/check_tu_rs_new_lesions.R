@@ -33,7 +33,6 @@
 #' # required variable is missing 
 #' check_tu_rs_new_lesions(RS,TU)
 #'
-#' library(dplyr)
 #' RS <- RS %>%
 #'   mutate(RSTESTCD = 'OVRLRESP')
 #' 
@@ -45,6 +44,10 @@
 #' RS$RSSTRESC[2] = "PD"
 #' 
 #' # flag USUBJID with NEW and without PD
+#' check_tu_rs_new_lesions(RS,TU)
+#' 
+#' # Metabolic response in heme trials
+#' RS$RSSTRESC[2] = "PMD"
 #' check_tu_rs_new_lesions(RS,TU)
 #' 
 #' TU <- TU %>%
@@ -85,9 +88,9 @@ check_tu_rs_new_lesions <- function(RS, TU) {
     }
 
     if (RS %lacks_any% "RSEVAL") {
-        myrs = unique(subset(RS, RS$RSTESTCD == "OVRLRESP" & RS$RSSTRESC == "PD", "USUBJID"))
+        myrs = unique(subset(RS, RS$RSTESTCD == "OVRLRESP" & RS$RSSTRESC %in% c("PD","PMD"), "USUBJID"))
     } else {
-        myrs = unique(subset(RS, RS$RSTESTCD == "OVRLRESP" & RS$RSSTRESC == "PD" & (toupper(RS$RSEVAL) == "INVESTIGATOR" | is_sas_na(RS$RSEVAL)), c("USUBJID")))
+        myrs = unique(subset(RS, RS$RSTESTCD == "OVRLRESP" & RS$RSSTRESC %in% c("PD","PMD") & (toupper(RS$RSEVAL) == "INVESTIGATOR" | is_sas_na(RS$RSEVAL)), c("USUBJID")))
     }
 
     mydf = subset(mytu, !(mytu$USUBJID %in% myrs$USUBJID))
