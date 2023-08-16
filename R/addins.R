@@ -93,5 +93,5 @@ sdtmchecksSearch <- function() {
 } # end of sdtmchecksSearch() 
 
 # run the add-in
-sdtmchecksSearch()
+#sdtmchecksSearch()
 
