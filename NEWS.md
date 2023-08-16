@@ -3,6 +3,7 @@
 ## Refinements of existing data check functions
 
 * Minor update to return message for [`check_tu_rs_new_lesions()`](https://pharmaverse.github.io/sdtmchecks/reference/check_tu_rs_new_lesions.html) and more header examples added ([#98](https://github.com/pharmaverse/sdtmchecks/issues/98))
+* Typo in return message corrected for [`check_ae_aetoxgr()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aetoxgr.html) ([#187](https://github.com/pharmaverse/sdtmchecks/issues/187))
 
 
 ## New functions
@@ -14,9 +15,9 @@
 
 ## Documentation updates
 
-* **New features:** 
+* **New vignettes:** 
   * [Search Data Check Functions](https://pharmaverse.github.io/sdtmchecks/articles/search_checks.html) published as article on pkgdown site to allow users to search data check functions (`check_xx....R`) ([#71](https://github.com/pharmaverse/sdtmchecks/issues/71))
-  * [FAQ page](https://pharmaverse.github.io/sdtmchecks/articles/faqs.html) ([#130](https://github.com/pharmaverse/sdtmchecks/pull/130))
+  * [FAQs page](https://pharmaverse.github.io/sdtmchecks/articles/faqs.html) ([#130](https://github.com/pharmaverse/sdtmchecks/pull/130))
 
 * Other minor updates: 
   * Edited `@title` of `check_ae_aeacn_ds_disctx_covid()`, `check_ae_aeacnoth_ds_stddisc_covid()` to be single line to address warning during package build
@@ -26,17 +27,24 @@
   * Edited headings in [Get started article](https://pharmaverse.github.io/sdtmchecks/articles/sdtmchecks.html) ([#114](https://github.com/pharmaverse/sdtmchecks/pull/114))
   * Added a few bullet points to [Writing a New Check](https://r.roche.com/s/75335867330e8e3b52af3/files/pharmaverse/sdtmchecks/docs/articles/write_a_check.html)
   * Updated [pkgdown site](https://pharmaverse.github.io/sdtmchecks/index.html) based on latest version of {Roxygen2} ([v7.2.3](https://github.com/r-lib/roxygen2/releases/tag/v7.2.3)) instead of ([v7.1.1](https://github.com/r-lib/roxygen2/releases/tag/v7.1.1)). DESCRIPTION reflects version in RoxygenNote, and associated man/*.Rd files updated. 
-  * Roxygen2 header updates to include `@family` and `@keyword` for functions in run_all_checks.R, run_check.R, utils.R ([#85](https://github.com/pharmaverse/sdtmchecks/pull/85))
-  * Moved sdtmchecks package information from `utils.R` to `sdtmchecks-package.R` 
+  * Roxygen2 header updates to include `@family` and `@keyword` for functions in `run_all_checks.R`, `run_check.R`, `utils.R` ([#85](https://github.com/pharmaverse/sdtmchecks/pull/85))
+  * Moved sdtmchecks package information from `utils.R` to `sdtmchecks-package.R` ([#85](https://github.com/pharmaverse/sdtmchecks/pull/85)) 
 
 ## Misc package updates
 
-* Added unit testing (copied in from earlier internal package version) ([#126](https://github.com/pharmaverse/sdtmchecks/pull/126), [#112](https://github.com/pharmaverse/sdtmchecks/pull/112))
-* Updated DESCRIPTION to specify:
+* **Unit tests:** 
+  * Added unit testing (copied in from earlier internal Roche package version) ([#126](https://github.com/pharmaverse/sdtmchecks/pull/126),  [#112](https://github.com/pharmaverse/sdtmchecks/pull/112))
+  * Included more unit tests to expand coverage ([#141](https://github.com/pharmaverse/sdtmchecks/issues/141))
+  * Added GitHub action for the [{covr}](https://covr.r-lib.org/index.html) ([#163](https://github.com/pharmaverse/sdtmchecks/pull/163)) 
+* **README:** 
+  * Added test coverage badge on README based on report from [{covr}](https://covr.r-lib.org/index.html) ([#122](https://github.com/pharmaverse/sdtmchecks/issues/122), [#133](https://github.com/pharmaverse/sdtmchecks/issues/133))
+  * Included badges on README for R CMD Check and CRAN status ([#132](https://github.com/pharmaverse/sdtmchecks/pull/132))
+  * README.Rmd added to render README.md ([#172](https://github.com/pharmaverse/sdtmchecks/issues/172))
+  * Add installation from "https://pharmaverse.r-universe.dev" [#195](https://github.com/pharmaverse/sdtmchecks/issues/195)
+* Updated **DESCRIPTION** to specify: 
   * New dependencies ([{testthat}](https://testthat.r-lib.org/), [{DT}](https://rstudio.github.io/DT/), [{openxlsx}](https://ycphs.github.io/openxlsx/)) 
-  * GitHub as Repository for sdtmchecks
-  * Config/testthat/edition: 3
-* Included badges on README for R CMD Check and CRAN status ([#132](https://github.com/pharmaverse/sdtmchecks/pull/132))
+  * GitHub as Repository for sdtmchecks ([#123](https://github.com/pharmaverse/sdtmchecks/issues/123))
+  * Config/testthat/edition: 3 ([#138](https://github.com/pharmaverse/sdtmchecks/pull/138))
 * Include initial draft of R Studio Addin "Search data check functions" to enable user search when using the package interactively. Addins available in RStudio v0.99.878 or later ([#72](https://github.com/pharmaverse/sdtmchecks/issues/72), as suggested by [`@parmsam-pfizer`](https://github.com/parmsam-pfizer))
 * Use [{renv}](https://rstudio.github.io/renv/articles/renv.html) for package dependency management, adding renvignore, renv.lock, renv subfolder and including updated .Rprofile ([#111](https://github.com/pharmaverse/sdtmchecks/issues/111))
 * Package version 0.1.5.1 used prior to update to 0.1.6
@@ -52,7 +60,7 @@
 
 ## Refinements of existing data check functions
 
-* Updated existing data checks to list the `n` function from dplyr in the header ([#67](https://github.com/pharmaverse/sdtmchecks/issues/67)):
+* Updated existing data checks to list the `n` function from {dplyr} in the header ([#67](https://github.com/pharmaverse/sdtmchecks/issues/67)):
   - [`check_dm_usubjid_dup()`](https://pharmaverse.github.io/sdtmchecks/reference/check_dm_usubjid_dup.html)
   - [`check_qs_dup()`](https://pharmaverse.github.io/sdtmchecks/reference/check_qs_dup.html)
 
