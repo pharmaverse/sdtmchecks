@@ -23,7 +23,7 @@ usethis::use_package("shiny")
 
 sdtmchecksSearch <- function() {
   
-  library(dplyr)
+  #library(dplyr)
   
   # Get the document context.
   #context <- rstudioapi::getActiveDocumentContext()
@@ -57,7 +57,7 @@ sdtmchecksSearch <- function() {
     miniUI::gadgetTitleBar("sdtmchecks - data check function viewer",
                            left = NULL),
     miniUI::miniContentPanel(padding = 0,
-                     miniUI::miniContentPanel(DT::DTOutput("table"))
+                     miniUI::miniContentPanel(DT::DTOutput("table", width = "100%", height = "40em"))
     )
   )
  #end of ui function
@@ -66,6 +66,7 @@ sdtmchecksSearch <- function() {
   
   server <- function(input, output, session) { 
     
+    # when "Done" button is clicked
     shiny::observeEvent(input$done, {
       invisible(shiny::stopApp())
     })
@@ -86,6 +87,7 @@ sdtmchecksSearch <- function() {
     
   } # end of server function 
    
+  # opens in 'Viewer' of RStudio
   shiny::runGadget(ui, server, 
                    viewer = shiny::paneViewer(minHeight = NULL), 
                    stopOnCancel = TRUE)
@@ -94,4 +96,6 @@ sdtmchecksSearch <- function() {
 
 # run the add-in
 #sdtmchecksSearch()
+
+
 
