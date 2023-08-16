@@ -8,7 +8,7 @@
 #' @importFrom DT renderDT renderDataTable
 #' @importFrom miniUI miniPage gadgetTitleBar miniTabstripPanel miniContentPanel
 #' @importFrom rstudioapi getActiveDocumentContext
-#' @importFrom shiny reactive paneViewer runGadget icon observeEvent stopapp
+#' @importFrom shiny reactive paneViewer runGadget observeEvent stopapp
 #' @importFrom dplyr %>% rename 
 #' 
 #' @export
@@ -16,9 +16,9 @@
 #'
 
 
-usethis::use_package("miniUI")
-usethis::use_package("rstudioapi")
-usethis::use_package("shiny")
+#usethis::use_package("miniUI")
+#usethis::use_package("rstudioapi")
+#usethis::use_package("shiny")
 
 
 sdtmchecksSearch <- function() {
