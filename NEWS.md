@@ -2,7 +2,7 @@
 
 ## Refinements of existing data check functions
 
-* Minor update to return message for ([`check_tu_rs_new_lesions()`](https://pharmaverse.github.io/sdtmchecks/reference/check_tu_rs_new_lesions.html)) and more header examples added ([#98](https://github.com/pharmaverse/sdtmchecks/issues/98))
+* Minor update to return message for [`check_tu_rs_new_lesions()`](https://pharmaverse.github.io/sdtmchecks/reference/check_tu_rs_new_lesions.html) and more header examples added ([#98](https://github.com/pharmaverse/sdtmchecks/issues/98))
 
 
 ## New functions
@@ -16,7 +16,7 @@
 
 * **New features:** 
   * [Search Data Check Functions](https://pharmaverse.github.io/sdtmchecks/articles/search_checks.html) published as article on pkgdown site to allow users to search data check functions (`check_xx....R`) ([#71](https://github.com/pharmaverse/sdtmchecks/issues/71))
-  * [FAQ page](https://pharmaverse.github.io/sdtmchecks/articles/faqs.html)([#130](https://github.com/pharmaverse/sdtmchecks/pull/130))
+  * [FAQ page](https://pharmaverse.github.io/sdtmchecks/articles/faqs.html) ([#130](https://github.com/pharmaverse/sdtmchecks/pull/130))
 
 * Other minor updates: 
   * Edited `@title` of `check_ae_aeacn_ds_disctx_covid()`, `check_ae_aeacnoth_ds_stddisc_covid()` to be single line to address warning during package build
@@ -37,6 +37,7 @@
   * GitHub as Repository for sdtmchecks
   * Config/testthat/edition: 3
 * Included badges on README for R CMD Check and CRAN status ([#132](https://github.com/pharmaverse/sdtmchecks/pull/132))
+* Include initial draft of R Studio Addin "Search data check functions" to enable user search when using the package interactively. Addins available in RStudio v0.99.878 or later ([#72](https://github.com/pharmaverse/sdtmchecks/issues/72), as suggested by [`@parmsam-pfizer`](https://github.com/parmsam-pfizer))
 * Use [{renv}](https://rstudio.github.io/renv/articles/renv.html) for package dependency management, adding renvignore, renv.lock, renv subfolder and including updated .Rprofile ([#111](https://github.com/pharmaverse/sdtmchecks/issues/111))
 * Package version 0.1.5.1 used prior to update to 0.1.6
 
@@ -47,13 +48,13 @@
 
 ## New data check functions
 
-* ([`check_ds_multdeath_dsstdtc()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ds_multdeath_dsstdtc.html)) - flags if DS has multiple non-missing death dates in DSSTDTC that do not match ([#62](https://github.com/pharmaverse/sdtmchecks/issues/62))
+* [`check_ds_multdeath_dsstdtc()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ds_multdeath_dsstdtc.html) - flags if DS has multiple non-missing death dates in DSSTDTC that do not match ([#62](https://github.com/pharmaverse/sdtmchecks/issues/62))
 
 ## Refinements of existing data check functions
 
 * Updated existing data checks to list the `n` function from dplyr in the header ([#67](https://github.com/pharmaverse/sdtmchecks/issues/67)):
-  - ([`check_dm_usubjid_dup()`](https://pharmaverse.github.io/sdtmchecks/reference/check_dm_usubjid_dup.html))
-  - ([`check_qs_dup()`](https://pharmaverse.github.io/sdtmchecks/reference/check_qs_dup.html))
+  - [`check_dm_usubjid_dup()`](https://pharmaverse.github.io/sdtmchecks/reference/check_dm_usubjid_dup.html)
+  - [`check_qs_dup()`](https://pharmaverse.github.io/sdtmchecks/reference/check_qs_dup.html)
 
 ## Metadata updates
 
