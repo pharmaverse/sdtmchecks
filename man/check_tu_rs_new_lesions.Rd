@@ -38,7 +38,6 @@ RS <- data.frame(
 # required variable is missing 
 check_tu_rs_new_lesions(RS,TU)
 
-library(dplyr)
 RS <- RS \%>\%
   mutate(RSTESTCD = 'OVRLRESP')
 
@@ -50,6 +49,10 @@ check_tu_rs_new_lesions(RS,TU)
 RS$RSSTRESC[2] = "PD"
 
 # flag USUBJID with NEW and without PD
+check_tu_rs_new_lesions(RS,TU)
+
+# Metabolic response in heme trials
+RS$RSSTRESC[2] = "PMD"
 check_tu_rs_new_lesions(RS,TU)
 
 TU <- TU \%>\%
