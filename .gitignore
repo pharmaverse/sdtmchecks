@@ -11,3 +11,4 @@ renv/library
 inst/test*
 */zzz_*
 zzz*
+inst/dev
