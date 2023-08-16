@@ -5,7 +5,7 @@
 #' This addin can be used to interactively subset the dataframe
 #'
 #'
-#' @importFrom DT renderDT renderDataTable
+#' @importFrom DT renderDT renderDataTable DTOutput
 #' @importFrom miniUI miniPage gadgetTitleBar miniTabstripPanel miniContentPanel
 #' @importFrom rstudioapi getActiveDocumentContext
 #' @importFrom shiny reactive paneViewer runGadget observeEvent stopapp
@@ -31,7 +31,7 @@ sdtmchecksSearch <- function() {
   # Read in sdtmchecksmeta data file from package 
   load("data/sdtmchecksmeta.RData")
   
-  showvars <- c("check", "category", "pdf_title", "domains", "pdf_subtitle")
+  showvars <- c("check", "category", "domains", "pdf_title", "pdf_subtitle")
   
   sdtmchecksmetasm <- sdtmchecksmeta[showvars]
   
@@ -47,8 +47,8 @@ sdtmchecksSearch <- function() {
   sdtmchecksmetasm <- sdtmchecksmetasm %>%
     rename('Check function name' = check,
            'Check category' = category, 
+           'Domain(s)' = domains,
            'Description' = pdf_title,
-           'Domains' = domains,
            'Details' = pdf_subtitle
     )
   
@@ -80,9 +80,13 @@ sdtmchecksSearch <- function() {
     })#end of reactive function for sdtmchecksdisplay
     
     output$table <- DT::renderDataTable(
-      sdtmchecksdisplay(), options = list(lengthChange = TRUE, 
-                                          autoWidth = TRUE, 
-                                          pageLength = 10)
+      sdtmchecksdisplay()
+      ,filter = list(position = 'top', clear = TRUE) 
+      ,escape = FALSE 
+      ,options = list(searchHighlight = TRUE
+                      ,lengthChange = TRUE
+                      ,autoWidth = TRUE
+                      ,pageLength = 10)
       )
     
   } # end of server function 
@@ -96,6 +100,3 @@ sdtmchecksSearch <- function() {
 
 # run the add-in
 #sdtmchecksSearch()
-
-
-
