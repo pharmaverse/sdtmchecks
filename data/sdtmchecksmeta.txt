@@ -1,0 +1,277 @@
+"check"	"category"	"priority"	"domains"	"xls_title"	"pdf_title"	"pdf_subtitle"	"mapping"	"pdf_return"	"fxn_in"	"fxn_in_roche"	"exist_string"
+"1"	"check_ae_aeacn_ds_disctx_covid"	"COVID"	"Low"	"ae, ds"	"COVID AE trt discon"	"Check patient(s) with COVID-related AEs leading to Treatment Discon, but no Treatment Discon due to AE in DS"	"* This check identifies COVID AE records with AEACN[n] indicated as leading to Drug Withdrawn without a Treatment Discon record due to AE in DS
+* Check can only run on studies with DS.DSSPID to identify entries on the DISCTX form
+* NOTE: COVID-19 AEs identified based on preferred terms from MedDRA v26.0 COVID-19 SMQ (Narrow) or earlier identified version based on TS"	NA	"AE and/or DS does not exist or failed to read or covid terms not found"	"AE=ae,DS=ds"	"AE=ae,DS=ds,covid_df=roche_covid_df(TS=(if('ts' %in% ls(envir=.GlobalEnv)){get('ts', envir = .GlobalEnv)}else{NULL}))"	"exists(\"ae\") & exists(\"ds\")"
+"2"	"check_ae_aeacnoth"	"ALL"	"Low"	"ae"	"AE AEACNOTH multiple"	"Check for null AEACNOT[1/2] when AEACNOTH = 'MULTIPLE'"	"* This check looks for null AEACNOT[1/2] when AEACNOTH = 'MULTIPLE', which indicates a possible SDTMv mapping issue
+* NOTE: not all ongoing studies are adopting this approach for AE resolution and this may not be appropriate to query"	"Y"	"AE does not exist or failed to read"	"AE=ae"	"AE=ae,preproc=roche_derive_rave_row"	"exists(\"ae\")"
+"3"	"check_ae_aeacnoth_ds_disctx"	"ALL"	"Low"	"ae, ds"	"AE AEACNOTx Discon"	"Check for DS record indicating study discon when AE.AEACNOTx indicates study discon"	"* This code checks that when a patient has an AE with AEACNOTx = \"SUBJECT DISCONTINUED FROM STUDY\" (x = \"H\", \"1\", \"2\", ...) then there should also be a record in DS where DS.DSSCAT = \"STUDY COMPLETION/EARLY DISCONTINUATION\" and DS.DSDECOD != \"COMPLETED\"."	NA	"AE and/or DS does not exist or failed to read"	"AE=ae,DS=ds"	"AE=ae,DS=ds,preproc=roche_derive_rave_row"	"exists(\"ae\") & exists(\"ds\")"
+"4"	"check_ae_aeacnoth_ds_stddisc_covid"	"COVID"	"Low"	"ae, ds"	"COVID AE study discon"	"Check patient(s) with COVID-related AEs leading to Study Discon, but no corresponding Study Discon recs in DS"	"* This check identifies COVID AE records with AEACNOT[H/n] indicated as leading to Study Discontinuation without a Study Discon record in DS
+* NOTE: COVID-19 AEs identified based on preferred terms from MedDRA v26.0 COVID-19 SMQ (Narrow) or earlier identified version based on TS"	NA	"AE and/or DS does not exist or failed to read or covid terms not found"	"AE=ae,DS=ds"	"AE=ae,DS=ds,covid_df=roche_covid_df(TS=(if('ts' %in% ls(envir=.GlobalEnv)){get('ts', envir = .GlobalEnv)}else{NULL}))"	"exists(\"ae\") & exists(\"ds\")"
+"5"	"check_ae_aedecod"	"ALL"	"High"	"ae"	"AE Missing PT"	"Check for AEs with missing Dictionary Derived Term"	"* This check looks for AEs with missing Dictionary Derived Term (AEDECOD)"	NA	"AE does not exist or failed to read"	"AE=ae"	"AE=ae,preproc=roche_derive_rave_row"	"exists(\"ae\")"
+"6"	"check_ae_aedthdtc_aesdth"	"ALL"	"High"	"ae"	"AE Death Date vs Indicator"	"Check for AEs with death date but AE death indicator not equal to 'Y'"	"* This check looks for AEs with death date (AEDTHDTC) populated but AE death indicator (AESDTH) != \"Y\""	NA	"AE does not exist or failed to read"	"AE=ae"	"AE=ae,preproc=roche_derive_rave_row"	"exists(\"ae\")"
+"7"	"check_ae_aedthdtc_ds_death"	"ALL"	"High"	"ae, ds"	"DS Death Dates in AE"	"Check that patients with a DS recording indicating Death due to AE also has death date in AE"	"* If DS has reason for death indicated as Adverse Event then that patient should have an AE record with death date populated
+* i.e. If there is a DS record with DS.DSDECOD indicating 'DEATH' and DS.DSTERM containing 'ADVERSE EVENT' then that patient
+* should have AE.AEDTHDTC not missing for at least one AE record
+* The patients below have no death date in AE data set"	NA	"AE and/or DS does not exist or failed to read"	"AE=ae,DS=ds"	"AE=ae,DS=ds"	"exists(\"ae\") & exists(\"ds\")"
+"8"	"check_ae_aelat"	"OPHTH"	"High"	"ae"	"AE AELAT Missing"	"OPHTHALMOLOGY: Check for missing laterality of eye-related AE"	"* This check identifies AE records where AELAT is missing but AESOC contains the string \"EYE\"
+* Laterality for eye-related AEs is expected to be reported"	NA	"AE does not exist or failed to read"	"AE=ae"	"AE=ae,preproc=roche_derive_rave_row"	"exists(\"ae\")"
+"9"	"check_ae_aeout"	"ALL"	"High"	"ae"	"AE Death Outcome"	"Check for AE consistency between death date and AE outcome"	"* This check looks for AEs with Death date(AEDTHDTC) but outcome (AEOUT) is not FATAL and conversely AEs with no death date (AEDTHDTC) but outcome (AEOUT) is fatal"	NA	"AE does not exist or failed to read"	"AE=ae"	"AE=ae,preproc=roche_derive_rave_row"	"exists(\"ae\")"
+"10"	"check_ae_aeout_aeendtc_aedthdtc"	"ALL"	"High"	"ae"	"Fatal AE Resolution Date"	"Check for fatal AEs with inconsistent or missing AE resolution date"	"* This check looks for AEs with fatal outcome (AEOUT = 'FATAL') and resolution date not populated or not equal to AE death date
+* NOTE: not all ongoing studies are adopting this approach for AE resolution and this may not be appropriate to query"	NA	"AE does not exist or failed to read"	"AE=ae"	"AE=ae,preproc=roche_derive_rave_row"	"exists(\"ae\")"
+"11"	"check_ae_aerel"	"ALL"	"Medium"	"ae"	"AE AEREL"	"Check for AEREL and corresponding AEREL[n] values"	"* This check identifies AEREL with null values
+* If AEREL[n] variables are included, the check assesses SDTMv mapping is as expected"	NA	"AE does not exist or failed to read"	"AE=ae"	"AE=ae,preproc=roche_derive_rave_row"	"exists(\"ae\")"
+"12"	"check_ae_aesdth_aedthdtc"	"ALL"	"High"	"ae"	"AE Death Indicator vs Date"	"Check for AEs with AE death indicator equal to 'Y' but no death date"	"* This check looks for AEs with AE death indicator (AESDTH) = \"Y\" but death date (AEDTHDTC) not populated"	NA	"AE does not exist or failed to read"	"AE=ae"	"AE=ae,preproc=roche_derive_rave_row"	"exists(\"ae\")"
+"13"	"check_ae_aestdtc_after_aeendtc"	"ALL"	"High"	"ae"	"AE Start after End Date"	"Check for AEs with start date after end date"	"* This check looks for AEs with AE start date (AESTDTC) after AE end date (AEENDTC)"	NA	"AE does not exist or failed to read"	"AE=ae"	"AE=ae,preproc=roche_derive_rave_row"	"exists(\"ae\")"
+"14"	"check_ae_aestdtc_after_dd"	"ALL"	"High"	"ae, ds"	"AE Start after Death Date"	"Check for AEs with start date after death date"	"* This check finds records with AE start date (AESTDTC) after death date
+* Earliest death date between DS and AE domains is used for comparisons
+* Queries should be generated to determine which is incorrect of death date or AE date
+* Incomplete dates with known year and month but unknown day are imputed to the first of the month"	NA	"AE and/or DS does not exist or failed to read"	"AE=ae,DS=ds"	"AE=ae,DS=ds,preproc=roche_derive_rave_row"	"exists(\"ae\") & exists(\"ds\")"
+"15"	"check_ae_aetoxgr"	"ALL"	"High"	"ae"	"AE Missing Grade"	"Patients with missing AE grade values"	"* Check for AE records have missing values for either AETOXGR or AESEV. If both variables exist it checks for records where both are missing."	NA	"AE does not exist or failed to read"	"AE=ae"	"AE=ae,preproc=roche_derive_rave_row"	"exists(\"ae\")"
+"16"	"check_ae_death"	"ALL"	"High"	"ae"	"AE Death Variables"	"Grade 5 AEs where other variables do not indicate death"	"* This check identifies grade 5 AEs that do not also have the following:
+* Outcome (AEOUT) marked \"FATAL\", death indicator (AESDTH) marked \"Y\", or death date (AEDTHDTC) populated"	NA	"AE does not exist or failed to read"	"AE=ae"	"AE=ae"	"exists(\"ae\")"
+"17"	"check_ae_death_ds_discon"	"ALL"	"High"	"ae, ds"	"AE Death Discon"	"Check for patients with AE indicating death but no Study Discontinuation form"	"* This check identifies instances where an AE indicates death (using AEDTHDTC, AESDTH, AEOUT, and/or AETOXGR if it exists)
+* and makes sure that those patients also have a Study Discontinuation form in the DS domain"	NA	"AE and/or DS does not exist or failed to read"	"AE=ae,DS=ds"	"AE=ae,DS=ds,preproc=roche_derive_rave_row"	"exists(\"ae\") & exists(\"ds\")"
+"18"	"check_ae_ds_partial_death_dates"	"ALL"	"High"	"ae, ds"	"AE Partial Death Dates"	"Check for partial death dates"	"* This check looks for partial death dates in discon forms and in the AE form
+* It looks for lengths <10 for DS.DSSTDTC where DS.DSDECOD=\"DEATH\" as well as for AE.AEDTHDTC
+* Partial death dates should be queried"	NA	"AE and/or DS does not exist or failed to read"	"AE=ae,DS=ds"	"AE=ae,DS=ds,preproc=roche_derive_rave_row"	"exists(\"ae\") & exists(\"ds\")"
+"19"	"check_ae_dup"	"ALL"	"High"	"ae"	"AE Duplicates"	"Duplicate AE records"	"* This check looks for duplicate AEs by the SDTMv variables listed below:
+* USUBJID, AETERM, AEDECOD, AESTDTC, AEENDTC, AELAT (if applicable), AEMODIFY (if applicable), AETOXGR -or- AESEV"	NA	"AE does not exist or failed to read"	"AE=ae"	"AE=ae"	"exists(\"ae\")"
+"20"	"check_ae_fatal"	"ALL"	"High"	"ae"	"AE Death Vars when Fatal"	"Check for death variable consistency when AEOUT==\"FATAL\""	"* This check looks for consistency in AE death variables AESDTH,AEDTHDTC, and AETOXGR (if applicable)
+* when outcome (AEOUT) indicates 'FATAL'"	NA	"AE does not exist or failed to read"	"AE=ae"	"AE=ae,preproc=roche_derive_rave_row"	"exists(\"ae\")"
+"21"	"check_ae_withdr_ds_discon"	"ALL"	"Medium"	"ae, ds, ts"	"AE Drug Withdrawn no DS"	"Check for AE drug withdrawn but no DS treatment discontinuation record"	"* This check identifies patients with AEACN = 'DRUG WITHDRAWN' and missing a DS treatment discontinuation record
+* This check will run only for single-agent studies based on TS in which there is only one treatment discontinuation form expected in DS
+* and AEACN would not have the value = 'MULTIPLE'"	NA	"One or more of AE/DS/TS does not exist or failed to read"	"AE=ae,DS=ds,TS=ts"	"AE=ae,DS=ds,TS=ts,preproc=roche_derive_rave_row"	"exists(\"ae\") & exists(\"ds\") & exists(\"ts\")"
+"22"	"check_cm_cmdecod"	"ALL"	"Low"	"cm"	"CM Missing PT"	"Check for concomitant medications with missing standardized medication names (CMDECOD)"	"* This check looks for conmeds with missing standardized medication names (CMDECOD)
+* Only records where CM.CMCAT = \"CONCOMITANT MEDICATIONS\" are checked"	NA	"CM does not exist or failed to read"	"CM=cm"	"CM=cm,preproc=roche_derive_rave_row"	"exists(\"cm\")"
+"23"	"check_cm_cmindc"	"ALL"	"Low"	"cm"	"CM Prophylaxis"	"Check for CM records with prophylactic indication but prophylaxis checkbox unchecked"	"* This check identifies possible prophylactic conmeds (CM.CMINDC) that do not have the checkbox ticked (CM.CMPROPH)
+* This check ensures drugs are correctly coded as prophylactic, as some definitions of systemic drugs exclude prophylactic indications
+* especially corticosteroids
+* Teams may consider additional refinements to target records important for analysis"	NA	"CM does not exist or failed to read"	"CM=cm"	"CM=cm,preproc=roche_derive_rave_row"	"exists(\"cm\")"
+"24"	"check_cm_cmlat"	"OPHTH"	"Low"	"cm"	"CM CMLAT Missing"	"OPHTHALMOLOGY: Check for missing laterality of ocular conmed or laterality populated but route is not eye-related"	"* This check identifies Concomitant Medications (CMCAT = 'CONCOMITANT MEDICATION') where
+* the medication is eye-related (i.e., CMROUTE = 'INTRAVITREAL', 'OPHTHALMIC', etc.) but CMLAT is not populated --or--
+* CMLAT reported as LEFT/RIGHT/BILATERAL but CMROUTE is not eye-related (i.e., not INTRAVITREAL, OPHTHALMIC, TOPICAL, etc.)"	NA	"CM does not exist or failed to read"	"CM=cm"	"CM=cm,preproc=roche_derive_rave_row"	"exists(\"cm\")"
+"25"	"check_cm_cmlat_prior_ocular"	"OPHTH"	"Low"	"cm"	"CM Prior Ocular CMLAT Missing"	"OPHTHALMOLOGY: Check for missing laterality of ocular conmed reported as prior ocular therapies"	"* This check identifies Prior Ocular Therapies and Treatment eCRF (CMCAT = \"PRIOR OCULAR THERAPIES AND TREATMENTS\")
+* reported with missing/inconsistent laterality (CMLAT)"	NA	"CM does not exist or failed to read"	"CM=cm"	"CM=cm,preproc=roche_derive_rave_row"	"exists(\"cm\")"
+"26"	"check_cm_missing_month"	"ALL"	"Low"	"cm"	"CM Missing Month"	"Check for \"---\" in concomitant medication dates"	"* This check looks for the string \"---\" in conmed dates, e.g. 2010---01
+* The presence of this string indicates that year and day are known, but month is not
+* While this is possible, it might be more likely that month was accidentally input as day
+* These values should be queried"	NA	"CM does not exist or failed to read"	"CM=cm"	"CM=cm,preproc=roche_derive_rave_row"	"exists(\"cm\")"
+"27"	"check_dd_ae_aedthdtc_ds_dsstdtc"	"ALL"	"High"	"ae, ds"	"AE Death Dates Match DS"	"Check that AE death date matches DS death date"	"* If a patient has a death date populated in AE they should have a matching death date in DS
+* If AE.AEDTHDT exists it should match DS.DSSTDTC for death records"	NA	"AE and/or DS does not exist or failed to read"	"AE=ae,DS=ds"	"AE=ae,DS=ds,preproc=roche_derive_rave_row"	"exists(\"ae\") & exists(\"ds\")"
+"28"	"check_dd_ae_aeout_aedthdtc"	"ALL"	"High"	"ae"	"Death Date When Fatal"	"Check for AEs with outcome marked 'FATAL' but no death date in AE"	"* This check looks for AEs with death date (AEDTHDTC) not populated when AE outcome (AEOUT) marked \"FATAL\""	NA	"AE does not exist or failed to read"	"AE=ae"	"AE=ae,preproc=roche_derive_rave_row"	"exists(\"ae\")"
+"29"	"check_dd_death_date"	"ALL"	"High"	"ae, ds"	"Death due to AE in DS"	"Check that patients with death dates in AE also have a DS record indicating reason for Death is AE"	"* If AE.AEDTHDTC is populated there should be at least one DS record with DS.DSDECOD indicating 'DEATH' and DS.DSTERM indicating 'DEATH' (unless Other, specify text populated given)
+* Older, legacy studies (prior to SDTM IG 3.2) would require reported reason to be DS.DSTERM as \"DEATH DUE TO ADVERSE EVENT\""	NA	"AE and/or DS does not exist or failed to read"	"AE=ae,DS=ds"	"AE=ae,DS=ds,preproc=roche_derive_rave_row"	"exists(\"ae\") & exists(\"ds\")"
+"30"	"check_dm_actarm_arm"	"ALL"	"High"	"dm"	"DM Arm != Actual Arm"	"Check for DM.ARM not equal to DM.ACTARM"	"* This check identifies records where ARM ne ACTARM
+* Analyst note: This check is intended to identify patients who switched Arms
+* Untreated patients can be ignored"	NA	"DM does not exist or failed to read"	"DM=dm"	"DM=dm"	"exists(\"dm\")"
+"31"	"check_dm_ae_ds_death"	"ALL"	"High"	"dm, ds, ae"	"AE DS DM Death Agreement"	"Check for patients with DM indicating death but not either AE or DS"	"* This check identifies instances where a DM record indicates death (using DM.DMDTH or DM.DTHFL)
+* and makes sure that those patients also have record indicating death in either AE or DS"	NA	"One or more of DM/DS/AE does not exist or failed to read"	"DM=dm,DS=ds,AE=ae"	"DM=dm,DS=ds,AE=ae"	"exists(\"dm\") & exists(\"ds\") & exists(\"ae\")"
+"32"	"check_dm_age_missing"	"ALL"	"High"	"dm"	"DM Missing Age"	"Check for suspicious age values"	"* This check looks for age values (DM.AGE) that are missing, less than 18, or 90 or more
+* Missing ages or ages <18 should be queried.
+* Ages 90 or over are not necessarily incorrect, though very high ages should possibly be queried to be sure."	NA	"DM does not exist or failed to read"	"DM=dm"	"DM=dm"	"exists(\"dm\")"
+"33"	"check_dm_armcd"	"ALL"	"High"	"dm"	"DM Missing Arm"	"Patients with missing Arm Code information"	"* This check identifies patients ARMCD is missing"	"Y"	"DM does not exist or failed to read"	"DM=dm"	"DM=dm"	"exists(\"dm\")"
+"34"	"check_dm_dthfl_dthdtc"	"ALL"	"High"	"dm"	"DM Death Flag"	"Check for DM DTHFL and DTHDT consistency"	"* This check returns records when DTHFL is Y but DTHDTC is missing or vice versa
+* There is a possible valid scenario when death date is truly unknown but occurrence of death is known"	NA	"DM does not exist or failed to read"	"DM=dm"	"DM=dm"	"exists(\"dm\")"
+"35"	"check_dm_usubjid_ae_usubjid"	"ALL"	"High"	"dm, ae, ds, ex"	"No AE records"	"Check for patients with no AE records"	"* This check identifies patients without AE records
+* EXSTDTC is the date of first valid administration of any treatment
+* Death information is also displayed from DS if available (DSTERM and DSSTDTC).
+* If DSTERM = \"DEATH DUE TO ADVERSE EVENT\" then VADs may be undercounting deaths since there is no corresponding death info in AE"	"Y"	"One or more of DM/AE/DS/EX does not exist or failed to read"	"DM=dm,AE=ae,DS=ds,EX=ex"	"DM=dm,AE=ae,DS=ds,EX=ex"	"exists(\"dm\") & exists(\"ae\") & exists(\"ds\") & exists(\"ex\")"
+"36"	"check_dm_usubjid_dup"	"ALL"	"High"	"dm"	"DM Duplicate Patient"	"Check for patients duplicate records in DM"	"* This check identifies duplicate USUBJID values in the DM dataset
+* This is often the result of a mapping issue"	NA	"DM does not exist or failed to read"	"DM=dm"	"DM=dm"	"exists(\"dm\")"
+"37"	"check_ds_ae_discon"	"ALL"	"Low"	"ae, ds"	"AE Tx Discon consistency"	"Check for treatment discontinuation consistency between DS and AE"	"* This check identifies records where patients have treatment discon form indicating AE but no AE indicating drug withdrawn
+* i.e. Should be a record where AE.AEACN[n]=DRUG WITHDRAWN when treatment discon form indicates AE"	NA	"AE and/or DS does not exist or failed to read"	"AE=ae,DS=ds"	"AE=ae,DS=ds"	"exists(\"ae\") & exists(\"ds\")"
+"38"	"check_ds_dsdecod_death"	"ALL"	"High"	"ds"	"DS Discon Check Given Death"	"Check that patients who have died have a study discontinuation record"	"* These patients have a record in DS indicating death but no DS record indicating study discontinuation"	NA	"DS does not exist or failed to read"	"DS=ds"	"DS=ds,preproc=roche_derive_rave_row"	"exists(\"ds\")"
+"39"	"check_ds_dsdecod_dsstdtc"	"ALL"	"High"	"ds"	"DS death with no date"	"DS with death record but no death date record"	"* This check looks for patients in DS who have a record indicating death but no corresponding record with
+* death date in DS. For example, \"Survival Follow Up\" records often have no death dates, so for
+* a data cut to be applied properly, you have to impute that missing
+* death date from another record where its not missing (e.g. Study Discon form)"	NA	"DS does not exist or failed to read"	"DS=ds"	"DS=ds"	"exists(\"ds\")"
+"40"	"check_ds_dsscat"	"ALL"	"High"	"ds"	"DS More than 1 Study Discon"	"Check for multiple study discontinuation records in DS"	"* This check identifies multiple Study Discontinuation records"	NA	"DS does not exist or failed to read"	"DS=ds"	"DS=ds"	"exists(\"ds\")"
+"41"	"check_ds_dsterm_death_due_to"	"ALL"	"High"	"ds"	"DS Missing Death Reason"	"Check missing cause of death information in DS"	"* This check looks for DS.DSTERM values with missing death reason and returns a data frame (e.g. records where DSTERM = 'DEATH DUE TO')"	NA	"DS does not exist or failed to read"	"DS=ds"	"DS=ds"	"exists(\"ds\")"
+"42"	"check_ds_duplicate_randomization"	"ALL"	"High"	"ds"	"DS Duplicate Randomization"	"Check for patients duplicate randomization records in DS"	"* This check identifies duplicate Randomization records in DS"	NA	"DS does not exist or failed to read"	"DS=ds"	"DS=ds"	"exists(\"ds\")"
+"43"	"check_ds_ex_after_discon"	"ALL"	"Medium"	"ds, ex"	"DS Discon before last dose"	"Check for last study drug dose after study discontinuation date"	"* This check identifies patients with a study discontinuation record prior to last valid study drug dose 
+* Dose calculated as the max. of EXSTDTC/EXENDTC, imputed with January 1st when only the year is known
+* There could be a date entry error on the DISC1 form or the dosing log"	NA	"DS and/or EX does not exist or failed to read"	"DS=ds,EX=ex"	"DS=ds,EX=ex"	"exists(\"ds\") & exists(\"ex\")"
+"44"	"check_ds_multdeath_dsstdtc"	"ALL"	"High"	"ds"	"DS Multiple Death Dates"	"Check for Multiple Death Dates in DS"	"* This check looks for multiple death dates DS.DSSTDTC reported in DS"	NA	"DS does not exist or failed to read"	"DS=ds"	"DS=ds,preproc=roche_derive_rave_row"	"exists(\"ds\")"
+"45"	"check_ds_sc_strat"	"ALL"	"Medium"	"ds, sc"	"Stratification Factors Missing"	"Check that all randomized patients have stratification factor records"	"* Patients will be flagged if they have a DS record indicating RANDOMIZATION but no records in SC indicating stratification factors
+* This check attempts to ignore patients in randomized studies where no stratifcation factors are collected
+* A common cause for randomized patients to be missing stratification factor data is IxRS data is not current"	NA	"DS and/or SC does not exist or failed to read"	"DS=ds,SC=sc"	"DS=ds,SC=sc"	"exists(\"ds\") & exists(\"sc\")"
+"46"	"check_dv_ae_aedecod_covid"	"COVID"	"Low"	"ae, dv"	"COVID DV and AE"	"Check patient(s) with COVID-related Protocol Deviation, but no AE record with COVID terms"	"* This check identifies DV records flagged as COVID related and without COVID AEs recorded
+* NOTE: COVID-19 AEs identified based on preferred terms from MedDRA v26.0 COVID-19 SMQ (Narrow) or earlier identified version based on TS"	NA	"AE and/or DV does not exist or failed to read or covid terms not found"	"AE=ae,DV=dv"	"AE=ae,DV=dv,covid_df=roche_covid_df(TS=(if('ts' %in% ls(envir=.GlobalEnv)){get('ts', envir = .GlobalEnv)}else{NULL}))"	"exists(\"ae\") & exists(\"dv\")"
+"47"	"check_dv_covid"	"COVID"	"Low"	"dv"	"COVID DV consistency"	"Check for COVID related protocol deviation variable consistency"	"* This check identifies records where DV.DVEPRELI and DV.DVREAS are inconsistent"	NA	"DV does not exist or failed to read or covid terms not found"	"DV=dv"	"DV=dv"	"exists(\"dv\")"
+"48"	"check_ec_sc_lat"	"OPHTH"	"Medium"	"ec, sc"	"EC drug not in Study Eye"	"OPHTHALMOLOGY: Check for Study Drug administration that is not in the Study Eye"	"* This check identifies study drug records in EC where laterality is inconsistent with selected Study Eye
+* based on comparison of EC.ECLAT where ECMOOD = 'PERFORMED' and ECCAT does not include the string 'FELLOW' 
+* with SC Study Eye Selection laterality (SCORRES when SCTESTCD = 'FOCID') with OS = LEFT, OD = RIGHT
+* NOTE: Assumption that drug administration collected for Study Eye unless ECCAT indicates Fellow Eye"	NA	"EC and/or SC does not exist or failed to read"	"EC=ec,SC=sc"	"EC=ec,SC=sc"	"exists(\"ec\") & exists(\"sc\")"
+"49"	"check_eg_egdtc_visit_ordinal_error"	"ALL"	"Low"	"eg"	"EG Visit and Date Consistency"	"Check for EG visit and date consistency"	"* This check looks for date/visit conformance in EKG data (EG domain)
+* It returns records where the date at a given visit is after the date at a subsequent visit ordering by EG.VISITNUM
+* Unscheduled visits are not included."	NA	"EG does not exist or failed to read"	"EG=eg"	"EG=eg"	"exists(\"eg\")"
+"50"	"check_ex_dup"	"ALL"	"High"	"ex"	"EX Duplicate Records"	"Duplicate records of administered treatments"	"* This check looks for duplicate administered treatment records (i.e. EXOCCUR=Y or EXOCCUR does not exist) by the variables listed below:
+* USUBJID, EXTRT, EXDOSE, EXSTDTC"	NA	"EX does not exist or failed to read"	"EX=ex"	"EX=ex"	"exists(\"ex\")"
+"51"	"check_ex_exdose_exoccur"	"ALL"	"High"	"ex"	"EX Missing EXDOSE"	"Records of administered treatments with missing dose values"	"* This check looks for missing dose values for treatments that are recorded as having been administered (EXOCCUR=Y or EXOCCUR does not exist)"	NA	"EX does not exist or failed to read"	"EX=ex"	"EX=ex"	"exists(\"ex\")"
+"52"	"check_ex_exdose_pos_exoccur_no"	"ALL"	"High"	"ex"	"EX EXDOSE gt 0 and EXOCCUR != Y"	"Check for EXDOSE>0 when EXOCCUR is not \"Y\""	"* This checks looks for EXDOSE values greater than 0 when EXOCCUR is not \"Y\" 
+* It could be for a specified drug/treatment, or for all drugs/treatments in the dataset"	NA	"EX does not exist or failed to read"	"EX=ex"	"EX=ex"	"exists(\"ex\")"
+"53"	"check_ex_exdosu"	"ALL"	"Medium"	"ex"	"EX Missing Dose Units"	"Records of administered treatments with missing dose units"	"* This check looks for missing dose units for treatments that are recorded as having been administered (EXOCCUR=Y or EXOCCUR does not exist)"	NA	"EX does not exist or failed to read"	"EX=ex"	"EX=ex"	"exists(\"ex\")"
+"54"	"check_ex_exoccur_exdose_exstdtc"	"ALL"	"High"	"ex"	"EX Missing Dose Info"	"Check for Invalid EX Dose per Administration and Missing/Incomplete Start Date Values When Occurrence = 'Y'"	"* This check looks for cases where treatment given (EXOCCUR=Y or does not exist) but EXDOSE (dose per administration) is not > 0 (>= 0 in case of placebo) and/or
+* EXSTDTC (start date/treatment date) is missing or incomplete in the EX (exposure) SDTM domain"	NA	"EX does not exist or failed to read"	"EX=ex"	"EX=ex"	"exists(\"ex\")"
+"55"	"check_ex_exoccur_mis_exdose_nonmis"	"ALL"	"High"	"ex"	"EX Valid Dose, Missing EXOCCUR"	"Records with missing drug administration occurrence info but non-missing dose value"	"* This check identifies patients where drug administration info (EXOCCUR) is missing but dose information (EXDOSE) is populated
+* EXOCCUR only exists in EX domains earlier than SDTM IG 3.2"	NA	"EX does not exist or failed to read"	"EX=ex"	"EX=ex"	"exists(\"ex\")"
+"56"	"check_ex_exstdtc_after_dd"	"ALL"	"Medium"	"ae, ds, ex"	"EX Dose after Death Date"	"Check for EX dates occurring after death date"	"* This check looks for EX dates (EXSTDTC) that occur after death date
+* Earliest death date from AE and DS is used
+* Incomplete dates with known year and month but unknown day are imputed to the first of the month"	NA	"One or more of AE/DS/EX does not exist or failed to read"	"AE=ae,DS=ds,EX=ex"	"AE=ae,DS=ds,EX=ex"	"exists(\"ae\") & exists(\"ds\") & exists(\"ex\")"
+"57"	"check_ex_exstdtc_after_exendtc"	"ALL"	"High"	"ex"	"EX Dose Start Date After End"	"Check for EX exposure records with start date after end date"	"* This check looks for exposures with EX start date (EXSTDTC) after EX end date (EXENDTC)"	NA	"EX does not exist or failed to read"	"EX=ex"	"EX=ex"	"exists(\"ex\")"
+"58"	"check_ex_exstdtc_visit_ordinal_error"	"ALL"	"High"	"ex"	"EX Visit and Date Consistency"	"Check for EX visit and date consistency"	"* This check looks for date/visit conformance in exposure data (EX domain)
+* It returns records where the date at a given visit is after the date at a subsequent visit ordering by EX.VISITNUM
+* Unscheduled visits are not included"	NA	"EX does not exist or failed to read"	"EX=ex"	"EX=ex"	"exists(\"ex\")"
+"59"	"check_ex_extrt_exoccur"	"ALL"	"Low"	"ex"	"EX Drug Name missing"	"Check for missing treatment names for administered doses"	"* This check looks for missing drug names for treatments that are recorded as having been administered"	NA	"EX does not exist or failed to read"	"EX=ex"	"EX=ex"	"exists(\"ex\")"
+"60"	"check_ex_infusion_exstdtc_exendtc"	"ALL"	"Low"	"ex"	"EX infusion span"	"Check for infusion records spanning more than a day"	"* This check identifies dose records with EXROUTE = \"INTRAVENOUS\" with start and end date on diferent calendar days
+* NOTE: May result in false positives if protocol allows infusions over a period >24 hours or infusion start time near midnight
+* A - Different Start/End date for Infusion
+* B - Missing End date
+* C - Missing Start date
+* D - Same Start/End date but Start time after End time
+* E - Different Start/End date for Infusion
+* F - Missing End date/time
+* G - Missing Start date/time"	NA	"EX does not exist or failed to read"	"EX=ex"	"EX=ex"	"exists(\"ex\")"
+"61"	"check_ex_visit"	"ALL"	"Low"	"ex"	"EX Visit Name missing"	"Records of administered treatments with missing visit values"	"* This check looks for missing visit values for treatments that are recorded as having been administered"	NA	"EX does not exist or failed to read"	"EX=ex"	"EX=ex"	"exists(\"ex\")"
+"62"	"check_lb_lbdtc_after_dd"	"ALL"	"Low"	"ae, ds, lb"	"LB Date After Death"	"Check for LB dates occurring after death date"	"* This check looks for lab dates (LBDTC) that occur after death date
+* Earliest death date from AE and DS is used
+* Incomplete dates with known year and month but unknown day are imputed to the first of the month"	NA	"One or more of AE/DS/LB does not exist or failed to read"	"AE=ae,DS=ds,LB=lb"	"AE=ae,DS=ds,LB=lb"	"exists(\"ae\") & exists(\"ds\") & exists(\"lb\")"
+"63"	"check_lb_lbdtc_visit_ordinal_error"	"ALL"	"High"	"lb"	"LB Visit and Date Consistency"	"Check for LB visit and date consistency"	"* This check looks for date/visit conformance in LB
+* It returns records where the date at a given visit is after the date at a subsequent visit ordering by LB.VISITNUM per LB.LBCAT
+* 'NOT DONE', 'TREATMENT OR OBSERVATION FU COMP EARLY DISC', and Unscheduled visits are not included."	NA	"LB does not exist or failed to read"	"LB=lb"	"LB=lb"	"exists(\"lb\")"
+"64"	"check_lb_lbstnrlo_lbstnrhi"	"ALL"	"Medium"	"dm, lb"	"LB Missing Reference Ranges"	"Listing of lab tests with missing High or Low reference ranges"	"* This check identifies records where lab values (LBSTRESN) exist but at least one lab reference range (LBSTNRHI or LBSTNRLO) is not populated
+* A summary frequency by LBTEST and by SITEID presented as the result 
+* NOTE: Some lab tests are not expected to have reference ranges. These tests will still be displayed below."	NA	"DM and/or LB does not exist or failed to read"	"DM=dm,LB=lb"	"DM=dm,LB=lb"	"exists(\"dm\") & exists(\"lb\")"
+"65"	"check_lb_lbstresc_char"	"ALL"	"Low"	"lb"	"LB Char Value"	"Check for missing standard lab result but a numeric reported with > or <"	"* This check identifies lab records in which LBSTRESN is missing but LBSTRESC/LBORRES populated with a number beginning with \">\" or \"<\", which will yield missing AVAL in ADaM and records will be omitted in analyses such as Hy's Law
+* NOTE: Molecule/study teams should review and make decisions on subsequent activities in ADaM"	"Y"	"LB does not exist or failed to read"	"LB=lb"	"LB=lb"	"exists(\"lb\")"
+"66"	"check_lb_lbstresn_missing"	"ALL"	"Low"	"lb"	"LB Missing Standard Value"	"Check for lab results reported but no conversion to standard units"	"* This check identifies records where lab results are reported (LBORRES not missing) but there is no conversion to standard units (LBSTRESN and LBSTRESC is missing)
+* NOTE: Records in which LBSTRESN is missing but LBSTRESC and LBORRES are populated with a number beginning with \">\" or \"<\" or other character are not flagged"	NA	"LB does not exist or failed to read"	"LB=lb"	"LB=lb,preproc=roche_derive_rave_row"	"exists(\"lb\")"
+"67"	"check_lb_lbstresu"	"ALL"	"Medium"	"lb"	"LB Missing Standard Unit"	"Records with missing standard lab units"	"* This check identifies records where original lab values (LBORRES) exist but standard lab units (LBSTRESU) are not populated
+* NOTE: Records assumed to not have units are excluded from this report
+* This includes records where the lab is assumed to be \"qualitative\" which is indicated in various ways (e.g. by LBMETHOD, specific labs like \"SPGRAV\" and \"PH\" labs, records indicating \"NEGATIVE\"/\"POSITIVE\", etc.)
+* It also includes records indicating NOT DONE"	NA	"LB does not exist or failed to read"	"LB=lb"	"LB=lb,preproc=roche_derive_rave_row"	"exists(\"lb\")"
+"68"	"check_lb_missing_month"	"ALL"	"Low"	"lb"	"LB Missing Month"	"Check for \"---\" in lab dates"	"* This check looks for the string \"---\" in lab dates, e.g. 2010---01
+* The presence of this string indicates that year and day are known, but month is not
+* While this is possible, it might be more likely that month was accidentally input as day
+* These values should be queried"	NA	"LB does not exist or failed to read"	"LB=lb"	"LB=lb"	"exists(\"lb\")"
+"69"	"check_mh_missing_month"	"ALL"	"Low"	"mh"	"MH Med History Missing Month"	"Check for \"---\" in medical history dates"	"* This check looks for the string \"---\" in medical history dates, e.g. 2010---01
+* The presence of this string indicates that year and day are known, but month is not
+* While this is possible, it might be more likely that month was accidentally input as day
+* These values should be queried"	NA	"MH does not exist or failed to read"	"MH=mh"	"MH=mh"	"exists(\"mh\")"
+"70"	"check_mi_mispec"	"ALL"	"Low"	"mi"	"MI MISPEC"	"Check for null MISPEC"	"* This check returns records when MI.MISPEC, a required variable, is not populated. Missing records will be flagged in Pinnacle 21"	"Y"	"MI does not exist or failed to read"	"MI=mi"	"MI=mi"	"exists(\"mi\")"
+"71"	"check_oe_bcva_1m_late_early_tot"	"OPHTH"	"High"	"oe"	"OE 1M Inconsistencies"	"OPHTHALMOLOGY: Check for BCVA 1m Test stopped late/early or reported Total is incorrect"	"* For BCVA 1m Test (OECAT = 'BEST CORRECTED VISUAL ACUITY' for OETSTDTL = 'TESTING DISTANCE: 1M'): 
+* OE records flagged when test stopped too late (i.e., lines read after number of correct letters is <= 3) --or--
+* when test stopped too early (i.e., further lines not read when number of correct letters is > 3) --or--
+* reported Total score (BCVA Scores eCRF Page - C. Total number correct at 1m) does not match with derived total 
+* (sum of number correct at 1M)
+* NOTE: Testing events based on combination of distinct USUBJID, VISIT, VISITNUM, OELOC, OELAT, OEDTC.
+* Unscheduled visits on different dates or BCVA Total occurring on different date from BCVA row tests excluded from check.
+* Excludes early phase forms without row numbers in OESPID: BCV5, BCV7, BCVLL5, BCVAC, BCVACLL
+* Studies without these forms result in a pass"	NA	"OE does not exist or failed to read"	"OE=oe"	"OE=oe"	"exists(\"oe\")"
+"72"	"check_oe_bcva_4m_late_early_tot"	"OPHTH"	"High"	"oe"	"OE 4M Inconsistencies"	"OPHTHALMOLOGY: Check for BCVA 4m Test stopped late/early or reported Total is incorrect"	"* For BCVA 4m Test (OECAT = 'BEST CORRECTED VISUAL ACUITY' for OETSTDTL = 'TESTING DISTANCE: 4M'): 
+* OE records flagged when test stopped too late (i.e., lines read after number of correct letters <= 3) --or--
+* when test stopped too early (i.e., further lines not read when number of correct letters > 3) --or--
+* reported Total score (BCVA Scores eCRF Page - A. Total number correct at 4m) does not match with derived total 
+* (sum of number correct at 4M)
+* NOTE: Testing events based on combination of distinct USUBJID, VISIT, VISITNUM, OELOC, OELAT, OEDTC.
+* Unscheduled visits on different dates or BCVA Total occurring on different date from BCVA row tests excluded from check.
+* Excludes early phase forms without row numbers in OESPID: BCV5, BCV7, BCVLL5, BCVAC, BCVACLL
+* Studies without these forms result in a pass"	NA	"OE does not exist or failed to read"	"OE=oe"	"OE=oe"	"exists(\"oe\")"
+"73"	"check_oe_bcva_4m_vs_1m_req"	"OPHTH"	"High"	"oe"	"OE BCVA 4M vs 1M Inconsistent"	"OPHTHALMOLOGY: Check 1m BCVA Test is completed per BCVA 4m result"	"* This check identifies when 4m test total <= 19 and 1m test is not done --or-- 4m test total >= 20 and 1m test is performed
+* among OECAT = 'BEST CORRECTED VISUAL ACUITY' where OETSTDTL = 'TESTING DISTANCE: 1M', 'TESTING DISTANCE: 4M'
+* NOTE: Check assumes that the BCVA 1m and 4m total are accurate and occur on the same date (OEDTC).  Records for patients who have completed Low Vision Test excluded. 
+* If on different dates, such records excluded from the check."	NA	"OE does not exist or failed to read"	"OE=oe"	"OE=oe"	"exists(\"oe\")"
+"74"	"check_oe_bcva_tot_mismatch"	"OPHTH"	"High"	"oe"	"OE BCVA Total Mismatch"	"OPHTHALMOLOGY: Check for mismatch of Derived vs. Reported BCVA Total Score"	"* Total Best Corrected Visual Acuity derived as sum of A + B + C, where: 
+* A = Total correct at 4m, OESTRESN for OETESTCD = 'NUMLCOR' per OETSTDTL and OESTAT is not 'NOT DONE'
+* B = 30 if A >= 20, or B = 0 if A < 20; 
+* C = Total correct a 1m, OESTRESN for OETESTCD = 'NUMLCOR' per OETSTDTL and OESTAT is not 'NOT DONE'
+* Reported BCVA Total Score as OESTRESN when OECAT = 'BEST CORRECTED VISUAL ACUITY' and OETESTCD = 'VACSCORE' or 'LOGSCORE'
+* Records in which the derived and reported Total BCVA values do not match are returned
+* NOTE: Testing events based on combination of distinct USUBJID, VISIT, OELAT, OEDTC"	NA	"OE does not exist or failed to read"	"OE=oe"	"OE=oe"	"exists(\"oe\")"
+"75"	"check_oe_sc_lat_count_fingers"	"OPHTH"	"High"	"oe, sc"	"OE SC Finger Eye Mismatch"	"OPHTHALMOLOGY: Check if Post Treatment Count Fingers is completed in Study Eye"	"* This check identifies laterality mismatches in OELAT between OECAT = 'SAFETY ASSESSMENT OF LOW VISION' 
+* and SC Study Eye Selection laterality (SCORRES when SCTESTCD = 'FOCID') with OS = LEFT, OD = RIGHT
+* Post Treatment Count Fingers is only done in the Study Eye. 
+* Studies without the Safety Assessment of Low Vision form result in a pass"	NA	"OE and/or SC does not exist or failed to read"	"OE=oe,SC=sc"	"OE=oe,SC=sc"	"exists(\"oe\") & exists(\"sc\")"
+"76"	"check_pr_missing_month"	"ALL"	"Low"	"pr"	"PR Missing Month"	"Check for \"---\" in PR procedure dates"	"* This check looks for the string \"---\" in procedures dates, e.g. 2010---01
+* The presence of this string indicates that year and day are known, but month is not
+* While this is possible, it might be more likely that month was accidentally input as day
+* These values should be queried"	NA	"PR does not exist or failed to read"	"PR=pr"	"PR=pr,preproc=roche_derive_rave_row"	"exists(\"pr\")"
+"77"	"check_pr_prlat"	"OPHTH"	"Low"	"pr"	"PR Laterality for Ocular Proc"	"OPHTHALMOLOGY: Check for missing laterality of ocular procedures/surgeries on Prior or Concurrent Procedures/Surgeries CRF"	"* This check identifies PR records where PRLAT not populated with  'LEFT', 'RIGHT', or 'BILATERAL' 
+* for PRCAT = 'PRIOR OCULAR SURGERIES AND PROCEDURES' or PRCAT = \"CONCURRENT OCULAR PROCEDURE\""	NA	"PR does not exist or failed to read"	"PR=pr"	"PR=pr,preproc=roche_derive_rave_row"	"exists(\"pr\")"
+"78"	"check_qs_dup"	"PRO"	"Medium"	"qs"	"QS duplicates"	"Check for multiple dates at the same visit in QS"	"* This check returns records where there are different dates at a given visit per QS.QSCAT
+* Unscheduled visits are not included."	NA	"QS does not exist or failed to read"	"QS=qs"	"QS=qs"	"exists(\"qs\")"
+"79"	"check_qs_qsdtc_after_dd"	"PRO"	"High"	"ae, ds, qs"	"QS Date after Death Date"	"Check for QS dates occurring after death date"	"* This check looks for questionnaire dates (QSDTC) that occur after death date
+* Earliest death date from AE and DS is used
+* Incomplete dates with known year and month but unknown day are imputed to the first of the month in the comparison"	NA	"One or more of AE/DS/QS does not exist or failed to read"	"AE=ae,DS=ds,QS=qs"	"AE=ae,DS=ds,QS=qs"	"exists(\"ae\") & exists(\"ds\") & exists(\"qs\")"
+"80"	"check_qs_qsdtc_visit_ordinal_error"	"PRO"	"High"	"qs"	"QS Visit and Date Consistency"	"Check for QS visit and date consistency"	"* This check looks for date/visit conformance in PRO data (QS domain)
+* It returns records where the date at a given visit is after the date at a subsequent visit ordering by QS.VISITNUM per QS.QSCAT
+* Unscheduled visits are not included."	NA	"QS does not exist or failed to read"	"QS=qs"	"QS=qs"	"exists(\"qs\")"
+"81"	"check_qs_qsstat_qsreasnd"	"PRO"	"Low"	"qs"	"QS reason ND"	"Check for QS forms without a reason given when marked 'NOT DONE'"	"* This check flags QSSTAT completion status marked NOT DONE but QSREASND is not populated
+* Some but not all questionnaries in a study may collect Reason Not Performed information, which may yield false positives
+* This scenario for QSREASND null but NOT DONE will be flagged in Pinnacle 21"	NA	"QS does not exist or failed to read"	"QS=qs"	"QS=qs"	"exists(\"qs\")"
+"82"	"check_qs_qsstat_qsstresc"	"PRO"	"Low"	"qs"	"QS values when NOT DONE"	"Check for existing Questionnaire data when \"Not Done\" is indicated"	"* This check identifies records that indicate an instrument (QSCAT) was not done (QSTESTCD = \"QSALL\" and QSSTAT=\"NOT DONE\")
+* But other records for that instrument (QSCAT) exist with populated data (QSSTRESC) on the same date (QSDTC)
+* \"NOT DONE\" QS records are matched to answered QS records by USUBJID-VISIT-QSDTC-QSCAT"	NA	"QS does not exist or failed to read"	"QS=qs"	"QS=qs"	"exists(\"qs\")"
+"83"	"check_rs_rscat_rsscat"	"ONC"	"Low"	"rs"	"RS RSCAT null but RSSCAT"	"Check for null RSCAT when RSSCAT is populated"	"* This check returns records when there is no category but a subcategory is populated, which is unexpected mapping"	"Y"	"RS does not exist or failed to read"	"RS=rs"	"RS=rs"	"exists(\"rs\")"
+"84"	"check_rs_rsdtc_across_visit"	"ONC"	"High"	"rs"	"RS Date Multiple Visits"	"Check for response records (RS) with same date across multiple visits"	"* This check identifies records in RS where multiple visit values (VISIT) are given for the same date (RSDTC)
+* Only assessments by investigator are checked (RS.RSEVAL = INVESTIGATOR or missing or variable doesn't exist)"	NA	"RS does not exist or failed to read"	"RS=rs"	"RS=rs"	"exists(\"rs\")"
+"85"	"check_rs_rsdtc_visit"	"ONC"	"High"	"rs"	"RS Missing Date or Visit"	"Check for response records with missing dates"	"* This check identifies records where response date (RS.RSDTC) is missing
+* Only assessments by investigator are checked (RS.RSEVAL = INVESTIGATOR or missing or variable doesn't exist)"	NA	"RS does not exist or failed to read"	"RS=rs"	"RS=rs"	"exists(\"rs\")"
+"86"	"check_rs_rsdtc_visit_ordinal_error"	"ONC"	"High"	"rs"	"RS Visit and Date Consistency"	"Check for RS visit and date consistency"	"* This check looks for date/visit conformance in response data (RS domain)
+* It returns records where the date at a given visit is after the date at a subsequent visit ordering by RS.VISITNUM
+* NOTE: Only overall responses by investigator are checked. Unscheduled visits are not included."	NA	"RS does not exist or failed to read"	"RS=rs"	"RS=rs"	"exists(\"rs\")"
+"87"	"check_sc_dm_eligcrit"	"OPHTH"	"Medium"	"dm, sc"	"SC Eye Eligibility Missing"	"OPHTHALMOLOGY: Check if Study Eye met Study Eligibility criteria per SC Subject Characteristics"	"* This check identifies SCORRES with missing or a value that is not OS, OD, or OU
+* Among SCCAT = 'STUDY EYE SELECTION' and SCTESTCD = 'ELIGEYE'"	NA	"DM and/or SC does not exist or failed to read"	"DM=dm,SC=sc"	"DM=dm,SC=sc"	"exists(\"dm\") & exists(\"sc\")"
+"88"	"check_sc_dm_seyeselc"	"OPHTH"	"High"	"dm, sc"	"SC Study Eye Missing"	"OPHTHALMOLOGY: Check for missing Study Eye Selection in SC Subject Characteristics"	"* This check identifies SCORRES with missing or a value that is not OS, OD, or OU
+* Among SCCAT = 'STUDY EYE SELECTION' and SCTESTCD = 'FOCID'"	NA	"DM and/or SC does not exist or failed to read"	"DM=dm,SC=sc"	"DM=dm,SC=sc"	"exists(\"dm\") & exists(\"sc\")"
+"89"	"check_ss_ssdtc_alive_dm"	"ALL"	"High"	"dm, ss"	"SS alive"	"Check for last ALIVE status date in SS is before DM death date"	"* This check identifies Long Term Survival Follow-Up records with SSTESTCD = 'SURVSTAT' and SSORRES = 'ALIVE' 
+* but SSDTC > DM.DTHDTC"	NA	"DM and/or SS does not exist or failed to read"	"DM=dm,SS=ss"	"DM=dm,SS=ss"	"exists(\"dm\") & exists(\"ss\")"
+"90"	"check_ss_ssdtc_dead_ds"	"ALL"	"High"	"ds, ss"	"SS death in DS"	"Check DEAD status in SS has corresponding death date in DS"	"* This check identifies Long Term Survival Follow-Up records with SSSTRESC = 'DEAD' 
+* but SSDTC (contact date) < death date in DS"	NA	"DS and/or SS does not exist or failed to read"	"DS=ds,SS=ss"	"DS=ds,SS=ss"	"exists(\"ds\") & exists(\"ss\")"
+"91"	"check_ss_ssdtc_dead_dthdtc"	"ALL"	"High"	"dm, ss"	"SS death in DM"	"Check DEAD status in SS has corresponding death date in DM"	"* This check identifies Long Term Survival Follow-Up records with SSSTRESC = 'DEAD' 
+* but SSDTC (contact date) < DM.DTHDTC"	NA	"DM and/or SS does not exist or failed to read"	"DM=dm,SS=ss"	"DM=dm,SS=ss"	"exists(\"dm\") & exists(\"ss\")"
+"92"	"check_ss_ssstat_ssorres"	"ALL"	"High"	"ss"	"SS values when NOT DONE"	"Check for non-missing Subject Alive status when \"Not Done\" is indicated"	"* This check identifies records that indicate no contact made at Long Term Survival Follow-Up assessment but Alive/Dead status given"	NA	"SS does not exist or failed to read"	"SS=ss"	"SS=ss,preproc=roche_derive_rave_row"	"exists(\"ss\")"
+"93"	"check_tr_dup"	"ONC"	"High"	"tr"	"TR Duplicate Records"	"Duplicate tumor records"	"* This check looks for duplicate tumor records (TR dataset) by the variables listed below:
+* USUBJID,TRCAT,TRTESTCD,TRLINKID (or TRLNKID),TRSPID (if available),TRDTC,TRSTRESC
+* Only assessments by investigator are checked (TR.TREVAL = INVESTIGATOR or missing or variable doesn't exist)"	NA	"TR does not exist or failed to read"	"TR=tr"	"TR=tr"	"exists(\"tr\")"
+"94"	"check_tr_trdtc_across_visit"	"ONC"	"High"	"tr"	"TR Date Multiple Visits"	"Check for LDIAM tumor results records (TR) with same date across multiple visits"	"* This check identifies LDIAM records (TR.TRTESTCD='LDIAM') where multiple visit values (VISIT) are given for the same date (TRDTC)
+* Only assessments by investigator are checked (TR.TREVAL = INVESTIGATOR or missing or variable doesn't exist)"	NA	"TR does not exist or failed to read"	"TR=tr"	"TR=tr"	"exists(\"tr\")"
+"95"	"check_tr_trdtc_visit_ordinal_error"	"ONC"	"Low"	"tr"	"TR Visit and Date Consistency"	"Check for TR visit and date consistency"	"* This check looks for date/visit conformance in response data (TR domain)
+* It returns records where the date at a given visit is after the date at a subsequent visit ordering by TR.VISITNUM
+* NOTE: Only records by investigator are checked. Unscheduled visits are not included."	NA	"TR does not exist or failed to read"	"TR=tr"	"TR=tr"	"exists(\"tr\")"
+"96"	"check_tr_trstresn_ldiam"	"ONC"	"High"	"tr"	"TR Missing Longest Diameter"	"Longest Diameter tumor records with missing values"	"* This check finds longest diameter tumor records (TRTESTCD='LDIAM') with missing measurements
+* Missing measurements may cause problems when calcluating % change in sum of longest diameter which is commonly used for waterfall plots
+* A missing lesion record at post baseline that existed at baseline can cause the sum to look smaller than it really is, giving a false indication of tumor reduction
+* Only assessments by investigator are checked (TR.TREVAL = INVESTIGATOR or missing or variable doesn't exist)"	NA	"TR does not exist or failed to read"	"TR=tr"	"TR=tr,preproc=roche_derive_rave_row"	"exists(\"tr\")"
+"97"	"check_ts_aedict"	"ALL"	"Low"	"ts"	"TS Missing MedDRA"	"Check for missing MedDRA version in TS"	"* This check identifies when the TS domain does not have TSVAL populated when TSPARMCD = \"AEDICT\"
+* It also returns when TS does not have a record with TSPARMCD = \"AEDICT\" or the latest dictionary version not populated
+* TSVAL should be populated with the MedDRA version when AAG is specified for ADAE creation"	"Y"	"TS does not exist or failed to read"	"TS=ts"	"TS=ts"	"exists(\"ts\")"
+"98"	"check_ts_cmdict"	"ALL"	"Low"	"ts"	"TS Missing WHODrug"	"Check for missing WHODrug version in TS"	"* This check identifies when the TS domain does not have TSVAL populated when TSPARMCD = \"CMDICT\"
+* It also returns when TS does not have a record with TSPARMCD = \"CMDICT\" or the latest dictionary version not populated
+* TSVAL should be populated with the MedDRA version when ACG is specified for ADCM creation"	"Y"	"TS does not exist or failed to read"	"TS=ts"	"TS=ts"	"exists(\"ts\")"
+"99"	"check_ts_sstdtc_ds_consent"	"ALL"	"Medium"	"ds, ts"	"TS missing SSTDTC"	"Check for missing SSTDTC (Study Start Date) in TS"	"* This check identifies Study Start Date issues in the TS domain (TSVAL in TSPARMCD = 'SSTDTC')
+* Effective September 15, 2021, FDA requires properly populated Study Start Date in TS or the study will meet technical rejection criteria at submission
+* If TS Study Start Date is present, further comparison is made with earliest informed consent date among enrolled subjects in the DS domain
+* Informed consent date in DS is identified in this check as DSDECOD='INFORMED CONSENT OBTAINED' and DSCAT='PROTOCOL MILESTONE' and DSSCAT starts with 'PROTOCOL'"	"Y"	"DS and/or TS does not exist or failed to read"	"DS=ds,TS=ts"	"DS=ds,TS=ts"	"exists(\"ds\") & exists(\"ts\")"
+"100"	"check_tu_rs_new_lesions"	"ONC"	"High"	"rs, tu"	"New Lesion in TU, PD in RS"	"Check that patients with new lesions also have an overall response of PD"	"* This check makes sure patients with a new lesion in TU (TU.TUSTRESC=NEW) also have an overall response of PD
+* in RS (RS.RSTESTCD = \"OVRLRESP\" and RS.RSSTRESC = \"PD\")
+* All new lesion dates for patients with no overall response of PD are displayed. These patients should be queried.
+* Only assessments by investigator (based on TU.TUEVAL/RS.RSEVAL) are checked"	NA	"RS and/or TU does not exist or failed to read"	"RS=rs,TU=tu"	"RS=rs,TU=tu"	"exists(\"rs\") & exists(\"tu\")"
+"101"	"check_tu_tudtc"	"ONC"	"High"	"tu"	"TU Missing Date"	"Check for tumor records with missing dates"	"* This check identifies records where tumor date (TU.TUDTC) is missing
+* Only assessments by investigator are checked (TU.TUEVAL = INVESTIGATOR or missing or variable doesn't exist)"	NA	"TU does not exist or failed to read"	"TU=tu"	"TU=tu,preproc=roche_derive_rave_row"	"exists(\"tu\")"
+"102"	"check_tu_tudtc_across_visit"	"ONC"	"High"	"tu"	"TU Date Multiple Visits"	"Check for tumor identification records (TU) with same date across multiple visits"	"* This check identifies records in TU where multiple visit values (VISIT) are given for the same date (TUDTC)
+* Only assessments by investigator are checked (TU.TUEVAL = INVESTIGATOR or missing or variable doesn't exist)"	NA	"TU does not exist or failed to read"	"TU=tu"	"TU=tu"	"exists(\"tu\")"
+"103"	"check_tu_tudtc_visit_ordinal_error"	"ONC"	"Medium"	"tu"	"TU Visit and Date Consistency"	"Check for TU visit and date consistency"	"* This check looks for date/visit conformance and/or duplicate records in response data (TU domain)
+* It returns records where the date at a given visit is after the date at a subsequent visit ordering by TU.VISITNUM
+* NOTE: Only records by investigator are checked. Unscheduled visits are not included."	NA	"TU does not exist or failed to read"	"TU=tu"	"TU=tu"	"exists(\"tu\")"
+"104"	"check_tu_tuloc_missing"	"ONC"	"High"	"tu"	"TU Missing Location"	"Check for target lesions with missing location"	"* This check identifies target lesions (TU.TUORRES=TARGET) where location (TU.TULOC) is missing
+* Only assessments by investigator are checked (TU.TUEVAL = INVESTIGATOR or missing or variable doesn't exist)
+* Patients are considered to have measurable disease at baseline if they have a target lesion before first exposure
+* However sometimes sites enter records with empty TU.TULOC for patients without baseline measureable disease
+* Records with missing TU.TULOC should be queried and either removed if that target lesion does not exist or else a location should be entered"	NA	"TU does not exist or failed to read"	"TU=tu"	"TU=tu,preproc=roche_derive_rave_row"	"exists(\"tu\")"
+"105"	"check_vs_height"	"ALL"	"Low"	"vs, dm"	"VS Missing Height"	"Patients with missing height values"	"* This check identifies patients with no recorded height across all visits
+* Height needed for calculations like body mass index, dose intensity, etc."	NA	"VS and/or DM does not exist or failed to read"	"VS=vs,DM=dm"	"VS=vs,DM=dm"	"exists(\"vs\") & exists(\"dm\")"
+"106"	"check_vs_sbp_lt_dbp"	"ALL"	"Low"	"vs"	"VS SBP lt DBP"	"Check for SBP lt DBP in VS"	"* This check looks for vital signs systolic blood pressures less than diastolic blood pressures within the same timepoint"	NA	"VS does not exist or failed to read"	"VS=vs"	"VS=vs"	"exists(\"vs\")"
+"107"	"check_vs_vsdtc_after_dd"	"ALL"	"High"	"ae, ds, vs"	"VS Dose after Death Date"	"Check for VS dates occurring after death date"	"* This check looks for vital signs dates (VSDTC) that occur after death date
+* Earliest death date from AE and DS is used
+* Incomplete dates with known year and month but unknown day are imputed to the first of the month"	NA	"One or more of AE/DS/VS does not exist or failed to read"	"AE=ae,DS=ds,VS=vs"	"AE=ae,DS=ds,VS=vs"	"exists(\"ae\") & exists(\"ds\") & exists(\"vs\")"

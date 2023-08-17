@@ -203,21 +203,37 @@ if(nrow(mydf)>0){stop("Spreadsheet has duplicate Excel tab labels")}
 
 
 ## -----------------------------------------------------------------------------
-## -------   OUTPUT: Save sdtmchecksmeta ---------------------------------------
+## -------   OUTPUT: Save sdtmchecksmeta as .RData and .txt --------------------
 save(sdtmchecksmeta, file = "data/sdtmchecksmeta.RData", version=2, compress=TRUE)
 
+write.table(x = sdtmchecksmeta,
+            file = "data/sdtmchecksmeta.txt", 
+            sep = "\t")
+
+
+# sdtmchecksmeta_txt <- read.table(file = 'data/sdtmchecksmeta.txt',  
+#                      sep = '\t',                  
+#                      header = TRUE,               
+#                      stringsAsFactors = FALSE)     
+# sdtmchecksmeta_txt
 
 ## -----------------------------------------------------------------------------
-## -------   OUTPUT: Save nickname.RData ---------------------------------------
+## -------   OUTPUT: Save nickname.RData and .txt ------------------------------
 ### Keep a nickname
 
 nickname="Bubble and Squeak"
+
+# ---- create nickname.RData ----
 save(nickname, file = "data/nickname.RData", version=2)
 
+# ---- create nickname.txt ----
+write.table(x = nickname,
+            file = "data/nickname.txt", 
+            sep = "\t")
 
 
 ## -----------------------------------------------------------------------------
-## -------   OUTPUT: Save domains.RData ---------------------------------------
+## -------   OUTPUT: Save domains.RData and .txt -------------------------------
 
 ## use the latest sdtmchecksmeta.RData
 load("data/sdtmchecksmeta.RData")
@@ -228,11 +244,19 @@ str(sdtm)
 myvec=unlist(strsplit(sdtm$domains,", "))
 myvec
 myvec <- distinct(as.data.frame(myvec))
-myvec
+
 domains <- myvec[order(myvec),]
+domains <- toupper(domains)
 domains <- as.data.frame(domains)
 domains
+
+# ---- create domains.RData ----
 save(domains, file = "data/domains.RData", version=2)
+
+# ---- create domains.txt ----
+write.table(x = domains,
+            file = "data/domains.txt", 
+            sep = "\t")
 
 #load("data/domains.RData")
 #print(domains)
