@@ -51,6 +51,7 @@ reference:
   desc: Datasets used with the package.
   contents:
   - sdtmchecksmeta
+  - domains
   - nickname
 #keyword: metadata  
   
