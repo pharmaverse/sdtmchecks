@@ -38,7 +38,7 @@
 
 #' Nickname for package version
 #'
-#' A nickname associated with the package version.  Previously lived in the description file.
+#' A nickname associated with the package version. Previously lived in the description file.
 #' 
 #' @docType data
 #' @name nickname
@@ -55,7 +55,7 @@
 #'
 #' @format A data frame with a row for each SDTM domain with at least one check in the package:
 #' \describe{
-#'   \item{domains}{Lowercased SDTM domain name}
+#'   \item{domains}{Uppercased SDTM domain name}
 #'   }
 #'
 #'
@@ -66,7 +66,7 @@
 #'
 #' @examples
 #' data(domains)
-#' head(domains[,1:5])
+#' head(domains)
 #'
 #' \dontrun{
 #'  domains
