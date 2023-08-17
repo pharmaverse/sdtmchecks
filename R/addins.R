@@ -8,7 +8,7 @@
 #' @importFrom DT renderDT renderDataTable DTOutput
 #' @importFrom miniUI miniPage gadgetTitleBar miniTabstripPanel miniContentPanel
 #' @importFrom rstudioapi getActiveDocumentContext
-#' @importFrom shiny reactive paneViewer runGadget observeEvent stopapp
+#' @importFrom shiny reactive paneViewer runGadget observeEvent stopApp
 #' @importFrom dplyr %>% rename 
 #' 
 #' @export
@@ -70,8 +70,6 @@ sdtmchecksSearch <- function() {
     shiny::observeEvent(input$done, {
       invisible(shiny::stopApp())
     })
-    
-    checkdata <- sdtmchecksmetasm 
     
     sdtmchecksdisplay <-  shiny::reactive({
       
