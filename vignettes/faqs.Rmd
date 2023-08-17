@@ -22,7 +22,7 @@ vignette: >
 
 <br>
 
-**Q: How is the designation of priority of High, Medium, Low assigned?**
+**Q: How is the designation of High, Medium, Low priority assigned in the sdtmchecksmeta package?**
 
 **A:** The [`sdtmchecksmeta.RData` dataset](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) includes designation of priority. High priority typically is assigned for data checks related to death, disposition, and key safety concepts. Please note that this assignment is subjective and the package has general checks but may not cover critical domains that are study-specific. The priority level designation can be searched via the "Priority" column in [Search Data Check Functions page](https://pharmaverse.github.io/sdtmchecks/articles/search_checks.html). 
 
@@ -30,7 +30,7 @@ vignette: >
 
 **Q: Why doesn't the package install from CRAN properly?**
 
-**A:** The package is not available on CRAN and needs to be installed from GitHub. The syntax `devtools::install_github("pharmaverse/sdtmchecks")` can be used.
+**A:** The package is not available on CRAN and needs to be installed from other repos. The syntax `install.packages("sdtmchecks", repos = "https://pharmaverse.r-universe.dev")` or  `devtools::install_github("pharmaverse/sdtmchecks")` can be used.
 
 <br>
  
@@ -58,7 +58,7 @@ vignette: >
 
 **Q: What are the coverage gaps in the data checks in the package?**
 
-**A:** In general, non-standard data are not covered by these checks. In oncology Response (RS) domain data, the emphasis is on investigator-based results rather than independent review facility data reported by a vendor in light of the former typically being more standardized. 
+**A:** In general, non-standard data are not covered by these checks. In oncology Response (RS) domain data, the emphasis is on investigator-based results rather than independent review facility or blinded independent central reader (BICR) data reported by a vendor in light of the former typically being more standardized. 
 
 <br>
 
