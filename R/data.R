@@ -47,3 +47,29 @@
 #'
 
 "nickname"
+
+
+#' Domains for sdtmchecks
+#'
+#' A dataset containing domains with checks in the SDTM checks package. The data can be used as input into functions.
+#'
+#' @format A data frame with a row for each SDTM domain with at least one check in the package:
+#' \describe{
+#'   \item{domains}{Lowercased SDTM domain name}
+#'   }
+#'
+#'
+#' @docType data
+#' @usage data(domains)
+#' @keywords datasets
+#' @name domains
+#'
+#' @examples
+#' data(domains)
+#' head(domains[,1:5])
+#'
+#' \dontrun{
+#'  domains
+#' }
+
+"domains"

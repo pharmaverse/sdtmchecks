@@ -213,3 +213,28 @@ save(sdtmchecksmeta, file = "data/sdtmchecksmeta.RData", version=2, compress=TRU
 
 nickname="Bubble and Squeak"
 save(nickname, file = "data/nickname.RData", version=2)
+
+
+
+## -----------------------------------------------------------------------------
+## -------   OUTPUT: Save domains.RData ---------------------------------------
+
+## use the latest sdtmchecksmeta.RData
+load("data/sdtmchecksmeta.RData")
+sdtm <- sdtmchecksmeta
+str(sdtm)
+
+## create a single object containing the names of SDTM domains
+myvec=unlist(strsplit(sdtm$domains,", "))
+myvec
+myvec <- distinct(as.data.frame(myvec))
+myvec
+domains <- myvec[order(myvec),]
+domains <- as.data.frame(domains)
+domains
+save(domains, file = "data/domains.RData", version=2)
+
+#load("data/domains.RData")
+#print(domains)
+#str(domains)
+
