@@ -17,7 +17,8 @@ Suggests:
     knitr,
     rmarkdown (>= 2.7),
     DT,
-    testthat
+    testthat,
+    haven
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 URL: https://pharmaverse.github.io/sdtmchecks/, https://github.com/pharmaverse/sdtmchecks

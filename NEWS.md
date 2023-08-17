@@ -43,6 +43,7 @@
   * Add installation from "https://pharmaverse.r-universe.dev" [#195](https://github.com/pharmaverse/sdtmchecks/issues/195)
 * Updated **DESCRIPTION** to specify: 
   * New dependencies ([{testthat}](https://testthat.r-lib.org/), [{DT}](https://rstudio.github.io/DT/), [{openxlsx}](https://ycphs.github.io/openxlsx/)) 
+  * Suggests [haven](https://haven.tidyverse.org/) ([#201](https://github.com/pharmaverse/sdtmchecks/issues/201))
   * GitHub as Repository for sdtmchecks ([#123](https://github.com/pharmaverse/sdtmchecks/issues/123))
   * Config/testthat/edition: 3 ([#138](https://github.com/pharmaverse/sdtmchecks/pull/138))
 * Use [{renv}](https://rstudio.github.io/renv/articles/renv.html) for package dependency management, adding renvignore, renv.lock, renv subfolder and including updated .Rprofile ([#111](https://github.com/pharmaverse/sdtmchecks/issues/111))
