@@ -7,7 +7,7 @@
 \format{
 A data frame with a row for each SDTM domain with at least one check in the package:
 \describe{
-\item{domains}{Lowercased SDTM domain name}
+\item{domains}{Uppercased SDTM domain name}
 }
 }
 \usage{
@@ -18,7 +18,7 @@ A dataset containing domains with checks in the SDTM checks package. The data ca
 }
 \examples{
 data(domains)
-head(domains[,1:5])
+head(domains)
 
 \dontrun{
  domains

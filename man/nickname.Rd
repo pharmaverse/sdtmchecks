@@ -11,6 +11,6 @@ An object of class \code{character} of length 1.
 nickname
 }
 \description{
-A nickname associated with the package version.  Previously lived in the description file.
+A nickname associated with the package version. Previously lived in the description file.
 }
 \keyword{internal}
