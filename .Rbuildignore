@@ -13,9 +13,9 @@ docs
 ^docs$
 ^pkgdown$
 zzz*
-.renvignore 
-^codecov\.yml$
-R/zzz*
-inst/test*
-inst/dev/*
-inst/sdtmchecks_covr_report.R 
+.renvignore
+inst\test*
+^README\.Rmd$
+inst\dev\*
+inst\sdtmchecks_covr_report.R
+^\*\zzz_*

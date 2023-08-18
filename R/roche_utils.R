@@ -1,12 +1,12 @@
 
 #' @title Utility function to obtain Rave row
 #'
-#' @description This function derives the Rave row number from XXSPID
+#' @description This function derives the Rave row number from xxSPID
 #'
-#' @param dts dataset e.g. AE
-#' @param domains domains you wish to identify a SPID variable from
+#' @param dts dataframe e.g. AE
+#' @param domains domains you wish to identify a xxSPID variable from
 #'
-#' @return dataset with rave row number
+#' @return dataframe with Rave row number
 #'
 #'
 #' @author Stella Banjo (HackR 2021)
@@ -27,7 +27,8 @@
 #'              "FORMNAME-R:19/L:19XXXX",
 #'              "FORMNAME-R:5/L:5XXXX",
 #'              "FORMNAME-R:20/L:20XXXX"),
-#'   AESTDTC = c(rep("2020-01-01", 6))
+#'   AESTDTC = c(rep("2020-01-01", 6)),
+#'   stringsAsFactors = FALSE
 #' )
 #'
 #' roche_derive_rave_row(AE)

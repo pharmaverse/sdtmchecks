@@ -10,5 +10,4 @@ inst/test_code.R
 zzz*
 renv/library
 inst/test*
-*/zzz_*
-zzz*
+^/*/zzz_*
