@@ -7,9 +7,9 @@
 inst/doc
 docs
 inst/test_code.R
-zzz*
 renv/library
-
-
 inst/test*
+inst/dev
 ^/*/zzz_*
+*/zzz_*
+zzz*

@@ -1,6 +1,6 @@
 Package: sdtmchecks
 Title: Data Quality Checks for SDTM Datasets
-Version: 0.1.6
+Version: 0.1.6.1
 Authors@R: 
     person("Will", "Harris", , "harric17@gene.com", role = c("aut", "cre"))
 Description: Functions to identify common data issues in SDTM data. These checks are intended to be generalizable, actionable, and meaningful for analysis. 
@@ -12,15 +12,17 @@ RoxygenNote: 7.2.3
 Imports: 
     dplyr,
     tidyselect,
-    openxlsx
+    openxlsx,
+    miniUI (>= 0.1.1),
+    rstudioapi (>= 0.5),
+    shiny (>= 0.13),
+    DT
 Suggests: 
     knitr,
     rmarkdown (>= 2.7),
-    DT,
     testthat
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 URL: https://pharmaverse.github.io/sdtmchecks/, https://github.com/pharmaverse/sdtmchecks
 BugReports: https://github.com/pharmaverse/sdtmchecks/issues
 Repository: GitHub
-

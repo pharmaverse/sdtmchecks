@@ -1,0 +1,4 @@
+Name: Search data check functions
+Description: Search sdtmchecksmeta
+Binding: sdtmchecksSearch
+Interactive: true

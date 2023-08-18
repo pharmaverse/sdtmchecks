@@ -22,7 +22,7 @@ in SDTM data. These checks are intended to be **generalizable**,
 You can install {sdtmchecks} via:
 
 ``` r
-install.packages("sdtmchecks", repos = "https://pharmaverse.r-universe.dev")
+install.packages("sdtmchecks", repos = "https://pharmaverse.r-universe.dev")  
 ```
 
 Or, you can install {sdtmchecks} from [GitHub](https://github.com/):
@@ -43,6 +43,14 @@ walks you through how the package can be used.
 To search available data check functions, please see [this search
 page](https://pharmaverse.github.io/sdtmchecks/articles/search_checks.html).
 
+If using R Studio (version v0.99.878 or later), an {sdtmchecks} *addin*
+enables searchable data checks in the Viewer panel of R Studio.
+
+The main data check functions of the package are saved as R program
+files beginning with **“check\_…”** and are referenced under the [Data
+Checks](https://pharmaverse.github.io/sdtmchecks/reference/index.html#data-checks)
+portion of the Reference page.
+
 ## SDTM version
 
 This package aims to be SDTM version agnostic and does not require users
@@ -62,3 +70,11 @@ page.
 
 If you have an idea for a new check but no time for development, please
 [open an issue](https://github.com/pharmaverse/sdtmchecks/issues).
+
+## FAQs
+
+The package
+[FAQs](https://pharmaverse.github.io/sdtmchecks/articles/faqs.html) may
+provide additional information you are looking for. If not, please feel
+free to post your question as [an
+issue](https://github.com/pharmaverse/sdtmchecks/issues).
