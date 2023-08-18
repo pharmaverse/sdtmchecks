@@ -1,3 +1,7 @@
+# sdtmchecks 0.1.6.1 "Bubble and Squeak"
+
+- Development version
+
 # sdtmchecks 0.1.6 "Bubble and Squeak"
 
 ## Refinements of existing data check functions
