@@ -6,7 +6,7 @@
 
 ## Refinements of existing data check functions
 
-* Minor update to return message for `check_tu_rs_new_lesions()` and more header examples added (#98) ([#98](https://github.com/pharmaverse/sdtmchecks/issues/98))
+* Minor update to return message for [`check_tu_rs_new_lesions()`](https://pharmaverse.github.io/sdtmchecks/reference/check_tu_rs_new_lesions.html) and more header examples added ([#98](https://github.com/pharmaverse/sdtmchecks/issues/98))
 * Typo in return message corrected for [`check_ae_aetoxgr()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aetoxgr.html) ([#187](https://github.com/pharmaverse/sdtmchecks/issues/187))
 
 
@@ -49,6 +49,7 @@
   * New dependencies ([{testthat}](https://testthat.r-lib.org/), [{DT}](https://rstudio.github.io/DT/), [{openxlsx}](https://ycphs.github.io/openxlsx/)) 
   * GitHub as Repository for sdtmchecks ([#123](https://github.com/pharmaverse/sdtmchecks/issues/123))
   * Config/testthat/edition: 3 ([#138](https://github.com/pharmaverse/sdtmchecks/pull/138))
+* Include initial draft of R Studio Addin "Search data check functions" to enable user search when using the package interactively. Addins available in RStudio v0.99.878 or later ([#72](https://github.com/pharmaverse/sdtmchecks/issues/72), as suggested by [`@parmsam-pfizer`](https://github.com/parmsam-pfizer))
 * Use [{renv}](https://rstudio.github.io/renv/articles/renv.html) for package dependency management, adding renvignore, renv.lock, renv subfolder and including updated .Rprofile ([#111](https://github.com/pharmaverse/sdtmchecks/issues/111))
 * Package version 0.1.5.1 used prior to update to 0.1.6
 
