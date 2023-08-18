@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.6.1</span>
       </span>
     </div>
 
@@ -88,10 +88,15 @@
     </div>
 
     <div class="section level2">
+<h2 class="page-header" data-toc-text="0.1.6.1" id="sdtmchecks-0161-bubble-and-squeak">sdtmchecks 0.1.6.1 “Bubble and Squeak”<a class="anchor" aria-label="anchor" href="#sdtmchecks-0161-bubble-and-squeak"></a></h2>
+<ul><li>Development version</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.6" id="sdtmchecks-016-bubble-and-squeak">sdtmchecks 0.1.6 “Bubble and Squeak”<a class="anchor" aria-label="anchor" href="#sdtmchecks-016-bubble-and-squeak"></a></h2>
 <div class="section level3">
 <h3 id="refinements-of-existing-data-check-functions-0-1-6">Refinements of existing data check functions<a class="anchor" aria-label="anchor" href="#refinements-of-existing-data-check-functions-0-1-6"></a></h3>
-<ul><li>Minor update to return message for (<a href="https://pharmaverse.github.io/sdtmchecks/reference/check_tu_rs_new_lesions.html"><code>check_tu_rs_new_lesions()</code></a>) and more header examples added (<a href="https://github.com/pharmaverse/sdtmchecks/issues/98" class="external-link">#98</a>)</li>
+<ul><li>Minor update to return message for <code><a href="../reference/check_tu_rs_new_lesions.html">check_tu_rs_new_lesions()</a></code> and more header examples added (<a href="https://github.com/pharmaverse/sdtmchecks/issues/98" class="external-link">#98</a>) (<a href="https://github.com/pharmaverse/sdtmchecks/issues/98" class="external-link">#98</a>)</li>
+<li>Typo in return message corrected for <a href="https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aetoxgr.html"><code>check_ae_aetoxgr()</code></a> (<a href="https://github.com/pharmaverse/sdtmchecks/issues/187" class="external-link">#187</a>)</li>
 </ul></div>
 <div class="section level3">
 <h3 id="new-functions-0-1-6">New functions<a class="anchor" aria-label="anchor" href="#new-functions-0-1-6"></a></h3>
@@ -105,11 +110,11 @@
 <div class="section level3">
 <h3 id="documentation-updates-0-1-6">Documentation updates<a class="anchor" aria-label="anchor" href="#documentation-updates-0-1-6"></a></h3>
 <ul><li>
-<strong>New features:</strong>
+<strong>New vignettes:</strong>
 <ul><li>
 <a href="https://pharmaverse.github.io/sdtmchecks/articles/search_checks.html">Search Data Check Functions</a> published as article on pkgdown site to allow users to search data check functions (<code>check_xx....R</code>) (<a href="https://github.com/pharmaverse/sdtmchecks/issues/71" class="external-link">#71</a>)</li>
 <li>
-<a href="https://pharmaverse.github.io/sdtmchecks/articles/faqs.html">FAQ page</a>(<a href="https://github.com/pharmaverse/sdtmchecks/pull/130" class="external-link">#130</a>)</li>
+<a href="https://pharmaverse.github.io/sdtmchecks/articles/faqs.html">FAQs page</a> (<a href="https://github.com/pharmaverse/sdtmchecks/pull/130" class="external-link">#130</a>)</li>
 </ul></li>
 <li>Other minor updates:
 <ul><li>Edited <code>@title</code> of <code><a href="../reference/check_ae_aeacn_ds_disctx_covid.html">check_ae_aeacn_ds_disctx_covid()</a></code>, <code><a href="../reference/check_ae_aeacnoth_ds_stddisc_covid.html">check_ae_aeacnoth_ds_stddisc_covid()</a></code> to be single line to address warning during package build</li>
@@ -120,20 +125,31 @@
 <li>Added a few bullet points to <a href="https://r.roche.com/s/75335867330e8e3b52af3/files/pharmaverse/sdtmchecks/docs/articles/write_a_check.html" class="external-link">Writing a New Check</a>
 </li>
 <li>Updated <a href="https://pharmaverse.github.io/sdtmchecks/index.html">pkgdown site</a> based on latest version of {Roxygen2} (<a href="https://github.com/r-lib/roxygen2/releases/tag/v7.2.3" class="external-link">v7.2.3</a>) instead of (<a href="https://github.com/r-lib/roxygen2/releases/tag/v7.1.1" class="external-link">v7.1.1</a>). DESCRIPTION reflects version in RoxygenNote, and associated man/*.Rd files updated.</li>
-<li>Roxygen2 header updates to include <code>@family</code> and <code>@keyword</code> for functions in run_all_checks.R, run_check.R, utils.R (<a href="https://github.com/pharmaverse/sdtmchecks/pull/85" class="external-link">#85</a>)</li>
-<li>Moved sdtmchecks package information from <code>utils.R</code> to <code>sdtmchecks-package.R</code>
-</li>
+<li>Roxygen2 header updates to include <code>@family</code> and <code>@keyword</code> for functions in <code>run_all_checks.R</code>, <code>run_check.R</code>, <code>utils.R</code> (<a href="https://github.com/pharmaverse/sdtmchecks/pull/85" class="external-link">#85</a>)</li>
+<li>Moved sdtmchecks package information from <code>utils.R</code> to <code>sdtmchecks-package.R</code> (<a href="https://github.com/pharmaverse/sdtmchecks/pull/85" class="external-link">#85</a>)</li>
 </ul></li>
 </ul></div>
 <div class="section level3">
 <h3 id="misc-package-updates-0-1-6">Misc package updates<a class="anchor" aria-label="anchor" href="#misc-package-updates-0-1-6"></a></h3>
-<ul><li>Added unit testing (copied in from earlier internal package version) (<a href="https://github.com/pharmaverse/sdtmchecks/pull/126" class="external-link">#126</a>, <a href="https://github.com/pharmaverse/sdtmchecks/pull/112" class="external-link">#112</a>)</li>
-<li>Updated DESCRIPTION to specify:
-<ul><li>New dependencies (<a href="https://testthat.r-lib.org/" class="external-link">{testthat}</a>, <a href="https://rstudio.github.io/DT/" class="external-link">{DT}</a>, <a href="https://ycphs.github.io/openxlsx/" class="external-link">{openxlsx}</a>)</li>
-<li>GitHub as Repository for sdtmchecks</li>
-<li>Config/testthat/edition: 3</li>
+<ul><li>
+<strong>Unit tests:</strong>
+<ul><li>Added unit testing (copied in from earlier internal Roche package version) (<a href="https://github.com/pharmaverse/sdtmchecks/pull/126" class="external-link">#126</a>, <a href="https://github.com/pharmaverse/sdtmchecks/pull/112" class="external-link">#112</a>)</li>
+<li>Included more unit tests to expand coverage (<a href="https://github.com/pharmaverse/sdtmchecks/issues/141" class="external-link">#141</a>)</li>
+<li>Added GitHub action for the <a href="https://covr.r-lib.org/index.html" class="external-link">{covr}</a> (<a href="https://github.com/pharmaverse/sdtmchecks/pull/163" class="external-link">#163</a>)</li>
 </ul></li>
+<li>
+<strong>README:</strong>
+<ul><li>Added test coverage badge on README based on report from <a href="https://covr.r-lib.org/index.html" class="external-link">{covr}</a> (<a href="https://github.com/pharmaverse/sdtmchecks/issues/122" class="external-link">#122</a>, <a href="https://github.com/pharmaverse/sdtmchecks/issues/133" class="external-link">#133</a>)</li>
 <li>Included badges on README for R CMD Check and CRAN status (<a href="https://github.com/pharmaverse/sdtmchecks/pull/132" class="external-link">#132</a>)</li>
+<li>README.Rmd added to render README.md (<a href="https://github.com/pharmaverse/sdtmchecks/issues/172" class="external-link">#172</a>)</li>
+<li>Add installation from “<a href="https://pharmaverse.r-universe.dev" class="external-link uri">https://pharmaverse.r-universe.dev</a>” <a href="https://github.com/pharmaverse/sdtmchecks/issues/195" class="external-link">#195</a>
+</li>
+</ul></li>
+<li>Updated <strong>DESCRIPTION</strong> to specify:
+<ul><li>New dependencies (<a href="https://testthat.r-lib.org/" class="external-link">{testthat}</a>, <a href="https://rstudio.github.io/DT/" class="external-link">{DT}</a>, <a href="https://ycphs.github.io/openxlsx/" class="external-link">{openxlsx}</a>)</li>
+<li>GitHub as Repository for sdtmchecks (<a href="https://github.com/pharmaverse/sdtmchecks/issues/123" class="external-link">#123</a>)</li>
+<li>Config/testthat/edition: 3 (<a href="https://github.com/pharmaverse/sdtmchecks/pull/138" class="external-link">#138</a>)</li>
+</ul></li>
 <li>Use <a href="https://rstudio.github.io/renv/articles/renv.html" class="external-link">{renv}</a> for package dependency management, adding renvignore, renv.lock, renv subfolder and including updated .Rprofile (<a href="https://github.com/pharmaverse/sdtmchecks/issues/111" class="external-link">#111</a>)</li>
 <li>Package version 0.1.5.1 used prior to update to 0.1.6</li>
 </ul></div>
@@ -142,13 +158,14 @@
 <h2 class="page-header" data-toc-text="0.1.5" id="sdtmchecks-015-hunter-pi">sdtmchecks 0.1.5 “Hunter Pi”<a class="anchor" aria-label="anchor" href="#sdtmchecks-015-hunter-pi"></a></h2>
 <div class="section level3">
 <h3 id="new-data-check-functions-0-1-5">New data check functions<a class="anchor" aria-label="anchor" href="#new-data-check-functions-0-1-5"></a></h3>
-<ul><li>(<a href="https://pharmaverse.github.io/sdtmchecks/reference/check_ds_multdeath_dsstdtc.html"><code>check_ds_multdeath_dsstdtc()</code></a>) - flags if DS has multiple non-missing death dates in DSSTDTC that do not match (<a href="https://github.com/pharmaverse/sdtmchecks/issues/62" class="external-link">#62</a>)</li>
+<ul><li>
+<a href="https://pharmaverse.github.io/sdtmchecks/reference/check_ds_multdeath_dsstdtc.html"><code>check_ds_multdeath_dsstdtc()</code></a> - flags if DS has multiple non-missing death dates in DSSTDTC that do not match (<a href="https://github.com/pharmaverse/sdtmchecks/issues/62" class="external-link">#62</a>)</li>
 </ul></div>
 <div class="section level3">
 <h3 id="refinements-of-existing-data-check-functions-0-1-5">Refinements of existing data check functions<a class="anchor" aria-label="anchor" href="#refinements-of-existing-data-check-functions-0-1-5"></a></h3>
-<ul><li>Updated existing data checks to list the <code>n</code> function from dplyr in the header (<a href="https://github.com/pharmaverse/sdtmchecks/issues/67" class="external-link">#67</a>):
-<ul><li>(<a href="https://pharmaverse.github.io/sdtmchecks/reference/check_dm_usubjid_dup.html"><code>check_dm_usubjid_dup()</code></a>)</li>
-<li>(<a href="https://pharmaverse.github.io/sdtmchecks/reference/check_qs_dup.html"><code>check_qs_dup()</code></a>)</li>
+<ul><li>Updated existing data checks to list the <code>n</code> function from {dplyr} in the header (<a href="https://github.com/pharmaverse/sdtmchecks/issues/67" class="external-link">#67</a>):
+<ul><li><a href="https://pharmaverse.github.io/sdtmchecks/reference/check_dm_usubjid_dup.html"><code>check_dm_usubjid_dup()</code></a></li>
+<li><a href="https://pharmaverse.github.io/sdtmchecks/reference/check_qs_dup.html"><code>check_qs_dup()</code></a></li>
 </ul></li>
 </ul></div>
 <div class="section level3">
