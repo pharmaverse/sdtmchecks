@@ -15,3 +15,7 @@ docs
 zzz*
 .renvignore
 inst\test*
+^README\.Rmd$
+inst\dev\*
+inst\sdtmchecks_covr_report.R
+^\*\zzz_*
