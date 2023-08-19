@@ -42,15 +42,14 @@ vignette: >
 
 <br>
 
-**Q: Which domains are referenced in data check functions?**
+**Q: Which SDTM domains are referenced in data check functions?**
 
 ```{r, eval = TRUE, echo = FALSE, message = FALSE, warning = FALSE }
 library(sdtmchecks)
-
 sdtm <- sdtmchecksmeta
 myvec  <- unlist(strsplit(sdtm$domains,", "))
-mydomains <- dplyr::distinct(as.data.frame(myvec))
-domains <- toupper(mydomains[order(mydomains),]) 
+mydomains <- dplyr::arrange(dplyr::distinct(as.data.frame(myvec)))
+domains <- toupper(mydomains$myvec)
 ```
 
 **A:** The following `r nrow(mydomains)` domains are referenced in existing check functions:
