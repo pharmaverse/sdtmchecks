@@ -1,7 +1,7 @@
 #' @title Check for consistency between new lesions and overall PD response
 #'
 #' @description This checks for patients with new lesions in TU (TUSTRESC=='NEW')
-#'   but no overall response of PD (RSTESTCD=='OVRLRESP' and RSSTRESC=='PD') 
+#'   but no overall response of PD or PMD (RSTESTCD=='OVRLRESP' and RSSTRESC %in% c('PD','PMD'))
 #'   in RS. Only applies to assessments by investigator, if TUEVAL and 
 #'   RSEVAL variables available.
 #'
@@ -59,7 +59,6 @@
 #' ## pass if by IRF, even if NEW in TU
 #' check_tu_rs_new_lesions(RS,TU)
 #'
-#' 
 #' RS <- NULL
 #' 
 #' # required dataset missing 
@@ -82,9 +81,9 @@ check_tu_rs_new_lesions <- function(RS, TU) {
     ### Find new lesions in TU and overall PD responses in RS 
 
     if (TU %lacks_any% "TUEVAL") {
-        mytu = unique(subset(TU, TU$TUSTRESC == "NEW", c("USUBJID", "TUDTC")))
+        mytu = subset(TU, TU$TUSTRESC == "NEW")
     } else {
-        mytu = unique(subset(TU, TU$TUSTRESC == "NEW" & (toupper(TU$TUEVAL) == "INVESTIGATOR" | is_sas_na(TU$TUEVAL)), c("USUBJID", "TUDTC")))
+        mytu = subset(TU, TU$TUSTRESC == "NEW" & (toupper(TU$TUEVAL) == "INVESTIGATOR" | is_sas_na(TU$TUEVAL)))
     }
 
     if (RS %lacks_any% "RSEVAL") {
@@ -93,7 +92,8 @@ check_tu_rs_new_lesions <- function(RS, TU) {
         myrs = unique(subset(RS, RS$RSTESTCD == "OVRLRESP" & RS$RSSTRESC %in% c("PD","PMD") & (toupper(RS$RSEVAL) == "INVESTIGATOR" | is_sas_na(RS$RSEVAL)), c("USUBJID")))
     }
 
-    mydf = subset(mytu, !(mytu$USUBJID %in% myrs$USUBJID))
+    keeper_vars = intersect(names(TU),c("USUBJID","TUSTRESC","TUDTC","VISIT"))
+    mydf = unique(subset(mytu, !(mytu$USUBJID %in% myrs$USUBJID), keeper_vars))
     rownames(mydf) = NULL
     
 
