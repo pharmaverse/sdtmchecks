@@ -14,7 +14,6 @@ Imports:
     tidyselect,
     openxlsx,
     miniUI (>= 0.1.1),
-    rstudioapi (>= 0.5),
     shiny (>= 0.13),
     DT
 Suggests: 

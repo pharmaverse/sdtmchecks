@@ -8,7 +8,6 @@
 #'
 #' @importFrom DT renderDT renderDataTable DTOutput
 #' @importFrom miniUI miniPage gadgetTitleBar miniTabstripPanel miniContentPanel
-#' @importFrom rstudioapi getActiveDocumentContext
 #' @importFrom shiny reactive paneViewer runGadget observeEvent stopApp
 #' @importFrom dplyr %>% rename 
 #' 
@@ -19,17 +18,7 @@
 #'
 
 
-#usethis::use_package("miniUI")
-#usethis::use_package("rstudioapi")
-#usethis::use_package("shiny")
-
-
 sdtmchecksSearch <- function() {
-  
-  #library(dplyr)
-  
-  # Get the document context.
-  #context <- rstudioapi::getActiveDocumentContext()
   
   # Read in sdtmchecksmeta data file from package 
   load("data/sdtmchecksmeta.RData")
