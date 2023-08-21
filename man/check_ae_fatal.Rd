@@ -102,7 +102,7 @@ AE <- data.frame(
 
 check_ae_fatal(AE)
 
-# AETOXGR, existing but unmapped AESEV
+# AETOXGR exists but unmapped AESEV
 
  AE <- data.frame(
  USUBJID = 1:5,
@@ -113,6 +113,24 @@ check_ae_fatal(AE)
  AESDTH = c("Y","Y","N","Y",NA),
  AESEV = rep(NA,5),
  AETOXGR = c("5","5","5",NA,NA),
+ AESPID = "FORMNAME-R:12/L:2XXXX",
+ stringsAsFactors = FALSE
+)
+
+check_ae_fatal(AE)
+check_ae_fatal(AE,preproc=roche_derive_rave_row)
+
+# AETOXGR and AESEV exist, by both are unmapped
+
+ AE <- data.frame(
+ USUBJID = 1:5,
+ AESTDTC = "01JAN2017",
+ AEDECOD = c("AE1","AE2","AE3","AE4","AE5"),
+ AEOUT = "FATAL",
+ AEDTHDTC = c("01FEB2017",NA,"02FEB2017","03FEB2017",NA),
+ AESDTH = c("Y","Y","N","Y",NA),
+ AESEV = NA,
+ AETOXGR = NA,
  AESPID = "FORMNAME-R:12/L:2XXXX",
  stringsAsFactors = FALSE
 )
