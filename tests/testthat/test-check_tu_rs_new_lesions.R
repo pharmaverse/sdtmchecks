@@ -167,11 +167,9 @@ test_that("Returns false when errors present - 3", {
   
   RS <- data.frame(
    USUBJID = 1:2,
-   RSSTRESC = c("SD","NE")
+   RSSTRESC = c("SD","NE"),
+   RSTESTCD="OVRLRESP"
   )
-  
-  RS <- RS %>%
-    mutate(RSTESTCD = 'OVRLRESP')
 
   RS$RSSTRESC[2] = "PMD"
   
@@ -191,14 +189,11 @@ test_that("Returns true when no errors present - 3", {
   
   RS <- data.frame(
     USUBJID = 1:2,
-    RSSTRESC = c("SD","NE")
+    RSSTRESC = c("SD","NE"),
+    RSTESTCD="OVRLRESP"
   )
   
-  RS <- RS %>%
-    mutate(RSTESTCD = 'OVRLRESP')
-  
   RS$RSSTRESC[2] = "PMD"
-  
   
   expect_true(check_tu_rs_new_lesions(RS,TU))
   
@@ -217,11 +212,8 @@ test_that("Returns true when no errors present - 4", {
   RS <- data.frame(
     USUBJID = 1:2,
     RSSTRESC = c("SD","NE"),
-    RSEVAL=""
+    RSTESTCD="OVRLRESP"
   )
-  
-  RS <- RS %>%
-    mutate(RSTESTCD = 'OVRLRESP')
   
   RS$RSSTRESC[2] = "PMD"
   
