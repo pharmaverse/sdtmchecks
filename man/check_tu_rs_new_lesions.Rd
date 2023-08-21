@@ -38,9 +38,7 @@ RS <- data.frame(
 # required variable is missing 
 check_tu_rs_new_lesions(RS,TU)
 
-RS <- RS \%>\%
-  mutate(RSTESTCD = 'OVRLRESP')
-
+RS$RSTESTCD = 'OVRLRESP'
 
 # flag USUBJIDs with NEW 
 check_tu_rs_new_lesions(RS,TU)
