@@ -1,9 +1,10 @@
-#' Search data check functions available in sdtmchecksmeta
+#' @title Search data check functions available in sdtmchecksmeta
 #'
-#' Interactively search the check functions of the sdtmchecks package
+#' @description Interactively search the check functions of the sdtmchecks package
 #'
-#' This addin can be used to interactively subset the dataframe
-#'
+#' @details This RStudio Addin (for RStudio v0.99.878+) can be used to search 
+#' and subset the sdtmchecksmeta dataframe, when using R Studio interactively. 
+#' The data check functions searched all start with "check_..." 
 #'
 #' @importFrom DT renderDT renderDataTable DTOutput
 #' @importFrom miniUI miniPage gadgetTitleBar miniTabstripPanel miniContentPanel
@@ -12,6 +13,8 @@
 #' @importFrom dplyr %>% rename 
 #' 
 #' @export
+#' 
+#' @keywords internal
 #'
 #'
 

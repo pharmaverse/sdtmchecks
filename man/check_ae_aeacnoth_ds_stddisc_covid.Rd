@@ -2,29 +2,30 @@
 % Please edit documentation in R/check_ae_aeacnoth_ds_stddisc_covid.R
 \name{check_ae_aeacnoth_ds_stddisc_covid}
 \alias{check_ae_aeacnoth_ds_stddisc_covid}
-\title{Check for COVID-related AE leading to Study Discon without DS Study Discon}
+\title{Check for COVID-19 AE leading to Study Discon without DS Study Discon}
 \usage{
 check_ae_aeacnoth_ds_stddisc_covid(AE, DS, covid_df = NULL)
 }
 \arguments{
-\item{AE}{Adverse Events SDTM dataset with variables USUBJID, AEDECOD, AEACNOT* (can be multiple vars)}
+\item{AE}{Adverse Events SDTM dataset with variables USUBJID, AEDECOD,
+AEACNOT* (can be multiple variables)}
 
 \item{DS}{Disposition SDTM dataset with variables USUBJID, DSSCAT, DSDECOD}
 
-\item{covid_df}{dataframe of AE terms identify Covid-19, contains variable REFTERM}
+\item{covid_df}{dataframe of AE terms identify COVID-19, contains variable REFTERM}
 }
 \value{
 boolean value if check failed or passed with 'msg' attribute if the
 test failed
 }
 \description{
-Flag if patient has a record with COVID-related AE where
-AE.AEDECOD matches covid.REFTERM with event action of Study Discontinuation
-(AE.AEACNOT*=SUBJECT DISCONTINUED FROM STUDY) but missing Study Discontinuation
-record in DS (DS.DSSCAT=STUDY DISCONTINUATION)
+Flag if patient has a COVID-19 AE where AE.AEDECOD
+matches a COVID-19 preferred term event action of Study Discontinuation
+(AE.AEACNOT* includes "DISCONTINUED FROM STUDY") but missing Study Discontinuation
+record in DS (DS.DSSCAT includes "STUDY" and "DISCON" and excludes "DRUG" and
+"TREATMENT")
 }
 \examples{
-
 
 covid_df = data.frame(REFTERM = c("COVID-19",
                                   "CORONAVIRUS POSITIVE"
@@ -53,13 +54,23 @@ AE <- data.frame(
 
 DS <- data.frame(
  USUBJID = 1:3,
- DSSCAT=c("TREATMENT DISCONTINUATION","STUDY DISCONTINUATION","STUDY DISCONTINUATION"),
+ DSSCAT=c("TREATMENT DISCONTINUATION", 
+ "STUDY DISCONTINUATION",
+ "STUDY DISCONTINUATION"),
  DSDECOD="DISCON REASON"
 )
 
 check_ae_aeacnoth_ds_stddisc_covid(AE,DS,covid_df = covid_df)
 
 }
+\seealso{
+Other COVID: 
+\code{\link{check_ae_aeacn_ds_disctx_covid}()},
+\code{\link{check_dv_ae_aedecod_covid}()},
+\code{\link{check_dv_covid}()}
+}
 \author{
 Natalie Springfield
 }
+\concept{COVID}
+\keyword{COVID}

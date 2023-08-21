@@ -11,6 +11,10 @@
 #'
 #' @importFrom dplyr %>% filter mutate select
 #' @importFrom tidyselect any_of
+#' 
+#' @family OPHTH
+#' 
+#' @keywords OPHTH
 #'
 #' @export
 #'

@@ -4,7 +4,6 @@
 #'
 #' @param QS QS SDTM dataset with variables USUBJID, QSCAT, VISIT, QSDTC
 #'
-#'
 #' @return Boolean value for whether the check passed or failed, with 'msg'
 #'   attribute if the test failed
 #'

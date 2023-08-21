@@ -1,19 +1,28 @@
-#' @title Check if COVID-19 AE action DRUG WITHDRAWN then Trt Discon indicates AE
+#' @title Check for COVID-19 AE with DRUG WITHDRAWN action without DS Trt Discon
 #'
-#' @description This code checks if a patient has COVID-19 AE reported with 
-#' AEACN*=DRUG WITHDRAWN then there should also be a corresponding DS record 
-#' indicating DS.DSDECOD with 'ADVERSE EVENT' on the DISCTX form. This uses DS.DSSPID 
-#' to identify DISCTX records to differentiate them form 
+#' @description This checks for a COVID-19 AE reported with Action Taken 
+#' (AEACN*==DRUG WITHDRAWN) but without a corresponding DS record indicating 
+#' DS.DSDECOD with "ADVERSE EVENT" on any Treatment Discontinuation 
+#' form. This relies on DSSPID with the string "DISCTX" when DSCAT == 
+#' "DISPOSITION EVENT" to select Treatment Discontinuation records in DS, 
+#' as DSSCAT typically includes a text string referring to specific study
+#' drug(s).
 #'
-#' @param AE Adverse Events SDTM dataset with variables USUBJID,AETERM,AEDECOD,AESTDTC,AEACNx
-#' @param DS Disposition SDTM dataset with variables USUBJID,DSSPID,DSCAT,DSDECOD
-#' @param covid_df Dataframe of AE terms identify covid, contains variable REFTERM
+#' @param AE Adverse Events SDTM dataset with variables USUBJID, AETERM, AEDECOD, 
+#' AESTDTC, AEACNx
+#' @param DS Disposition SDTM dataset with variables USUBJID, DSSPID, DSCAT, DSDECOD
+#' @param covid_df Dataframe of AE preferred terms for COVID-19, containing the 
+#' variable REFTERM
 #'
 #' @return boolean value if check returns 0 obs, otherwise return subset dataframe.
 #'
 #' @export
 #'
 #' @author Sarwan Singh
+#' 
+#' @family COVID
+#' 
+#' @keywords COVID
 #'
 #' @examples
 #' 
@@ -46,19 +55,19 @@
 #'
 #'
 
-check_ae_aeacn_ds_disctx_covid <- function(AE,DS,covid_df = NULL){
+check_ae_aeacn_ds_disctx_covid <- function(AE,DS,covid_df = NULL) {
 
-    if(is.null(covid_df)){
+    if (is.null(covid_df)){
        
         fail("Did not detect Covid-19 Preferred Terms") 
         
-    }else if( AE %lacks_any% c("USUBJID", "AETERM", "AEDECOD", "AESTDTC","AEACN")){
+    } else if( AE %lacks_any% c("USUBJID", "AETERM", "AEDECOD", "AESTDTC", "AEACN")){
 
-        fail(lacks_msg(AE, c("USUBJID", "AETERM", "AEDECOD", "AESTDTC","AEACN")))
+        fail(lacks_msg(AE, c("USUBJID", "AETERM", "AEDECOD", "AESTDTC", "AEACN")))
 
-    }else if( DS %lacks_any% c("USUBJID","DSSPID","DSCAT","DSDECOD")){
+    } else if( DS %lacks_any% c("USUBJID", "DSSPID", "DSCAT", "DSDECOD")){
 
-        fail(lacks_msg(DS, c("USUBJID","DSSPID","DSCAT","DSDECOD")))
+        fail(lacks_msg(DS, c("USUBJID", "DSSPID", "DSCAT", "DSDECOD")))
 
     } else{
 
@@ -87,13 +96,13 @@ check_ae_aeacn_ds_disctx_covid <- function(AE,DS,covid_df = NULL){
 
         # keep records with discontinuation treatment due to AE
         ds0 <- subset(DS,
-                      DSCAT == 'DISPOSITION EVENT' & grepl("DISCTX", DSSPID) & DSDECOD == 'ADVERSE EVENT',
+                      DSCAT == "DISPOSITION EVENT" & grepl("DISCTX", DSSPID) & DSDECOD == "ADVERSE EVENT",
                       select = c("USUBJID", "DSDECOD"))
 
         # merge AE and DS
         finout <- merge(x = ae1, y = ds0,
                         by= "USUBJID",
-                        all.x = T)
+                        all.x = TRUE)
 
         # keep if only in AE and not found in DS
         mydf <- subset(finout,
@@ -102,21 +111,21 @@ check_ae_aeacn_ds_disctx_covid <- function(AE,DS,covid_df = NULL){
         )
 
         # Drop AEACN if its multiple
-        if("AEACN" %in% names(AE) & any(AE$AEACN=="MULTIPLE")){
+        if ("AEACN" %in% names(AE) & any(AE$AEACN=="MULTIPLE")) {
             mydf$AEACN=NULL
         }
 
         rownames(mydf)=NULL
 
         ### Return message if no inconsistency between AE and DS
-        if(nrow(mydf)==0){
+        if (nrow(mydf)==0) {
             pass()
 
             ### Return subset dataframe if there are records with inconsistency
-        }else if(nrow(mydf)>0){
+        } else if (nrow(mydf)>0) {
 
             return(fail(paste(length(unique(mydf$USUBJID)),
-                              " patient(s) with COVID-19 AE indicating drug withdrawn but no Treatment Discon form indicating AE. ",sep=""), mydf))
+                              " patient(s) with COVID-19 AE indicating drug withdrawn but no Treatment Discon form indicating AE. ", sep=""), mydf))
 
         } #end else if mydf>0
     }  # end else if all required vars present

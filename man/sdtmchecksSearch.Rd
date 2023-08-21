@@ -10,5 +10,8 @@ sdtmchecksSearch()
 Interactively search the check functions of the sdtmchecks package
 }
 \details{
-This addin can be used to interactively subset the dataframe
+This RStudio Addin (for RStudio v0.99.878+) can be used to search
+and subset the sdtmchecksmeta dataframe, when using R Studio interactively.
+The data check functions searched all start with "check_..."
 }
+\keyword{internal}

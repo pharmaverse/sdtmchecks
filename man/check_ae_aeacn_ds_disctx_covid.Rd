@@ -2,25 +2,30 @@
 % Please edit documentation in R/check_ae_aeacn_ds_disctx_covid.R
 \name{check_ae_aeacn_ds_disctx_covid}
 \alias{check_ae_aeacn_ds_disctx_covid}
-\title{Check if COVID-19 AE action DRUG WITHDRAWN then Trt Discon indicates AE}
+\title{Check for COVID-19 AE with DRUG WITHDRAWN action without DS Trt Discon}
 \usage{
 check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df = NULL)
 }
 \arguments{
-\item{AE}{Adverse Events SDTM dataset with variables USUBJID,AETERM,AEDECOD,AESTDTC,AEACNx}
+\item{AE}{Adverse Events SDTM dataset with variables USUBJID, AETERM, AEDECOD,
+AESTDTC, AEACNx}
 
-\item{DS}{Disposition SDTM dataset with variables USUBJID,DSSPID,DSCAT,DSDECOD}
+\item{DS}{Disposition SDTM dataset with variables USUBJID, DSSPID, DSCAT, DSDECOD}
 
-\item{covid_df}{Dataframe of AE terms identify covid, contains variable REFTERM}
+\item{covid_df}{Dataframe of AE preferred terms for COVID-19, containing the
+variable REFTERM}
 }
 \value{
 boolean value if check returns 0 obs, otherwise return subset dataframe.
 }
 \description{
-This code checks if a patient has COVID-19 AE reported with
-AEACN*=DRUG WITHDRAWN then there should also be a corresponding DS record
-indicating DS.DSDECOD with 'ADVERSE EVENT' on the DISCTX form. This uses DS.DSSPID
-to identify DISCTX records to differentiate them form
+This checks for a COVID-19 AE reported with Action Taken
+(AEACN*==DRUG WITHDRAWN) but without a corresponding DS record indicating
+DS.DSDECOD with "ADVERSE EVENT" on any Treatment Discontinuation
+form. This relies on DSSPID with the string "DISCTX" when DSCAT ==
+"DISPOSITION EVENT" to select Treatment Discontinuation records in DS,
+as DSSCAT typically includes a text string referring to specific study
+drug(s).
 }
 \examples{
 
@@ -53,6 +58,14 @@ check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df)
 
 
 }
+\seealso{
+Other COVID: 
+\code{\link{check_ae_aeacnoth_ds_stddisc_covid}()},
+\code{\link{check_dv_ae_aedecod_covid}()},
+\code{\link{check_dv_covid}()}
+}
 \author{
 Sarwan Singh
 }
+\concept{COVID}
+\keyword{COVID}

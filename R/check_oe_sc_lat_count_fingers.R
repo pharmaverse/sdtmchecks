@@ -7,6 +7,10 @@
 #' @param OE Ophthalmic Examination Dataset for Ophtho Study with variables USUBJID, OECAT, OELAT, VISIT, OEDTC, OETEST, OELOC, OESTAT (if present)
 #'
 #' @importFrom dplyr %>% filter mutate select
+#' 
+#' @family OPHTH
+#' 
+#' @keywords OPHTH
 #'
 #' @export
 #'

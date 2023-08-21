@@ -1,13 +1,21 @@
-#' @title Check if Study Eye met Study Eligibility criteria per SC Subject Characteristics Domain
+#' @title Check SC Eye Meeting Eligibility Criteria assignments among DM patients
 #'
-#' @description Check If SC.SCCAT = "STUDY EYE SELECTION" and SCTESTCD = "ELIGEYE", Check if SC.SCORRES has OS, OD, or OU. Flag if Missing or any other value.
+#' @description Check if SC.SCCAT = "STUDY EYE SELECTION" and SC.SCTESTCD = "ELIGEYE", 
+#' then SC.SCORRES should have "OS", "OD", or "OU" values. Flag if subject is in 
+#' DM and without an associated SC.SCORRES value or the ELIGEYE Eye Meeting 
+#' Eligibility Criteria value is not "OS", "OD", or "OU".
+#' 
+#' @param DM Subject Demographics SDTM dataset with variable USUBJID
+#' @param SC Subject Characteristics SDTM dataset for Ophtho Study with variables 
+#' USUBJID, SCTESTCD, SCTEST, SCCAT, SCORRES, SCDTC
 #'
-#' @param DM Subject Demographics Dataset with variable USUBJID
-#' @param SC Subject Characteristics Dataset for Ophtho Study with variables USUBJID, SCTESTCD, SCTEST, SCCAT, SCORRES, SCDTC
-#'
-#' @importFrom dplyr %>% filter mutate select
+#' @importFrom dplyr %>% filter mutate select left_join
 #'
 #' @export
+#' 
+#' @family OPHTH
+#' 
+#' @keywords OPHTH
 #'
 #' @author Monarch Shah (HackR 2021 Team Eye)
 #'
