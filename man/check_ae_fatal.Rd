@@ -20,7 +20,11 @@ test failed
 }
 \description{
 This check looks for consistency in AESDTH, AEDTHDTC, and
-AETOXGR (if applicable) when AEOUT is 'FATAL'
+AETOXGR (if applicable) when AEOUT is 'FATAL'.  Note, this check expects
+AE grade/severity variables to be populated for either all records or none.
+In a case where both AETOXGR and AESEV exist and some records are supposed
+to have AETOXGR populated while others have AESEV (ie the two variables are
+mutually exclusive) then this check will likely return false positives.
 }
 \examples{
 
