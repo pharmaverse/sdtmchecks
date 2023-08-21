@@ -107,7 +107,7 @@ check_tu_rs_new_lesions <- function(RS, TU) {
     } else if (nrow(mydf) > 0) {
 
         fail(paste("TU has ", length(unique(mydf$USUBJID)),
-                   " patient(s) with a new lesion but no overall response of PD. ",sep = ""),
+                   " patient(s) with a new lesion but no overall response indicating progression. ",sep = ""),
              mydf)
     }
 }
