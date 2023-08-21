@@ -7,8 +7,9 @@
 check_pr_prlat(PR, preproc = identity, ...)
 }
 \arguments{
-\item{PR}{Procedure/Surgery Dataset for Ophtho Study with variables USUBJID, PRCAT, PRLAT, PRTRT, PROCCUR, PRPRESP
-PRSPID (if Present), PRSTDTC (if Present), PRINDC (if Present)}
+\item{PR}{Procedure/Surgery Dataset for Ophtho Study with variables USUBJID,
+PRCAT, PRLAT, PRTRT, PROCCUR, PRPRESP, PRSPID (if Present),
+PRSTDTC (if Present), PRINDC (if Present)}
 
 \item{preproc}{An optional company specific preprocessing script}
 
@@ -78,6 +79,21 @@ check_pr_prlat(PR)
 
 
 }
+\seealso{
+Other OPHTH: 
+\code{\link{check_ae_aelat}()},
+\code{\link{check_cm_cmlat_prior_ocular}()},
+\code{\link{check_cm_cmlat}()},
+\code{\link{check_oe_bcva_1m_late_early_tot}()},
+\code{\link{check_oe_bcva_4m_late_early_tot}()},
+\code{\link{check_oe_bcva_4m_vs_1m_req}()},
+\code{\link{check_oe_bcva_tot_mismatch}()},
+\code{\link{check_oe_sc_lat_count_fingers}()},
+\code{\link{check_sc_dm_eligcrit}()},
+\code{\link{check_sc_dm_seyeselc}()}
+}
 \author{
 Tim Barnett (HackR 2021 Team Eye) Monarch Shah (Added Concurrent Ocular Procedure in this check) (copied from check_cm_cmlat)
 }
+\concept{OPHTH}
+\keyword{OPHTH}

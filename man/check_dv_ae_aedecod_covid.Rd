@@ -2,23 +2,23 @@
 % Please edit documentation in R/check_dv_ae_aedecod_covid.R
 \name{check_dv_ae_aedecod_covid}
 \alias{check_dv_ae_aedecod_covid}
-\title{Check for consistency between DV and AE for Covid-19 events}
+\title{Check for consistency between DV and AE for COVID-19 events}
 \usage{
 check_dv_ae_aedecod_covid(AE, DV, covid_df = NULL)
 }
 \arguments{
-\item{AE}{Adverse Events SDTM dataset with variables USUBJID,AEDECOD}
+\item{AE}{Adverse Events SDTM dataset with variables USUBJID, AEDECOD}
 
-\item{DV}{Protocol Deviation SDTM dataset with variables USUBJID,DVREAS}
+\item{DV}{Protocol Deviation SDTM dataset with variables USUBJID, DVREAS}
 
-\item{covid_df}{Dataframe of AE terms identify covid, contains variable REFTERM}
+\item{covid_df}{Dataframe of AE terms identify COVID-19, contains variable REFTERM}
 }
 \value{
 boolean value if check returns 0 obs, otherwise return subset dataframe.
 }
 \description{
-If a patient has a DV record indicating Covid-19 then they should also have
-COVID-related AE where AE.AEDECOD matches covid.REFTERM.
+If a patient has a DV record indicating COVID-19 then they
+should also have COVID-related AE where AE.AEDECOD matches covid.REFTERM.
 }
 \examples{
 
@@ -45,6 +45,14 @@ DV <- data.frame(
 check_dv_ae_aedecod_covid(AE,DV,covid_df)
 
 }
+\seealso{
+Other COVID: 
+\code{\link{check_ae_aeacn_ds_disctx_covid}()},
+\code{\link{check_ae_aeacnoth_ds_stddisc_covid}()},
+\code{\link{check_dv_covid}()}
+}
 \author{
 Natalie Springfield
 }
+\concept{COVID}
+\keyword{COVID}
