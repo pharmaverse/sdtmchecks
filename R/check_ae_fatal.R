@@ -1,7 +1,11 @@
 #' @title Check for death variable consistency when AEOUT=="FATAL"
 #'
 #' @description This check looks for consistency in AESDTH, AEDTHDTC, and
-#' AETOXGR (if applicable) when AEOUT is 'FATAL'
+#' AETOXGR (if applicable) when AEOUT is 'FATAL'.  Note, this check expects
+#' AE grade/severity variables to be populated for either all records or none.
+#' In a case where both AETOXGR and AESEV exist and some records are supposed 
+#' to have AETOXGR populated while others have AESEV (ie the two variables are 
+#' mutually exclusive) then this check will likely return false positives.
 #'
 #' @param AE Adverse Events SDTM dataset with variables USUBJID, AEDECOD,
 #' AESTDTC, AEDTHDTC, AEOUT, AESDTH
@@ -135,10 +139,6 @@
 #'
 
 
-## Check for missing death dates when ae outcomes are fatal.
-## Note, in a case where both AETOXGR and AESEV exist and some records are supposed to have AETOXGR populated while others have AESEV (ie mutually exclusive)
-## Then this check will likely return false positives as it expects a variable to be populated for all records
-
 check_ae_fatal <- function(AE,preproc=identity,...){
   
   ###First check that required variables exist and return a message if they don't
@@ -184,8 +184,6 @@ check_ae_fatal <- function(AE,preproc=identity,...){
           filter(AEOUT=='FATAL' & (is_sas_na(AEDTHDTC) | AESDTH != "Y" | is_sas_na(AESDTH)))
       }
     }
-    
-    
     
     mydf = bind_rows(outlist)
     # leave only variables on which we want to check for fatalities and their corresponding death dates
