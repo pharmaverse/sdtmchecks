@@ -179,7 +179,7 @@ check_ae_fatal <- function(AE,preproc=identity,...){
     
     #4. If both AETOXGR or AESEV exist but both are not populated
     if((AE %has_any% "AESEV" & AE %has_any% "AETOXGR")){
-      if(all(is_sas_na(AE$AESEV)) & all(is_sas_na(AE$AESEV))){#Only run check if var is mapped
+      if(all(is_sas_na(AE$AESEV)) & all(is_sas_na(AE$AETOXGR))){#Only run check if var is mapped
         outlist[[4]] <- AE %>%
           filter(AEOUT=='FATAL' & (is_sas_na(AEDTHDTC) | AESDTH != "Y" | is_sas_na(AESDTH)))
       }
