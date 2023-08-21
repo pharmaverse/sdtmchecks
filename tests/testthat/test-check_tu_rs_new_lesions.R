@@ -200,7 +200,33 @@ test_that("Returns true when no errors present - 3", {
   RS$RSSTRESC[2] = "PMD"
   
   
-  expect_false(check_tu_rs_new_lesions(RS,TU))
+  expect_true(check_tu_rs_new_lesions(RS,TU))
+  
+})
+
+
+
+test_that("Returns true when no errors present - 4", {
+  
+  TU <- data.frame(
+    USUBJID = 1:2,
+    TUSTRESC = c("INV001","NEW"),
+    TUDTC = "2017-01-01"
+  )
+  
+  RS <- data.frame(
+    USUBJID = 1:2,
+    RSSTRESC = c("SD","NE"),
+    RSEVAL=""
+  )
+  
+  RS <- RS %>%
+    mutate(RSTESTCD = 'OVRLRESP')
+  
+  RS$RSSTRESC[2] = "PMD"
+  
+  
+  expect_true(check_tu_rs_new_lesions(RS,TU))
   
 })
 
