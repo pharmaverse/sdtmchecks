@@ -44,7 +44,9 @@ To search available data check functions, please see [this search
 page](https://pharmaverse.github.io/sdtmchecks/articles/search_checks.html).
 
 If using R Studio (version v0.99.878 or later), an {sdtmchecks} *addin*
-enables searchable data checks in the Viewer panel of R Studio.
+enables searchable data checks in the Viewer panel of R Studio. The
+search Viewer addin can be opened via the Addins dropdown or entering
+`sdtmchecks::sdtmchecksSearch()` in the RStudio Console.
 
 The main data check functions of the package are saved as R program
 files beginning with **“check\_…”** and are referenced under the [Data
