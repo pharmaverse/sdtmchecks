@@ -13,14 +13,15 @@ check_tu_rs_new_lesions(RS, TU)
 TUDTC}
 }
 \value{
-TRUE if check is passed and FALSE if check failed + 'msg' and 'data'
+TRUE if check passed and FALSE if check failed + 'msg' and 'data'
 attributes
 }
 \description{
 This checks for patients with new lesions in TU (TUSTRESC=='NEW')
-but no overall response of PD or PMD (RSTESTCD=='OVRLRESP' and RSSTRESC \%in\% c('PD','PMD'))
-in RS. Only applies to assessments by investigator, if TUEVAL and
-RSEVAL variables available.
+but no Overall Response assessment of PD (Disease Progression) or
+PMD (Progressive Metabolic Disease) in RS (i.e., (RSTESTCD=='OVRLRESP' and
+RSSTRESC \%in\% c('PD','PMD'))). Only applies to assessments by investigator,
+if TUEVAL and RSEVAL variables available.
 }
 \examples{
 
@@ -48,16 +49,24 @@ RS$RSSTRESC[2] = "PD"
 
 # flag USUBJID with NEW and without PD
 check_tu_rs_new_lesions(RS,TU)
-
+   
 # Metabolic response in heme trials
 RS$RSSTRESC[2] = "PMD"
 check_tu_rs_new_lesions(RS,TU)
 
-TU <- TU \%>\%
-mutate(TUEVAL = "INDEPENDENT ASSESSOR")
 
-RS <- RS \%>\% 
-mutate(RSEVAL = "INDEPENDENT ASSESSOR")
+# pass when USUBJIDs with new have PD
+RS <- data.frame(
+ USUBJID = 1:3,
+ RSSTRESC = c("SD","PD", "PD"), 
+ RSTESTCD = "OVRLRESP"
+)
+
+check_tu_rs_new_lesions(RS,TU)
+
+TU$TUEVAL = "INDEPENDENT ASSESSOR"
+
+RS$RSEVAL = "INDEPENDENT ASSESSOR"
 
 ## pass if by IRF, even if NEW in TU
 check_tu_rs_new_lesions(RS,TU)
