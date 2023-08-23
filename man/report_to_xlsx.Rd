@@ -27,7 +27,7 @@ dm = haven::read_sas("path/to/dm.sas7bdat")
 
 all_rec=run_all_checks(verbose = TRUE)
 
-report_to_xlsx(res=all_rec,outfile="check_results.xlsx")
+report_to_xlsx(res=all_rec, outfile="check_results.xlsx")
 
 
 }
