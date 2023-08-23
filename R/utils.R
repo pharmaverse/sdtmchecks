@@ -322,8 +322,7 @@ truncate_var_strings <- function(dt, var_name, trunc_length) {
 #' @param res results list created by run_all_checks
 #' @param outfile file path/name to write to
 #' 
-#' @importFrom openxlsx addFilter addWorksheet conditionalFormatting createStyle createWorkbook 
-#' saveWorkbook setColWidths writeComment writeData
+#' @importFrom openxlsx addFilter addWorksheet conditionalFormatting createComment createStyle createWorkbook saveWorkbook setColWidths writeComment writeData
 #' @importFrom utils packageDescription
 #' @importFrom tidyselect any_of
 #' @importFrom dplyr %>%
@@ -400,7 +399,7 @@ report_to_xlsx = function(res, outfile) {
   for(i in 1:nrow(summary_data_0)){
     
     openxlsx::writeComment(wb, "Summary results", col=2, row=i+1,
-                 comment=createComment(
+                 comment= openxlsx::createComment(
                    unlist(summary_data_0[i,"pdf_subtitle"]),
                    author = "sdtmchecks",
                    visible = FALSE,
