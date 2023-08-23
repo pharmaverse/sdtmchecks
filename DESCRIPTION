@@ -13,6 +13,7 @@ Imports:
     dplyr,
     tidyselect,
     miniUI (>= 0.1.1),
+    openxlsx,
     shiny (>= 0.13),
     DT
 Suggests: 
@@ -23,4 +24,3 @@ Config/testthat/edition: 3
 VignetteBuilder: knitr
 URL: https://pharmaverse.github.io/sdtmchecks/, https://github.com/pharmaverse/sdtmchecks
 BugReports: https://github.com/pharmaverse/sdtmchecks/issues
-Repository: GitHub
