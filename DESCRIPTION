@@ -12,14 +12,12 @@ RoxygenNote: 7.2.3
 Imports: 
     dplyr,
     tidyselect,
-    openxlsx,
-    miniUI (>= 0.1.1),
-    shiny (>= 0.13),
-    DT
+    openxlsx
 Suggests: 
     knitr,
     rmarkdown (>= 2.7),
-    testthat
+    testthat,
+    DT
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 URL: https://pharmaverse.github.io/sdtmchecks/, https://github.com/pharmaverse/sdtmchecks
