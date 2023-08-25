@@ -26,11 +26,39 @@ The sdtmchecks package contains functions to identify common data issues in SDTM
 
 ## Installation
 
-You can install {sdtmchecks} from [GitHub](https://github.com/):
+### Main version (main branch)
+
+You can install {sdtmchecks} from [GitHub](https://github.com/) repo `pharmaverse/sdtmchecks@main`:
+``` r
+# install.packages("devtools")
+devtools::install_github("pharmaverse/sdtmchecks", ref = "main")
+```
+Note: The release from *main branch* is the recommended versions for end users.
+
+
+### Development version (devel branch)
+
+The development version (based on the default *devel branch*) can be installed via:
+``` r
+install.packages("sdtmchecks", repos = "https://pharmaverse.r-universe.dev")  
+
+```
+
+Or, via [GitHub](https://github.com/) repo `pharmaverse/sdtmchecks@HEAD`:
+
 ``` r
 # install.packages("devtools")
 devtools::install_github("pharmaverse/sdtmchecks")
+
+# which is the same as: 
+devtools::install_github("pharmaverse/sdtmchecks", ref = "devel")
+
+# and also: 
+devtools::install_github("pharmaverse/sdtmchecks", ref = "HEAD")
+
 ```
+
+
 
 ## Use the package
 
