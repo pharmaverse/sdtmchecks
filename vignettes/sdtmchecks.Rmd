@@ -15,12 +15,6 @@ The purpose of the `sdtmchecks` package is to help detect and investigate potent
 To start using `sdtmchecks` first install it via
 
 ```{r, message=FALSE,eval=FALSE}
-install.packages("sdtmchecks", repos = "https://pharmaverse.r-universe.dev")
-```
-
-Or
-
-```{r, message=FALSE,eval=FALSE}
 devtools::install_github("pharmaverse/sdtmchecks")
 ```
 
