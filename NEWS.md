@@ -3,6 +3,11 @@
 ## Refinements of existing data check functions
 
 * [`check_tu_rs_new_lesions`](https://pharmaverse.github.io/sdtmchecks/reference/check_tu_rs_new_lesions.html) updated to include overall response of `PMD` as an indicator of progressive disease.  Visit info also added to check result.
+* [`check_ae_fatal`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_fatal.html) updated to address bug that was causing warning.  Logic was subsequently streamlined.
+
+## Documentation updates
+
+* `family` and `keyword` tags added to several checks to improve documentation
 
 # sdtmchecks 0.1.6 "Bubble and Squeak"
 
