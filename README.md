@@ -19,17 +19,40 @@ in SDTM data. These checks are intended to be **generalizable**,
 
 ## Installation
 
-You can install {sdtmchecks} via:
+### Main version (main branch)
+
+You can install {sdtmchecks} from [GitHub](https://github.com/) repo
+`pharmaverse/sdtmchecks@main`:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("pharmaverse/sdtmchecks", ref = "main")
+```
+
+Note: The release from *main branch* is the recommended versions for end
+users.
+
+### Development version (devel branch)
+
+The development version (based on the default *devel branch*) can be
+installed via:
 
 ``` r
 install.packages("sdtmchecks", repos = "https://pharmaverse.r-universe.dev")  
 ```
 
-Or, you can install {sdtmchecks} from [GitHub](https://github.com/):
+Or, via [GitHub](https://github.com/) repo
+`pharmaverse/sdtmchecks@HEAD`:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("pharmaverse/sdtmchecks")
+
+# which is the same as: 
+devtools::install_github("pharmaverse/sdtmchecks", ref = "devel")
+
+# and also: 
+devtools::install_github("pharmaverse/sdtmchecks", ref = "HEAD")
 ```
 
 ## Use the package
@@ -42,11 +65,6 @@ walks you through how the package can be used.
 
 To search available data check functions, please see [this search
 page](https://pharmaverse.github.io/sdtmchecks/articles/search_checks.html).
-
-If using R Studio (version v0.99.878 or later), an {sdtmchecks} *addin*
-enables searchable data checks in the Viewer panel of R Studio. The
-search Viewer addin can be opened via the Addins dropdown or entering
-`sdtmchecks::sdtmchecksSearch()` in the RStudio Console.
 
 The main data check functions of the package are saved as R program
 files beginning with **“check\_…”** and are referenced under the [Data

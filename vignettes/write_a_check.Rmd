@@ -11,16 +11,15 @@ vignette: >
 
 Clinical trial datasets can contain a million different types of incorrect data. This package does not intend to comprehensively cover all scenarios in which data may be wrong. Nor does this package intend to replicate the comprehensive set of P21 data checks for SDTM. Instead, the data checks in this package are intended to be **generalizable**, **actionable**, and **meaningful for analysis**. For example many clinical trials contain the `CO` domain, however the `sdtmchecks` package does not have any functionality around this domain as it is usually not meaningful for analysis.
 
-
 ## Working Collaboratively
 
 ### GitHub
 
-The `main` branch of the [repo](https://github.com/pharmaverse/sdtmchecks) contains the latest released version and should not be used for development.
+The `main` branch (`pharmaverse/sdtmchecks@main`) contains the latest released version and should not be used for development.
 
-The `devel` branch is the default branch and contains the latest development version of the package. To start contributing, please make a feature branch off of `devel`. If there is an associated [GitHub Issue](https://github.com/pharmaverse/sdtmchecks/issues) that you are addressing, using the issue number as the prefix of the feature branch name can help align the issue being addressed and the code being developed. For example, issue [#62](https://github.com/pharmaverse/sdtmchecks/issues/62) was addressed by a branch named `62_chkdsdthmult`. 
+The `devel` branch (`pharmaverse/sdtmchecks@HEAD` or `pharmaverse/sdtmchecks@devel`) is the default branch and contains the latest development version of the package. To start contributing, please make a feature branch off of `devel`. When your code is ready to be incorporated please open a pull request that another person will review prior to merging the update into `devel`. If you do not have write access to the repository, please work off of a forked repo and [open a pull request from the fork]( 
 
-When your code is ready to be incorporated please open a pull request that another person will review prior to merging the update into `devel`. If you do not have write access to the repository, please work off of a forked repo and [open a pull request from the fork]( 
+When your code is ready to be incorporated please open a pull request that another person will review prior to merging the update into `devel`. If you do not have write access to the repository, please work off of a forked repo and [open a pull request from the fork](
 https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
 
 ### Package Dependencies
