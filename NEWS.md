@@ -1,4 +1,4 @@
-# sdtmchecks 0.1.6.1 "Bubble and Squeak"
+# sdtmchecks 0.1.6.2 "Bubble and Squeak"
 
 - Development version
 
@@ -44,12 +44,11 @@
   * Added test coverage badge on README based on report from [{covr}](https://covr.r-lib.org/index.html) ([#122](https://github.com/pharmaverse/sdtmchecks/issues/122), [#133](https://github.com/pharmaverse/sdtmchecks/issues/133))
   * Included badges on README for R CMD Check and CRAN status ([#132](https://github.com/pharmaverse/sdtmchecks/pull/132))
   * README.Rmd added to render README.md ([#172](https://github.com/pharmaverse/sdtmchecks/issues/172))
-  * Add installation from "https://pharmaverse.r-universe.dev" [#195](https://github.com/pharmaverse/sdtmchecks/issues/195)
+  * Add installation from "https://pharmaverse.r-universe.dev" (devel branch, default) [#195](https://github.com/pharmaverse/sdtmchecks/issues/195)
+  * Specify recommended installation from main branch: `devtools::install_github("pharmaverse/sdtmchecks", ref = "main")`
 * Updated **DESCRIPTION** to specify: 
-  * New dependencies ([{testthat}](https://testthat.r-lib.org/), [{DT}](https://rstudio.github.io/DT/), [{openxlsx}](https://ycphs.github.io/openxlsx/)) 
   * GitHub as Repository for sdtmchecks ([#123](https://github.com/pharmaverse/sdtmchecks/issues/123))
   * Config/testthat/edition: 3 ([#138](https://github.com/pharmaverse/sdtmchecks/pull/138))
-* Include initial draft of R Studio Addin "Search data check functions" to enable user search when using the package interactively. Addins available in RStudio v0.99.878 or later ([#72](https://github.com/pharmaverse/sdtmchecks/issues/72), as suggested by [`@parmsam-pfizer`](https://github.com/parmsam-pfizer))
 * Use [{renv}](https://rstudio.github.io/renv/articles/renv.html) for package dependency management, adding renvignore, renv.lock, renv subfolder and including updated .Rprofile ([#111](https://github.com/pharmaverse/sdtmchecks/issues/111))
 * Package version 0.1.5.1 used prior to update to 0.1.6
 
