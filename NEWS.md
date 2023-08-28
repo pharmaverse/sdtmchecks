@@ -2,7 +2,7 @@
 
 ## Refinements of existing data check functions
 
-* [`check_tu_rs_new_lesions`](https://pharmaverse.github.io/sdtmchecks/reference/check_tu_rs_new_lesions.html) updated to include overall response of `PMD` as an indicator of progressive disease.  Visit info also added to check result. ([#197](https://github.com/pharmaverse/sdtmchecks/pull/197))
+* [`check_tu_rs_new_lesions`](https://pharmaverse.github.io/sdtmchecks/reference/check_tu_rs_new_lesions.html) updated to include overall response of `PMD` as an indicator of progressive disease. Visit info also added to check result. ([#197](https://github.com/pharmaverse/sdtmchecks/pull/197))
 * [`check_ae_fatal`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_fatal.html) updated to address bug that was causing warning. Logic was subsequently streamlined. ([#215](https://github.com/pharmaverse/sdtmchecks/pull/215))
 
 
@@ -70,7 +70,7 @@
 
 * **Unit tests:** 
   * Added unit testing (copied in from earlier internal Roche package version) ([#126](https://github.com/pharmaverse/sdtmchecks/pull/126),  [#112](https://github.com/pharmaverse/sdtmchecks/pull/112))
-  * Included more unit tests to expand coverage ([#141](https://github.com/pharmaverse/sdtmchecks/issues/141)), with thanks to `@harriscw` (137, 144, 145, 155, 162), `@J-Lox` (147, 156), `@laywang142` (199, 158, 153, 146), `@sarabodach` (150, 151, 159, 160, 183)
+  * Included more unit tests to expand coverage ([#141](https://github.com/pharmaverse/sdtmchecks/issues/141)), with thanks to `@harriscw` ([#137](https://github.com/pharmaverse/sdtmchecks/pull/137), [#144](https://github.com/pharmaverse/sdtmchecks/pull/144), [#145](https://github.com/pharmaverse/sdtmchecks/pull/145), [#155](https://github.com/pharmaverse/sdtmchecks/pull/155), [#162](https://github.com/pharmaverse/sdtmchecks/pull/162)), `@J-Lox` ([#147](https://github.com/pharmaverse/sdtmchecks/pull/147), [#156](https://github.com/pharmaverse/sdtmchecks/pull/156)), `@laywang142` ([#199](https://github.com/pharmaverse/sdtmchecks/pull/199), [#158](https://github.com/pharmaverse/sdtmchecks/pull/158), [#153](https://github.com/pharmaverse/sdtmchecks/pull/153), [#146](https://github.com/pharmaverse/sdtmchecks/pull/146)), `@sarabodach` ([#150](https://github.com/pharmaverse/sdtmchecks/pull/150), [#151](https://github.com/pharmaverse/sdtmchecks/pull/151), [#159](https://github.com/pharmaverse/sdtmchecks/pull/159), [#160](https://github.com/pharmaverse/sdtmchecks/pull/160), [#183](https://github.com/pharmaverse/sdtmchecks/pull/183))
   * Added GitHub action for test coverage report produced by [{covr}](https://covr.r-lib.org/index.html) and uploaded to [codecov](https://about.codecov.io/) ([#163](https://github.com/pharmaverse/sdtmchecks/pull/163))
 * **README:** 
   * Include badges on README:
