@@ -59,7 +59,8 @@ check_ae_aeacn_ds_disctx_covid <- function(AE,DS,covid_df = NULL) {
 
     if (is.null(covid_df)){
        
-        fail("Did not detect Covid-19 Preferred Terms") 
+        message("check_ae_aeacn_ds_disctx_covid: Check not run, did not detect COVID-19 preferred terms")
+        fail("Check not run, did not detect COVID-19 preferred terms") 
         
     } else if( AE %lacks_any% c("USUBJID", "AETERM", "AEDECOD", "AESTDTC", "AEACN")){
 

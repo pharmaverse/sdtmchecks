@@ -50,7 +50,8 @@ check_dv_ae_aedecod_covid <- function(AE,DV,covid_df=NULL){
 
     if(is.null(covid_df)){
         
-        fail("Did not detect covid Terms") 
+        message("check_dv_ae_aedecod_covid: Check not run, did not detect COVID-19 preferred terms")
+        fail("Check not run, did not detect COVID-19 preferred terms") 
         
     }else if( AE %lacks_any% c("USUBJID","AEDECOD")){
 
