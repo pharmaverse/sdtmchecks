@@ -91,7 +91,16 @@ run_all_checks <- function(metads = sdtmchecksmeta,
                 ". Checks requiring this domain were not run."
             )
         )
-        }
+    }
+    
+    cat("\n")
+    
+    if(!("covid_df" %in% ls(envir = .GlobalEnv))){
+      warning("An object named 'covid_df' was not found in your global environment so the following checks were not run: 
+              check_ae_aeacn_ds_disctx_covid
+              check_ae_aeacnoth_ds_stddisc_covid
+              check_dv_ae_aedecod_covid")
+    }
     
   cat("\n")
     
