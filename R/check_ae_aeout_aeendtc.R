@@ -1,12 +1,10 @@
 #' @title Check for inconsistency between AE outcome (AEOUT) and AE end date (AEENDTC) for non-fatal AEs
 #'
-#' @description This check looks for non-fatal AEs with a populated End date(AEENDTC) but outcome
-#' (AEOUT) is not one of the following: "RECOVERED/RESOLVED", "RECOVERED/RESOLVED WITH SEQUELAE" 
-#' If AE End date is not populated (AEENDTC), AEOUT should be one of "UNKNOWN", "NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING"
+#' @description Check for non-fatal AEs with inconsistent AEOUT and AEENDTC
 #' 
-#' @param AE Adverse Events SDTM dataset with variables USUBJID, AEENDTC, AEOUT
+#' @param AE Adverse Events SDTM dataset with variables USUBJID, AETERM, AESTDTC, AEENDTC, AEOUT
 #' @param preproc An optional company specific preprocessing script
-#' @param ... Other arguments passed to methods
+#' @param ... Other arguments passed to methods 
 #'
 #' @return boolean value if check failed or passed with 'msg' attribute if the
 #'   test failed
