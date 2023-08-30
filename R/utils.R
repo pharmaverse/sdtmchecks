@@ -615,7 +615,7 @@ xlsx2list <-function(rptwb, firstrow=1){
 #' 
 #' old = readRDS("saved_reports/sdtmchecks_01JAN2023.rds")
 #' new = readRDS("saved_reports/sdtmchecks_01FEB2023.rds")
-#' res=diff_reports(old=old_report,new=new_report)
+#' res=diff_reports(old_report=old,new_report=new)
 #' 
 #' # Write out result
 #' report_to_xlsx(res,outfile=paste0("saved_reports/sdtmchecks_diff_",Sys.Date(),".xlsx"))
