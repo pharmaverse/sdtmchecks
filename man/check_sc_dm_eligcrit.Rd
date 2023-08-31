@@ -2,17 +2,21 @@
 % Please edit documentation in R/check_sc_dm_eligcrit.R
 \name{check_sc_dm_eligcrit}
 \alias{check_sc_dm_eligcrit}
-\title{Check if Study Eye met Study Eligibility criteria per SC Subject Characteristics Domain}
+\title{Check SC Eye Meeting Eligibility Criteria assignments among DM patients}
 \usage{
 check_sc_dm_eligcrit(DM, SC)
 }
 \arguments{
-\item{DM}{Subject Demographics Dataset with variable USUBJID}
+\item{DM}{Subject Demographics SDTM dataset with variable USUBJID}
 
-\item{SC}{Subject Characteristics Dataset for Ophtho Study with variables USUBJID, SCTESTCD, SCTEST, SCCAT, SCORRES, SCDTC}
+\item{SC}{Subject Characteristics SDTM dataset for Ophtho Study with variables
+USUBJID, SCTESTCD, SCTEST, SCCAT, SCORRES, SCDTC}
 }
 \description{
-Check If SC.SCCAT = "STUDY EYE SELECTION" and SCTESTCD = "ELIGEYE", Check if SC.SCORRES has OS, OD, or OU. Flag if Missing or any other value.
+Check if SC.SCCAT = "STUDY EYE SELECTION" and SC.SCTESTCD = "ELIGEYE",
+then SC.SCORRES should have "OS", "OD", or "OU" values. Flag if subject is in
+DM and without an associated SC.SCORRES value or the ELIGEYE Eye Meeting
+Eligibility Criteria value is not "OS", "OD", or "OU".
 }
 \examples{
 
@@ -45,6 +49,21 @@ check_sc_dm_eligcrit(SC=sc, DM=dm)
 
 
 }
+\seealso{
+Other OPHTH: 
+\code{\link{check_ae_aelat}()},
+\code{\link{check_cm_cmlat_prior_ocular}()},
+\code{\link{check_cm_cmlat}()},
+\code{\link{check_oe_bcva_1m_late_early_tot}()},
+\code{\link{check_oe_bcva_4m_late_early_tot}()},
+\code{\link{check_oe_bcva_4m_vs_1m_req}()},
+\code{\link{check_oe_bcva_tot_mismatch}()},
+\code{\link{check_oe_sc_lat_count_fingers}()},
+\code{\link{check_pr_prlat}()},
+\code{\link{check_sc_dm_seyeselc}()}
+}
 \author{
 Monarch Shah (HackR 2021 Team Eye)
 }
+\concept{OPHTH}
+\keyword{OPHTH}

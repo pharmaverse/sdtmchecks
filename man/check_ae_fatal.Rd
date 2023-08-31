@@ -20,7 +20,11 @@ test failed
 }
 \description{
 This check looks for consistency in AESDTH, AEDTHDTC, and
-AETOXGR (if applicable) when AEOUT is 'FATAL'
+AETOXGR (if applicable) when AEOUT is 'FATAL'.  Note, this check expects
+AE grade/severity variables to be populated for either all records or none.
+In a case where both AETOXGR and AESEV exist and some records are supposed
+to have AETOXGR populated while others have AESEV (ie the two variables are
+mutually exclusive) then this check will likely return false positives.
 }
 \examples{
 
@@ -102,7 +106,7 @@ AE <- data.frame(
 
 check_ae_fatal(AE)
 
-# AETOXGR, existing but unmapped AESEV
+# AETOXGR exists but unmapped AESEV
 
  AE <- data.frame(
  USUBJID = 1:5,
@@ -113,6 +117,24 @@ check_ae_fatal(AE)
  AESDTH = c("Y","Y","N","Y",NA),
  AESEV = rep(NA,5),
  AETOXGR = c("5","5","5",NA,NA),
+ AESPID = "FORMNAME-R:12/L:2XXXX",
+ stringsAsFactors = FALSE
+)
+
+check_ae_fatal(AE)
+check_ae_fatal(AE,preproc=roche_derive_rave_row)
+
+# AETOXGR and AESEV exist, by both are unmapped
+
+ AE <- data.frame(
+ USUBJID = 1:5,
+ AESTDTC = "01JAN2017",
+ AEDECOD = c("AE1","AE2","AE3","AE4","AE5"),
+ AEOUT = "FATAL",
+ AEDTHDTC = c("01FEB2017",NA,"02FEB2017","03FEB2017",NA),
+ AESDTH = c("Y","Y","N","Y",NA),
+ AESEV = NA,
+ AETOXGR = NA,
  AESPID = "FORMNAME-R:12/L:2XXXX",
  stringsAsFactors = FALSE
 )

@@ -13,6 +13,10 @@
 #' OERESCAT, VISIT, OEDTC, OEDY
 #'
 #' @importFrom dplyr %>% filter mutate select lag lead rename arrange summarise group_by ungroup
+#' 
+#' @family OPHTH
+#' 
+#' @keywords OPHTH
 #'
 #' @export
 #'

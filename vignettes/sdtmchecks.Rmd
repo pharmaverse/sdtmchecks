@@ -12,10 +12,11 @@ The purpose of the `sdtmchecks` package is to help detect and investigate potent
 
 ## Setting Up
 
-To start using `sdtmchecks` first install the latest version from GitHub
+To start using `sdtmchecks` first install it via
 
 ```{r, message=FALSE,eval=FALSE}
-devtools::install_github("pharmaverse/sdtmchecks")
+# install.packages("devtools")
+devtools::install_github("pharmaverse/sdtmchecks", ref="main")
 ```
 
 Then just load the package
