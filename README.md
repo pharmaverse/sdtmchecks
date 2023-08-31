@@ -48,11 +48,7 @@ Or, via [GitHub](https://github.com/) repo
 # install.packages("devtools")
 devtools::install_github("pharmaverse/sdtmchecks")
 
-# which is the same as: 
-devtools::install_github("pharmaverse/sdtmchecks", ref = "devel")
-
-# and also: 
-devtools::install_github("pharmaverse/sdtmchecks", ref = "HEAD")
+# Note that `ref = "devel"` is not needed since devel is the default branch
 ```
 
 ## Use the package
