@@ -1,21 +1,25 @@
-#' @title Check for consistency in Covid-19 DV variables, DVREAS and DVEPRELI
+#' @title Check for consistency in COVID-19 DV variables, DVREAS and DVEPRELI
 #'
 #' @description This check looks for inconsistency between DVREAS and DVEPRELI.
-#' If DVREAS has Covid-19 related deviation then DVEPRELI should not be missing and
-#' vice versa. This check applies to studies using the Protocol Deviation
-#' Management System (PDMS).
+#' If DVREAS indicates a COVID-19 related deviation, then DVEPRELI should not be 
+#' missing and vice versa. This check applies to studies using the Protocol 
+#' Deviation Management System (PDMS).
 #'
 #' @param DV Protocol Deviations SDTM dataset with variables USUBJID, DVREAS,
 #' DVEPRELI
 #'
-#' @return boolean value if check failed or passed with 'msg' attribute if the
-#'   test failed
+#' @return boolean value if check failed or passed with 'msg' attribute if the 
+#' test failed
 #'
 #' @importFrom dplyr %>% filter select
 #'
 #' @export
 #'
 #' @author Mij Rahman
+#' 
+#' @family COVID
+#' 
+#' @keywords COVID
 #'
 #' @examples
 #'

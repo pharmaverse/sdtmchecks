@@ -152,3 +152,27 @@ test_that("Function returns the failed object in attr(data)", {
 })
 
 
+test_that("function returns false when errors are present", {
+    
+    AE <- data.frame(
+        USUBJID = 1:5,
+        AESTDTC = "01JAN2017",
+        AEDECOD = c("AE1","AE2","AE3","AE4","AE5"),
+        AEOUT = "FATAL",
+        AEDTHDTC = c("01FEB2017",NA,"02FEB2017","03FEB2017",NA),
+        AESDTH = c("Y","Y","N","Y",NA),
+        AESEV = NA,
+        AETOXGR = NA,
+        AESPID = "FORMNAME-R:12/L:2XXXX",
+        stringsAsFactors = FALSE
+    )
+    
+    expect_false(check_ae_fatal(AE))
+    
+})
+
+
+
+
+
+

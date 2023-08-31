@@ -76,15 +76,15 @@ reference:
   contents:
   - roche_derive_rave_row
   - roche_covid_df
-
+  
 
 news:
  releases:
  - text: "sdtmchecks 0.1.6"  
-   href: https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-016-bubble-and-squeak
+   href: news/index.html#sdtmchecks-016-bubble-and-squeak
  - text: "sdtmchecks 0.1.5"  
-   href: https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-015-hunter-pi
+   href: news/index.html#sdtmchecks-015-hunter-pi
  - text: "sdtmchecks 0.1.2-0.1.4"
-   href: https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-014-very-cool-nickname
+   href: news/index.html#sdtmchecks-014-very-cool-nickname
  - text: "sdtmchecks 0.1.1"
-   href: https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-011-open-up
+   href: news/index.html#sdtmchecks-011-open-up

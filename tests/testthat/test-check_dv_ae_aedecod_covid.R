@@ -106,3 +106,25 @@ test_that("Function returns false when errors are present for a single input (on
     
     expect_true(check_dv_ae_aedecod_covid(AE, DV, covid_df))
 })
+
+
+test_that("function returns false when covid terms are not supplied", {
+    
+    AE <- data.frame(
+        USUBJID = 1:6,
+        AEDECOD = c("covid-19", "covid-19","some AE","some AE","CORONAVIRUS POSITIVE","UNMAPPED")
+    )
+    
+    DV <- data.frame(
+        USUBJID = 1:6,
+        DVREAS=c("SUSPECTED EPIDEMIC/PANDEMIC INFECTION",
+                 "SUSPECTED EPIDEMIC/PANDEMIC INFECTION",
+                 NA,
+                 NA,
+                 "SUSPECTED EPIDEMIC/PANDEMIC INFECTION",
+                 NA)
+    )    
+    
+    expect_false(check_dv_ae_aedecod_covid(AE,DV))
+    
+})
