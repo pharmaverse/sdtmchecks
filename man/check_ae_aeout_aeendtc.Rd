@@ -19,7 +19,10 @@ test failed
 }
 \description{
 Check for inconsistency between AE outcome (AEOUT) and
-AE end date (AEENDTC) for non-fatal AEs
+AE end date (AEENDTC) for non-fatal AEs (based on AEOUT). AE flagged if AEENDTC
+not populated when AEOUT is "RECOVERED/RESOLVED", "RECOVERED/RESOLVED WITH
+SEQUELAE". AE also flagged if AEENDTC is populated when AEOUT is
+"UNKNOWN", "NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING".
 }
 \examples{
 

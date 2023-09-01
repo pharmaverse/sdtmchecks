@@ -1,7 +1,10 @@
 #' @title Check for non-fatal AEs with inconsistent AEOUT and AEENDTC
 #'
 #' @description Check for inconsistency between AE outcome (AEOUT) and 
-#' AE end date (AEENDTC) for non-fatal AEs
+#' AE end date (AEENDTC) for non-fatal AEs (based on AEOUT). AE flagged if AEENDTC 
+#' not populated when AEOUT is "RECOVERED/RESOLVED", "RECOVERED/RESOLVED WITH 
+#' SEQUELAE". AE also flagged if AEENDTC is populated when AEOUT is 
+#' "UNKNOWN", "NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING".
 #' 
 #' @param AE Adverse Events SDTM dataset with variables USUBJID, AETERM, AESTDTC, AEENDTC, AEOUT
 #' @param preproc An optional company specific preprocessing script
@@ -59,7 +62,7 @@ check_ae_aeout_aeendtc <- function(AE,preproc=identity,...){
       select(any_of(c("USUBJID", "AETERM", "AESTDTC", "AEENDTC", "AEOUT", "RAVE")))
     
     if( nrow(df) > 0 ){
-      fail("Non-fatal AE(s) with inconsistent AEENDTC and AEOUT found. ", df)
+      fail(paste0(nrow(df), " non-fatal AE(s) with inconsistent AEENDTC and AEOUT found. "), df)
     } else {
       pass()
     }
