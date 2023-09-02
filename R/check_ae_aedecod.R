@@ -59,7 +59,7 @@ check_ae_aedecod <- function(AE,preproc=identity,...){
 
     ### Subset AE to only records with missing AEDECOD
     mydf <- AE %>%
-      select(any_of(c("USUBJID", "RAVE", "AESEQ","AESTDTC","AETERM","AEDECOD"))) %>%
+      select(any_of(c("USUBJID", "RAVE", AESTDTC", "AETERM", "AEDECOD"))) %>%
       filter(is_sas_na(AEDECOD))
 
     rownames(mydf)=NULL
