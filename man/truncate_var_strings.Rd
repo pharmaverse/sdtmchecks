@@ -47,6 +47,7 @@ truncate_var_strings(AE, var_name = "AETERM", trunc_length = 50)
 Reporting-related utility functions
 \code{\link{convert_var_to_ascii}()},
 \code{\link{create_R_script}()},
+\code{\link{diff_reports}()},
 \code{\link{xlsx2list}()}
 }
 \author{

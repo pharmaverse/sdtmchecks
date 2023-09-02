@@ -40,6 +40,7 @@ create_R_script(metads = mymetads, file = "run_the_checks.R")
 \seealso{
 Reporting-related utility functions
 \code{\link{convert_var_to_ascii}()},
+\code{\link{diff_reports}()},
 \code{\link{truncate_var_strings}()},
 \code{\link{xlsx2list}()}
 }

@@ -623,9 +623,9 @@ xlsx2list <-function(rptwb, firstrow=1){
 #' @importFrom dplyr %>% left_join mutate enexpr
 #' @export
 #' 
-#' @keywords utils_rpt
+#' @keywords ex_rpt
 #' 
-#' @family utils_rpt
+#' @family ex_rpt
 #'
 #' @examples
 #' \dontrun{
