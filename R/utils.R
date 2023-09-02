@@ -628,11 +628,24 @@ xlsx2list <-function(rptwb, firstrow=1){
 #' }
 
 
-diff_reports=function(old_report,new_report){
+diff_reports=function(old_report, new_report){
   
+  # more checks of type to be added in the future to make more robust
+  if(!("old_report" %in% ls(envir = .GlobalEnv) & (!("new_report" %in% ls(envir = .GlobalEnv))))) {
+    stop("diff_reports inputs for old_report and new_report do not match an object in your global environment")
+  }
+  else if(!("old_report" %in% ls(envir = .GlobalEnv) )) {
+    stop("diff_reports input for old_report does not match an object in your global environment")
+  }
+  else if(!("new_report" %in% ls(envir = .GlobalEnv) )) {
+    stop("diff_reports input for new_report does not match an object in your global environment")
+  }
+
+  else{
+    
   # it makes a difference which report is defined as "new" and "old"
   # this code only keeps results flagged in the new report
-  # it ignore old results not in new report (because they were resolved)
+  # it ignores old results not in new report (because they were resolved)
   
   ###
   # First: subset to only results with flagged issues in the new report
@@ -648,7 +661,7 @@ diff_reports=function(old_report,new_report){
     }else{ #FALSE if no data attributes
       FALSE
     }
-  },USE.NAMES = TRUE)
+  }, USE.NAMES=TRUE)
   
   new_issues=names(new_issues[new_issues==TRUE]) #filter to just flagged records
   new_report=new_report[new_issues] #subset new report to just flagged records
@@ -684,9 +697,11 @@ diff_reports=function(old_report,new_report){
       res_new
     }
     
-  },USE.NAMES = TRUE,simplify=FALSE)
+  }, USE.NAMES=TRUE, simplify=FALSE)
   
   return(res)
+  
+  }
   
 }
 
