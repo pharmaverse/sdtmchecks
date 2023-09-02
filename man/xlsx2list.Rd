@@ -36,7 +36,6 @@ xlsx2list(rptwb=rptwb, firstrow=1)
 Reporting-related utility functions
 \code{\link{convert_var_to_ascii}()},
 \code{\link{create_R_script}()},
-\code{\link{diff_reports}()},
 \code{\link{truncate_var_strings}()}
 }
 \concept{utils_rpt}

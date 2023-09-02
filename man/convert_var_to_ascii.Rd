@@ -39,7 +39,6 @@ convert_var_to_ascii(df, 'var')
 \seealso{
 Reporting-related utility functions
 \code{\link{create_R_script}()},
-\code{\link{diff_reports}()},
 \code{\link{truncate_var_strings}()},
 \code{\link{xlsx2list}()}
 }

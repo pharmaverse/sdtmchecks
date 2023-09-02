@@ -45,11 +45,10 @@ report_to_xlsx(res,outfile=paste0("saved_reports/sdtmchecks_diff_",Sys.Date(),".
 }
 }
 \seealso{
-Reporting-related utility functions
-\code{\link{convert_var_to_ascii}()},
-\code{\link{create_R_script}()},
-\code{\link{truncate_var_strings}()},
-\code{\link{xlsx2list}()}
+Example programs for running data checks
+\code{\link{report_to_xlsx}()},
+\code{\link{run_all_checks}()},
+\code{\link{run_check}()}
 }
-\concept{utils_rpt}
-\keyword{utils_rpt}
+\concept{ex_rpt}
+\keyword{ex_rpt}

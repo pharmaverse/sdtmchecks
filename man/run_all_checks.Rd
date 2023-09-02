@@ -55,6 +55,7 @@ all_rec<-run_all_checks(metads=sdtmchecksmeta,
 }
 \seealso{
 Example programs for running data checks
+\code{\link{diff_reports}()},
 \code{\link{report_to_xlsx}()},
 \code{\link{run_check}()}
 }
