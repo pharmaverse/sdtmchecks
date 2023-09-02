@@ -5,7 +5,7 @@
 #'              or if AEREL is missing and there is no any AERELn variable
 #'              or if AEREL has unexpected value
 #'
-#' @param AE Adverse Events SDTM dataset with variables USUBJID, AESEQ, AETERM,
+#' @param AE Adverse Events SDTM dataset with variables USUBJID, AETERM,
 #' AESTDTC, AEREL, AERELn, AESPID (if present)
 #' @param preproc An optional company specific preprocessing script
 #' @param ... Other arguments passed to methods
@@ -107,15 +107,15 @@ check_ae_aerel <- function(AE,preproc=identity,...) {
     all_aerel <- setdiff(names(AE)[grep("AEREL",names(AE))],names(AE)[grep("AERELNS",names(AE))])
 
     ###First check that required variables exist and return a message if they don't
-    if(AE %lacks_any% c("USUBJID","AESEQ","AESTDTC","AETERM","AEREL")){
+    if(AE %lacks_any% c("USUBJID","AESTDTC","AETERM","AEREL")){
 
-        fail(lacks_msg(AE, c("USUBJID","AESEQ","AESTDTC","AETERM","AEREL")))
+        fail(lacks_msg(AE, c("USUBJID","AESTDTC","AETERM","AEREL")))
 
     } else {
 
         #Apply company specific preprocessing function
         AE = preproc(AE,...)
-        AE <- AE[,intersect(names(AE), c("USUBJID","AESEQ","AESTDTC","AETERM","RAVE", all_aerel))]
+        AE <- AE[,intersect(names(AE), c("USUBJID","AESTDTC","AETERM","RAVE", all_aerel))]
 
         mydf_sub <- AE
 
