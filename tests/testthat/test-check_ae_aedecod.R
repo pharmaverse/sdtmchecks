@@ -163,7 +163,6 @@ test_that("Function returns false when any of the required variables are missing
 test_that("Function returns the failed object in attr(data)", {
   AE <- data.frame(
     USUBJID = 1:5,
-    AESEQ = 1:5,
     AESTDTC = 1:5,
     AETERM = letters[1:5],
     AEDECOD = 1:5, stringsAsFactors = FALSE
