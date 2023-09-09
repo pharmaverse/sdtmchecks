@@ -8,6 +8,10 @@
 #' @param ... Other arguments passed to methods
 #'
 #' @importFrom dplyr %>% filter select mutate
+#' 
+#' @family OPHTH
+#' 
+#' @keywords OPHTH
 #'
 #' @export
 #'

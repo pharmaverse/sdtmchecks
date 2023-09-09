@@ -3,8 +3,13 @@
 .RData
 .Ruserdata
 *.Rproj
-.Rprofile
+#.Rprofile
 inst/doc
 docs
 inst/test_code.R
+renv/library
+inst/test*
+inst/dev
+^/*/zzz_*
+*/zzz_*
 zzz*

@@ -1,3 +1,5 @@
+^renv$
+^renv\.lock$
 ^sdtmchecks_open\.Rproj$
 ^sdtmchecks\.Rproj$
 ^\.Rproj\.user$
@@ -10,3 +12,12 @@ docs
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+zzz*
+R/zzz*
+^\*\zzz_*
+inst/test*
+inst/dev/*
+inst\sdtmchecks_covr_report.R
+^codecov\.yml$
+^README\.Rmd$
+.renvignore

@@ -17,30 +17,21 @@ navbar:
       href: https://github.com/pharmaverse/sdtmchecks
 
 articles:
-- title: "Contributing to this project"
+- title: Articles
   navbar: ~
   contents:
-  - sdtmchecks
   - write_a_check
   - search_checks
+  - faqs
 
 reference:
-# Subcategories for the Reference page
-- title: "Package"
-  desc: "Reference for package."
-  navbar: ~
-  contents:
-  - sdtmchecks
-  
 - title: "Data checks"
   desc: "Functions for data checks."
-  navbar: ~
   contents:
   - matches("^check_")
   
 - title: "Data check utility functions"
   desc: "Helper functions for data checks."
-  navbar: ~
   contents:
   #- starts_with("util_")
   - pass
@@ -56,17 +47,15 @@ reference:
   - missing_month
 #keyword: utils_check
 
-- title: Metadata
+- title: "Metadata"
   desc: Datasets used with the package.
-  navbar: ~
   contents:
   - sdtmchecksmeta
   - nickname
 #keyword: metadata  
   
-- title: Reporting-related programs
-- subtitle: Example programs for running data checks
-  desc: Run one check or multiple checks
+- title: "Reporting-related programs"
+  desc: Example programs for running one or more data checks
   contents:
   - has_keyword("ex_rpt")
   # - run_all_checks
@@ -74,8 +63,7 @@ reference:
   # - report_to_xlsx
   
 - title: "Reporting-related utility functions"
-  desc: "Samples for using the package."
-  navbar: ~
+  desc: Samples for using the package.
   contents:
   - has_keyword("utils_rpt")
   # - convert_var_to_ascii 
@@ -83,18 +71,20 @@ reference:
   # - create_R_script
   # - xlsx2list
   
-- title: Company-specific utility functions
+- title: "Company-specific utility functions"
   desc: Helper functions for data checks tailored to company-specific data inputs.
   contents:
   - roche_derive_rave_row
   - roche_covid_df
-
+  
 
 news:
  releases:
+ - text: "sdtmchecks 0.1.6"  
+   href: news/index.html#sdtmchecks-016-bubble-and-squeak
  - text: "sdtmchecks 0.1.5"  
- - href: https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-015-hunter-pi
+   href: news/index.html#sdtmchecks-015-hunter-pi
  - text: "sdtmchecks 0.1.2-0.1.4"
- - href: https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-014-very-cool-nickname
+   href: news/index.html#sdtmchecks-014-very-cool-nickname
  - text: "sdtmchecks 0.1.1"
- - href: https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-011-open-up
+   href: news/index.html#sdtmchecks-011-open-up

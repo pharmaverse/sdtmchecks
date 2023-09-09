@@ -65,6 +65,21 @@ OE_1m_not_done <- data.frame(
 check_oe_bcva_4m_vs_1m_req(OE_1m_not_done)
 
 }
+\seealso{
+Other OPHTH: 
+\code{\link{check_ae_aelat}()},
+\code{\link{check_cm_cmlat_prior_ocular}()},
+\code{\link{check_cm_cmlat}()},
+\code{\link{check_oe_bcva_1m_late_early_tot}()},
+\code{\link{check_oe_bcva_4m_late_early_tot}()},
+\code{\link{check_oe_bcva_tot_mismatch}()},
+\code{\link{check_oe_sc_lat_count_fingers}()},
+\code{\link{check_pr_prlat}()},
+\code{\link{check_sc_dm_eligcrit}()},
+\code{\link{check_sc_dm_seyeselc}()}
+}
 \author{
 Rosemary Li (HackR 2021 Team Eye)
 }
+\concept{OPHTH}
+\keyword{OPHTH}

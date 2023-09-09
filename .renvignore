@@ -1,0 +1,7 @@
+inst/*
+data/* 
+!/R
+!/vignettes
+!/docs
+zzz*
+R/zzz*

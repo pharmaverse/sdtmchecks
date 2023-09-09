@@ -27,6 +27,9 @@
 
 rm(list=ls())
 
+#install.packages("googlesheets4", repos =  c(CRAN = 'https://cloud.r-project.org'))
+
+
 library(googlesheets4)
 library(dplyr)
 
@@ -90,7 +93,7 @@ sdtmchecksmeta$pdf_return = with(sdtmchecksmeta,
                                                ifelse(domains_n>=3, paste0("One or more of ", gsub(",", "/", domains2), pdf_string), ""))))
 
 sdtmchecksmeta = sdtmchecksmeta %>%
-    mutate(pdf_return = ifelse(category=="COVID",paste(pdf_return,"or covid terms not found"),pdf_return))
+    mutate(pdf_return = ifelse(category=="COVID" & domains != "dv", paste(pdf_return,"or covid terms not found"),pdf_return))
 head(sdtmchecksmeta$pdf_return)
 
 ## -------   Derive 'fxn_in' & 'exist_string' based on 'domains' --------------------------------
@@ -136,7 +139,7 @@ head(sdtmchecksmeta$exist_string)
 # drop the gDoc column (later can remove from the input spreadsheet)
 #sdtmchecksmeta = sdtmchecksmeta[,!grepl("^gdoc_pdf_return",names(sdtmchecksmeta))]
 sdtmchecksmeta = sdtmchecksmeta %>%
-    select(-domains_n, -domains2)
+    select(-domains_n, -domains2, -death, -coding, -entry, -P21)
 
 
 
@@ -201,6 +204,38 @@ mydf <- data.frame(check = sdtmchecksmeta$check,
 
 if(nrow(mydf)>0){stop("Spreadsheet has duplicate Excel tab labels")}
 
+## --- compare the update and existing df ---
+
+#install.packages("diffdf", repos =  c(CRAN = 'https://cloud.r-project.org'))
+#library(diffdf)
+
+
+## name the newly created version "new"
+new <- sdtmchecksmeta
+
+# bring in the sdtmchecksmeta dataset already incorporated in the package
+load_prior <- function() {
+    load("data/sdtmchecksmeta.RData")
+    existing_df <- sdtmchecksmeta
+    ## remove the old version that is part of the package
+    rm(sdtmchecksmeta)
+    return(existing_df)
+}
+
+## rename sdtmchecksmeta as "prior"
+prior <- load_prior()
+
+# check number of records
+nrow(new)
+nrow(prior)
+
+## confirm that only the expected changes are presented as differences
+diffdf::diffdf(new, prior)
+
+
+## name the new dataset the expected package dataframe name prior to saving
+sdtmchecksmeta <- new
+
 
 ## -----------------------------------------------------------------------------
 ## -------   OUTPUT: Save sdtmchecksmeta ---------------------------------------
@@ -210,5 +245,6 @@ save(sdtmchecksmeta, file = "data/sdtmchecksmeta.RData", version=2, compress=TRU
 ## -----------------------------------------------------------------------------
 ## -------   OUTPUT: Save nickname.RData ---------------------------------------
 ### Keep a nickname
-nickname="Hunter Pi"
+
+nickname="Bubble and Squeak"
 save(nickname, file = "data/nickname.RData", version=2)

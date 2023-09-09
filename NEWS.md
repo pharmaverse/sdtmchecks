@@ -1,12 +1,59 @@
-# sdtmchecks 0.1.6 --- not deployed yet  
+# sdtmchecks 0.1.6.2 "Bubble and Squeak"
 
 ## Refinements of existing data check functions
 
-* Minor update to return message for `check_tu_rs_new_lesions()` ([#98](https://github.com/pharmaverse/sdtmchecks/issues/98))
+* [`check_tu_rs_new_lesions`](https://pharmaverse.github.io/sdtmchecks/reference/check_tu_rs_new_lesions.html) updated to include overall response of `PMD` as an indicator of progressive disease.  Visit info also added to check result.
+
+# sdtmchecks 0.1.6 "Bubble and Squeak"
+
+## Refinements of existing data check functions
+
+* Minor update to return message for [`check_tu_rs_new_lesions()`](https://pharmaverse.github.io/sdtmchecks/reference/check_tu_rs_new_lesions.html) and more header examples added ([#98](https://github.com/pharmaverse/sdtmchecks/issues/98))
+* Typo in return message corrected for [`check_ae_aetoxgr()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aetoxgr.html) ([#187](https://github.com/pharmaverse/sdtmchecks/issues/187))
+
+
+## New functions
+* Added [`xls2list()`](https://pharmaverse.github.io/sdtmchecks/reference/xlsx2list.html) reporting function to create a list from spreadsheet tabs using the {openxlsx} package ([#85](https://github.com/pharmaverse/sdtmchecks/pull/85))
 
 ## Metadata updates
 
-* Update [`sdtmchecksmeta.RData`](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) as version=2 not version=3 for backwards compatibility with R < 3.5.0 ([#84](https://github.com/pharmaverse/sdtmchecks/issues/84))
+* [`sdtmchecksmeta.RData`](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) saves as version=2 not version=3 for backwards compatibility with R < 3.5.0 when .RData loaded ([#84](https://github.com/pharmaverse/sdtmchecks/issues/84))
+
+## Documentation updates
+
+* **New vignettes:** 
+  * [Search Data Check Functions](https://pharmaverse.github.io/sdtmchecks/articles/search_checks.html) published as article on pkgdown site to allow users to search data check functions (`check_xx....R`) ([#71](https://github.com/pharmaverse/sdtmchecks/issues/71))
+  * [FAQs page](https://pharmaverse.github.io/sdtmchecks/articles/faqs.html) ([#130](https://github.com/pharmaverse/sdtmchecks/pull/130))
+
+* Other minor updates: 
+  * Edited `@title` of `check_ae_aeacn_ds_disctx_covid()`, `check_ae_aeacnoth_ds_stddisc_covid()` to be single line to address warning during package build
+  * Edited headers of `dtc_dupl_early()` and `fail()` in utils.R
+  * Commented out template assigned in [_pkgdown.yml](https://github.com/pharmaverse/sdtmchecks/blob/main/_pkgdown.yml) file ([#104](https://github.com/pharmaverse/sdtmchecks/issues/104))
+  * Added clickable version releases as links in News dropdown of pkgdown site ([#121](https://github.com/pharmaverse/sdtmchecks/pull/121))
+  * Edited headings in [Get started article](https://pharmaverse.github.io/sdtmchecks/articles/sdtmchecks.html) ([#114](https://github.com/pharmaverse/sdtmchecks/pull/114))
+  * Added a few bullet points to [Writing a New Check](https://r.roche.com/s/75335867330e8e3b52af3/files/pharmaverse/sdtmchecks/docs/articles/write_a_check.html)
+  * Updated [pkgdown site](https://pharmaverse.github.io/sdtmchecks/index.html) based on latest version of {Roxygen2} ([v7.2.3](https://github.com/r-lib/roxygen2/releases/tag/v7.2.3)) instead of ([v7.1.1](https://github.com/r-lib/roxygen2/releases/tag/v7.1.1)). DESCRIPTION reflects version in RoxygenNote, and associated man/*.Rd files updated. 
+  * Roxygen2 header updates to include `@family` and `@keyword` for functions in `run_all_checks.R`, `run_check.R`, `utils.R` ([#85](https://github.com/pharmaverse/sdtmchecks/pull/85))
+  * Moved sdtmchecks package information from `utils.R` to `sdtmchecks-package.R` ([#85](https://github.com/pharmaverse/sdtmchecks/pull/85)) 
+
+## Misc package updates
+
+* **Unit tests:** 
+  * Added unit testing (copied in from earlier internal Roche package version) ([#126](https://github.com/pharmaverse/sdtmchecks/pull/126),  [#112](https://github.com/pharmaverse/sdtmchecks/pull/112))
+  * Included more unit tests to expand coverage ([#141](https://github.com/pharmaverse/sdtmchecks/issues/141))
+  * Added GitHub action for the [{covr}](https://covr.r-lib.org/index.html) ([#163](https://github.com/pharmaverse/sdtmchecks/pull/163)) 
+* **README:** 
+  * Added test coverage badge on README based on report from [{covr}](https://covr.r-lib.org/index.html) ([#122](https://github.com/pharmaverse/sdtmchecks/issues/122), [#133](https://github.com/pharmaverse/sdtmchecks/issues/133))
+  * Included badges on README for R CMD Check and CRAN status ([#132](https://github.com/pharmaverse/sdtmchecks/pull/132))
+  * README.Rmd added to render README.md ([#172](https://github.com/pharmaverse/sdtmchecks/issues/172))
+  * Add installation from "https://pharmaverse.r-universe.dev" (devel branch, default) [#195](https://github.com/pharmaverse/sdtmchecks/issues/195)
+  * Specify recommended installation from main branch: `devtools::install_github("pharmaverse/sdtmchecks", ref = "main")`
+* Updated **DESCRIPTION** to specify: 
+  * GitHub as Repository for sdtmchecks ([#123](https://github.com/pharmaverse/sdtmchecks/issues/123))
+  * Config/testthat/edition: 3 ([#138](https://github.com/pharmaverse/sdtmchecks/pull/138))
+* Use [{renv}](https://rstudio.github.io/renv/articles/renv.html) for package dependency management, adding renvignore, renv.lock, renv subfolder and including updated .Rprofile ([#111](https://github.com/pharmaverse/sdtmchecks/issues/111))
+* Package version 0.1.5.1 used prior to update to 0.1.6
+
 
 
 
@@ -14,13 +61,13 @@
 
 ## New data check functions
 
-* `check_ds_multdeath_dsstdtc()` - flags if DS has multiple non-missing death dates in DSSTDTC that do not match ([#62](https://github.com/pharmaverse/sdtmchecks/issues/62))
+* [`check_ds_multdeath_dsstdtc()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ds_multdeath_dsstdtc.html) - flags if DS has multiple non-missing death dates in DSSTDTC that do not match ([#62](https://github.com/pharmaverse/sdtmchecks/issues/62))
 
 ## Refinements of existing data check functions
 
-* Updated existing data checks to list the `n` function from dplyr in the header ([#67](https://github.com/pharmaverse/sdtmchecks/issues/67)):
-  - `check_dm_usubjid_dup()`
-  - `check_qs_dup()`
+* Updated existing data checks to list the `n` function from {dplyr} in the header ([#67](https://github.com/pharmaverse/sdtmchecks/issues/67)):
+  - [`check_dm_usubjid_dup()`](https://pharmaverse.github.io/sdtmchecks/reference/check_dm_usubjid_dup.html)
+  - [`check_qs_dup()`](https://pharmaverse.github.io/sdtmchecks/reference/check_qs_dup.html)
 
 ## Metadata updates
 
@@ -79,15 +126,15 @@
 * Metadata corresponding to all data check functions [`sdtmchecksmeta.RData`](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) added to the data subdirectory; Roche-specific acronyms removed from descriptive text
 * Utility functions added within separate `roche_utils.R` file for Roche-specific processing and to serve as a reference for implementation of company-specific pre-processing
 * `globals.R` added with explicit list to pass through `utils::globalVariables()`
-* Other general utility functions that are invoked within `check_xx....R` functions consolidated from separate .R scripts into `utils.R`: 
-  + `pass()`
-  + `fail()`
-  + `is_sas_na()`
-  + `truncate_var_strings()`
-  + `dtc_dupl_early()`
-  + `impute_day01()`
-  + `convert_var_to_ascii()`
-  + [`%lacks_all%()`](https://pharmaverse.github.io/sdtmchecks/reference/grapes-lacks_all-grapes.html), [`%lacks_any%()`](https://pharmaverse.github.io/sdtmchecks/reference/grapes-lacks_any-grapes.html), `lacks_msg()`, [`%has_all%()`](https://pharmaverse.github.io/sdtmchecks/reference/grapes-has_all-grapes.html),  and [`%has_any%()`](https://pharmaverse.github.io/sdtmchecks/reference/grapes-has_any-grapes.html) (from `lacks_has.R`) 
+* Other general utility functions that are invoked within [`check_xx....R` functions](https://pharmaverse.github.io/sdtmchecks/reference/index.html#data-checks) consolidated from separate .R scripts into `utils.R`: 
+  + [`pass()`](https://pharmaverse.github.io/sdtmchecks/reference/pass.html)
+  + [`fail()`](https://pharmaverse.github.io/sdtmchecks/reference/fail.html)
+  + [`is_sas_na()`](https://pharmaverse.github.io/sdtmchecks/reference/is_sas_na.html)
+  + [`truncate_var_strings()`](https://pharmaverse.github.io/sdtmchecks/reference/truncate_var_strings.html)
+  + [`dtc_dupl_early()`](https://pharmaverse.github.io/sdtmchecks/reference/dtc_dupl_early.html)
+  + [`impute_day01()`](https://pharmaverse.github.io/sdtmchecks/reference/impute_day01.html)
+  + [`convert_var_to_ascii()`](https://pharmaverse.github.io/sdtmchecks/reference/convert_var_to_ascii.html)
+  + [`%lacks_all%()`](https://pharmaverse.github.io/sdtmchecks/reference/grapes-lacks_all-grapes.html), [`%lacks_any%()`](https://pharmaverse.github.io/sdtmchecks/reference/grapes-lacks_any-grapes.html), [`lacks_msg()`](https://pharmaverse.github.io/sdtmchecks/reference/lacks_msg.html), [`%has_all%()`](https://pharmaverse.github.io/sdtmchecks/reference/grapes-has_all-grapes.html),  and [`%has_any%()`](https://pharmaverse.github.io/sdtmchecks/reference/grapes-has_any-grapes.html) (from lacks_has.R) 
 * README, LICENSE, DESCRIPTION, _pkgdown.yml, vignette files tailored to github.com/pharmaverse ([#1](https://github.com/pharmaverse/sdtmchecks/issues/1))
 * Package logo added to man/figures
 * Package site created via [pkgdown](https://pkgdown.r-lib.org/index.html)

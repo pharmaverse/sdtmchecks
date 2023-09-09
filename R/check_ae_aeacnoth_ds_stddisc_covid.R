@@ -1,14 +1,15 @@
-#' @title Check for COVID-related AE leading to Study Discon without DS Study Discon
+#' @title Check for COVID-19 AE leading to Study Discon without DS Study Discon
 #'
+#' @description Flag if patient has a COVID-19 AE where AE.AEDECOD 
+#' matches a COVID-19 preferred term event action of Study Discontinuation 
+#' (AE.AEACNOT* includes "DISCONTINUED FROM STUDY") but missing Study Discontinuation
+#' record in DS (DS.DSSCAT includes "STUDY" and "DISCON" and excludes "DRUG" and 
+#' "TREATMENT")
 #'
-#' @description Flag if patient has a record with COVID-related AE where AE.AEDECOD matches covid.REFTERM
-#'        and leads to STUDY discon
-#'        (AE.AEACNOT*=SUBJECT DISCONTINUED FROM STUDY) but has no STUDY Discon record in DS
-#'        (DS.DSSCAT=STUDY DISCONTINUATION)
-#'
-#' @param AE Adverse Events SDTM dataset with variables USUBJID,AEDECOD,AEACNOT* (can be multiple vars)
-#' @param DS Discon SDTM dataset with variables USUBJID,DSSCAT,DSDECOD
-#' @param covid_df Dataframe of AE terms identify covid, contains variable REFTERM
+#' @param AE Adverse Events SDTM dataset with variables USUBJID, AEDECOD, 
+#' AEACNOT* (can be multiple variables)
+#' @param DS Disposition SDTM dataset with variables USUBJID, DSSCAT, DSDECOD
+#' @param covid_df dataframe of AE terms identify COVID-19, contains variable REFTERM
 #'
 #' @return boolean value if check failed or passed with 'msg' attribute if the
 #'   test failed
@@ -18,9 +19,12 @@
 #' @importFrom dplyr %>% filter select rename semi_join mutate distinct
 #'
 #' @author Natalie Springfield
+#' 
+#' @family COVID
+#' 
+#' @keywords COVID
 #'
 #' @examples
-#' 
 #' 
 #' covid_df = data.frame(REFTERM = c("COVID-19",
 #'                                   "CORONAVIRUS POSITIVE"
@@ -49,30 +53,34 @@
 #'
 #' DS <- data.frame(
 #'  USUBJID = 1:3,
-#'  DSSCAT=c("TREATMENT DISCONTINUATION","STUDY DISCONTINUATION","STUDY DISCONTINUATION"),
+#'  DSSCAT=c("TREATMENT DISCONTINUATION", 
+#'  "STUDY DISCONTINUATION",
+#'  "STUDY DISCONTINUATION"),
 #'  DSDECOD="DISCON REASON"
 #' )
 #'
 #' check_ae_aeacnoth_ds_stddisc_covid(AE,DS,covid_df = covid_df)
 #'
 
-check_ae_aeacnoth_ds_stddisc_covid <- function(AE,DS,covid_df = NULL){
+check_ae_aeacnoth_ds_stddisc_covid <- function(AE,DS,covid_df = NULL) {
 
     if(is.null(covid_df)){
         
-        fail("Did not detect covid Terms") 
+        message("check_ae_aeacnoth_ds_stddisc_covid: Check not run, did not detect COVID-19 preferred terms")
+        fail("Check not run, did not detect COVID-19 preferred terms") 
         
-    }else if( AE %lacks_any% c("USUBJID","AEDECOD","AEACNOTH")){
+    }else if( AE %lacks_any% c("USUBJID","AEDECOD","AEACNOTH")) {
 
-        fail(lacks_msg(AE, c("USUBJID","AEDECOD","AEACNOTH" )))
+        fail(lacks_msg(AE, c("USUBJID","AEDECOD","AEACNOTH")))
 
-    }else if( DS %lacks_any% c("USUBJID", "DSSCAT", "DSDECOD" )){
+    }else if( DS %lacks_any% c("USUBJID", "DSSCAT", "DSDECOD")) {
 
         fail(lacks_msg(DS, c("USUBJID", "DSSCAT","DSDECOD")))
 
     } else{
 
-        # Select unique uppercased COVID AE TERMS from COVID.RData
+        # Select unique COVID AE TERMS from COVID.RData
+        # apply uppercasing
         covid_ae <- covid_df %>%
             mutate(REFTERM=toupper(REFTERM)) %>%
             select(REFTERM) %>%
@@ -82,7 +90,8 @@ check_ae_aeacnoth_ds_stddisc_covid <- function(AE,DS,covid_df = NULL){
         attr(covid_ae$AEDECOD, "label") <- "Dictionary-Derived Term"
         #attributes(covid_ae$AEDECOD)
 
-        # Select AE recs where uppercased AE.AEDECOD matches COVID-related terms COVID_AE.AEDECOD
+        # Select AE records where AE.AEDECOD matches COVID-related terms COVID_AE.AEDECOD
+        # apply uppercasing
         attr(AE$AEDECOD, "label") <- "Dictionary-Derived Term"
         ae0 <- AE %>%
             mutate(AEDECOD=toupper(AEDECOD)) %>%
@@ -90,7 +99,7 @@ check_ae_aeacnoth_ds_stddisc_covid <- function(AE,DS,covid_df = NULL){
 
         #attributes(ae0$AEDECOD)
 
-        # Select column variables matching AEACNOT* (i.e. AEACNOTH, AEACNOT*1,AEACNOT*2...)
+        # Select column variables matching AEACNOT* (i.e. AEACNOTH, AEACNOT*1, AEACNOT*2...)
         aeacnoth_colnm<-colnames(ae0)[which(startsWith(colnames(ae0),"AEACNOT"))]
 
         # Select AE recs leading to STUDY DISCON use variables AEACNOT*
@@ -103,7 +112,6 @@ check_ae_aeacnoth_ds_stddisc_covid <- function(AE,DS,covid_df = NULL){
                                !grepl("DRUG", toupper(DS$DSSCAT)) &
                                !grepl("TREATMENT", toupper(DS$DSSCAT)) ),
                       select=c("USUBJID", "DSDECOD", "DSSCAT" ))
-
 
 
         # keep patients in AE who lack DS record
