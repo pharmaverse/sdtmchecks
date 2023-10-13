@@ -68,11 +68,10 @@ run_check = function(check,
     }
     
     # run a data check
-    dots <- list(...)
-    
-    fxn_params <- parse_string(fxn_in)
-      
-  
+    fxn_params <- as.list(parse(text = paste0(
+      check, "(", fxn_in, ")"
+      ))[[1]])[-1]
+
     result <- try(do.call(check, fxn_params, envir = run_env ))
     
     # check if returned data is data frame
@@ -132,9 +131,3 @@ run_check = function(check,
     
 }
 
-
-
-#' Parse strings for function
-parse_string <- function(...) {
-  print(list(...))
-}

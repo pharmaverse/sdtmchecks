@@ -66,10 +66,10 @@ run_all_checks <- function(metads = sdtmchecksmeta,
     missing.domains = expected.domains[!(expected.domains %in% ls(envir = run_env))]
     
     # Run checks
-    
     all_rec <- mcmapply(
         FUN = run_check,
-        metads$check, metads$fxn_in, metads$xls_title, metads$pdf_title, metads$pdf_subtitle, metads$pdf_return, verbose, run_env,
+        metads$check, metads$fxn_in, metads$xls_title, metads$pdf_title, metads$pdf_subtitle, metads$pdf_return, 
+        MoreArgs  = list(verbose, run_env),
         SIMPLIFY = FALSE,  # forces mcmapply to return a list
         USE.NAMES = TRUE,  # generates list names
         mc.cores = ncores
