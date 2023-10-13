@@ -12,6 +12,8 @@
 #'
 #' @param ncores Number of cores for parallel processing, default is 1 (sequential)
 #'
+#' @param run_env environment the function is executed in 
+#' 
 #' @details to look up documentation for the data checks package, please use command ??sdtmchecks
 #'
 #' @return list with results from individual checks
@@ -41,7 +43,8 @@ run_all_checks <- function(metads = sdtmchecksmeta,
                            priority = c("High", "Medium", "Low"),
                            type = c("ALL", "ONC", "COVID", "PRO", "OPHTH"),
                            verbose = TRUE,
-                           ncores = 1) {
+                           ncores = 1,
+                           run_env = parent_frame()) {
     
     if (!is.null(priority) & !all(priority %in% c("High", "Medium", "Low"))) {
         stop("priority argument should only take values 'High','Medium', or 'Low'")
@@ -60,13 +63,13 @@ run_all_checks <- function(metads = sdtmchecksmeta,
     
     #Identify missing expected domains to cat out to the user later
     expected.domains = sort(unique(strsplit(gsub(" ","",paste(unique(metads$domains),collapse=",")),",")[[1]]))
-    missing.domains = expected.domains[!(expected.domains %in% ls(envir = .GlobalEnv))]
+    missing.domains = expected.domains[!(expected.domains %in% ls(envir = run_env))]
     
     # Run checks
     
     all_rec <- mcmapply(
         FUN = run_check,
-        metads$check, metads$fxn_in, metads$xls_title, metads$pdf_title, metads$pdf_subtitle, metads$pdf_return, verbose,
+        metads$check, metads$fxn_in, metads$xls_title, metads$pdf_title, metads$pdf_subtitle, metads$pdf_return, verbose, run_env,
         SIMPLIFY = FALSE,  # forces mcmapply to return a list
         USE.NAMES = TRUE,  # generates list names
         mc.cores = ncores

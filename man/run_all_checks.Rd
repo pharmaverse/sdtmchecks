@@ -9,7 +9,8 @@ run_all_checks(
   priority = c("High", "Medium", "Low"),
   type = c("ALL", "ONC", "COVID", "PRO", "OPHTH"),
   verbose = TRUE,
-  ncores = 1
+  ncores = 1,
+  run_env = parent_frame()
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ run_all_checks(
 \item{verbose}{Whether to display messages while running}
 
 \item{ncores}{Number of cores for parallel processing, default is 1 (sequential)}
+
+\item{run_env}{environment the function is executed in}
 }
 \value{
 list with results from individual checks

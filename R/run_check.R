@@ -22,6 +22,8 @@
 #'
 #' @param verbose Whether to display messages while running
 #'
+#' @param run_env environment the function is executed in
+#' 
 #' @details to look up documentation for the data checks package, please use command ??sdtmchecks
 #'
 #' @return list with results from the check.
@@ -57,17 +59,21 @@ run_check = function(check,
                      pdf_title,
                      pdf_subtitle,
                      pdf_return,
-                     verbose){
+                     verbose,
+                     run_env = parent.frame()
+                     ){
     
     if (verbose == TRUE) { # have to print in this workaround way since cat doesn't work while parallel processing
         system(sprintf('echo "%s"', paste0("Running:", check)))
     }
     
     # run a data check
-    result <-
-        try(eval(parse(text = paste0(
-            check, "(", fxn_in, ")"
-        ))), silent = TRUE)
+    dots <- list(...)
+    
+    fxn_params <- parse_string(fxn_in)
+      
+  
+    result <- try(do.call(check, fxn_params, envir = run_env ))
     
     # check if returned data is data frame
     if (!is.null(attributes(result)$data) & !is.data.frame(attributes(result)$data)){
@@ -124,4 +130,11 @@ run_check = function(check,
     
     return(rec)
     
+}
+
+
+
+#' Parse strings for function
+parse_string <- function(...) {
+  print(list(...))
 }
