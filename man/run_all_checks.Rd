@@ -10,7 +10,7 @@ run_all_checks(
   type = c("ALL", "ONC", "COVID", "PRO", "OPHTH"),
   verbose = TRUE,
   ncores = 1,
-  run_env = parent_frame()
+  run_env = parent.frame()
 )
 }
 \arguments{

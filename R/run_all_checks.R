@@ -44,7 +44,7 @@ run_all_checks <- function(metads = sdtmchecksmeta,
                            type = c("ALL", "ONC", "COVID", "PRO", "OPHTH"),
                            verbose = TRUE,
                            ncores = 1,
-                           run_env = parent_frame()) {
+                           run_env = parent.frame()) {
     
     if (!is.null(priority) & !all(priority %in% c("High", "Medium", "Low"))) {
         stop("priority argument should only take values 'High','Medium', or 'Low'")
