@@ -11,7 +11,8 @@ run_check(
   pdf_title,
   pdf_subtitle,
   pdf_return,
-  verbose
+  verbose,
+  run_env = parent.frame()
 )
 }
 \arguments{
@@ -28,6 +29,8 @@ run_check(
 \item{pdf_return}{Text to display in PDF if check does not run.}
 
 \item{verbose}{Whether to display messages while running}
+
+\item{run_env}{environment the function is executed in}
 }
 \value{
 list with results from the check.
