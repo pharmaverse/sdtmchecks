@@ -1,11 +1,11 @@
-#' @title Check for consistency between DV and AE for Covid-19 events
+#' @title Check for consistency between DV and AE for COVID-19 events
 #'
-#' @description If a patient has a DV record indicating Covid-19 then they should also have
-#'              COVID-related AE where AE.AEDECOD matches covid.REFTERM.
+#' @description If a patient has a DV record indicating COVID-19 then they 
+#' should also have COVID-related AE where AE.AEDECOD matches covid.REFTERM.
 #'
-#' @param AE Adverse Events SDTM dataset with variables USUBJID,AEDECOD
-#' @param DV Protocol Deviation SDTM dataset with variables USUBJID,DVREAS
-#' @param covid_df Dataframe of AE terms identify covid, contains variable REFTERM
+#' @param AE Adverse Events SDTM dataset with variables USUBJID, AEDECOD
+#' @param DV Protocol Deviation SDTM dataset with variables USUBJID, DVREAS
+#' @param covid_df Dataframe of AE terms identify COVID-19, contains variable REFTERM
 #'
 #' @return boolean value if check returns 0 obs, otherwise return subset dataframe.
 #'
@@ -14,6 +14,10 @@
 #' @importFrom dplyr %>% filter select rename semi_join mutate distinct
 #'
 #' @author Natalie Springfield
+#' 
+#' @family COVID
+#' 
+#' @keywords COVID
 #'
 #' @examples
 #' 
@@ -46,7 +50,8 @@ check_dv_ae_aedecod_covid <- function(AE,DV,covid_df=NULL){
 
     if(is.null(covid_df)){
         
-        fail("Did not detect covid Terms") 
+        message("check_dv_ae_aedecod_covid: Check not run, did not detect COVID-19 preferred terms")
+        fail("Check not run, did not detect COVID-19 preferred terms") 
         
     }else if( AE %lacks_any% c("USUBJID","AEDECOD")){
 

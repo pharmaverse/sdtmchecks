@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_dv_covid.R
 \name{check_dv_covid}
 \alias{check_dv_covid}
-\title{Check for consistency in Covid-19 DV variables, DVREAS and DVEPRELI}
+\title{Check for consistency in COVID-19 DV variables, DVREAS and DVEPRELI}
 \usage{
 check_dv_covid(DV)
 }
@@ -16,9 +16,9 @@ test failed
 }
 \description{
 This check looks for inconsistency between DVREAS and DVEPRELI.
-If DVREAS has Covid-19 related deviation then DVEPRELI should not be missing and
-vice versa. This check applies to studies using the Protocol Deviation
-Management System (PDMS).
+If DVREAS indicates a COVID-19 related deviation, then DVEPRELI should not be
+missing and vice versa. This check applies to studies using the Protocol
+Deviation Management System (PDMS).
 }
 \examples{
 
@@ -32,6 +32,14 @@ DV <- data.frame(
 check_dv_covid(DV)
 
 }
+\seealso{
+Other COVID: 
+\code{\link{check_ae_aeacn_ds_disctx_covid}()},
+\code{\link{check_ae_aeacnoth_ds_stddisc_covid}()},
+\code{\link{check_dv_ae_aedecod_covid}()}
+}
 \author{
 Mij Rahman
 }
+\concept{COVID}
+\keyword{COVID}

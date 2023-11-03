@@ -149,3 +149,76 @@ test_that("Returns false when expected dataset missing", {
   # required dataset missing 
   expect_false(check_tu_rs_new_lesions(RS,TU))
 })
+
+
+
+
+
+
+
+
+test_that("Returns false when errors present - 3", {
+  
+  TU <- data.frame(
+   USUBJID = 1:3,
+   TUSTRESC = c("INV001","NEW","NEW"),
+   TUDTC = "2017-01-01"
+  )
+  
+  RS <- data.frame(
+   USUBJID = 1:2,
+   RSSTRESC = c("SD","NE"),
+   RSTESTCD="OVRLRESP"
+  )
+
+  RS$RSSTRESC[2] = "PMD"
+  
+  
+  expect_false(check_tu_rs_new_lesions(RS,TU))
+  
+})
+
+
+test_that("Returns true when no errors present - 3", {
+  
+  TU <- data.frame(
+    USUBJID = 1:2,
+    TUSTRESC = c("INV001","NEW"),
+    TUDTC = "2017-01-01"
+  )
+  
+  RS <- data.frame(
+    USUBJID = 1:2,
+    RSSTRESC = c("SD","NE"),
+    RSTESTCD="OVRLRESP"
+  )
+  
+  RS$RSSTRESC[2] = "PMD"
+  
+  expect_true(check_tu_rs_new_lesions(RS,TU))
+  
+})
+
+
+
+test_that("Returns true when no errors present - 4", {
+  
+  TU <- data.frame(
+    USUBJID = 1:2,
+    TUSTRESC = c("INV001","NEW"),
+    TUDTC = "2017-01-01"
+  )
+  
+  RS <- data.frame(
+    USUBJID = 1:2,
+    RSSTRESC = c("SD","NE"),
+    RSTESTCD="OVRLRESP"
+  )
+  
+  RS$RSSTRESC[2] = "PMD"
+  
+  
+  expect_true(check_tu_rs_new_lesions(RS,TU))
+  
+})
+

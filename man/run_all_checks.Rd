@@ -2,7 +2,7 @@
 % Please edit documentation in R/run_all_checks.R
 \name{run_all_checks}
 \alias{run_all_checks}
-\title{Run all checks in sdtmchecks package using parallel processing}
+\title{Run all data checks in sdtmchecks package using parallel processing}
 \usage{
 run_all_checks(
   metads = sdtmchecksmeta,
@@ -13,24 +13,32 @@ run_all_checks(
 )
 }
 \arguments{
-\item{metads}{Metadata to use to execute the checks.  The default is the sdtmchecksmeta dataframe available in the packages.  This object could easily be customized, e.g subset, etc.}
+\item{metads}{Metadata to use to execute the checks. The default is the
+sdtmchecksmeta dataframe available in the package. This object could
+easily be customized, subset, etc.}
 
-\item{priority}{Type of data checks priority, i.e. c("High", "Medium", "Low"). NULL runs all priority.}
+\item{priority}{Priority level of data checks, i.e., c("High", "Medium", "Low").
+NULL runs all priority levels.}
 
-\item{type}{Type of data checks, i.e. c("ALL", "ONC", "COV", "PRO", "OPHTH"). NULL runs all type.}
+\item{type}{Type of data checks, i.e., c("ALL", "ONC", "COV", "PRO", "OPHTH").
+NULL runs all type.}
 
 \item{verbose}{Whether to display messages while running}
 
-\item{ncores}{Number of cores for parallel processing, default is 1 (sequential)}
+\item{ncores}{Number of cores for parallel processing, with default set
+to 1 (sequential)}
 }
 \value{
-list with results from individual checks
+list with results from individual data check functions
 }
 \description{
-This function runs all checks in the sdtmchecks package.  It expects sdtm domains saved as dataframe objects in your global environment.  These dataframes should have lowercase names, e.g. dm.
+This function runs all checks in the sdtmchecks package.
+It expects SDTM domains saved as dataframe objects in your global environment.
+These dataframes should have lowercase names, e.g., dm.
 }
 \details{
-to look up documentation for the data checks package, please use command ??sdtmchecks
+To look up documentation for the data checks in package, please use
+command ??sdtmchecks
 }
 \examples{
 

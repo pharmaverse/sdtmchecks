@@ -4,3 +4,4 @@ data/*
 !/vignettes
 !/docs
 zzz*
+R/zzz*

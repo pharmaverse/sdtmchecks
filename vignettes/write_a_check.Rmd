@@ -9,14 +9,20 @@ vignette: >
 
 ## Background
 
-Clinical trial datasets can contain a million different types of incorrect data.  This package does not intend to comprehensively cover all scenarios in which data may be wrong.  Instead the data checks in this package are intended to be **generalizable**, **actionable**, and **meaningful for analysis**.  For example many clinical trials contain the `CO` domain, however the `sdtmchecks` package does not have any functionality around this domain as it is usually not meaningful for analysis.
+Clinical trial datasets can contain a million different types of incorrect data. This package does not intend to comprehensively cover all scenarios in which data may be wrong. Nor does this package intend to replicate the comprehensive set of P21 data checks for SDTM. Instead, the data checks in this package are intended to be **generalizable**, **actionable**, and **meaningful for analysis**. For example many clinical trials contain the `CO` domain, however the `sdtmchecks` package does not have any functionality around this domain as it is usually not meaningful for analysis.
 
-## Working in GitHub
+## Working Collaboratively
 
-The `main` branch contains the latest released version and should not be used for development.
+### GitHub
 
-The `devel` branch is the default branch and contains the latest development version of the package. To start contributing, please make a feature branch off of `devel`. When your code is ready to be incorporated please open a pull request that another person will review prior to merging the update into `devel`. If you do not have write access to the repository, please work off of a forked repo and [open a pull request from the fork]( 
+The `main` branch (`pharmaverse/sdtmchecks@main`) contains the latest released version and should not be used for development. 
+
+The `devel` branch is the default branch and contains the latest development version of the package. To start contributing, please make a feature branch off of `devel`. To install, please refer to the [front page of the package site](https://pharmaverse.github.io/sdtmchecks/). When your code is ready to be incorporated please open a pull request that another person will review prior to merging the update into `devel`. If you do not have write access to the repository, please work off of a forked repo and [open a pull request from the fork](
 https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
+
+### Package Dependencies
+
+The [{renv} package](https://rstudio.github.io/renv/articles/renv.html#collaboration) is used to handle package dependencies. Run `renv::restore()` to install the same set of package versions being used by the team.
 
 
 ## Existing Checks
@@ -38,21 +44,22 @@ head(meta,n=10)
 
 ## Good Practices
 
-- When writing a new check, the function name should start with the word 'check' and contain key dataset information plus a 1-2 word description, i.e. `check_[dataset1]_..._[datasetN]_[brief description]`.  For example:
+- When writing a new data check function, the function name should start with the word 'check' and contain key dataset information plus a 1-2 word description, i.e. `check_[dataset1]_..._[datasetN]_[brief description]`.  For example:
    - `check_dm_race <- function(DM){...}`
    - `check_dv_ae_covid <- function(DV, AE){...}`
 
 - Each function should at minimum take the datasets being investigated as parameters, e.g. `check_ae_aedecod <- function(AE){...}`
 
-- Each function should start with a check for required variables.  The following internal functions may be helpful for this: `%lacks_all%`, `%lacks_any%`, `%has_all%`, or `%has_any%`.
+- Each function should start with a check for required variables. The following internal [utility functions](https://pharmaverse.github.io/sdtmchecks/reference/index.html#data-check-utility-functions) may be helpful for this: `%lacks_all%`, `%lacks_any%`, `%has_all%`, or `%has_any%`.
 
 -  All checks should use the internal `pass()` and `fail()` functions to return either `TRUE` or `FALSE` depending on check results.  These functions enable attributes to be attached to the boolean result, e.g. a message or a listing of flagged records.
-
-- `sdtmchecks` intentionally attempts to minimize external dependencies.  This is something to keep in mind when developing a new check.  Currently the only dependencies within data check functions are `dplyr` and `tidyselect`.
+   - One convention used by this package is to have a return message for a `fail()` scenario with accompaying dataframe to have an additional space after the period. For example, `"...age value(s). "` rather than `"...age value(s)."` This extra space is a formatting detail used within an existing report.
+   
+- `sdtmchecks` intentionally attempts to minimize external dependencies. This is something to keep in mind when developing a new check. Currently the only dependencies within data check functions are `dplyr` and `tidyselect`.
 
 - Include examples with **dummied** dataframes in the header that test the logic, assumptions, and robustness of the data check function.  
-
-- Even better, include unit tests to accompany the code. 
+  - Even better, write unit tests with the [testthat](https://testthat.r-lib.org/) package. Existing unit tests are in the subdirectory [tests/testthat](https://github.com/pharmaverse/sdtmchecks/tree/devel/tests/testthat). The code written for the header examples may have significant overlap with the unit tests. 
+    
 
 
 ## Example Check
@@ -108,10 +115,11 @@ check_dm_age_missing <- function(DM){
 
 - Can any variables be considered optional rather than required? 
 - Is enough information returned that identify the issue source? For example, returning only a patient ID may not enable easy identification of the problem records. 
-- Is this check impactful for analysis?  Checking little used aspects of SDTM data can cause unnecessary work.
+- Is this check impactful for analysis? Checking little used aspects of SDTM data can cause unnecessary work.
 - Will this check be meaningful across many trials or is specific to just a small number of trials? 
-- Are false positives being minimized?  The check will not be useful if end users need to sift through a large number of incorrectly flagged records to find a one or two correctly flagged records.
+- Are false positives being minimized? The check will not be useful if end users need to sift through a large number of incorrectly flagged records to find a one or two correctly flagged records.
 - Do SDTM IG or MedDRA versions need to be considered?
+- Please consider including noteworthy details and important considerations in the `Roxygen2` header so that information is available in package documentation.
 
 
 

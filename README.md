@@ -19,17 +19,36 @@ in SDTM data. These checks are intended to be **generalizable**,
 
 ## Installation
 
-You can install {sdtmchecks} via:
+### Main version (main branch)
+
+You can install {sdtmchecks} from [GitHub](https://github.com/) repo
+`pharmaverse/sdtmchecks@main`:
 
 ``` r
-install.packages("sdtmchecks", repos = "https://pharmaverse.r-universe.dev")
+# install.packages("devtools")
+devtools::install_github("pharmaverse/sdtmchecks", ref = "main")
 ```
 
-Or, you can install {sdtmchecks} from [GitHub](https://github.com/):
+Note: The release from *main branch* is the recommended versions for end
+users.
+
+### Development version (devel branch)
+
+The development version (based on the default *devel branch*) can be
+installed via:
+
+``` r
+install.packages("sdtmchecks", repos = "https://pharmaverse.r-universe.dev")  
+```
+
+Or, via [GitHub](https://github.com/) repo
+`pharmaverse/sdtmchecks@HEAD`:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("pharmaverse/sdtmchecks")
+
+# Note that `ref = "devel"` is not needed since devel is the default branch
 ```
 
 ## Use the package
@@ -42,6 +61,11 @@ walks you through how the package can be used.
 
 To search available data check functions, please see [this search
 page](https://pharmaverse.github.io/sdtmchecks/articles/search_checks.html).
+
+The main data check functions of the package are saved as R program
+files beginning with **“check\_…”** and are referenced under the [Data
+Checks](https://pharmaverse.github.io/sdtmchecks/reference/index.html#data-checks)
+portion of the Reference page.
 
 ## SDTM version
 
@@ -62,3 +86,11 @@ page.
 
 If you have an idea for a new check but no time for development, please
 [open an issue](https://github.com/pharmaverse/sdtmchecks/issues).
+
+## FAQs
+
+The package
+[FAQs](https://pharmaverse.github.io/sdtmchecks/articles/faqs.html) may
+provide additional information you are looking for. If not, please feel
+free to post your question as [an
+issue](https://github.com/pharmaverse/sdtmchecks/issues).

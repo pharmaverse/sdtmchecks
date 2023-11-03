@@ -10,7 +10,7 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "man/figures/README-",
   out.width = "100%"
-) 
+)
 ```
 
 # sdtmchecks
@@ -23,19 +23,38 @@ knitr::opts_chunk$set(
 
 The sdtmchecks package contains functions to identify common data issues in SDTM data. These checks are intended to be **generalizable**, **actionable**, and **meaningful for analysis**.
 
+
 ## Installation
 
+### Main version (main branch)
 
-You can install {sdtmchecks} via: 
+You can install {sdtmchecks} from [GitHub](https://github.com/) repo `pharmaverse/sdtmchecks@main`:
 ``` r
-install.packages("sdtmchecks", repos = "https://pharmaverse.r-universe.dev")
+# install.packages("devtools")
+devtools::install_github("pharmaverse/sdtmchecks", ref = "main")
+```
+Note: The release from *main branch* is the recommended versions for end users.
+
+
+### Development version (devel branch)
+
+The development version (based on the default *devel branch*) can be installed via:
+``` r
+install.packages("sdtmchecks", repos = "https://pharmaverse.r-universe.dev")  
+
 ```
 
-Or, you can install {sdtmchecks} from [GitHub](https://github.com/):
+Or, via [GitHub](https://github.com/) repo `pharmaverse/sdtmchecks@HEAD`:
+
 ``` r
 # install.packages("devtools")
 devtools::install_github("pharmaverse/sdtmchecks")
+
+# Note that `ref = "devel"` is not needed since devel is the default branch
+
 ```
+
+
 
 ## Use the package
 
@@ -45,6 +64,8 @@ The [Get started page](https://pharmaverse.github.io/sdtmchecks/articles/sdtmche
 ## Data checks in the package
 
 To search available data check functions, please see [this search page](https://pharmaverse.github.io/sdtmchecks/articles/search_checks.html).
+
+The main data check functions of the package are saved as R program files beginning with **"check_..."** and are referenced under the [Data Checks](https://pharmaverse.github.io/sdtmchecks/reference/index.html#data-checks) portion of the Reference page.
 
 
 ## SDTM version
@@ -57,3 +78,8 @@ This package aims to be SDTM version agnostic and does not require users to spec
 This package has been developed internally at [Roche](https://www.roche.com/) since 2014. There may be areas where the checks expect Roche-specific SDTM implementation choices. Proposed additions or modifications should attempt to maintain generalizability for slightly different data standards across companies. For examples on how to do so and to learn more about contributing in general, please refer to the [Writing a New Check](https://pharmaverse.github.io/sdtmchecks/articles/write_a_check.html) page.  
 
 If you have an idea for a new check but no time for development, please [open an issue](https://github.com/pharmaverse/sdtmchecks/issues).
+
+
+## FAQs
+
+The package [FAQs](https://pharmaverse.github.io/sdtmchecks/articles/faqs.html) may provide additional information you are looking for. If not, please feel free to post your question as [an issue](https://github.com/pharmaverse/sdtmchecks/issues).

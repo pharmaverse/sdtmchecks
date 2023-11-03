@@ -2,8 +2,9 @@
 #'
 #' @description This check assesses observations where PRCAT contains the word OCULAR and flags records with missing/inconsistent laterality
 #'
-#' @param PR Procedure/Surgery Dataset for Ophtho Study with variables USUBJID, PRCAT, PRLAT, PRTRT, PROCCUR, PRPRESP
-#'          PRSPID (if Present), PRSTDTC (if Present), PRINDC (if Present)
+#' @param PR Procedure/Surgery Dataset for Ophtho Study with variables USUBJID, 
+#' PRCAT, PRLAT, PRTRT, PROCCUR, PRPRESP, PRSPID (if Present), 
+#' PRSTDTC (if Present), PRINDC (if Present)
 #'
 #' @importFrom dplyr %>% filter mutate select intersect
 #' @param preproc An optional company specific preprocessing script
@@ -11,6 +12,11 @@
 #'
 #' @importFrom dplyr %>% filter select
 #' @importFrom tidyselect any_of
+#' 
+#' @family OPHTH
+#' 
+#' @keywords OPHTH
+#'
 #'
 #' @export
 #'
@@ -99,13 +105,13 @@ check_pr_prlat <- function(PR,preproc=identity,...) {
         perm_var <- c("PRSTDTC", "RAVE", "PRINDC")
         int_var <- intersect(names(PR), perm_var)
 
-        my_select_var <- c("USUBJID", "PRCAT", int_var,  "PRLAT", "PRTRT")
+        my_select_var <- c("USUBJID", "PRCAT", int_var, "PRLAT", "PRTRT")
 
         mydf = PR %>%
             filter(grepl("OCULAR", toupper(PRCAT), fixed = T) & ! grepl("NON-OCULAR", toupper(PRCAT), fixed = T) & 
                        ((PRPRESP == "Y" & PROCCUR == "Y") | (is_sas_na(PRPRESP) & is_sas_na(PROCCUR)))) %>%
             select(any_of(my_select_var)) %>%
-            mutate(MISFLAG =  ifelse(!(toupper(PRLAT) %in% c("LEFT", "RIGHT", "BILATERAL")), 1, 0))
+            mutate(MISFLAG = ifelse(!(toupper(PRLAT) %in% c("LEFT", "RIGHT", "BILATERAL")), 1, 0))
 
         rownames(mydf)=NULL
 

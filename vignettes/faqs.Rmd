@@ -30,7 +30,7 @@ vignette: >
 
 **Q: Why doesn't the package install from CRAN properly?**
 
-**A:** The package is not available on CRAN and needs to be installed from GitHub. The syntax `devtools::install_github("pharmaverse/sdtmchecks")` can be used.
+**A:** The package is not available on CRAN and needs to be installed from GitHub. The syntax `devtools::install_github("pharmaverse/sdtmchecks", ref="main")` can be used and is the recommended version for end users. The "devel" branch, which is the default branch of the GitHub repo, is used for ongoing development work.
 
 <br>
  

@@ -73,6 +73,38 @@ test_that("Function returns true when no errors are present", {
 })
 
 
+test_that("function returns false when covid terms are not supplied", {
+    
+    AE <- data.frame(
+        USUBJID = 1:5,
+        AEDECOD = c("covid-19", "covid-19", "covid-19","Some AE", "CORONAVIRUS POSITIVE" ),
+        AEACNOTH=c("SUBJECT DISCONTINUED FROM STUDY",
+                   "NONE",
+                   "NONE", 
+                   "SUBJECT DISCONTINUED FROM STUDY",
+                   "NONE"),
+        AEACNOTH1=c("SUBJECT DISCONTINUED FROM STUDY", 
+                    "NONE",
+                    "SUBJECT DISCONTINUED FROM STUDY",
+                    "NONE", 
+                    "SUBJECT DISCONTINUED FROM STUDY"),
+        AEACNOTH2=c("SUBJECT DISCONTINUED FROM STUDY", 
+                    "NONE",
+                    "NONE",
+                    "SUBJECT DISCONTINUED FROM STUDY",
+                    "NONE")
+    )
+    
+    DS <- data.frame(
+        USUBJID = 1:5,
+        DSSCAT=c("STUDY DISCONTINUATION","STUDY DISCONTINUATION","STUDY DISCONTINUATION", "STUDY DISCONTINUATION", "STUDY DISCONTINUATION"),
+        DSDECOD="DISCON REASON"
+    )  
+    
+    expect_false(check_ae_aeacnoth_ds_stddisc_covid(AE,DS))
+    
+})
+
 
 
 

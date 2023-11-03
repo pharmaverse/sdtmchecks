@@ -21,6 +21,10 @@
 #'
 #' @importFrom dplyr %>% filter mutate select lag lead rename arrange summarise group_by ungroup
 #' @importFrom tidyselect all_of
+#' 
+#' @family OPHTH
+#' 
+#' @keywords OPHTH
 #'
 #' @export
 #'

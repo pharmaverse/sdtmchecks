@@ -1,13 +1,21 @@
-#' @title Check if Subject Characteristics, Study Eye Selection data is missing
+#' @title Check SC Study Eye Selection assignments among DM patients
 #'
-#' @description Check If SC.SCCAT = "STUDY EYE SELECTION" and SCTESTCD = "FOCID", Check if SC.SCORRES has OS, OD, or OU. Flag if Missing or any other value.
+#' @description Check if SC.SCCAT = "STUDY EYE SELECTION" and SC.SCTESTCD = "FOCID", 
+#' then SC.SCORRES should have "OS", "OD", or "OU" values. Flag if subject is in 
+#' DM and without an associated SC.SCORRES value or the STUDY EYE SELECTION value 
+#' is not "OS", "OD", or "OU".
 #'
-#' @param DM Subject Demographics Dataset with variable USUBJID
-#' @param SC Subject Characteristics Dataset for Ophtho Study with variables USUBJID, SCTESTCD, SCTEST, SCCAT, SCORRES, SCDTC
+#' @param DM Subject Demographics SDTM dataset with variable USUBJID
+#' @param SC Subject Characteristics SDTM dataset for Ophtho Study with variables 
+#' USUBJID, SCTESTCD, SCTEST, SCCAT, SCORRES, SCDTC
 #'
 #' @importFrom dplyr %>% filter mutate select
 #'
 #' @export
+#' 
+#' @family OPHTH
+#' 
+#' @keywords OPHTH
 #'
 #' @author Monarch Shah (HackR 2021 Team Eye)
 #'
@@ -65,7 +73,7 @@ check_sc_dm_seyeselc <- function(DM, SC) {
 
     else if (SC %lacks_any% c("USUBJID", "SCTEST", "SCTESTCD", "SCCAT", "SCORRES", "SCDTC")) {
 
-        fail(lacks_msg(SC, c("USUBJID","SCTEST","SCTESTCD","SCCAT","SCORRES", "SCDTC")))
+        fail(lacks_msg(SC, c("USUBJID", "SCTEST", "SCTESTCD", "SCCAT", "SCORRES", "SCDTC")))
     }
 
     else {
@@ -83,7 +91,7 @@ check_sc_dm_seyeselc <- function(DM, SC) {
         if ((nrow(mydf) > 0 ) == FALSE) {
             pass()
         } else {
-            fail(paste0(nrow(mydf), " Record(s) with Study Eye Selection Missing. "), mydf )
+            fail(paste0(nrow(mydf), " record(s) with Study Eye Selection missing. "), mydf )
         }
     }
 }
