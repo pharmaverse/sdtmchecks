@@ -55,7 +55,7 @@ sdtmchecksmeta <- googlesheets4::read_sheet(sdtmchecksmeta_url)
 # only update this in May and November when updating and re-running covid.R
 ## MedDRA &MEDDRV. COVID-19 SMQ (Narrow) --> MedDRA v23.1 COVID-19 SMQ (Narrow)
 
-MEDDRV <- "v26.0"
+MEDDRV <- "v26.1"
 sdtmchecksmeta$pdf_subtitle <- gsub("&MEDDRV.", MEDDRV, sdtmchecksmeta$pdf_subtitle)
 
 
