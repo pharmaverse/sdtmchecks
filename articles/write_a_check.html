@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.6.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.7</span>
       </span>
     </div>
 
@@ -72,16 +72,16 @@
   <ul class="dropdown-menu" role="menu">
 <li class="dropdown-header">Releases</li>
     <li>
-      <a href="https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-016-bubble-and-squeak">sdtmchecks 0.1.6</a>
+      <a href="../news/index.html#sdtmchecks-016-bubble-and-squeak">sdtmchecks 0.1.6</a>
     </li>
     <li>
-      <a href="https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-015-hunter-pi">sdtmchecks 0.1.5</a>
+      <a href="../news/index.html#sdtmchecks-015-hunter-pi">sdtmchecks 0.1.5</a>
     </li>
     <li>
-      <a href="https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-014-very-cool-nickname">sdtmchecks 0.1.2-0.1.4</a>
+      <a href="../news/index.html#sdtmchecks-014-very-cool-nickname">sdtmchecks 0.1.2-0.1.4</a>
     </li>
     <li>
-      <a href="https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-011-open-up">sdtmchecks 0.1.1</a>
+      <a href="../news/index.html#sdtmchecks-011-open-up">sdtmchecks 0.1.1</a>
     </li>
     <li class="divider">
     </li>
@@ -126,27 +126,42 @@
 </h2>
 <p>Clinical trial datasets can contain a million different types of
 incorrect data. This package does not intend to comprehensively cover
-all scenarios in which data may be wrong. Instead the data checks in
-this package are intended to be <strong>generalizable</strong>,
-<strong>actionable</strong>, and <strong>meaningful for
-analysis</strong>. For example many clinical trials contain the
-<code>CO</code> domain, however the <code>sdtmchecks</code> package does
-not have any functionality around this domain as it is usually not
-meaningful for analysis.</p>
+all scenarios in which data may be wrong. Nor does this package intend
+to replicate the comprehensive set of P21 data checks for SDTM. Instead,
+the data checks in this package are intended to be
+<strong>generalizable</strong>, <strong>actionable</strong>, and
+<strong>meaningful for analysis</strong>. For example many clinical
+trials contain the <code>CO</code> domain, however the
+<code>sdtmchecks</code> package does not have any functionality around
+this domain as it is usually not meaningful for analysis.</p>
 </div>
 <div class="section level2">
-<h2 id="working-in-github">Working in GitHub<a class="anchor" aria-label="anchor" href="#working-in-github"></a>
+<h2 id="working-collaboratively">Working Collaboratively<a class="anchor" aria-label="anchor" href="#working-collaboratively"></a>
 </h2>
-<p>The <code>main</code> branch contains the latest released version and
-should not be used for development.</p>
+<div class="section level3">
+<h3 id="github">GitHub<a class="anchor" aria-label="anchor" href="#github"></a>
+</h3>
+<p>The <code>main</code> branch
+(<code>pharmaverse/sdtmchecks@main</code>) contains the latest released
+version and should not be used for development.</p>
 <p>The <code>devel</code> branch is the default branch and contains the
 latest development version of the package. To start contributing, please
-make a feature branch off of <code>devel</code>. When your code is ready
-to be incorporated please open a pull request that another person will
-review prior to merging the update into <code>devel</code>. If you do
-not have write access to the repository, please work off of a forked
-repo and <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork" class="external-link">open
+make a feature branch off of <code>devel</code>. To install, please
+refer to the <a href="https://pharmaverse.github.io/sdtmchecks/">front
+page of the package site</a>. When your code is ready to be incorporated
+please open a pull request that another person will review prior to
+merging the update into <code>devel</code>. If you do not have write
+access to the repository, please work off of a forked repo and <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork" class="external-link">open
 a pull request from the fork</a>.</p>
+</div>
+<div class="section level3">
+<h3 id="package-dependencies">Package Dependencies<a class="anchor" aria-label="anchor" href="#package-dependencies"></a>
+</h3>
+<p>The <a href="https://rstudio.github.io/renv/articles/renv.html#collaboration" class="external-link">{renv}
+package</a> is used to handle package dependencies. Run
+<code><a href="https://rstudio.github.io/renv/reference/restore.html" class="external-link">renv::restore()</a></code> to install the same set of package versions
+being used by the team.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="existing-checks">Existing Checks<a class="anchor" aria-label="anchor" href="#existing-checks"></a>
@@ -159,25 +174,25 @@ contains helpful additional information</p>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 10 × 4</span></span></span>
 <span><span class="co">##    check                              domains title                  description</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> check_ae_aeacn_ds_disctx_covid     ae, ds  COVID AE trt discon    Check pati…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> check_ae_aeacnoth                  ae      AE AEACNOTH multiple   Check for …</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> check_ae_aeacnoth_ds_disctx        ae, ds  AE AEACNOTx Discon     Check for …</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> check_ae_aeacnoth_ds_stddisc_covid ae, ds  COVID AE study discon  Check pati…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> check_ae_aedecod                   ae      AE Missing PT          Check for …</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> check_ae_aedthdtc_aesdth           ae      AE Death Date vs Indi… Check for …</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> check_ae_aedthdtc_ds_death         ae, ds  DS Death Dates in AE   Check that…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> check_ae_aelat                     ae      AE AELAT Missing       OPHTHALMOL…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> check_ae_aeout                     ae      AE Death Outcome       Check for …</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">10</span> check_ae_aeout_aeendtc_aedthdtc    ae      Fatal AE Resolution D… Check for …</span></span></code></pre>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> check_ae_aeacn_ds_disctx_covid     ae, ds  COVID AE trt discon    <span style="color: #949494;">"</span>Check pat…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> check_ae_aeacnoth                  ae      AE AEACNOTH multiple   <span style="color: #949494;">"</span>Check for…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> check_ae_aeacnoth_ds_disctx        ae, ds  AE AEACNOTx Discon     <span style="color: #949494;">"</span>Check for…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> check_ae_aeacnoth_ds_stddisc_covid ae, ds  COVID AE study discon  <span style="color: #949494;">"</span>Check pat…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> check_ae_aedecod                   ae      AE Missing PT          <span style="color: #949494;">"</span>Check for…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> check_ae_aedthdtc_aesdth           ae      AE Death Date vs Indi… <span style="color: #949494;">"</span>Check for…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> check_ae_aedthdtc_ds_death         ae, ds  DS Death Dates in AE   <span style="color: #949494;">"</span>Check pat…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> check_ae_aelat                     ae      AE AELAT Missing       <span style="color: #949494;">"</span>OPHTHALMO…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> check_ae_aeout                     ae      AE Death Outcome       <span style="color: #949494;">"</span>Check for…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span> check_ae_aeout_aeendtc_aedthdtc    ae      Fatal AE Resolution D… <span style="color: #949494;">"</span>Check for…</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="good-practices">Good Practices<a class="anchor" aria-label="anchor" href="#good-practices"></a>
 </h2>
 <ul>
 <li>
-<p>When writing a new check, the function name should start with the
-word ‘check’ and contain key dataset information plus a 1-2 word
-description,
+<p>When writing a new data check function, the function name should
+start with the word ‘check’ and contain key dataset information plus a
+1-2 word description,
 i.e. <code>check_[dataset1]_..._[datasetN]_[brief description]</code>.
 For example:</p>
 <ul>
@@ -189,22 +204,40 @@ For example:</p>
 investigated as parameters,
 e.g. <code>check_ae_aedecod &lt;- function(AE){...}</code></p></li>
 <li><p>Each function should start with a check for required variables.
-The following internal functions may be helpful for this:
-<code>%lacks_all%</code>, <code>%lacks_any%</code>,
-<code>%has_all%</code>, or <code>%has_any%</code>.</p></li>
-<li><p>All checks should use the internal <code><a href="../reference/pass.html">pass()</a></code> and
+The following internal <a href="https://pharmaverse.github.io/sdtmchecks/reference/index.html#data-check-utility-functions">utility
+functions</a> may be helpful for this: <code>%lacks_all%</code>,
+<code>%lacks_any%</code>, <code>%has_all%</code>, or
+<code>%has_any%</code>.</p></li>
+<li>
+<p>All checks should use the internal <code><a href="../reference/pass.html">pass()</a></code> and
 <code><a href="../reference/fail.html">fail()</a></code> functions to return either <code>TRUE</code> or
 <code>FALSE</code> depending on check results. These functions enable
 attributes to be attached to the boolean result, e.g. a message or a
-listing of flagged records.</p></li>
+listing of flagged records.</p>
+<ul>
+<li>One convention used by this package is to have a return message for
+a <code><a href="../reference/fail.html">fail()</a></code> scenario with accompaying dataframe to have an
+additional space after the period. For example,
+<code>"...age value(s). "</code> rather than
+<code>"...age value(s)."</code> This extra space is a formatting detail
+used within an existing report.</li>
+</ul>
+</li>
 <li><p><code>sdtmchecks</code> intentionally attempts to minimize
 external dependencies. This is something to keep in mind when developing
 a new check. Currently the only dependencies within data check functions
 are <code>dplyr</code> and <code>tidyselect</code>.</p></li>
-<li><p>Include examples with <strong>dummied</strong> dataframes in the
+<li>
+<p>Include examples with <strong>dummied</strong> dataframes in the
 header that test the logic, assumptions, and robustness of the data
-check function.</p></li>
-<li><p>Even better, include unit tests to accompany the code.</p></li>
+check function.</p>
+<ul>
+<li>Even better, write unit tests with the <a href="https://testthat.r-lib.org/" class="external-link">testthat</a> package. Existing unit
+tests are in the subdirectory <a href="https://github.com/pharmaverse/sdtmchecks/tree/devel/tests/testthat" class="external-link">tests/testthat</a>.
+The code written for the header examples may have significant overlap
+with the unit tests.</li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section level2">
@@ -271,6 +304,9 @@ just a small number of trials?</li>
 end users need to sift through a large number of incorrectly flagged
 records to find a one or two correctly flagged records.</li>
 <li>Do SDTM IG or MedDRA versions need to be considered?</li>
+<li>Please consider including noteworthy details and important
+considerations in the <code>Roxygen2</code> header so that information
+is available in package documentation.</li>
 </ul>
 </div>
   </div>

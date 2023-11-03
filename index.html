@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.6.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.7</span>
       </span>
     </div>
 
@@ -72,16 +72,16 @@
   <ul class="dropdown-menu" role="menu">
 <li class="dropdown-header">Releases</li>
     <li>
-      <a href="https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-016-bubble-and-squeak">sdtmchecks 0.1.6</a>
+      <a href="news/index.html#sdtmchecks-016-bubble-and-squeak">sdtmchecks 0.1.6</a>
     </li>
     <li>
-      <a href="https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-015-hunter-pi">sdtmchecks 0.1.5</a>
+      <a href="news/index.html#sdtmchecks-015-hunter-pi">sdtmchecks 0.1.5</a>
     </li>
     <li>
-      <a href="https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-014-very-cool-nickname">sdtmchecks 0.1.2-0.1.4</a>
+      <a href="news/index.html#sdtmchecks-014-very-cool-nickname">sdtmchecks 0.1.2-0.1.4</a>
     </li>
     <li>
-      <a href="https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-011-open-up">sdtmchecks 0.1.1</a>
+      <a href="news/index.html#sdtmchecks-011-open-up">sdtmchecks 0.1.1</a>
     </li>
     <li class="divider">
     </li>
@@ -120,13 +120,28 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install {sdtmchecks} via:</p>
+<div class="section level3">
+<h3 id="main-version-main-branch">Main version (main branch)<a class="anchor" aria-label="anchor" href="#main-version-main-branch"></a>
+</h3>
+<p>You can install {sdtmchecks} from <a href="https://github.com/" class="external-link">GitHub</a> repo <code>pharmaverse/sdtmchecks@main</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"sdtmchecks"</span>, repos <span class="op">=</span> <span class="st">"https://pharmaverse.r-universe.dev"</span><span class="op">)</span></span></code></pre></div>
-<p>Or, you can install {sdtmchecks} from <a href="https://github.com/" class="external-link">GitHub</a>:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"pharmaverse/sdtmchecks"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"pharmaverse/sdtmchecks"</span>, ref <span class="op">=</span> <span class="st">"main"</span><span class="op">)</span></span></code></pre></div>
+<p>Note: The release from <em>main branch</em> is the recommended versions for end users.</p>
+</div>
+<div class="section level3">
+<h3 id="development-version-devel-branch">Development version (devel branch)<a class="anchor" aria-label="anchor" href="#development-version-devel-branch"></a>
+</h3>
+<p>The development version (based on the default <em>devel branch</em>) can be installed via:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"sdtmchecks"</span>, repos <span class="op">=</span> <span class="st">"https://pharmaverse.r-universe.dev"</span><span class="op">)</span>  </span></code></pre></div>
+<p>Or, via <a href="https://github.com/" class="external-link">GitHub</a> repo <code>pharmaverse/sdtmchecks@HEAD</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"pharmaverse/sdtmchecks"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Note that `ref = "devel"` is not needed since devel is the default branch</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="use-the-package">Use the package<a class="anchor" aria-label="anchor" href="#use-the-package"></a>
@@ -137,6 +152,7 @@
 <h2 id="data-checks-in-the-package">Data checks in the package<a class="anchor" aria-label="anchor" href="#data-checks-in-the-package"></a>
 </h2>
 <p>To search available data check functions, please see <a href="https://pharmaverse.github.io/sdtmchecks/articles/search_checks.html">this search page</a>.</p>
+<p>The main data check functions of the package are saved as R program files beginning with <strong>“check_…”</strong> and are referenced under the <a href="https://pharmaverse.github.io/sdtmchecks/reference/index.html#data-checks">Data Checks</a> portion of the Reference page.</p>
 </div>
 <div class="section level2">
 <h2 id="sdtm-version">SDTM version<a class="anchor" aria-label="anchor" href="#sdtm-version"></a>
@@ -148,6 +164,11 @@
 </h2>
 <p>This package has been developed internally at <a href="https://www.roche.com/" class="external-link">Roche</a> since 2014. There may be areas where the checks expect Roche-specific SDTM implementation choices. Proposed additions or modifications should attempt to maintain generalizability for slightly different data standards across companies. For examples on how to do so and to learn more about contributing in general, please refer to the <a href="https://pharmaverse.github.io/sdtmchecks/articles/write_a_check.html">Writing a New Check</a> page.</p>
 <p>If you have an idea for a new check but no time for development, please <a href="https://github.com/pharmaverse/sdtmchecks/issues" class="external-link">open an issue</a>.</p>
+</div>
+<div class="section level2">
+<h2 id="faqs">FAQs<a class="anchor" aria-label="anchor" href="#faqs"></a>
+</h2>
+<p>The package <a href="https://pharmaverse.github.io/sdtmchecks/articles/faqs.html">FAQs</a> may provide additional information you are looking for. If not, please feel free to post your question as <a href="https://github.com/pharmaverse/sdtmchecks/issues" class="external-link">an issue</a>.</p>
 </div>
 </div>
   </div>

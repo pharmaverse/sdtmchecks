@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.6.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.7</span>
       </span>
     </div>
 
@@ -52,16 +52,16 @@
   </a>
   <ul class="dropdown-menu" role="menu"><li class="dropdown-header">Releases</li>
     <li>
-      <a href="https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-016-bubble-and-squeak">sdtmchecks 0.1.6</a>
+      <a href="../news/index.html#sdtmchecks-016-bubble-and-squeak">sdtmchecks 0.1.6</a>
     </li>
     <li>
-      <a href="https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-015-hunter-pi">sdtmchecks 0.1.5</a>
+      <a href="../news/index.html#sdtmchecks-015-hunter-pi">sdtmchecks 0.1.5</a>
     </li>
     <li>
-      <a href="https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-014-very-cool-nickname">sdtmchecks 0.1.2-0.1.4</a>
+      <a href="../news/index.html#sdtmchecks-014-very-cool-nickname">sdtmchecks 0.1.2-0.1.4</a>
     </li>
     <li>
-      <a href="https://pharmaverse.github.io/sdtmchecks/news/index.html#sdtmchecks-011-open-up">sdtmchecks 0.1.1</a>
+      <a href="../news/index.html#sdtmchecks-011-open-up">sdtmchecks 0.1.1</a>
     </li>
     <li class="divider">
     <li>
@@ -93,7 +93,7 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="check_ae_aeacn_ds_disctx_covid.html">check_ae_aeacn_ds_disctx_covid()</a></code> </p>
         </td>
-        <td><p>Check if COVID-19 AE action DRUG WITHDRAWN then Trt Discon indicates AE</p></td>
+        <td><p>Check for COVID-19 AE with DRUG WITHDRAWN action without DS Trt Discon</p></td>
       </tr><tr><td>
           <p><code><a href="check_ae_aeacnoth.html">check_ae_aeacnoth()</a></code> </p>
         </td>
@@ -106,7 +106,7 @@ they also have a DS record indicating this.</p></td>
       </tr><tr><td>
           <p><code><a href="check_ae_aeacnoth_ds_stddisc_covid.html">check_ae_aeacnoth_ds_stddisc_covid()</a></code> </p>
         </td>
-        <td><p>Check for COVID-related AE leading to Study Discon without DS Study Discon</p></td>
+        <td><p>Check for COVID-19 AE leading to Study Discon without DS Study Discon</p></td>
       </tr><tr><td>
           <p><code><a href="check_ae_aedecod.html">check_ae_aedecod()</a></code> </p>
         </td>
@@ -278,11 +278,11 @@ populated but route is not eye-related.</p></td>
       </tr><tr><td>
           <p><code><a href="check_dv_ae_aedecod_covid.html">check_dv_ae_aedecod_covid()</a></code> </p>
         </td>
-        <td><p>Check for consistency between DV and AE for Covid-19 events</p></td>
+        <td><p>Check for consistency between DV and AE for COVID-19 events</p></td>
       </tr><tr><td>
           <p><code><a href="check_dv_covid.html">check_dv_covid()</a></code> </p>
         </td>
-        <td><p>Check for consistency in Covid-19 DV variables, DVREAS and DVEPRELI</p></td>
+        <td><p>Check for consistency in COVID-19 DV variables, DVREAS and DVEPRELI</p></td>
       </tr><tr><td>
           <p><code><a href="check_ec_sc_lat.html">check_ec_sc_lat()</a></code> </p>
         </td>
@@ -449,11 +449,11 @@ earlier than last visit's (possible date entry error)</p></td>
       </tr><tr><td>
           <p><code><a href="check_sc_dm_eligcrit.html">check_sc_dm_eligcrit()</a></code> </p>
         </td>
-        <td><p>Check if Study Eye met Study Eligibility criteria per SC Subject Characteristics Domain</p></td>
+        <td><p>Check SC Eye Meeting Eligibility Criteria assignments among DM patients</p></td>
       </tr><tr><td>
           <p><code><a href="check_sc_dm_seyeselc.html">check_sc_dm_seyeselc()</a></code> </p>
         </td>
-        <td><p>Check if Subject Characteristics, Study Eye Selection data is missing</p></td>
+        <td><p>Check SC Study Eye Selection assignments among DM patients</p></td>
       </tr><tr><td>
           <p><code><a href="check_ss_ssdtc_alive_dm.html">check_ss_ssdtc_alive_dm()</a></code> </p>
         </td>
@@ -607,7 +607,7 @@ message</p></td>
       </tr><tr><td>
           <p><code><a href="run_all_checks.html">run_all_checks()</a></code> </p>
         </td>
-        <td><p>Run all checks in sdtmchecks package using parallel processing</p></td>
+        <td><p>Run all data checks in sdtmchecks package using parallel processing</p></td>
       </tr><tr><td>
           <p><code><a href="run_check.html">run_check()</a></code> </p>
         </td>
