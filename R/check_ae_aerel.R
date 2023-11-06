@@ -107,15 +107,15 @@ check_ae_aerel <- function(AE,preproc=identity,...) {
     all_aerel <- setdiff(names(AE)[grep("AEREL",names(AE))],names(AE)[grep("AERELNS",names(AE))])
     
     ###First check that required variables exist and return a message if they don't
-    if(AE %lacks_any% c("USUBJID","AESEQ","AESTDTC","AETERM","AEREL")){
+    if(AE %lacks_any% c("USUBJID","AESTDTC","AETERM","AEREL")){
         
-        fail(lacks_msg(AE, c("USUBJID","AESEQ","AESTDTC","AETERM","AEREL")))
+        fail(lacks_msg(AE, c("USUBJID","AESTDTC","AETERM","AEREL")))
         
     } else {
         
         #Apply company specific preprocessing function
         AE = preproc(AE,...)
-        AE <- AE[,intersect(names(AE), c("USUBJID","AESEQ","AESTDTC","AETERM","RAVE", all_aerel))]
+        AE <- AE[,intersect(names(AE), c("USUBJID","AESTDTC","AETERM","RAVE", all_aerel))]
         
         mydf_sub <- AE
         
@@ -127,10 +127,10 @@ check_ae_aerel <- function(AE,preproc=identity,...) {
         
         if (as.numeric(length(all_aerel)) > 1) {
             
-            index_y <- as.data.frame(sapply(6:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == 'Y'))
-            index_n <- as.data.frame(sapply(6:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == 'N'))
-            index_na <- as.data.frame(sapply(6:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == 'NA'))
-            index_m <- as.data.frame(sapply(6:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == ''))
+            index_y <- as.data.frame(sapply(5:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == 'Y'))
+            index_n <- as.data.frame(sapply(5:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == 'N'))
+            index_na <- as.data.frame(sapply(5:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == 'NA'))
+            index_m <- as.data.frame(sapply(5:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == ''))
             
             ## For which row the condition is true for all columns
             y <- apply(index_y, 1, any)
@@ -147,7 +147,7 @@ check_ae_aerel <- function(AE,preproc=identity,...) {
             mydf_m <- mydf_nmiss[mydf_nmiss$AEREL == '' & !m, ]
             
             if (nrow(mydf_miss) > 0) {
-                index_all <- as.data.frame(rbind(sapply(6:ncol(mydf_miss),
+                index_all <- as.data.frame(rbind(sapply(5:ncol(mydf_miss),
                                                         function(x)
                                                             mydf_miss[, x] == 'Y'|
                                                             mydf_miss[, x] == 'NA' |
