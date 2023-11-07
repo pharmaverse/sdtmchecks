@@ -20,7 +20,7 @@ or if AEREL has unexpected value"><!-- mathjax --><script src="https://cdnjs.clo
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.8</span>
       </span>
     </div>
 
@@ -54,6 +54,9 @@ or if AEREL has unexpected value"><!-- mathjax --><script src="https://cdnjs.clo
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li class="dropdown-header">Releases</li>
+    <li>
+      <a href="../news/index.html#sdtmchecks-018-bubble-and-squeak">sdtmchecks 0.1.8</a>
+    </li>
     <li>
       <a href="../news/index.html#sdtmchecks-016-bubble-and-squeak">sdtmchecks 0.1.6</a>
     </li>
@@ -166,17 +169,17 @@ test failed</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE has 2 observations where AEREL is missing but one of AEREL1 - AEREL[n] is equal to Y/N/NA, or AEREL has an unexpected value, or AEREL[n] missing. "</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID    AESTDTC AETERM AESEQ AEREL AEREL1 AEREL2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       3 2020-05-05 CHILLS     1     N     NA       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2       3 2020-05-05 CHILLS     2     N              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID    AESTDTC AETERM AEREL AEREL1 AEREL2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       3 2020-05-05 CHILLS     N     NA       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       3 2020-05-05 CHILLS     N              </span>
 <span class="r-in"><span><span class="fu">check_ae_aerel</span><span class="op">(</span><span class="va">AE1</span>,preproc<span class="op">=</span><span class="va">roche_derive_rave_row</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE has 2 observations where AEREL is missing but one of AEREL1 - AEREL[n] is equal to Y/N/NA, or AEREL has an unexpected value, or AEREL[n] missing. "</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID    AESTDTC AETERM AESEQ AEREL AEREL1 AEREL2          RAVE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       3 2020-05-05 CHILLS     1     N     NA        FORMNAME-R:13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2       3 2020-05-05 CHILLS     2     N               FORMNAME-R:13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID    AESTDTC AETERM AEREL AEREL1 AEREL2          RAVE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       3 2020-05-05 CHILLS     N     NA        FORMNAME-R:13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       3 2020-05-05 CHILLS     N               FORMNAME-R:13</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">AE2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    STUDYID <span class="op">=</span> <span class="fl">1001</span>,</span></span>
@@ -196,17 +199,17 @@ test failed</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE has 2 observations where AEREL is missing but one of AEREL1 - AEREL[n] is equal to Y/N/NA, or AEREL has an unexpected value, or AEREL[n] missing. "</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID    AESTDTC       AETERM AESEQ AEREL AEREL1 AEREL2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       1 2020-05-05 abc Covid-19     2     N      Y      N</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2       3 2020-05-05       CHILLS     1           NA       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID    AESTDTC       AETERM AEREL AEREL1 AEREL2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       1 2020-05-05 abc Covid-19     N      Y      N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       3 2020-05-05       CHILLS           NA       </span>
 <span class="r-in"><span><span class="fu">check_ae_aerel</span><span class="op">(</span><span class="va">AE2</span>,preproc<span class="op">=</span><span class="va">roche_derive_rave_row</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE has 2 observations where AEREL is missing but one of AEREL1 - AEREL[n] is equal to Y/N/NA, or AEREL has an unexpected value, or AEREL[n] missing. "</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID    AESTDTC       AETERM AESEQ AEREL AEREL1 AEREL2          RAVE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       1 2020-05-05 abc Covid-19     2     N      Y      N FORMNAME-R:13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2       3 2020-05-05       CHILLS     1           NA        FORMNAME-R:13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID    AESTDTC       AETERM AEREL AEREL1 AEREL2          RAVE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       1 2020-05-05 abc Covid-19     N      Y      N FORMNAME-R:13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       3 2020-05-05       CHILLS           NA        FORMNAME-R:13</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">AE3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    STUDYID <span class="op">=</span> <span class="fl">1001</span>,</span></span>
@@ -224,19 +227,19 @@ test failed</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE has 3 observations where AEREL is missing but one of AEREL1 - AEREL[n] is equal to Y/N/NA, or AEREL has an unexpected value, or AEREL[n] missing. "</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID    AESTDTC              AETERM AESEQ AEREL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       2 2020-05-05 covid TEST POSITIVE     1      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2       3 2020-05-05              CHILLS     1      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3       2 2020-05-05 covid TEST POSITIVE     2      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID    AESTDTC              AETERM AEREL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       2 2020-05-05 covid TEST POSITIVE      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       3 2020-05-05              CHILLS      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3       2 2020-05-05 covid TEST POSITIVE      </span>
 <span class="r-in"><span><span class="fu">check_ae_aerel</span><span class="op">(</span><span class="va">AE3</span>,preproc<span class="op">=</span><span class="va">roche_derive_rave_row</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE has 3 observations where AEREL is missing but one of AEREL1 - AEREL[n] is equal to Y/N/NA, or AEREL has an unexpected value, or AEREL[n] missing. "</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID    AESTDTC              AETERM AESEQ AEREL          RAVE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       2 2020-05-05 covid TEST POSITIVE     1       FORMNAME-R:13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2       3 2020-05-05              CHILLS     1       FORMNAME-R:13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3       2 2020-05-05 covid TEST POSITIVE     2       FORMNAME-R:13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID    AESTDTC              AETERM AEREL          RAVE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       2 2020-05-05 covid TEST POSITIVE       FORMNAME-R:13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       3 2020-05-05              CHILLS       FORMNAME-R:13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3       2 2020-05-05 covid TEST POSITIVE       FORMNAME-R:13</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">AE4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
@@ -257,29 +260,23 @@ test failed</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE has 5 observations where AEREL is missing but one of AEREL1 - AEREL[n] is equal to Y/N/NA, or AEREL has an unexpected value, or AEREL[n] missing. "</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID    AESTDTC              AETERM AESEQ AEREL AEREL1 AEREL2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       1 2020-05-05        abc Covid-19     1     Y              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2       2 2020-05-05 covid TEST POSITIVE     2     Y              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3       5 2020-05-05 covid TEST POSITIVE     5     Y              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4       3 2020-05-05              CHILLS     3     N              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5       4 2020-05-05        abc Covid-19     4                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID    AESTDTC              AETERM AEREL AEREL1 AEREL2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       1 2020-05-05        abc Covid-19     Y              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       2 2020-05-05 covid TEST POSITIVE     Y              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3       5 2020-05-05 covid TEST POSITIVE     Y              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       3 2020-05-05              CHILLS     N              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       4 2020-05-05        abc Covid-19                    </span>
 <span class="r-in"><span><span class="fu">check_ae_aerel</span><span class="op">(</span><span class="va">AE4</span>,preproc<span class="op">=</span><span class="va">roche_derive_rave_row</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE has 5 observations where AEREL is missing but one of AEREL1 - AEREL[n] is equal to Y/N/NA, or AEREL has an unexpected value, or AEREL[n] missing. "</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID    AESTDTC              AETERM AESEQ AEREL AEREL1 AEREL2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       1 2020-05-05        abc Covid-19     1     Y              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2       2 2020-05-05 covid TEST POSITIVE     2     Y              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3       5 2020-05-05 covid TEST POSITIVE     5     Y              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4       3 2020-05-05              CHILLS     3     N              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5       4 2020-05-05        abc Covid-19     4                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            RAVE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 FORMNAME-R:13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 FORMNAME-R:13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 FORMNAME-R:13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 FORMNAME-R:13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 FORMNAME-R:13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID    AESTDTC              AETERM AEREL AEREL1 AEREL2          RAVE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       1 2020-05-05        abc Covid-19     Y               FORMNAME-R:13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       2 2020-05-05 covid TEST POSITIVE     Y               FORMNAME-R:13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3       5 2020-05-05 covid TEST POSITIVE     Y               FORMNAME-R:13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       3 2020-05-05              CHILLS     N               FORMNAME-R:13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       4 2020-05-05        abc Covid-19                     FORMNAME-R:13</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
