@@ -115,7 +115,8 @@ check_ae_aerel <- function(AE,preproc=identity,...) {
         
         #Apply company specific preprocessing function
         AE = preproc(AE,...)
-        AE <- AE[,intersect(names(AE), c("USUBJID","AESTDTC","AETERM","RAVE", all_aerel))]
+        AE <- AE %>% 
+          select(any_of(c("USUBJID","AESTDTC","AETERM","RAVE", all_aerel))) #[,intersect(names(AE), c("USUBJID","AESTDTC","AETERM","RAVE", all_aerel))]
         
         mydf_sub <- AE
         
