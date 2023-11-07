@@ -139,12 +139,11 @@ test_that("Function returns false when errors are present when XXSPID is availab
 })
 
 
-test_that("Function returns false when any of the required variables are missing: AESEQ is missing", {
+test_that("Function returns false when any of the required variables are missing: USUBJID is missing", {
   
   AE <- data.frame(
     STUDY = c(rep("STUDYABC", 6)),
     DOMAIN = c(rep("AE", 6)),
-    USUBJID = c(rep("STUDYABC-0000000-12345",6)),
     AESPID = c("AEFORM:0123456-R:1/L:1/AT:INITIALEXTREME",
                "AEFORM:0123456-R:2/L:2/AT:INITIALEXTREME",
                "AEFORM:0123456-R:5/L:5/AT:INITIALEXTREME",
@@ -164,7 +163,6 @@ test_that("Function returns false when any of the required variables are missing
 test_that("Function returns the failed object in attr(data)", {
   AE <- data.frame(
     USUBJID = 1:5,
-    AESEQ = 1:5,
     AESTDTC = 1:5,
     AETERM = letters[1:5],
     AEDECOD = 1:5, stringsAsFactors = FALSE
