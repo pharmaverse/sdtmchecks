@@ -1,10 +1,11 @@
-# sdtmchecks 0.1.7 "Bubble and Squeak"
+# sdtmchecks 0.1.8 "Bubble and Squeak"
 
 ## Refinements of existing data check functions
 
 * [`check_tu_rs_new_lesions`](https://pharmaverse.github.io/sdtmchecks/reference/check_tu_rs_new_lesions.html) updated to include overall response of `PMD` as an indicator of progressive disease. Visit info also added to check result. ([#197](https://github.com/pharmaverse/sdtmchecks/pull/197))
 * [`check_ae_fatal`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_fatal.html) updated to address bug that was causing warning. Logic was subsequently streamlined. ([#215](https://github.com/pharmaverse/sdtmchecks/pull/215))
 * Checks that expect specific preferred terms identifying Covid-19 related AEs were updated to warn if that metadata was not provided. ([#220](https://github.com/pharmaverse/sdtmchecks/pull/220) & [#223](https://github.com/pharmaverse/sdtmchecks/pull/223))
+* `--SEQ` variables were removed from checks. ([#246](https://github.com/pharmaverse/sdtmchecks/pull/246/))
 
 
 ## Metadata updates
