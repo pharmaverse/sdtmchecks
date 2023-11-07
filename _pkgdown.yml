@@ -80,6 +80,8 @@ reference:
 
 news:
  releases:
+ - text: "sdtmchecks 0.1.8"  
+   href: news/index.html#sdtmchecks-018-bubble-and-squeak
  - text: "sdtmchecks 0.1.6"  
    href: news/index.html#sdtmchecks-016-bubble-and-squeak
  - text: "sdtmchecks 0.1.5"  
