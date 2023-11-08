@@ -126,12 +126,19 @@ check_ae_aerel <- function(AE,preproc=identity,...) {
         #mydf_nmiss <- rbind(filter(mydf_sub, !is_sas_na(AE$AEREL)), filter(mydf_sub, AE$AEREL == "NA"))
         mydf_nmiss <- rbind(filter(mydf_sub, !is_sas_na(AE$AEREL)))
         
+        # Calculating number of columns without AEREL-AEREL[n]
+        n_col <- mydf_nmiss %>% 
+          select(!any_of(all_aerel)) %>% 
+          ncol() %>% 
+          as.numeric() %>% 
+          +(1)
+        
         if (as.numeric(length(all_aerel)) > 1) {
             
-            index_y <- as.data.frame(sapply(5:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == 'Y'))
-            index_n <- as.data.frame(sapply(5:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == 'N'))
-            index_na <- as.data.frame(sapply(5:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == 'NA'))
-            index_m <- as.data.frame(sapply(5:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == ''))
+            index_y <- as.data.frame(sapply(n_col:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == 'Y'))
+            index_n <- as.data.frame(sapply(n_col:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == 'N'))
+            index_na <- as.data.frame(sapply(n_col:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == 'NA'))
+            index_m <- as.data.frame(sapply(n_col:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == ''))
             
             ## For which row the condition is true for all columns
             y <- apply(index_y, 1, any)
@@ -148,7 +155,7 @@ check_ae_aerel <- function(AE,preproc=identity,...) {
             mydf_m <- mydf_nmiss[mydf_nmiss$AEREL == '' & !m, ]
             
             if (nrow(mydf_miss) > 0) {
-                index_all <- as.data.frame(rbind(sapply(5:ncol(mydf_miss),
+                index_all <- as.data.frame(rbind(sapply(n_col:ncol(mydf_miss),
                                                         function(x)
                                                             mydf_miss[, x] == 'Y'|
                                                             mydf_miss[, x] == 'NA' |
