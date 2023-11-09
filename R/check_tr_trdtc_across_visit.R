@@ -14,6 +14,7 @@
 #'
 #' @importFrom dplyr %>% filter select
 #' @importFrom stats aggregate
+#' @importFrom tidyselect any_of
 #'
 #' @author Will Harris
 #'
@@ -75,7 +76,7 @@ check_tr_trdtc_across_visit <- function(TR, preproc=identity,...) {
                 select("USUBJID", "TRDTC", "VISIT", "TRTESTCD")
 
             mydf = merge(mydf0,mypairs0,by=c("USUBJID", "TRDTC"),all.x = TRUE) %>% 
-                left_join((tr_orig %>% select(USUBJID, TRDTC, VISIT, any_of("RAVE"))),by=c("USUBJID", "TRDTC", "VISIT")) #merge in RAVE var if it exists
+                left_join(tr_orig,by=c("USUBJID", "TRDTC", "VISIT", "TRTESTCD")) #merge in RAVE var if it exists
             rownames(mydf)=NULL
         }else{
             mydf=data.frame()
