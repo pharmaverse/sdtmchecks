@@ -76,7 +76,8 @@ check_tr_trdtc_across_visit <- function(TR, preproc=identity,...) {
                 select("USUBJID", "TRDTC", "VISIT", "TRTESTCD")
 
             mydf = merge(mydf0,mypairs0,by=c("USUBJID", "TRDTC"),all.x = TRUE) %>% 
-                left_join(tr_orig,by=c("USUBJID", "TRDTC", "VISIT", "TRTESTCD")) #merge in RAVE var if it exists
+                left_join(tr_orig,by=c("USUBJID", "TRDTC", "VISIT", "TRTESTCD")) %>% #merge in RAVE var if it exists
+                unique
             rownames(mydf)=NULL
         }else{
             mydf=data.frame()

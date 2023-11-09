@@ -73,7 +73,8 @@ check_tu_tudtc_across_visit <- function(TU, preproc=identity,...) {
 
         # subset unique pairs to only instances where visit has >1 date
         mydf = merge(mydf0,mypairs0,by=c('USUBJID','TUDTC'),all.x = TRUE) %>% 
-            left_join(tu_orig,by=c("USUBJID", "TUDTC", "VISIT")) #merge in RAVE var if it exists
+            left_join(tu_orig,by=c("USUBJID", "TUDTC", "VISIT")) %>% #merge in RAVE var if it exists
+            unique
         rownames(mydf)=NULL
 
         ### if no consistency
