@@ -4,6 +4,8 @@
 #'  across multiple visits when TRTESTCD is "LDIAM". Only applies to assessments by investigator.
 #'
 #' @param TR Tumor Result SDTM dataset with variables USUBJID, TRDTC, VISIT, TRTESTCD
+#' @param preproc An optional company specific preprocessing script
+#' @param ... Other arguments passed to methods
 #'
 #' @return boolean value if check failed or passed with 'msg' attribute if the
 #'   test failed
@@ -22,13 +24,15 @@
 #' TRDTC = c(rep("2016-01-01",3), rep("2016-06-01",5), rep("2016-06-24",2)),
 #' VISIT = c(rep("C1D1",3), rep("C1D2",3), rep("C2D1",4)),
 #' TRTESTCD = c(rep("LDIAM",7),rep("SAXIS",3)),
+#' TRSPID = "FORMNAME-R:13/L:13XXXX",
 #' stringsAsFactors=FALSE)
 #'
 #' check_tr_trdtc_across_visit(TR)
+#' check_tr_trdtc_across_visit(TR, preproc=roche_derive_rave_row)
 #'
 #'
 
-check_tr_trdtc_across_visit <- function(TR) {
+check_tr_trdtc_across_visit <- function(TR, preproc=identity,...) {
 
     ###First check that required variables exist and return a message if they don't
     if((TR %lacks_any% c("USUBJID", "TRDTC", "VISIT", "TRTESTCD"))){
@@ -36,18 +40,24 @@ check_tr_trdtc_across_visit <- function(TR) {
         fail(lacks_msg(TR, c("USUBJID", "TRDTC", "VISIT", "TRTESTCD")))
 
     } else{
+        
+        #Apply company specific preprocessing function
+        TR = preproc(TR,...)
 
         ### Find unique pairs of TRDTC and VISIT per USUBJID
 
         if(TR %lacks_any% "TREVAL"){
         trsub = TR %>%
             filter(TRTESTCD == "LDIAM") %>%
-            select(USUBJID, TRDTC, VISIT, TRTESTCD)
+            select(USUBJID, TRDTC, VISIT, TRTESTCD,any_of("RAVE"))
         }else{
         trsub = TR %>%
             filter(TRTESTCD == "LDIAM" & (toupper(TREVAL) == "INVESTIGATOR" | is_sas_na(TREVAL))) %>%
-            select(USUBJID, TRDTC, VISIT, TRTESTCD)
+            select(USUBJID, TRDTC, VISIT, TRTESTCD,any_of("RAVE"))
         }
+        
+        tr_orig=trsub #Save RAVE for merging in later
+        trsub = trsub %>% select(-any_of("RAVE")) #dont want to unique on RAVE var
 
         if(nrow(trsub)>0){
             mypairs = unique(trsub)
@@ -64,7 +74,8 @@ check_tr_trdtc_across_visit <- function(TR) {
             mypairs0 = mypairs %>%
                 select("USUBJID", "TRDTC", "VISIT", "TRTESTCD")
 
-            mydf = merge(mydf0,mypairs0,by=c("USUBJID", "TRDTC"),all.x = TRUE)
+            mydf = merge(mydf0,mypairs0,by=c("USUBJID", "TRDTC"),all.x = TRUE) %>% 
+                left_join((tr_orig %>% select(USUBJID, TRDTC, VISIT, any_of("RAVE"))),by=c("USUBJID", "TRDTC", "VISIT")) #merge in RAVE var if it exists
             rownames(mydf)=NULL
         }else{
             mydf=data.frame()

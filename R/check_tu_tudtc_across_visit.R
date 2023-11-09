@@ -40,18 +40,20 @@ check_tu_tudtc_across_visit <- function(TU, preproc=identity,...) {
         
         #Apply company specific preprocessing function
         TU = preproc(TU,...)
-        tu_orig=TU #Save RAVE for merging in later
         
         ### Find unique pairs of TUDTC and VISIT per USUBJID
 
         if(TU %lacks_any% "TUEVAL"){
-        tusub = TU %>%
-            select(USUBJID, TUDTC, VISIT)
+            tusub = TU %>%
+                select(USUBJID, TUDTC, VISIT, any_of("RAVE"))
         }else{
-        tusub = TU %>%
-            filter(toupper(TUEVAL) == "INVESTIGATOR" | is_sas_na(TUEVAL)) %>%
-            select(USUBJID, TUDTC, VISIT)
+            tusub = TU %>%
+                filter(toupper(TUEVAL) == "INVESTIGATOR" | is_sas_na(TUEVAL)) %>%
+                select(USUBJID, TUDTC, VISIT, any_of("RAVE"))
         }
+        
+        tu_orig=tusub #Save RAVE for merging in later
+        tusub = tusub %>% select(-any_of("RAVE")) #dont want to unique on RAVE var
 
         #get unique visit/date pairs per patients
         mypairs = unique(tusub) 
