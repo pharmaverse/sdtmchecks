@@ -4,10 +4,14 @@
 \alias{check_tr_trdtc_across_visit}
 \title{Check TR Longest Diameter Records where the same date occurs accross multiple visits}
 \usage{
-check_tr_trdtc_across_visit(TR)
+check_tr_trdtc_across_visit(TR, preproc = identity, ...)
 }
 \arguments{
 \item{TR}{Tumor Result SDTM dataset with variables USUBJID, TRDTC, VISIT, TRTESTCD}
+
+\item{preproc}{An optional company specific preprocessing script}
+
+\item{...}{Other arguments passed to methods}
 }
 \value{
 boolean value if check failed or passed with 'msg' attribute if the
@@ -24,9 +28,11 @@ USUBJID = 1,
 TRDTC = c(rep("2016-01-01",3), rep("2016-06-01",5), rep("2016-06-24",2)),
 VISIT = c(rep("C1D1",3), rep("C1D2",3), rep("C2D1",4)),
 TRTESTCD = c(rep("LDIAM",7),rep("SAXIS",3)),
+TRSPID = "FORMNAME-R:13/L:13XXXX",
 stringsAsFactors=FALSE)
 
 check_tr_trdtc_across_visit(TR)
+check_tr_trdtc_across_visit(TR, preproc=roche_derive_rave_row)
 
 
 }
