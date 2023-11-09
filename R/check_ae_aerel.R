@@ -131,7 +131,7 @@ check_ae_aerel <- function(AE,preproc=identity,...) {
           select(!any_of(all_aerel)) %>% 
           ncol() %>% 
           as.numeric() %>% 
-          +(1)
+          +(2)
         
         if (as.numeric(length(all_aerel)) > 1) {
             
