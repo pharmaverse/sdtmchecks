@@ -4,10 +4,14 @@
 \alias{check_tu_tudtc_across_visit}
 \title{Check TU Records where the same date occurs across multiple visits}
 \usage{
-check_tu_tudtc_across_visit(TU)
+check_tu_tudtc_across_visit(TU, preproc = identity, ...)
 }
 \arguments{
 \item{TU}{Tumor Identification SDTM dataset with variables USUBJID, TUDTC, VISIT}
+
+\item{preproc}{An optional company specific preprocessing script}
+
+\item{...}{Other arguments passed to methods}
 }
 \value{
 boolean value if check failed or passed with 'msg' attribute if the
@@ -22,9 +26,11 @@ across multiple visits. Only applies to assessments by investigator.
 TU <- data.frame(USUBJID = 1,
                  TUDTC = c(rep("2016-01-01",3), rep("2016-06-01",5), rep("2016-06-24",2)),
                  VISIT = c(rep("C1D1",3), rep("C1D2",3), rep("C2D1",4)),
+                 TUSPID = "FORMNAME-R:13/L:13XXXX",
                  stringsAsFactors=FALSE)
 
 check_tu_tudtc_across_visit(TU)
+check_tu_tudtc_across_visit(TU, preproc=roche_derive_rave_row)
 
 }
 \author{
