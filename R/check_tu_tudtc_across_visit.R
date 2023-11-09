@@ -4,6 +4,8 @@
 #'  across multiple visits. Only applies to assessments by investigator.
 #'
 #' @param TU Tumor Identification SDTM dataset with variables USUBJID, TUDTC, VISIT
+#' @param preproc An optional company specific preprocessing script
+#' @param ... Other arguments passed to methods
 #'
 #' @return boolean value if check failed or passed with 'msg' attribute if the
 #'   test failed.
