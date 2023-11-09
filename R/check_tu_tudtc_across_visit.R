@@ -45,15 +45,15 @@ check_tu_tudtc_across_visit <- function(TU, preproc=identity,...) {
 
         if(TU %lacks_any% "TUEVAL"){
             tusub = TU %>%
-                select(USUBJID, TUDTC, VISIT, any_of("RAVE"))
+                select(USUBJID, TUDTC, VISIT, any_of(c("TUTESTCD","RAVE")))
         }else{
             tusub = TU %>%
                 filter(toupper(TUEVAL) == "INVESTIGATOR" | is_sas_na(TUEVAL)) %>%
-                select(USUBJID, TUDTC, VISIT, any_of("RAVE"))
+                select(USUBJID, TUDTC, VISIT, any_of(c("TUTESTCD","RAVE")))
         }
         
         tu_orig=tusub #Save RAVE for merging in later
-        tusub = tusub %>% select(-any_of("RAVE")) #dont want to unique on RAVE var
+        tusub = tusub %>% select(-any_of(c("TUTESTCD","RAVE"))) #dont want to unique on RAVE var
 
         #get unique visit/date pairs per patients
         mypairs = unique(tusub) 
@@ -72,7 +72,7 @@ check_tu_tudtc_across_visit <- function(TU, preproc=identity,...) {
 
         # subset unique pairs to only instances where visit has >1 date
         mydf = merge(mydf0,mypairs0,by=c('USUBJID','TUDTC'),all.x = TRUE) %>% 
-            left_join((tu_orig %>% select(USUBJID, TUDTC, VISIT, any_of("RAVE"))),by=c("USUBJID", "TUDTC", "VISIT")) #merge in RAVE var if it exists
+            left_join((tu_orig %>% select(USUBJID, TUDTC, VISIT, any_of(c("TUTESTCD","RAVE")))),by=c("USUBJID", "TUDTC", "VISIT")) #merge in RAVE var if it exists
         rownames(mydf)=NULL
 
         ### if no consistency
