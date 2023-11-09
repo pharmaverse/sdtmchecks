@@ -17,6 +17,7 @@
 #' @export
 #'
 #' @importFrom dplyr left_join filter %>%
+#' @importFrom tidyselect any_of
 #'
 #' @author Vira Vrakina
 #'
