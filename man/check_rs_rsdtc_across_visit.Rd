@@ -4,10 +4,14 @@
 \alias{check_rs_rsdtc_across_visit}
 \title{Check RS Records where the same date occurs across multiple visits}
 \usage{
-check_rs_rsdtc_across_visit(RS)
+check_rs_rsdtc_across_visit(RS, preproc = identity, ...)
 }
 \arguments{
 \item{RS}{Disease Response SDTM dataset with variables USUBJID, RSDTC, VISIT}
+
+\item{preproc}{An optional company specific preprocessing script}
+
+\item{...}{Other arguments passed to methods}
 }
 \value{
 boolean value if check failed or passed with 'msg' attribute if the
@@ -23,10 +27,11 @@ RS <- data.frame(
 USUBJID = 1,
 RSDTC = c(rep("2016-01-01",3), rep("2016-06-01",5), rep("2016-06-24",2)),
 VISIT = c(rep("C1D1",3), rep("C1D2",3), rep("C2D1",4)),
+RSSPID = "FORMNAME-R:13/L:13XXXX",
 stringsAsFactors=FALSE)
 
 check_rs_rsdtc_across_visit(RS)
-
+check_rs_rsdtc_across_visit(RS, preproc=roche_derive_rave_row)
 
 
 }
