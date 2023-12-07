@@ -616,7 +616,10 @@ xlsx2list <-function(rptwb, firstrow=1){
 #' @param new_report a newer sdtmchecks list object as created by `run_all_checks`
 #'
 #' @return list
+#' 
+#' @imporFrom dplyr left_join mutate
 #' @export
+#' 
 #' @examples 
 #' \dontrun{
 #'   diff_reports(old_report=sdtmchecks_results_15JUL2022,
