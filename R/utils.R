@@ -586,9 +586,8 @@ xlsx2list <-function(rptwb, firstrow=1){
   
   print("xlsx")
   return(rptlist)
+
 }
-
-
 
 
 
@@ -638,37 +637,18 @@ xlsx2list <-function(rptwb, firstrow=1){
 #' report_to_xlsx(res,outfile=paste0("saved_reports/sdtmchecks_diff_",Sys.Date(),".xlsx"))
 #' 
 #' }
-
-
-diff_reports=function(old_report, new_report){
-  
-  # more checks of type to be added in the future to make more robust
-  if(!("old_report" %in% ls(envir = .GlobalEnv) & (!("new_report" %in% ls(envir = .GlobalEnv))))) {
-    stop("diff_reports inputs for old_report and new_report do not match an object in your global environment")
-  }
-  else if(!("old_report" %in% ls(envir = .GlobalEnv) )) {
-    stop("diff_reports input for old_report does not match an object in your global environment")
-  }
-  else if(!("new_report" %in% ls(envir = .GlobalEnv) )) {
-    stop("diff_reports input for new_report does not match an object in your global environment")
-  }
-
-  else{
     
-    # it makes a difference which report is defined as "new" and "old"
-    # this code only keeps results flagged in the new report
-    # it ignores old results not in new report (because they were resolved)
-    
-  diff_args <- list(enexpr(old_report), enexpr(new_report))
-    
-  message(paste0("old_report defined as *", diff_args[[1]], "*; new_report defined as *", diff_args[[2]], "*"))
-  message(paste0("The output will only keep results flagged in ", diff_args[[2]], " since records in old but not in new were resolved"))
+
+diff_reports=function(old_report,new_report){
   
-  rm(diff_args)
+  # it makes a difference which report is defined as "new" and "old"
+  # this code only keeps results flagged in the new report
+  # it ignore old results not in new report (because they were resolved)
   
-  ### -------------------------
+  ###
   # First: subset to only results with flagged issues in the new report
-  ### -------------------------
+  ###
+
   
   new_issues=sapply(names(new_report),function(check_name){
     if("data" %in% names(new_report[[check_name]])){#if the check has a "data" attributes
@@ -680,19 +660,44 @@ diff_reports=function(old_report, new_report){
     }else{ #FALSE if no data attributes
       FALSE
     }
+
   }, USE.NAMES=TRUE)
   
   new_issues=names(new_issues[new_issues==TRUE]) #filter to just flagged records
   new_report=new_report[new_issues] #subset new report to just flagged records
   
+  
+  
+  ## more checks of type to be added in the future to make more robust
+  #if(!("old_report" %in% ls(envir = .GlobalEnv) & (!("new_report" %in% ls(envir = .GlobalEnv))))) {
+  #  stop("diff_reports inputs for old_report and new_report do not match an object in your global environment")
+  #}
+  #else if(!("old_report" %in% ls(envir = .GlobalEnv) )) {
+  #  stop("diff_reports input for old_report does not match an object in your global environment")
+  #}
+  #else if(!("new_report" %in% ls(envir = .GlobalEnv) )) {
+  #  stop("diff_reports input for new_report does not match an object in your global environment")
+  #}
+  #
+  #else{
+    
+  #diff_args <- list(enexpr(old_report), enexpr(new_report))
+    
+  #message(paste0("old_report defined as *", diff_args[[1]], "*; new_report defined as *", diff_args[[2]], "*"))
+  #message(paste0("The output will only keep results flagged in ", diff_args[[2]], " since records in old but not in new were resolved"))
+  
+  #rm(diff_args)
+  
+
   ### -------------------------
   # Second: Do the diff 
   #
   #    i.e., Compare the flagged records in the new vs. old report.
   #          A new column "report_diff" will be added to all results of the 
   #            "new_report" based on the flagged record comparison.
-  #          The new column will have either "NEW" or "PRIOR" populated.
+  #          The new column will have either "NEW" or "OLD" populated.
   ### -------------------------
+
   
   res=sapply(new_issues,function(check_name){
     
@@ -702,7 +707,10 @@ diff_reports=function(old_report, new_report){
       res_new$data$report_diff="NEW"
       res_new
       
-    }else if(nrow(old_report[[check_name]]$data)==0){ #if check in the old report but old report didn't have any issues then these issues are new
+
+    }else if(nrow(old_report[[check_name]]$data)==0){ 
+      #if check in the old report but old report didn't have any issues then these issues are new
+
       
       res_new=new_report[[check_name]]
       res_new$data$report_diff="NEW"
@@ -712,7 +720,8 @@ diff_reports=function(old_report, new_report){
       
       res_new=new_report[[check_name]]
       res_old=old_report[[check_name]]
-      res_old$data$report_diff="PRIOR"
+      res_old$data$report_diff="OLD"
+
       
       res_new$data=res_new$data %>%
         left_join(res_old$data,relationship = "many-to-many") %>% #behold the magic of dplyr automatically identifying columns to join on
@@ -724,8 +733,6 @@ diff_reports=function(old_report, new_report){
   }, USE.NAMES=TRUE, simplify=FALSE)
   
   return(res)
-  
-  }
   
 }
 

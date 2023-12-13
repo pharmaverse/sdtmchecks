@@ -41,7 +41,7 @@ check_tu_tudtc_across_visit <- function(TU) {
         }else{
         tusub = TU %>%
             filter(toupper(TUEVAL) == "INVESTIGATOR" | is_sas_na(TUEVAL)) %>%
-            select(USUBJID, TUDTC, VISIT) 
+            select(USUBJID, TUDTC, VISIT)
         }
 
 
@@ -53,8 +53,8 @@ check_tu_tudtc_across_visit <- function(TU) {
 
         ### Subset where count is >1 and output
         mydf0 = mydf0 %>%
-            select(USUBJID, TUDTC) %>%
-            filter(mydf0$x>1)
+            filter(x>1) %>%
+            select(USUBJID, TUDTC) 
 
         mypairs0 = mypairs %>%
             select(USUBJID, TUDTC,VISIT)

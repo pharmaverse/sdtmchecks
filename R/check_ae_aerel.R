@@ -102,75 +102,75 @@
 
 
 check_ae_aerel <- function(AE,preproc=identity,...) {
-
+    
     ###Keep only AEREL, AEREL1 - AERELN
     all_aerel <- setdiff(names(AE)[grep("AEREL",names(AE))],names(AE)[grep("AERELNS",names(AE))])
-
+    
     ###First check that required variables exist and return a message if they don't
-    if(AE %lacks_any% c("USUBJID","AESEQ","AESTDTC","AETERM","AEREL")){
-
-        fail(lacks_msg(AE, c("USUBJID","AESEQ","AESTDTC","AETERM","AEREL")))
-
+    if(AE %lacks_any% c("USUBJID","AESTDTC","AETERM","AEREL")){
+        
+        fail(lacks_msg(AE, c("USUBJID","AESTDTC","AETERM","AEREL")))
+        
     } else {
-
+        
         #Apply company specific preprocessing function
         AE = preproc(AE,...)
-        AE <- AE[,intersect(names(AE), c("USUBJID","AESEQ","AESTDTC","AETERM","RAVE", all_aerel))]
-
+        AE <- AE[,intersect(names(AE), c("USUBJID","AESTDTC","AETERM","RAVE", all_aerel))]
+        
         mydf_sub <- AE
-
+        
         mydf_miss <- mydf_sub %>%
             filter(is_sas_na(AE$AEREL) & AE$AEREL != "NA")
-
+        
         #mydf_nmiss <- rbind(filter(mydf_sub, !is_sas_na(AE$AEREL)), filter(mydf_sub, AE$AEREL == "NA"))
         mydf_nmiss <- rbind(filter(mydf_sub, !is_sas_na(AE$AEREL)))
-
+        
         if (as.numeric(length(all_aerel)) > 1) {
-
-            index_y <- as.data.frame(sapply(6:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == 'Y'))
-            index_n <- as.data.frame(sapply(6:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == 'N'))
-            index_na <- as.data.frame(sapply(6:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == 'NA'))
-            index_m <- as.data.frame(sapply(6:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == ''))
-
+            
+            index_y <- as.data.frame(sapply(5:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == 'Y'))
+            index_n <- as.data.frame(sapply(5:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == 'N'))
+            index_na <- as.data.frame(sapply(5:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == 'NA'))
+            index_m <- as.data.frame(sapply(5:ncol(mydf_nmiss), function(x) mydf_nmiss[, x] == ''))
+            
             ## For which row the condition is true for all columns
             y <- apply(index_y, 1, any)
             na <- apply(index_na, 1, all)
             n1 <- apply(index_n, 1, any)
             m <- apply(index_m, 1, all)
-
+            
             n <- n1 != y & n1 == TRUE
-
+            
             ### Check if there is any unexpected AEREL
             mydf_y <- mydf_nmiss[mydf_nmiss$AEREL == 'Y' & !y, ]
             mydf_n <- mydf_nmiss[mydf_nmiss$AEREL == 'N' & !n, ]
             mydf_na <- mydf_nmiss[mydf_nmiss$AEREL == 'NA' & !na, ]
             mydf_m <- mydf_nmiss[mydf_nmiss$AEREL == '' & !m, ]
-
+            
             if (nrow(mydf_miss) > 0) {
-                index_all <- as.data.frame(rbind(sapply(6:ncol(mydf_miss),
+                index_all <- as.data.frame(rbind(sapply(5:ncol(mydf_miss),
                                                         function(x)
                                                             mydf_miss[, x] == 'Y'|
                                                             mydf_miss[, x] == 'NA' |
                                                             mydf_miss[, x] == 'N' |
                                                             mydf_miss[, x] == '')
-                                                 ))
+                ))
                 all <- apply(index_all, 1, any)
-
+                
                 mydf_all <- mydf_miss[all, ]
-
+                
                 mydf <- rbind(mydf_y, mydf_n, mydf_m, mydf_all)
                 #mydf <- rbind(mydf_y, mydf_na, mydf_n, mydf_m, mydf_all)
-
+                
             } else {
                 mydf <- rbind(mydf_y, mydf_na, mydf_n)
             }
-
+            
         } else {
             mydf <- mydf_miss
         }
-
+        
         rownames(mydf)=NULL
-
+        
         if (nrow(mydf) == 0) {
             pass()
         } else if (nrow(mydf) == 1) {
@@ -179,5 +179,5 @@ check_ae_aerel <- function(AE,preproc=identity,...) {
             fail(paste("AE has", nrow(mydf), "observations where AEREL is missing but one of AEREL1 - AEREL[n] is equal to Y/N/NA, or AEREL has an unexpected value, or AEREL[n] missing. "), mydf)
         }
     }
-
+    
 }
