@@ -44,7 +44,7 @@ jobs:
       ##################### BEGIN boilerplate steps #####################
       - name: Get branch names
         id: branch-name
-        uses: tj-actions/branch-names@v6.4
+        uses: tj-actions/branch-names@v7.0.7
       
       - name: Setup pandoc
         uses: r-lib/actions/setup-pandoc@v2
