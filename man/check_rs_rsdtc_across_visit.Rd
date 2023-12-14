@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_rs_rsdtc_across_visit.R
 \name{check_rs_rsdtc_across_visit}
 \alias{check_rs_rsdtc_across_visit}
-\title{Check RS Records where the same date occurs across multiple visits}
+\title{Check RS records where the same date occurs across multiple visits}
 \usage{
 check_rs_rsdtc_across_visit(RS, preproc = identity, ...)
 }
@@ -19,10 +19,13 @@ test failed
 }
 \description{
 This check identifies records where the same date RSDTC occurs
-across multiple visits. Only applies to assessments by investigator.
+across multiple visits. Only applies to assessments by investigator,
+selected based on uppercased RSEVAL = "INVESTIGATOR" or missing or
+RSEVAL variable does not exist.
 }
 \examples{
 
+# example that will be flagged
 RS <- data.frame(
 USUBJID = 1,
 RSDTC = c(rep("2016-01-01",3), rep("2016-06-01",5), rep("2016-06-24",2)),
@@ -32,6 +35,40 @@ stringsAsFactors=FALSE)
 
 check_rs_rsdtc_across_visit(RS)
 check_rs_rsdtc_across_visit(RS, preproc=roche_derive_rave_row)
+
+# example that will not be flagged because not Investigator
+RS0 <- RS
+RS0$RSEVAL <- "INDEPENDENT ASSESSOR"
+check_rs_rsdtc_across_visit(RS0)
+check_rs_rsdtc_across_visit(RS0, preproc=roche_derive_rave_row)
+
+# example with log line differences in Rave form with records flagged
+RS1 <- RS
+RS1$RSSPID = c(rep("FORMNAME-R:13/L:13XXXX",4), 
+rep("FORMNAME-R:13/L:14XXXX",2), 
+rep("FORMNAME-R:03/L:13XXXX",2),
+ rep("FORMNAME-R:9/L:13XXXX", 2))
+ 
+check_rs_rsdtc_across_visit(RS1)
+check_rs_rsdtc_across_visit(RS1, preproc=roche_derive_rave_row)
+
+# example with RSTESTCD with records flagged
+RS2 <- RS1
+RS2$RSTESTCD = c(rep("OVRLRESP", 2), rep("OTHER", 2), rep("OVRLRESP", 2), rep("OTHER", 2), rep("OVRLRESP", 2))
+check_rs_rsdtc_across_visit(RS2)
+check_rs_rsdtc_across_visit(RS2, preproc=roche_derive_rave_row)
+
+# example with records flagged without xxSPID
+RS3 <- RS
+RS3$RSSPID <- NULL
+check_rs_rsdtc_across_visit(RS3)
+check_rs_rsdtc_across_visit(RS3, preproc=roche_derive_rave_row)
+
+# example without required variable
+RS4 <- RS
+RS4$VISIT <- NULL
+check_rs_rsdtc_across_visit(RS4)
+check_rs_rsdtc_across_visit(RS4, preproc=roche_derive_rave_row)
 
 
 }
