@@ -51,7 +51,8 @@
 #'
 #' # example with RSTESTCD with records flagged
 #' RS2 <- RS1
-#' RS2$RSTESTCD = c(rep("OVRLRESP", 2), rep("OTHER", 2), rep("OVRLRESP", 2), rep("OTHER", 2), rep("OVRLRESP", 2))
+#' RS2$RSTESTCD = c(rep("OVRLRESP", 2), rep("OTHER", 2), 
+#'    rep("OVRLRESP", 2), rep("OTHER", 2), rep("OVRLRESP", 2))
 #' check_rs_rsdtc_across_visit(RS2)
 #' check_rs_rsdtc_across_visit(RS2, preproc=roche_derive_rave_row)
 #' 
