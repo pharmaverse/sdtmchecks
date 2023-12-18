@@ -65,6 +65,7 @@ rec <- run_check(
 }
 \seealso{
 Example programs for running data checks
+\code{\link{diff_reports}()},
 \code{\link{report_to_xlsx}()},
 \code{\link{run_all_checks}()}
 }
