@@ -648,6 +648,14 @@ diff_reports=function(old_report,new_report){
   # this code only keeps results flagged in the new report
   # it ignore old results not in new report (because they were resolved)
   
+  
+  if(!is.list(old_report)|!is.list(new_report)){
+    
+    stop("Inputs are expected to be lists as created by sdtmchecks::run_all_checks")
+    
+  }else{
+    
+  
   ###
   # First: subset to only results with flagged issues in the new report
   ###
@@ -707,6 +715,8 @@ diff_reports=function(old_report,new_report){
   },USE.NAMES = TRUE,simplify=FALSE)
   
   return(res)
+  
+  }
   
 }
 
