@@ -606,27 +606,41 @@ xlsx2list <-function(rptwb, firstrow=1){
 
 #' @title Create a sdtmchecks list object with column indicating whether the issue was previously seen
 #'
-#' @description This function will compare two sdtmchecks list objects as created by `run_all_checks`.
-#' It creates a report with only records seen in the more recent report (ie `new_report`).
-#' It then adds a flag for whether this record was seen in the old report (ie `old_report`).
-#' This function ignores old results not in new report (because presumably they were resolved).
-#' A left join is performed, so it matters which report you define as 'new' and 'old'.  
+#' @description This report will identify flagged records from an sdtmchecks report
+#' that are "new" and those that are "old" for a study. This will help quickly target 
+#' newly emergent issues that may require a new query or investigation while indicating 
+#' issues that were encountered from a prior report and may have already been queried.
+#' 
+#' This `diff_reports()` function requires a newer and older set of results from 
+#' `sdtmchecks::run_all_checks()`, which will generate a list of check results. 
+#' A added column "report_diff" is created with values of "NEW" and "OLD" 
+#' in the list of check results, flagging whether a given record that is present 
+#' in the new result (ie `new_report`) is also present in the old result (ie `old_report`).
+#' It makes a difference which report is defined as "new" and "old". 
+#' This code only keeps results flagged in the new report and ignores 
+#' old results not in new report because they were presumably resolved.
 #'
 #' @param old_report an older sdtmchecks list object as created by `run_all_checks`
 #' @param new_report a newer sdtmchecks list object as created by `run_all_checks`
 #'
-#' @return list
+#' @return list of sdtmchecks results based on new_report with report_diff indicator
 #' 
-#' @imporFrom dplyr left_join mutate
+#' @imporFrom dplyr %>% left_join mutate
 #' @export
 #' 
 #' @examples 
 #' \dontrun{
-#'   diff_reports(old_report=sdtmchecks_results_15JUL2022,
-#'                new_report=sdtmchecks_results_15AUG2022)
+#' old = readRDS("saved_reports/sdtmchecks_01JAN2023.rds")
+#' new = readRDS("saved_reports/sdtmchecks_01FEB2023.rds")
+#' 
+#' res=diff_reports(old_report=old,new_report=new)
+#' 
+#' report_to_xlsx(res,outfile=paste0("saved_reports/sdtmchecks_diff_",Sys.Date(),".xlsx"))
+#' 
 #' }
 #'
-#' 
+#' @keywords ex_rpt
+#' @family ex_rpt
 
 diff_reports=function(old_report,new_report){
   
@@ -653,9 +667,14 @@ diff_reports=function(old_report,new_report){
   new_issues=names(new_issues[new_issues==TRUE]) #filter to just flagged records
   new_report=new_report[new_issues] #subset new report to just flagged records
   
-  ###
-  # Second: Do the diff
-  ###
+  ### -------------------------
+  # Second: Do the diff 
+  #
+  #    i.e., Compare the flagged records in the new vs. old report.
+  #          A new column "report_diff" will be added to all results of the 
+  #          "new_report" based on the flagged record comparison.
+  #          The new column will have either "NEW" or "OLD" populated.
+  ### -------------------------
   
   res=sapply(new_issues,function(check_name){
     
