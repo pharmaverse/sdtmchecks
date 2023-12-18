@@ -597,13 +597,6 @@ xlsx2list <-function(rptwb, firstrow=1){
 
 
 
-
-
-
-
-
-
-
 #' @title Create a sdtmchecks list object with column indicating whether the issue was previously seen
 #'
 #' @description This report will identify flagged records from an sdtmchecks report
