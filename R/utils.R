@@ -394,7 +394,7 @@ report_to_xlsx = function(res,outfile,extrastring=""){
   conditionalFormatting(wb, "Summary results", cols=1:4 ,  rows=1:nrow(summary_data)+1, rule='$D2!=" "', style=redStyle)
   conditionalFormatting(wb, "Summary results", cols=2:4 ,  rows=1:nrow(summary_data)+1, rule='$C2>0', style=orangeStyle)
   conditionalFormatting(wb, "Summary results", cols=1 ,  rows=1:nrow(summary_data)+1, rule='$C2>0', style=orangeStyle)
-  conditionalFormatting(wb, "Summary results", cols=5 ,  rows=1:3, rule='$E2!=""', style=boldnickname)
+  conditionalFormatting(wb, "Summary results", cols=5 ,  rows=1:nrow(summary_data)+1, rule='$E2!=""', style=boldnickname)
   
   # Add comments with PDF subtitles to summary results page
   for(i in 1:nrow(summary_data_0)){
