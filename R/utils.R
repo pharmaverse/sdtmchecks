@@ -321,6 +321,7 @@ truncate_var_strings <- function(dt, var_name, trunc_length) {
 #'
 #' @param res results list created by run_all_checks
 #' @param outfile file path/name to write to
+#' @param extrastring optionally display extra info alongside version info, e.g. diff info
 #' 
 #' @import openxlsx
 #' @importFrom utils packageDescription
@@ -348,7 +349,7 @@ truncate_var_strings <- function(dt, var_name, trunc_length) {
 #' }
 
 
-report_to_xlsx = function(res,outfile){
+report_to_xlsx = function(res,outfile,extrastring=""){
   
   # prepare summary page
   # pull columns (xls_title, pdf_title, nrec, notes) from the list and create a summary data frame
@@ -358,6 +359,7 @@ report_to_xlsx = function(res,outfile){
     mutate(version="") %>% select(-any_of("pdf_subtitle"))
   summary_data[,"nrec"]<-as.numeric(summary_data[,"nrec"])
   summary_data[1,"version"]<-nickname
+  summary_data[2,"version"]<-extrastring
   
   # assign column names
   colnames(summary_data)<-c("Data check (Tab name)",
@@ -392,7 +394,7 @@ report_to_xlsx = function(res,outfile){
   conditionalFormatting(wb, "Summary results", cols=1:4 ,  rows=1:nrow(summary_data)+1, rule='$D2!=" "', style=redStyle)
   conditionalFormatting(wb, "Summary results", cols=2:4 ,  rows=1:nrow(summary_data)+1, rule='$C2>0', style=orangeStyle)
   conditionalFormatting(wb, "Summary results", cols=1 ,  rows=1:nrow(summary_data)+1, rule='$C2>0', style=orangeStyle)
-  conditionalFormatting(wb, "Summary results", cols=5 ,  rows=2, rule='$E2!=""', style=boldnickname)
+  conditionalFormatting(wb, "Summary results", cols=5 ,  rows=3, rule='$E2!=""', style=boldnickname)
   
   # Add comments with PDF subtitles to summary results page
   for(i in 1:nrow(summary_data_0)){
