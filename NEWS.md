@@ -1,3 +1,17 @@
+# sdtmchecks (development version)
+
+## Refinements of existing data check functions
+
+* [`check_ss_ssdtc_dead_ds`](https://pharmaverse.github.io/sdtmchecks/reference/check_ss_ssdtc_dead_ds.html) updated to include pre-processing input and return RAVE column if applicable ([#263](https://github.com/pharmaverse/sdtmchecks/pull/263))
+
+
+
+## Metadata updates
+
+* [`sdtmchecksmeta.RData`](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) with added `preproc=roche_derive_rave_row` 
+
+
+
 # sdtmchecks 0.1.8 "Bubble and Squeak"
 
 ## Refinements of existing data check functions
