@@ -8,7 +8,8 @@ test_that("Returns true when no errors present", {
     TRLINKID = c(1,1,2,2),
     TRSPID   = c(1,1,2,2),
     TRDTC    = c(1,1,2,2),
-    TRSTRESC = c(1,1,2,2)
+    TRSTRESC = c(1,1,2,2),
+    VISIT = "Visit 1"
   )
   
   TR <- TR[c(1,3),]
@@ -27,7 +28,8 @@ test_that("Returns false when errors present", {
     TRLINKID = c(1,1,2,2),
     TRSPID   = c(1,1,2,2),
     TRDTC    = c(1,1,2,2),
-    TRSTRESC = c(1,1,2,2)
+    TRSTRESC = c(1,1,2,2),
+    VISIT = "Visit 1"
   )
   
   expect_false(check_tr_dup(TR))
@@ -43,7 +45,8 @@ test_that("Returns false when expected column not present - 1", {
     TRLINKID = c(1,1,2,2),
     TRSPID   = c(1,2,2,1),
     TRDTC    = c(1,1,2,2),
-    TRSTRESC = c(1,2,2,1)
+    TRSTRESC = c(1,2,2,1),
+    VISIT = "Visit 1"
   )
   
   TR$USUBJID <- NULL
@@ -62,7 +65,8 @@ test_that("Returns false when expected column not present - 2", {
     TRLINKID = c(1,1,2,2),
     TRSPID   = c(1,2,2,1),
     TRDTC    = c(1,1,2,2),
-    TRSTRESC = c(1,2,2,1)
+    TRSTRESC = c(1,2,2,1),
+    VISIT = "Visit 1"
   )
   
   TR$TRLINKID <- NULL

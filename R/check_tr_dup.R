@@ -6,6 +6,8 @@
 #'
 #' @param TR dataframe with variables USUBJID, TRCAT, TRLINKID/TRLNKID, TRTESTCD, TRSTRESC,
 #'           TRDTC, TRSPID (if it exists)
+#' @param preproc An optional company specific preprocessing script
+#' @param ... Other arguments passed to methods
 #'
 #' @author Joel Laxamana
 #'
@@ -25,10 +27,12 @@
 #'  TRSTRESC = c(1,1,2,2),
 #'  TRSPID = "FORMNAME-R:19/L:19XXXX",
 #'  TREVAL = "INVESTIGATOR",
+#'  VISIT = "A",
 #'  stringsAsFactors = FALSE
 #' )
 #'
 #' check_tr_dup(TR)
+#' check_tr_dup(TR,preproc=roche_derive_rave_row)
 #' 
 #' TR1 <- TR
 #' TR1$TRSPID <- NULL
@@ -41,11 +45,11 @@
 #' check_tr_dup(TR2)
 #'
 
-check_tr_dup <- function(TR){
+check_tr_dup <- function(TR,preproc=identity,...){
     
-    if (TR %lacks_any% c("USUBJID","TRCAT","TRTESTCD","TRDTC","TRSTRESC")){
+    if (TR %lacks_any% c("USUBJID","TRCAT","TRTESTCD","TRDTC","TRSTRESC","VISIT")){
         
-        fail (lacks_msg(TR, c("USUBJID","TRCAT","TRTESTCD","TRDTC","TRSTRESC")))
+        fail (lacks_msg(TR, c("USUBJID","TRCAT","TRTESTCD","TRDTC","TRSTRESC","VISIT")))
         
     } else if (TR %lacks_all% c("TRLINKID", "TRLNKID")) {
         
@@ -53,7 +57,12 @@ check_tr_dup <- function(TR){
         
     } else{
         
-        myvars <- c("USUBJID","TRCAT","TRTESTCD",names(TR)[names(TR) %in% c("TRLINKID","TRLNKID")],names(TR)[names(TR) %in% "TRSPID"],"TRDTC","TRSTRESC")
+        #Apply company specific preprocessing function
+        TR = preproc(TR,...)
+        
+        myvars <- c("USUBJID","TRCAT","TRTESTCD",names(TR)[names(TR) %in% c("TRLINKID","TRLNKID")],
+                    # names(TR)[names(TR) %in% "TRSPID"],
+                    "TRDTC","TRSTRESC","VISIT")
         
         if(TR %lacks_any% "TREVAL"){
             
@@ -78,11 +87,14 @@ check_tr_dup <- function(TR){
         }
         
         # duplicate TR records
-        dups <- subset(tr1, duplicated(tr1), myvars)
+        dups <- subset(tr1, duplicated(tr1), myvars) %>%
+            unique() %>% 
+            left_join((TR %>% select(any_of(c(myvars,"RAVE")))),by=myvars,relationship = "many-to-many") %>% 
+            unique
         rownames(dups)=NULL
         
         # declare number of duplicated TR records and print them
-        n0 <- paste('There are ', nrow(dups), ' duplicated TR records. ', sep ='')
+        n0 <- paste('There are ', (dups %>% select(any_of(myvars)) %>% unique %>% nrow), ' duplicated TR records. ', sep ='')
         
         if (nrow(dups) == 0){
             pass()
