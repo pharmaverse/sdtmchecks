@@ -7,12 +7,13 @@
 check_tr_dup(TR)
 }
 \arguments{
-\item{TR}{TR dataframe with variables USUBJID, TRLINKID, TRTESTCD, TRCAT, TRSTRESC,
-TRSTRESU, VISITDY, TRDTC}
+\item{TR}{dataframe with variables USUBJID, TRCAT, TRLINKID/TRLNKID, TRTESTCD, TRSTRESC,
+TRDTC, TRSPID (if it exists)}
 }
 \description{
 This check looks for duplicate TR records and returns a data frame.
-Only applies to assessments by investigator.
+Only applies to assessments by Investigator, selected based on uppercased
+TREVAL = "INVESTIGATOR" or missing or TREVAL variable does not exist.
 }
 \examples{
 
@@ -21,13 +22,24 @@ Only applies to assessments by investigator.
  TRCAT    = c(1,1,2,2),
  TRTESTCD = c(1,1,2,2),
  TRLINKID = c(1,1,2,2),
- TRSPID   = c(1,1,2,2),
- TRDTC    = c(1,1,2,2),
- TRSTRESC = c(1,1,2,2)
+ TRDTC = c(rep("2016-01-01",2), rep("2016-06-01",2)),
+ TRSTRESC = c(1,1,2,2),
+ TRSPID = "FORMNAME-R:19/L:19XXXX",
+ TREVAL = "INVESTIGATOR",
+ stringsAsFactors = FALSE
 )
 
 check_tr_dup(TR)
 
+TR1 <- TR
+TR1$TRSPID <- NULL
+
+check_tr_dup(TR1)
+
+TR2 <- TR
+TR2$TREVAL <- NULL
+
+check_tr_dup(TR2)
 
 }
 \author{
