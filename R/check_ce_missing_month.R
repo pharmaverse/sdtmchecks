@@ -100,8 +100,7 @@ check_ce_missing_month <- function(CE, preproc = identity, ...) {
       fail(
         paste(
           length(unique(mydf$USUBJID)),
-          "patient(s) with a clinical events date that has year and day present but missing month.",
-          sep = ""
+          "patient(s) with a clinical events date that has year and day present but missing month."
         ),
         mydf
       )
