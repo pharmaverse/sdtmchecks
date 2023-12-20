@@ -109,5 +109,5 @@ check_ce_missing_month <- function(CE, preproc = identity, ...) {
       
     }
     }
-  }
 }
+
