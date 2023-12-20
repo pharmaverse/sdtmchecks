@@ -4,11 +4,15 @@
 \alias{check_tr_dup}
 \title{Check for duplicate TR records}
 \usage{
-check_tr_dup(TR)
+check_tr_dup(TR, preproc = identity, ...)
 }
 \arguments{
 \item{TR}{dataframe with variables USUBJID, TRCAT, TRLINKID/TRLNKID, TRTESTCD, TRSTRESC,
 TRDTC, TRSPID (if it exists)}
+
+\item{preproc}{An optional company specific preprocessing script}
+
+\item{...}{Other arguments passed to methods}
 }
 \description{
 This check looks for duplicate TR records and returns a data frame.
@@ -26,10 +30,12 @@ TREVAL = "INVESTIGATOR" or missing or TREVAL variable does not exist.
  TRSTRESC = c(1,1,2,2),
  TRSPID = "FORMNAME-R:19/L:19XXXX",
  TREVAL = "INVESTIGATOR",
+ VISIT = "A",
  stringsAsFactors = FALSE
 )
 
 check_tr_dup(TR)
+check_tr_dup(TR,preproc=roche_derive_rave_row)
 
 TR1 <- TR
 TR1$TRSPID <- NULL
