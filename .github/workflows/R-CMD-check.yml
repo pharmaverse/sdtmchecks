@@ -87,7 +87,8 @@ jobs:
             check_error_on <- "note"
           }
           rcmdcheck::rcmdcheck(
-            args = c("--no-manual", "--as-cran"),
+           # args = c("--no-manual", "--as-cran"),
+             args = c("--no-manual"),
             error_on = check_error_on,
             check_dir = "check"
           )

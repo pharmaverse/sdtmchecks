@@ -1,4 +1,4 @@
-# sdtmchecks <version> <package nickname>
+# sdtmchecks (development version)
 
 ## Refinements of existing data check functions
 
