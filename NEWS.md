@@ -3,6 +3,8 @@
 ## Refinements of existing data check functions
 
 * [`check_ae_aerel`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aerel.html) updated syntax with more dynamic inclusion of AEREL variables ([#259](https://github.com/pharmaverse/sdtmchecks/pull/259)), with thanks to `@vrakinav`
+* [`check_tr_dup`](https://pharmaverse.github.io/sdtmchecks/reference/check_tr_dup.html) header updated, no longer uses superceded dplyr::arrange_at()([#278](https://github.com/pharmaverse/sdtmchecks/pull/278))
+
 
 ## Refinements of existing report utilities
 
