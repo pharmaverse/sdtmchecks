@@ -1,5 +1,7 @@
 # sdtmchecks (development version)
 
+# sdtmchecks 0.1.9
+
 ## Refinements of existing data check functions
 
 * [`check_ss_ssdtc_dead_ds`](https://pharmaverse.github.io/sdtmchecks/reference/check_ss_ssdtc_dead_ds.html) updated to include pre-processing input and return RAVE column if applicable ([#263](https://github.com/pharmaverse/sdtmchecks/pull/263))
