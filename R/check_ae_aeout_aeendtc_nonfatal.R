@@ -35,17 +35,17 @@
 #' stringsAsFactors = FALSE
 #')
 #'
-#' check_ae_aeout_aeendtc(AE)
-#' check_ae_aeout_aeendtc(AE,preproc=roche_derive_rave_row)
+#' check_ae_aeout_aeendtc_nonfatal(AE)
+#' check_ae_aeout_aeendtc_nonfatal(AE,preproc=roche_derive_rave_row)
 #'
 #' AE$AEENDTC <- NULL
-#' check_ae_aeout_aeendtc(AE)
+#' check_ae_aeout_aeendtc_nonfatal(AE)
 #'
 #' AE$AEOUT <- NULL
-#' check_ae_aeout_aeendtc(AE)
+#' check_ae_aeout_aeendtc_nonfatal(AE)
 #'
 
-check_ae_aeout_aeendtc <- function(AE,preproc=identity,...){
+check_ae_aeout_aeendtc_nonfatal <- function(AE,preproc=identity,...){
   
   if (AE %lacks_any% c("USUBJID", "AESTDTC", "AETERM", "AEENDTC", "AEOUT")) {
     

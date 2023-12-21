@@ -11,7 +11,7 @@ test_that("function returns false when errors are present", {
         stringsAsFactors = FALSE
     )
     
-    expect_false(check_ae_aeout_aeendtc(AE))
+    expect_false(check_ae_aeout_aeendtc_nonfatal(AE))
     
 })
 
@@ -27,7 +27,7 @@ test_that("function returns false when errors are present - with preprocessing",
         stringsAsFactors = FALSE
     )
     
-    expect_false(check_ae_aeout_aeendtc(AE,preproc=roche_derive_rave_row))
+    expect_false(check_ae_aeout_aeendtc_nonfatal(AE,preproc=roche_derive_rave_row))
     
 })
 
@@ -44,7 +44,7 @@ test_that("function returns false when variable missing", {
     )
     AE$AEENDTC <- NULL
     
-    expect_false(check_ae_aeout_aeendtc(AE))
+    expect_false(check_ae_aeout_aeendtc_nonfatal(AE))
     
 })
 
@@ -61,7 +61,7 @@ test_that("function returns false when variable missing", {
     )
     AE$AEOUT <- NULL
     
-    expect_false(check_ae_aeout_aeendtc(AE))
+    expect_false(check_ae_aeout_aeendtc_nonfatal(AE))
     
 })
 
