@@ -30,7 +30,7 @@ test_that("Returns false when errors present - 1", {
   
   expect_false(check_ts_aedict(TS1))
 })
- 
+
 test_that("Returns false when errors present - 2", {
   
   TS2 <- data.frame(
@@ -132,6 +132,5 @@ test_that("Returns false when expected column not present", {
   
 })
 
- 
 
- 
+

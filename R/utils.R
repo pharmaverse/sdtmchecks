@@ -612,8 +612,8 @@ xlsx2list <-function(rptwb, firstrow=1){
 #' in the list of check results, flagging whether a given record that is present 
 #' in the new result (ie `new_report`) is also present in the old result (ie `old_report`).
 #' It makes a difference which report is defined as "new" and "old". 
-#' This code only keeps results flagged in the new report and ignores 
-#' old results not in new report because they were presumably resolved.
+#' This code only keeps results flagged in the new report and drops 
+#' old results not in the new report because they were presumably resolved.
 #'
 #' @param old_report an older sdtmchecks list object as created by `run_all_checks`
 #' @param new_report a newer sdtmchecks list object as created by `run_all_checks`
@@ -625,24 +625,36 @@ xlsx2list <-function(rptwb, firstrow=1){
 #' 
 #' @examples 
 #' \dontrun{
-#' old = readRDS("saved_reports/sdtmchecks_01JAN2023.rds")
-#' new = readRDS("saved_reports/sdtmchecks_01FEB2023.rds")
 #' 
-#' res=diff_reports(old_report=old,new_report=new)
+#' ## use the run_all_checks() function to generate list of check results 
+#' all_rec <- sdtmchecks::run_all_checks()
 #' 
-#' report_to_xlsx(res,outfile=paste0("saved_reports/sdtmchecks_diff_",Sys.Date(),".xlsx"))
+#' ## save results as .RDS file
+#' saveRDS(all_rec, file=paste0("saved_reports/sdtmchecks_", Sys.Date(), ".rds"))
+#' 
+#' ## re-run the above steps on a different snapshot for the same study
+#' 
+#' ## read in the previously created RDS files 
+#' old <- readRDS("saved_reports/sdtmchecks_01JAN2023.rds")
+#' new <- readRDS("saved_reports/sdtmchecks_01FEB2023.rds")
+#' 
+#' ## run sdtmchecks::diff_reports()
+#' res <- diff_reports(old_report=old, new_report=new)
+#' 
+#' ## output results as spreadsheet with sdtmchecks::report_to_xlsx()
+#' report_to_xlsx(res, outfile=paste0("saved_reports/sdtmchecks_diff_",Sys.Date(),".xlsx"))
 #' 
 #' }
 #'
 #' @keywords ex_rpt
 #' @family ex_rpt
+#' 
 
 diff_reports=function(old_report,new_report){
   
-  # it makes a difference which report is defined as "new" and "old"
+  # it makes a difference which report is defined as "new_report" and "old_report"
   # this code only keeps results flagged in the new report
   # it ignore old results not in new report (because they were resolved)
-  
   
   if(!is.list(old_report)|!is.list(new_report)){
     

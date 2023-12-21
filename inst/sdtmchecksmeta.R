@@ -230,7 +230,7 @@ nrow(new)
 nrow(prior)
 
 ## confirm that only the expected changes are presented as differences
-diffdf::diffdf(new, prior)
+# diffdf::diffdf(new, prior)
 
 
 ## name the new dataset the expected package dataframe name prior to saving
