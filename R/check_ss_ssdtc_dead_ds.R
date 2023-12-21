@@ -16,7 +16,7 @@
 #'
 #' @export
 #'
-#' @importFrom dplyr left_join filter %>%
+#' @importFrom dplyr left_join filter %>% rename
 #' @importFrom tidyselect any_of
 #'
 #' @author Vira Vrakina
@@ -27,7 +27,8 @@
 #'  USUBJID = 1:5,
 #'  SSDTC = "2020-01-02",
 #'  SSSTRESC  = c("DEAD","DEAD","ALIVE","DEAD","ALIVE"),
-#'  VISIT = "FOLLOW-UP"
+#'  VISIT = "FOLLOW-UP",
+#'  SSSPID = "FORMNAME-R:13/L:13XXXX"
 #' )
 #'
 #' DS <- data.frame(
@@ -46,7 +47,8 @@
 #'  USUBJID = 1:5,
 #'  SSDTC = "2020-01-02",
 #'  SSSTRESC  = c( rep("DEAD", 5)),
-#'  VISIT = "FOLLOW-UP"
+#'  VISIT = "FOLLOW-UP",
+#'  SSSPID = "FORMNAME-R:13/L:13XXXX"
 #' )
 #'
 #' DS <- data.frame(
@@ -65,7 +67,8 @@
 #'  USUBJID = 1:5,
 #'  SSDTC = "2020-01-02",
 #'  SSSTRESC  = c(rep("DEAD", 5)),
-#'  VISIT = "FOLLOW-UP"
+#'  VISIT = "FOLLOW-UP",
+#'  SSSPID = "FORMNAME-R:13/L:13XXXX"
 #' )
 #'
 #' DS <- data.frame(
@@ -94,10 +97,15 @@ check_ss_ssdtc_dead_ds <- function(SS, DS, preproc=identity,...) {
         
         #Apply company specific preprocessing function
         DS = preproc(DS,...)
+        SS = preproc(SS,...)
 
-        myss <- subset(SS, !is_sas_na(SS$SSDTC) & toupper(SS$SSSTRESC) == 'DEAD', c("USUBJID","SSDTC","SSSTRESC", "VISIT"))
+        myss <- subset(SS, !is_sas_na(SS$SSDTC) & toupper(SS$SSSTRESC) == 'DEAD') %>% 
+            select(any_of(c("USUBJID","SSDTC","SSSTRESC", "VISIT","RAVE")))
         myds <- subset(DS, !is_sas_na(DS$DSSTDTC) & toupper(DS$DSDECOD) == 'DEATH' & toupper(DS$DSCAT) == "DISPOSITION EVENT") %>% 
             select(any_of(c("USUBJID", "DSSTDTC", "DSDECOD", "DSCAT","RAVE")))
+        
+        if("RAVE" %in% names(myds)){myds = myds %>% rename(DS_RAVE=RAVE)}
+        if("RAVE" %in% names(myss)){myss = myss %>% rename(SS_RAVE=RAVE)}
         
         mydf <- myss %>%
             left_join(myds, by="USUBJID") %>%
