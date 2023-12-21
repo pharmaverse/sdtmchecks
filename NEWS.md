@@ -1,3 +1,10 @@
+# sdtmchecks (development version)
+
+## New data check functions
+
+* [`check_ae_aeout_aeendtc_nonfatal()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeout_aeendtc_nonfatal.html) - flags AEs with inconsistent AE outcome (AEOUT) and AE resolution date (AEENDTC) for non-fatal AEs (based on AEOUT) ([#113](https://github.com/pharmaverse/sdtmchecks/issues/113)), with thanks to `@J-Lox`
+
+
 # sdtmchecks 0.1.6.2 "Bubble and Squeak"
 
 ## Refinements of existing data check functions
