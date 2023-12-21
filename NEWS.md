@@ -1,3 +1,45 @@
+# sdtmchecks (development version)
+
+## Refinements of existing data check functions
+
+* [`check_ae_aerel`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aerel.html) updated syntax with more dynamic inclusion of AEREL variables ([#259](https://github.com/pharmaverse/sdtmchecks/pull/259)), with thanks to `@vrakinav`
+* [`check_ss_ssdtc_dead_ds`](https://pharmaverse.github.io/sdtmchecks/reference/check_ss_ssdtc_dead_ds.html) updated to include pre-processing input and return RAVE column if applicable ([#263](https://github.com/pharmaverse/sdtmchecks/pull/263))
+* [`check_rs_rsdtc_across_visit`],[`check_tr_trdtc_across_visit`],[`check_tu_tudtc_across_visit`] updated to have more info, e.g. TESTCD/RAVE info. ([#260](https://github.com/pharmaverse/sdtmchecks/pull/260))
+* [`check_tr_dup`] updated. ([#271](https://github.com/pharmaverse/sdtmchecks/issues/271))
+
+## New data check functions
+
+* [`check_ce_missing_month()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ce_missing_month.html) - flags if CE has a suspicious date value with year and day known but month missing.  Thanks `@rymarinelli`! ([#148](https://github.com/pharmaverse/sdtmchecks/issues/148))
+
+## Refinements of existing report utilities
+
+* [`report_to_xlsx`](https://pharmaverse.github.io/sdtmchecks/reference/report_to_xlsx.html) with added PARAM of extrastring=""`
+ 
+
+## Metadata updates
+
+* [`sdtmchecksmeta.RData`](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) with added `preproc=roche_derive_rave_row`
+
+## Misc package updates
+
+* Specify version >= 1.1.1 for dplyr version in DESCRIPTION
+
+
+
+# sdtmchecks 0.1.9 "Bubble and Squeak"
+
+
+## New report utility functions
+* Added [`diff_report()`](https://pharmaverse.github.io/sdtmchecks/reference/diff_report.html) reporting function to `util.R` to compare report objects generated from [`run_all_checks()`](https://pharmaverse.github.io/sdtmchecks/reference/run_all_checks.html), enabling identification of records newly flagged ([#264](https://github.com/pharmaverse/sdtmchecks/pull/264)), with thanks to `@harriscw`
+* Include "report_diff" to `globals.R` ([#265](https://github.com/pharmaverse/sdtmchecks/pull/265))
+
+## Misc package updates
+
+* Automated security update in workflow ([#268](https://github.com/pharmaverse/sdtmchecks/pull/268))
+
+
+
+
 # sdtmchecks 0.1.8 "Bubble and Squeak"
 
 ## Refinements of existing data check functions
