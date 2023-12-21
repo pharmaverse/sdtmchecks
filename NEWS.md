@@ -3,16 +3,26 @@
 ## Refinements of existing data check functions
 
 * [`check_ae_aerel`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aerel.html) updated syntax with more dynamic inclusion of AEREL variables ([#259](https://github.com/pharmaverse/sdtmchecks/pull/259)), with thanks to `@vrakinav`
+* [`check_rs_rsdtc_across_visit`],[`check_tr_trdtc_across_visit`],[`check_tu_tudtc_across_visit`] updated to have more info, e.g., --TESTCD/RAVE info. ([#260](https://github.com/pharmaverse/sdtmchecks/pull/260))
+* [`check_ss_ssdtc_dead_ds`](https://pharmaverse.github.io/sdtmchecks/reference/check_ss_ssdtc_dead_ds.html) updated to include pre-processing input and return RAVE column if applicable ([#263](https://github.com/pharmaverse/sdtmchecks/pull/263))
 * [`check_tr_dup`](https://pharmaverse.github.io/sdtmchecks/reference/check_tr_dup.html) header updated, no longer uses superceded dplyr::arrange_at()([#278](https://github.com/pharmaverse/sdtmchecks/pull/278))
 
+## New data check functions
+
+* [`check_ce_missing_month()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ce_missing_month.html) - flags if CE has a suspicious date value with year and day known but month missing. Thanks `@rymarinelli`! ([#148](https://github.com/pharmaverse/sdtmchecks/issues/148))
 
 ## Refinements of existing report utilities
 
 * [`report_to_xlsx`](https://pharmaverse.github.io/sdtmchecks/reference/report_to_xlsx.html) with added PARAM of extrastring=""`
+ 
+## Metadata updates
+
+* [`sdtmchecksmeta.RData`](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) with added `preproc=roche_derive_rave_row`
 
 ## Misc package updates
 
 * Specify version >= 1.1.1 for dplyr version in DESCRIPTION
+
 
 
 
@@ -26,6 +36,7 @@
 ## Misc package updates
 
 * Automated security update in workflow ([#268](https://github.com/pharmaverse/sdtmchecks/pull/268))
+
 
 
 
