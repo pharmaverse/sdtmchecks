@@ -1,3 +1,12 @@
+# sdtmchecks (development version)
+
+
+## Refinements of existing data check functions
+
+* [`check_ae_aedthdtc_ds_death`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aedthdtc_ds_death.html) updated logic, as this check is primarily useful for legacy studies that mapped DSTERM to have the specific string "DEATH DUE TO ADVERSE EVENT." Newer studies have updated mapping for DSTERM, where the specific AE is concatenated with the string "DEATH DUE TO" - e.g., "DEATH DUE TO INFLUENZA." The check will be based on DEATH DUE TO ADVERSE EVENT given in DSTERM. Studies without this string will be given a pass. ([#101](https://github.com/pharmaverse/sdtmchecks/pull/101)).
+
+
+
 # sdtmchecks 0.1.6.2 "Bubble and Squeak"
 
 ## Refinements of existing data check functions
