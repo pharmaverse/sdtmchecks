@@ -41,6 +41,20 @@ test_that("function returns false when errors are present", {
 
 })
 
+test_that("function returns false when errors are present and displays permissible variable RSTESTCD", {
+    
+    RS <- data.frame(
+        USUBJID = 1,
+        RSDTC = c(rep("2016-01-01",3), rep("2016-06-01",5), rep("2016-06-24",2)),
+        VISIT = c(rep("C1D1",3), rep("C1D2",3), rep("C2D1",4)),
+        RSTESTCD = c(rep("OVRLRESP", 2), rep("OTHER", 2), rep("OVRLRESP", 2), rep("OTHER", 2), rep("OVRLRESP", 2)),
+        stringsAsFactors=FALSE)
+    
+    expect_false(check_rs_rsdtc_across_visit(RS))
+    
+})
+
+
 test_that("Function returns true when no errors are present for an empty dataframe (zero rows)", {
 
     RS <- data.frame(
@@ -53,17 +67,16 @@ test_that("Function returns true when no errors are present for an empty datafra
 
 })
 
-# test_that("Function returns false when errors are present for an empty dataframe (zero rows)", {
-#
-#     EX <- data.frame(USUBJID =NA,
-#                      EXSEQ=NA,
-#                      EXSTDTC=NA,
-#                      EXTERM="",
-#                      EXDECOD ="NA",
-#                      stringsAsFactors=FALSE)
-#
-#     expect_false(check_ex_exdecod(EX))
-# })
+test_that("Function returns true for an empty dataframe (zero rows)", {
+
+    RS <- data.frame(USUBJID =character(),
+                     RSSEQ=integer(),
+                     RSDTC=character(),
+                     VISIT=character(),
+                     stringsAsFactors=FALSE)
+
+    expect_true(check_rs_rsdtc_across_visit(RS))
+})
 
 test_that("Function returns true when no errors are present for a single input (one row)", {
 
@@ -73,10 +86,10 @@ test_that("Function returns true when no errors are present for a single input (
         VISIT = "C1D1",
         stringsAsFactors=FALSE)
 
-
     expect_true(check_rs_rsdtc_across_visit(RS))
 })
 
+## Not applicable for _across_visit check
 # test_that("Function returns false when errors are present for a single input (one row)", {
 # 
 #     RS <- data.frame(
@@ -155,6 +168,8 @@ test_that("function returns false when errors are present and extra variables in
         RSDTC = c(rep("2016-01-01",3), rep("2016-06-01",5), rep("2016-06-24",2)),
         VISIT = c(rep("C1D1",3), rep("C1D2",3), rep("C2D1",4)),
         RSSPID = c("FORMNAME-R:1/L:5XXXX"),
+        RSSEQ = 1:10,
+        RSNAM = c(NA),
         RSCAT = c(NA),
         stringsAsFactors=FALSE)
     

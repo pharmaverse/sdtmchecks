@@ -2,12 +2,17 @@
 % Please edit documentation in R/check_tr_trdtc_across_visit.R
 \name{check_tr_trdtc_across_visit}
 \alias{check_tr_trdtc_across_visit}
-\title{Check TR Longest Diameter Records where the same date occurs accross multiple visits}
+\title{Check TR Longest Diameter Records where the same date occurs across multiple visits}
 \usage{
-check_tr_trdtc_across_visit(TR)
+check_tr_trdtc_across_visit(TR, preproc = identity, ...)
 }
 \arguments{
-\item{TR}{Tumor Result SDTM dataset with variables USUBJID, TRDTC, VISIT, TRTESTCD}
+\item{TR}{Tumor Result SDTM dataset with variables USUBJID, TRDTC, TRTESTCD, VISIT,
+TREVAL (optional)}
+
+\item{preproc}{An optional company specific preprocessing script}
+
+\item{...}{Other arguments passed to methods}
 }
 \value{
 boolean value if check failed or passed with 'msg' attribute if the
@@ -15,7 +20,9 @@ test failed
 }
 \description{
 This check identifies records where the same date TRDTC occurs
-across multiple visits when TRTESTCD is "LDIAM". Only applies to assessments by investigator.
+across multiple visits for Longest Diameter measurements (TRTESTCD is "LDIAM").
+Only applies to assessments by investigator, selected based on uppercased
+TREVAL = "INVESTIGATOR" or missing or TREVAL variable does not exist.
 }
 \examples{
 
@@ -24,10 +31,31 @@ USUBJID = 1,
 TRDTC = c(rep("2016-01-01",3), rep("2016-06-01",5), rep("2016-06-24",2)),
 VISIT = c(rep("C1D1",3), rep("C1D2",3), rep("C2D1",4)),
 TRTESTCD = c(rep("LDIAM",7),rep("SAXIS",3)),
+TRSPID = "FORMNAME-R:13/L:13XXXX",
 stringsAsFactors=FALSE)
 
 check_tr_trdtc_across_visit(TR)
+check_tr_trdtc_across_visit(TR, preproc=roche_derive_rave_row)
 
+TR2 <- TR
+TR2$TRSPID[4:5] <- c("FORMNAME2-R:5/L:13XXXX", "FORMNAME3-R:0/L:13XXXX")
+
+check_tr_trdtc_across_visit(TR2)
+check_tr_trdtc_across_visit(TR2, preproc=roche_derive_rave_row)
+
+# missing optional variable
+TR3 <- TR
+TR3$TRSPID <- NULL
+
+check_tr_trdtc_across_visit(TR3)
+check_tr_trdtc_across_visit(TR3, preproc=roche_derive_rave_row)
+
+# missing required variable
+TR4 <- TR
+TR4$TRTESTCD <- NULL
+
+check_tr_trdtc_across_visit(TR4)
+check_tr_trdtc_across_visit(TR4, preproc=roche_derive_rave_row)
 
 }
 \author{

@@ -7,8 +7,8 @@
 check_ce_missing_month(CE, preproc = identity, ...)
 }
 \arguments{
-\item{CE}{Clinical Events SDTM dataset with variables USUBJID, CETERM,
-CESTDTC, CEENDTC}
+\item{CE}{Clinical Events SDTM dataset with variables USUBJID, CETERM, and at
+least one of the following date variables: CESTDTC, CEENDTC, CEDTC}
 
 \item{preproc}{An optional company specific preprocessing script}
 
@@ -19,8 +19,8 @@ boolean value if check failed or passed with 'msg' attribute if the
 test failed
 }
 \description{
-Check for missing month when clinical events start (CESTDTC) or end dates
-(CEENDTC) have known year and day
+Check for missing month when clinical events dates
+(CESTDTC, CEENDTC, CEDTC) have a known year and day
 }
 \examples{
 
@@ -29,6 +29,7 @@ CE <- data.frame(
  CETERM = c("Headache", "Nausea", "Dizziness", "Fever"),
  CESTDTC = c("2023---01", "2023-01-15", "2023-02-01", "2023-02-10"),
  CEENDTC = c("2023-01-02", "2023---01", "2023-02-02", "2023-02-12"),
+ CEDTC = c("2023--01", "", "", ""),
  CESEV = c("Mild", "Moderate", "Mild", "Severe"),
  CESPID = "FORMNAME-R:13/L:13XXXX",
  stringsAsFactors=FALSE
@@ -37,11 +38,12 @@ CE <- data.frame(
 check_ce_missing_month(CE)
 check_ce_missing_month(CE,preproc=roche_derive_rave_row)
 
- CE <- data.frame(
+CE <- data.frame(
  USUBJID = c(1, 2, 3, 4),
  CETERM = c("Headache", "Nausea", "Dizziness", "Fever"),
  CESTDTC = c("2023-01-01", "2023-01-15", "2023-02-01", "2023-02-10"),
  CEENDTC = c("2023-01-02", "2023-01-16", "2023-02-02", "2023-02-12"),
+ CEENDTC = "",
  CESEV = c("Mild", "Moderate", "Mild", "Severe"),
  CESPID = "FORMNAME-R:13/L:13XXXX",
  stringsAsFactors=FALSE

@@ -1,8 +1,9 @@
-#' @title Check for TR records with missing TRSTRESN for LDIAM
+#' @title Check for TR records with missing TRSTRESN for Longest Diameter (LDIAM)
 #'
 #' @description This checks looks for TR records with missing values in numeric
-#'   result/finding for the LDIAM tumor assessment test. Only applies to
-#'   assessments by investigator.
+#'   result/finding for the Longest Diameter (TRTESTCD is LDIAM) tumor measurement. 
+#'   Only applies to assessments by investigator, selected based on uppercased 
+#'   TREVAL = "INVESTIGATOR" or missing or TREVAL variable does not exist.
 #'
 #' @param TR Tumor Results SDTM dataset with variables USUBJID, TRTESTCD,
 #'   TRLINKID/TRLNKID, TRDTC, VISIT, TRORRES, TRSTRESN, TREVAL (optional),

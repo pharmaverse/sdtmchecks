@@ -617,7 +617,7 @@ xlsx2list <-function(rptwb, firstrow=1){
 #'
 #' @return list
 #' 
-#' @imporFrom dplyr left_join mutate
+#' @importFrom dplyr left_join mutate
 #' @export
 #' 
 #' @examples 
