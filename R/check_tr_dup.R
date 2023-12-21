@@ -6,8 +6,6 @@
 #'
 #' @param TR dataframe with variables USUBJID, TRCAT, TRLINKID/TRLNKID, TRTESTCD, TRSTRESC,
 #'           TRDTC, TRSPID (if it exists)
-#' @param preproc An optional company specific preprocessing script
-#' @param ... Other arguments passed to methods
 #'
 #' @author Joel Laxamana
 #'
@@ -23,6 +21,7 @@
 #'  TRCAT    = c(1,1,2,2),
 #'  TRTESTCD = c(1,1,2,2),
 #'  TRLINKID = c(1,1,2,2),
+#'  TRGRPID = "Example",
 #'  TRDTC = c(rep("2016-01-01",2), rep("2016-06-01",2)),
 #'  TRSTRESC = c(1,1,2,2),
 #'  TRSPID = "FORMNAME-R:19/L:19XXXX",
@@ -32,7 +31,6 @@
 #' )
 #'
 #' check_tr_dup(TR)
-#' check_tr_dup(TR,preproc=roche_derive_rave_row)
 #' 
 #' TR1 <- TR
 #' TR1$TRSPID <- NULL
@@ -45,7 +43,7 @@
 #' check_tr_dup(TR2)
 #'
 
-check_tr_dup <- function(TR,preproc=identity,...){
+check_tr_dup <- function(TR){
     
     if (TR %lacks_any% c("USUBJID","TRCAT","TRTESTCD","TRDTC","TRSTRESC","VISIT","TRGRPID")){
         
@@ -56,9 +54,6 @@ check_tr_dup <- function(TR,preproc=identity,...){
         fail("TR is missing both the TRLINKID and TRLNKID variables. ")
         
     } else{
-        
-        #Apply company specific preprocessing function
-        TR = preproc(TR,...)
         
         myvars <- c("USUBJID","TRCAT","TRGRPID","TRTESTCD",names(TR)[names(TR) %in% c("TRLINKID","TRLNKID")],
                     # names(TR)[names(TR) %in% "TRSPID"],

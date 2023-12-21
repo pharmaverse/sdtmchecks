@@ -9,6 +9,7 @@ test_that("Returns true when no errors present", {
     TRSPID   = c(1,1,2,2),
     TRDTC    = c(1,1,2,2),
     TRSTRESC = c(1,1,2,2),
+    TRGRPID = "Example",
     VISIT = "Visit 1"
   )
   
@@ -29,6 +30,7 @@ test_that("Returns false when errors present", {
     TRSPID   = c(1,1,2,2),
     TRDTC    = c(1,1,2,2),
     TRSTRESC = c(1,1,2,2),
+    TRGRPID = "Example",
     VISIT = "Visit 1"
   )
   
@@ -46,6 +48,7 @@ test_that("Returns false when expected column not present - 1", {
     TRSPID   = c(1,2,2,1),
     TRDTC    = c(1,1,2,2),
     TRSTRESC = c(1,2,2,1),
+    TRGRPID = "Example",
     VISIT = "Visit 1"
   )
   
@@ -66,6 +69,7 @@ test_that("Returns false when expected column not present - 2", {
     TRSPID   = c(1,2,2,1),
     TRDTC    = c(1,1,2,2),
     TRSTRESC = c(1,2,2,1),
+    TRGRPID = "Example",
     VISIT = "Visit 1"
   )
   
