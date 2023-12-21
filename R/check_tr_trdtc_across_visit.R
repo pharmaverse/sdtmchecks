@@ -33,7 +33,26 @@
 #'
 #' check_tr_trdtc_across_visit(TR)
 #' check_tr_trdtc_across_visit(TR, preproc=roche_derive_rave_row)
+#' 
+#' TR2 <- TR
+#' TR2$TRSPID[4:5] <- c("FORMNAME2-R:5/L:13XXXX", "FORMNAME3-R:0/L:13XXXX")
+#' 
+#' check_tr_trdtc_across_visit(TR2)
+#' check_tr_trdtc_across_visit(TR2, preproc=roche_derive_rave_row)
 #'
+#' # missing optional variable
+#' TR3 <- TR
+#' TR3$TRSPID <- NULL
+#' 
+#' check_tr_trdtc_across_visit(TR3)
+#' check_tr_trdtc_across_visit(TR3, preproc=roche_derive_rave_row)
+#' 
+#' # missing required variable
+#' TR4 <- TR
+#' TR4$TRTESTCD <- NULL
+#' 
+#' check_tr_trdtc_across_visit(TR4)
+#' check_tr_trdtc_across_visit(TR4, preproc=roche_derive_rave_row)
 #'
 
 check_tr_trdtc_across_visit <- function(TR, preproc=identity,...) {
