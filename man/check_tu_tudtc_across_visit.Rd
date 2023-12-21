@@ -7,7 +7,8 @@
 check_tu_tudtc_across_visit(TU, preproc = identity, ...)
 }
 \arguments{
-\item{TU}{Tumor Identification SDTM dataset with variables USUBJID, TUDTC, VISIT}
+\item{TU}{Tumor Identification SDTM dataset with variables USUBJID, TUDTC, VISIT,
+TUEVAL (optional), TUTESTCD (optional)}
 
 \item{preproc}{An optional company specific preprocessing script}
 
@@ -19,7 +20,9 @@ test failed.
 }
 \description{
 This check identifies records where the same date TUDTC occurs
-across multiple visits. Only applies to assessments by investigator.
+across multiple visits. Only applies to assessments by investigator,
+selected based on uppercased TUEVAL = "INVESTIGATOR" or missing or
+TUEVAL variable does not exist.
 }
 \examples{
 

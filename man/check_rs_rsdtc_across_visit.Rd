@@ -7,7 +7,8 @@
 check_rs_rsdtc_across_visit(RS, preproc = identity, ...)
 }
 \arguments{
-\item{RS}{Disease Response SDTM dataset with variables USUBJID, RSDTC, VISIT}
+\item{RS}{Disease Response SDTM dataset with variables USUBJID, RSDTC, VISIT,
+RSEVAL (optional)}
 
 \item{preproc}{An optional company specific preprocessing script}
 
