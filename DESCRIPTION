@@ -1,7 +1,11 @@
 Package: sdtmchecks
 Title: Data Quality Checks for SDTM Datasets
 <<<<<<< HEAD
+<<<<<<< HEAD
 Version: 0.1.9.9004
+=======
+Version: 0.1.9.9003
+>>>>>>> 55e6d29c00aed2a7af79a40f553dae020b22e8cb
 =======
 Version: 0.1.9.9003
 >>>>>>> 55e6d29c00aed2a7af79a40f553dae020b22e8cb
