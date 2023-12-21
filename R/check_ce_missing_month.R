@@ -1,10 +1,10 @@
 #' @title Check for clinical events dates with year and day known but month unknown
 #'
-#' @description Check for missing month when clinical events start (CESTDTC) or end dates
-#' (CEENDTC) have known year and day
+#' @description Check for missing month when clinical events dates 
+#' (CESTDTC, CEENDTC, CEDTC) have a known year and day
 #'
-#' @param CE Clinical Events SDTM dataset with variables USUBJID, CETERM,
-#' CESTDTC, CEENDTC
+#' @param CE Clinical Events SDTM dataset with variables USUBJID, CETERM, and at 
+#' least one of the following date variables: CESTDTC, CEENDTC, CEDTC
 #' @param preproc An optional company specific preprocessing script
 #' @param ... Other arguments passed to methods
 #'
@@ -25,6 +25,7 @@
 #'  CETERM = c("Headache", "Nausea", "Dizziness", "Fever"),
 #'  CESTDTC = c("2023---01", "2023-01-15", "2023-02-01", "2023-02-10"),
 #'  CEENDTC = c("2023-01-02", "2023---01", "2023-02-02", "2023-02-12"),
+#'  CEDTC = c("2023--01", "", "", ""),
 #'  CESEV = c("Mild", "Moderate", "Mild", "Severe"),
 #'  CESPID = "FORMNAME-R:13/L:13XXXX",
 #'  stringsAsFactors=FALSE
@@ -33,11 +34,12 @@
 #' check_ce_missing_month(CE)
 #' check_ce_missing_month(CE,preproc=roche_derive_rave_row)
 #' 
-#'  CE <- data.frame(
+#' CE <- data.frame(
 #'  USUBJID = c(1, 2, 3, 4),
 #'  CETERM = c("Headache", "Nausea", "Dizziness", "Fever"),
 #'  CESTDTC = c("2023-01-01", "2023-01-15", "2023-02-01", "2023-02-10"),
 #'  CEENDTC = c("2023-01-02", "2023-01-16", "2023-02-02", "2023-02-12"),
+#'  CEENDTC = "",
 #'  CESEV = c("Mild", "Moderate", "Mild", "Severe"),
 #'  CESPID = "FORMNAME-R:13/L:13XXXX",
 #'  stringsAsFactors=FALSE
@@ -57,9 +59,9 @@ check_ce_missing_month <- function(CE, preproc = identity, ...) {
     
     fail(lacks_msg(CE, c("USUBJID", "CETERM")))
     
-  } else if(CE %lacks_all% c("CESTDTC", "CEENDTC","CEDTC")){
+  } else if(CE %lacks_all% c("CESTDTC", "CEENDTC", "CEDTC")){
     
-    fail(lacks_msg(CE, c("CESTDTC", "CEENDTC","CEDTC")))
+    fail(lacks_msg(CE, c("CESTDTC", "CEENDTC", "CEDTC")))
     
   }else{
     
@@ -86,7 +88,9 @@ check_ce_missing_month <- function(CE, preproc = identity, ...) {
     }
     
     ### stack
-    mydf=do.call(bind_rows,outlist) %>% unique
+    mydf=do.call(bind_rows,outlist) %>% 
+      unique()
+    
     rownames(mydf) = NULL
     
     ###Print to report
@@ -100,7 +104,7 @@ check_ce_missing_month <- function(CE, preproc = identity, ...) {
       fail(
         paste(
           length(unique(mydf$USUBJID)),
-          "patient(s) with a clinical events date that has year and day present but missing month."
+          "patient(s) with a clinical events date that has year and day present but missing month. "
         ),
         mydf
       )
