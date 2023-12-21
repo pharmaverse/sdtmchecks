@@ -60,7 +60,7 @@ check_cm_cmdecod <- function(CM,preproc=identity,...){
     ### Subset domain to only records with missing coded term (CMDECOD)
     mydf <- CM %>%
       filter(grepl("CONCOMITANT",CMCAT)) %>%
-      select(any_of(c("USUBJID", "CMSEQ","CMSTDTC","CMTRT","CMDECOD", "CMPRESP", "CMOCCUR", "RAVE"))) %>%
+      select(any_of(c("USUBJID", "CMSTDTC", "CMTRT", "CMDECOD", "CMPRESP", "CMOCCUR", "RAVE"))) %>%
       filter(is_sas_na(CMDECOD))
     rownames(mydf)=NULL
 

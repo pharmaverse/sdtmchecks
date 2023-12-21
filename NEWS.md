@@ -1,17 +1,85 @@
 # sdtmchecks (development version)
 
-
 ## Refinements of existing data check functions
 
 * [`check_ae_aedthdtc_ds_death`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aedthdtc_ds_death.html) updated logic, as this check is primarily useful for legacy studies that mapped DSTERM to have the specific string "DEATH DUE TO ADVERSE EVENT." Newer studies have updated mapping for DSTERM, where the specific AE is concatenated with the string "DEATH DUE TO" - e.g., "DEATH DUE TO INFLUENZA." The check will be based on DEATH DUE TO ADVERSE EVENT given in DSTERM. Studies without this string will be given a pass. ([#101](https://github.com/pharmaverse/sdtmchecks/pull/101)).
+* [`check_ae_aerel`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aerel.html) updated syntax with more dynamic inclusion of AEREL variables ([#259](https://github.com/pharmaverse/sdtmchecks/pull/259)), with thanks to `@vrakinav`
+* [`check_ss_ssdtc_dead_ds`](https://pharmaverse.github.io/sdtmchecks/reference/check_ss_ssdtc_dead_ds.html) updated to include pre-processing input and return RAVE column if applicable ([#263](https://github.com/pharmaverse/sdtmchecks/pull/263))
+* [`check_rs_rsdtc_across_visit`],[`check_tr_trdtc_across_visit`],[`check_tu_tudtc_across_visit`] updated to have more info, e.g. TESTCD/RAVE info. ([#260](https://github.com/pharmaverse/sdtmchecks/pull/260))
+* [`check_tr_dup`] updated. ([#271](https://github.com/pharmaverse/sdtmchecks/issues/271))
+
+## New data check functions
+
+* [`check_ce_missing_month()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ce_missing_month.html) - flags if CE has a suspicious date value with year and day known but month missing.  Thanks `@rymarinelli`! ([#148](https://github.com/pharmaverse/sdtmchecks/issues/148))
+* [`check_ae_aeout_aeendtc_nonfatal()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeout_aeendtc_nonfatal.html) - flags AEs with inconsistent AE outcome (AEOUT) and AE resolution date (AEENDTC) for non-fatal AEs (based on AEOUT) ([#113](https://github.com/pharmaverse/sdtmchecks/issues/113)), with thanks to `@J-Lox`
+
+
+## Refinements of existing report utilities
+
+* [`report_to_xlsx`](https://pharmaverse.github.io/sdtmchecks/reference/report_to_xlsx.html) with added PARAM of extrastring=""`
+ 
+
+## Metadata updates
+
+* [`sdtmchecksmeta.RData`](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) with added `preproc=roche_derive_rave_row`
+
+## Misc package updates
+
+* Specify version >= 1.1.1 for dplyr version in DESCRIPTION
 
 
 
-# sdtmchecks 0.1.6.2 "Bubble and Squeak"
+# sdtmchecks 0.1.9 "Bubble and Squeak"
+
+
+## New report utility functions
+* Added [`diff_report()`](https://pharmaverse.github.io/sdtmchecks/reference/diff_report.html) reporting function to `util.R` to compare report objects generated from [`run_all_checks()`](https://pharmaverse.github.io/sdtmchecks/reference/run_all_checks.html), enabling identification of records newly flagged ([#264](https://github.com/pharmaverse/sdtmchecks/pull/264)), with thanks to `@harriscw`
+* Include "report_diff" to `globals.R` ([#265](https://github.com/pharmaverse/sdtmchecks/pull/265))
+
+## Misc package updates
+
+* Automated security update in workflow ([#268](https://github.com/pharmaverse/sdtmchecks/pull/268))
+
+
+
+
+# sdtmchecks 0.1.8 "Bubble and Squeak"
 
 ## Refinements of existing data check functions
 
-* [`check_tu_rs_new_lesions`](https://pharmaverse.github.io/sdtmchecks/reference/check_tu_rs_new_lesions.html) updated to include overall response of `PMD` as an indicator of progressive disease.  Visit info also added to check result.
+* [`check_tu_rs_new_lesions`](https://pharmaverse.github.io/sdtmchecks/reference/check_tu_rs_new_lesions.html) updated to include overall response of `PMD` as an indicator of progressive disease. Visit info also added to check result. ([#197](https://github.com/pharmaverse/sdtmchecks/pull/197))
+* [`check_ae_fatal`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_fatal.html) updated to address bug that was causing warning. Logic was subsequently streamlined. ([#215](https://github.com/pharmaverse/sdtmchecks/pull/215))
+* Checks that expect specific preferred terms identifying Covid-19 related AEs were updated to warn if that metadata was not provided. ([#220](https://github.com/pharmaverse/sdtmchecks/pull/220) & [#223](https://github.com/pharmaverse/sdtmchecks/pull/223))
+* `--SEQ` variables were removed from checks. ([#246](https://github.com/pharmaverse/sdtmchecks/pull/246/))
+
+
+## Metadata updates
+
+* [`sdtmchecksmeta.RData`](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) with descriptive update related to Progressive Metabolic Disease ("PMD") inclusion in [`check_tu_rs_new_lesions`](https://pharmaverse.github.io/sdtmchecks/reference/check_tu_rs_new_lesions.html)  ([#197](https://github.com/pharmaverse/sdtmchecks/pull/197))
+
+
+## Documentation updates
+
+  * Roxygen2 header updated to include `@family` and `@keyword` for data check function categories OPHTH and COVID  ([#214](https://github.com/pharmaverse/sdtmchecks/pull/214)) - applied to the following data checks:
+    * COVID: 
+      * check_ae_aeacn_ds_disctx_covid.R
+      * check_ae_aeacnoth_ds_stddisc_covid.R
+      * check_dv_ae_aedecod_covid.R
+      * check_dv_covid.R
+    * OPHTH:
+      * check_ae_aelat.R
+      * check_cm_cmlat.R
+      * check_cm_cmlat_prior_ocular.R
+      * check_oe_bcva_1m_late_early_tot.R
+      * check_oe_bcva_4m_late_early_tot.R
+      * check_oe_bcva_4m_vs_1m_req.R
+      * check_oe_bcva_tot_mismatch.R
+      * check_oe_sc_lat_count_fingers.R
+      * check_pr_prlat.R 
+      * check_sc_dm_eligcrit.R
+      * check_sc_dm_seyeselc.R
+  
+
 
 # sdtmchecks 0.1.6 "Bubble and Squeak"
 
@@ -41,7 +109,7 @@
   * Added clickable version releases as links in News dropdown of pkgdown site ([#121](https://github.com/pharmaverse/sdtmchecks/pull/121))
   * Edited headings in [Get started article](https://pharmaverse.github.io/sdtmchecks/articles/sdtmchecks.html) ([#114](https://github.com/pharmaverse/sdtmchecks/pull/114))
   * Added a few bullet points to [Writing a New Check](https://r.roche.com/s/75335867330e8e3b52af3/files/pharmaverse/sdtmchecks/docs/articles/write_a_check.html)
-  * Updated [pkgdown site](https://pharmaverse.github.io/sdtmchecks/index.html) based on latest version of {Roxygen2} ([v7.2.3](https://github.com/r-lib/roxygen2/releases/tag/v7.2.3)) instead of ([v7.1.1](https://github.com/r-lib/roxygen2/releases/tag/v7.1.1)). DESCRIPTION reflects version in RoxygenNote, and associated man/*.Rd files updated. 
+  * Updated [pkgdown site](https://pharmaverse.github.io/sdtmchecks/index.html) based on latest version of {Roxygen2} ([v7.2.3](https://github.com/r-lib/roxygen2/releases/tag/v7.2.3)) instead of ([v7.1.1](https://github.com/r-lib/roxygen2/releases/tag/v7.1.1)). DESCRIPTION reflects version in `RoxygenNote`, and associated man/*.Rd files updated. 
   * Roxygen2 header updates to include `@family` and `@keyword` for functions in `run_all_checks.R`, `run_check.R`, `utils.R` ([#85](https://github.com/pharmaverse/sdtmchecks/pull/85))
   * Moved sdtmchecks package information from `utils.R` to `sdtmchecks-package.R` ([#85](https://github.com/pharmaverse/sdtmchecks/pull/85)) 
 
@@ -49,18 +117,21 @@
 
 * **Unit tests:** 
   * Added unit testing (copied in from earlier internal Roche package version) ([#126](https://github.com/pharmaverse/sdtmchecks/pull/126),  [#112](https://github.com/pharmaverse/sdtmchecks/pull/112))
-  * Included more unit tests to expand coverage ([#141](https://github.com/pharmaverse/sdtmchecks/issues/141))
-  * Added GitHub action for the [{covr}](https://covr.r-lib.org/index.html) ([#163](https://github.com/pharmaverse/sdtmchecks/pull/163)) 
+  * Included more unit tests to expand coverage ([#141](https://github.com/pharmaverse/sdtmchecks/issues/141)), with thanks to `@harriscw` ([#137](https://github.com/pharmaverse/sdtmchecks/pull/137), [#144](https://github.com/pharmaverse/sdtmchecks/pull/144), [#145](https://github.com/pharmaverse/sdtmchecks/pull/145), [#155](https://github.com/pharmaverse/sdtmchecks/pull/155), [#162](https://github.com/pharmaverse/sdtmchecks/pull/162)), `@J-Lox` ([#147](https://github.com/pharmaverse/sdtmchecks/pull/147), [#156](https://github.com/pharmaverse/sdtmchecks/pull/156)), `@laywang142` ([#199](https://github.com/pharmaverse/sdtmchecks/pull/199), [#158](https://github.com/pharmaverse/sdtmchecks/pull/158), [#153](https://github.com/pharmaverse/sdtmchecks/pull/153), [#146](https://github.com/pharmaverse/sdtmchecks/pull/146)), `@sarabodach` ([#150](https://github.com/pharmaverse/sdtmchecks/pull/150), [#151](https://github.com/pharmaverse/sdtmchecks/pull/151), [#159](https://github.com/pharmaverse/sdtmchecks/pull/159), [#160](https://github.com/pharmaverse/sdtmchecks/pull/160), [#183](https://github.com/pharmaverse/sdtmchecks/pull/183))
+  * Added GitHub action for test coverage report produced by [{covr}](https://covr.r-lib.org/index.html) and uploaded to [codecov](https://about.codecov.io/) ([#163](https://github.com/pharmaverse/sdtmchecks/pull/163))
 * **README:** 
-  * Added test coverage badge on README based on report from [{covr}](https://covr.r-lib.org/index.html) ([#122](https://github.com/pharmaverse/sdtmchecks/issues/122), [#133](https://github.com/pharmaverse/sdtmchecks/issues/133))
-  * Included badges on README for R CMD Check and CRAN status ([#132](https://github.com/pharmaverse/sdtmchecks/pull/132))
+  * Include badges on README:
+    * Test coverage badge from [{covr}](https://covr.r-lib.org/index.html) ([#122](https://github.com/pharmaverse/sdtmchecks/issues/122), [#133](https://github.com/pharmaverse/sdtmchecks/issues/133))
+    * R CMD Check badge ([#132](https://github.com/pharmaverse/sdtmchecks/pull/132))
+    * CRAN status badge ([#132](https://github.com/pharmaverse/sdtmchecks/pull/132))
   * README.Rmd added to render README.md ([#172](https://github.com/pharmaverse/sdtmchecks/issues/172))
-  * Add installation from "https://pharmaverse.r-universe.dev" (devel branch, default) [#195](https://github.com/pharmaverse/sdtmchecks/issues/195)
+  * Add installation instructions from "https://pharmaverse.r-universe.dev" (devel branch, default) [#195](https://github.com/pharmaverse/sdtmchecks/issues/195), [#226](https://github.com/pharmaverse/sdtmchecks/pull/226)
   * Specify recommended installation from main branch: `devtools::install_github("pharmaverse/sdtmchecks", ref = "main")`
 * Updated **DESCRIPTION** to specify: 
+  * New dependency: [{testthat}](https://testthat.r-lib.org/)
   * GitHub as Repository for sdtmchecks ([#123](https://github.com/pharmaverse/sdtmchecks/issues/123))
   * Config/testthat/edition: 3 ([#138](https://github.com/pharmaverse/sdtmchecks/pull/138))
-* Use [{renv}](https://rstudio.github.io/renv/articles/renv.html) for package dependency management, adding renvignore, renv.lock, renv subfolder and including updated .Rprofile ([#111](https://github.com/pharmaverse/sdtmchecks/issues/111))
+* Implemented [{renv}](https://rstudio.github.io/renv/articles/renv.html) for package dependency management, adding renvignore, renv.lock, renv subfolder and including updated .Rprofile ([#111](https://github.com/pharmaverse/sdtmchecks/issues/111))
 * Package version 0.1.5.1 used prior to update to 0.1.6
 
 

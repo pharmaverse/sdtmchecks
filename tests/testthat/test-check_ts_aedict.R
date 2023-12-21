@@ -1,23 +1,23 @@
 
-test_that("Returns true when no errors present", {
-  
-  t <-  Sys.Date()
-  y <-  substring(t,1,4)
-  
-  # Work out the main MedDRA version of the year; start on version 24.0
-  
-  meddra_version <- as.numeric(y) - 2021 + 24
-  
-  TS1 <- data.frame(
-    STUDYID = 1,
-    TSPARMCD = "AEDICT",
-    TSVAL = paste("MedDRA", paste0(meddra_version, ".0")),
-    TSVAL2 = ""
-  )
-  
-  expect_true(check_ts_aedict(TS1))
-  
-})
+# test_that("Returns true when no errors present", {
+#   
+#   t <-  Sys.Date()
+#   y <-  substring(t,1,4)
+#   
+#   # Work out the main MedDRA version of the year; start on version 24.0
+#   
+#   meddra_version <- as.numeric(y) - 2021 + 24
+#   
+#   TS1 <- data.frame(
+#     STUDYID = 1,
+#     TSPARMCD = "AEDICT",
+#     TSVAL = paste("MedDRA", paste0(meddra_version, ".0")),
+#     TSVAL2 = ""
+#   )
+#   
+#   expect_true(check_ts_aedict(TS1))
+#   
+# })
 
 test_that("Returns false when errors present - 1", {
   
@@ -30,7 +30,7 @@ test_that("Returns false when errors present - 1", {
   
   expect_false(check_ts_aedict(TS1))
 })
- 
+
 test_that("Returns false when errors present - 2", {
   
   TS2 <- data.frame(
@@ -132,6 +132,5 @@ test_that("Returns false when expected column not present", {
   
 })
 
- 
 
- 
+

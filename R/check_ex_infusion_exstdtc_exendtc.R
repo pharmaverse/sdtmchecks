@@ -79,7 +79,7 @@ check_ex_infusion_exstdtc_exendtc <- function(EX) {
             df <- EX
         }
 
-        ## Get minumimum length for when EXSTDTC and EXENDTC are different lengths
+        ## Get minimum length for when EXSTDTC and EXENDTC are different lengths
         df$startdtc = ifelse(!is_sas_na(df$EXSTDTC),
                              substr(df$EXSTDTC, 1, pmin(nchar(df$EXSTDTC), nchar(df$EXENDTC), na.rm = TRUE)),
                              df$EXSTDTC)
