@@ -5,7 +5,7 @@
 * [`check_ae_aedthdtc_ds_death`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aedthdtc_ds_death.html) updated logic, as this check is primarily useful for legacy studies that mapped DSTERM to have the specific string "DEATH DUE TO ADVERSE EVENT." Newer studies have updated mapping for DSTERM, where the specific AE is concatenated with the string "DEATH DUE TO" - e.g., "DEATH DUE TO INFLUENZA." The check will be based on DEATH DUE TO ADVERSE EVENT given in DSTERM. Studies without this string will be given a pass. ([#101](https://github.com/pharmaverse/sdtmchecks/pull/101)).
 * [`check_ae_aerel`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aerel.html) updated syntax with more dynamic inclusion of AEREL variables ([#259](https://github.com/pharmaverse/sdtmchecks/pull/259)), with thanks to `@vrakinav`
 * [`check_ss_ssdtc_dead_ds`](https://pharmaverse.github.io/sdtmchecks/reference/check_ss_ssdtc_dead_ds.html) updated to include pre-processing input and return RAVE column if applicable ([#263](https://github.com/pharmaverse/sdtmchecks/pull/263))
-* [`check_rs_rsdtc_across_visit`],[`check_tr_trdtc_across_visit`],[`check_tu_tudtc_across_visit`] updated to have more info, e.g. TESTCD/RAVE info. ([#260](https://github.com/pharmaverse/sdtmchecks/pull/260))
+* [`check_rs_rsdtc_across_visit`], [`check_tr_trdtc_across_visit`], [`check_tu_tudtc_across_visit`] updated to have more info, e.g. TESTCD/RAVE info. ([#260](https://github.com/pharmaverse/sdtmchecks/pull/260))
 * [`check_tr_dup`] updated. ([#271](https://github.com/pharmaverse/sdtmchecks/issues/271))
 
 ## New data check functions
@@ -21,7 +21,7 @@
 
 ## Metadata updates
 
-* [`sdtmchecksmeta.RData`](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) with added `preproc=roche_derive_rave_row`
+* [`sdtmchecksmeta.RData`](https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html) with added `preproc=roche_derive_rave_row`, newly added [`check_ce_missing_month`] and [`check_ae_aeout_aeendtc_nonfatal`] functions, updated notes for changed logic of [`check_ae_aedthdtc_ds_death`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aedthdtc_ds_death.html) 
 
 ## Misc package updates
 
