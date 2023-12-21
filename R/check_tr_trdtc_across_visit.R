@@ -1,11 +1,11 @@
-#' @title Check TR Longest Diameter Records where the same date occurs accross multiple visits
+#' @title Check TR Longest Diameter Records where the same date occurs across multiple visits
 #'
 #' @description This check identifies records where the same date TRDTC occurs
-#'  across multiple visits when TRTESTCD is "LDIAM". Only applies to assessments 
-#'  by investigator, selected based on uppercased TREVAL = "INVESTIGATOR" or 
-#'  missing or TREVAL variable does not exist.
+#'  across multiple visits for Longest Diameter measurements (TRTESTCD is "LDIAM").
+#'  Only applies to assessments by investigator, selected based on uppercased 
+#'  TREVAL = "INVESTIGATOR" or missing or TREVAL variable does not exist.
 #'
-#' @param TR Tumor Result SDTM dataset with variables USUBJID, TRDTC, VISIT, TRTESTCD,
+#' @param TR Tumor Result SDTM dataset with variables USUBJID, TRDTC, TRTESTCD, VISIT, 
 #' TREVAL (optional)
 #' @param preproc An optional company specific preprocessing script
 #' @param ... Other arguments passed to methods
@@ -64,6 +64,7 @@ check_tr_trdtc_across_visit <- function(TR, preproc=identity,...) {
         trsub = trsub %>% select(-any_of("RAVE")) #dont want to unique on RAVE var
         
         if(nrow(trsub)>0){
+            
             mypairs = unique(trsub)
             mypairs$x = 1
             
@@ -82,6 +83,7 @@ check_tr_trdtc_across_visit <- function(TR, preproc=identity,...) {
                 left_join(tr_orig, by=c("USUBJID", "TRDTC", "VISIT", "TRTESTCD")) %>% #merge in RAVE var if it exists
                 unique()
             rownames(mydf)=NULL
+            
         }else{
             mydf=data.frame()
         }

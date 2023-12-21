@@ -6,7 +6,7 @@
 #'  TUEVAL variable does not exist.
 #'
 #' @param TU Tumor Identification SDTM dataset with variables USUBJID, TUDTC, VISIT,
-#' TUEVAL (optional)
+#' TUEVAL (optional), TUTESTCD (optional)
 #' @param preproc An optional company specific preprocessing script
 #' @param ... Other arguments passed to methods
 #'
