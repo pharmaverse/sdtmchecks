@@ -12,7 +12,7 @@ diff_reports(old_report, new_report)
 \item{new_report}{a newer sdtmchecks list object as created by \code{run_all_checks}}
 }
 \value{
-list of sdtmchecks results based on new_report with report_diff indicator
+list of sdtmchecks results based on new_report with Status indicator
 }
 \description{
 This report will identify flagged records from an sdtmchecks report
@@ -22,7 +22,7 @@ issues that were encountered from a prior report and may have already been queri
 
 This \code{diff_reports()} function requires a newer and older set of results from
 \code{sdtmchecks::run_all_checks()}, which will generate a list of check results.
-A added column "report_diff" is created with values of "NEW" and "OLD"
+An added column "Status" is created with values of "NEW" and "OLD"
 in the list of check results, flagging whether a given record that is present
 in the new result (ie \code{new_report}) is also present in the old result (ie \code{old_report}).
 It makes a difference which report is defined as "new" and "old".
