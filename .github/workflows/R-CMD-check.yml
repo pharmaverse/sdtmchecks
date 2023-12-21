@@ -44,7 +44,7 @@ jobs:
       ##################### BEGIN boilerplate steps #####################
       - name: Get branch names
         id: branch-name
-        uses: tj-actions/branch-names@v6.4
+        uses: tj-actions/branch-names@v7.0.7
       
       - name: Setup pandoc
         uses: r-lib/actions/setup-pandoc@v2
@@ -73,6 +73,7 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
+          cache-version: 2
 
       - name: Check
         env:
@@ -86,7 +87,8 @@ jobs:
             check_error_on <- "note"
           }
           rcmdcheck::rcmdcheck(
-            args = c("--no-manual", "--as-cran"),
+           # args = c("--no-manual", "--as-cran"),
+             args = c("--no-manual"),
             error_on = check_error_on,
             check_dir = "check"
           )

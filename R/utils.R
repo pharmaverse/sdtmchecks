@@ -589,3 +589,105 @@ xlsx2list <-function(rptwb, firstrow=1){
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#' @title Create a sdtmchecks list object with column indicating whether the issue was previously seen
+#'
+#' @description This function will compare two sdtmchecks list objects as created by `run_all_checks`.
+#' It creates a report with only records seen in the more recent report (ie `new_report`).
+#' It then adds a flag for whether this record was seen in the old report (ie `old_report`).
+#' This function ignores old results not in new report (because presumably they were resolved).
+#' A left join is performed, so it matters which report you define as 'new' and 'old'.  
+#'
+#' @param old_report an older sdtmchecks list object as created by `run_all_checks`
+#' @param new_report a newer sdtmchecks list object as created by `run_all_checks`
+#'
+#' @return list
+#' 
+#' @imporFrom dplyr left_join mutate
+#' @export
+#' 
+#' @examples 
+#' \dontrun{
+#'   diff_reports(old_report=sdtmchecks_results_15JUL2022,
+#'                new_report=sdtmchecks_results_15AUG2022)
+#' }
+#'
+#' 
+
+diff_reports=function(old_report,new_report){
+  
+  # it makes a difference which report is defined as "new" and "old"
+  # this code only keeps results flagged in the new report
+  # it ignore old results not in new report (because they were resolved)
+  
+  ###
+  # First: subset to only results with flagged issues in the new report
+  ###
+  
+  new_issues=sapply(names(new_report),function(check_name){
+    if("data" %in% names(new_report[[check_name]])){#if the check has a "data" attributes
+      if(nrow(new_report[[check_name]]$data)>0){ #TRUE if data has any records
+        TRUE
+      }else{ #FALSE if data exists but no records
+        FALSE
+      }
+    }else{ #FALSE if no data attributes
+      FALSE
+    }
+  },USE.NAMES = TRUE)
+  
+  new_issues=names(new_issues[new_issues==TRUE]) #filter to just flagged records
+  new_report=new_report[new_issues] #subset new report to just flagged records
+  
+  ###
+  # Second: Do the diff
+  ###
+  
+  res=sapply(new_issues,function(check_name){
+    
+    if(!(check_name %in% names(old_report))){ #if check not in old report then these issues are new
+      
+      res_new=new_report[[check_name]]
+      res_new$data$report_diff="NEW"
+      res_new
+      
+    }else if(nrow(old_report[[check_name]]$data)==0){ 
+      #if check in the old report but old report didn't have any issues then these issues are new
+      
+      res_new=new_report[[check_name]]
+      res_new$data$report_diff="NEW"
+      res_new
+      
+    }else{ #else both old and new report have some issues flagged, so we diff them
+      
+      res_new=new_report[[check_name]]
+      res_old=old_report[[check_name]]
+      res_old$data$report_diff="OLD"
+      
+      res_new$data=res_new$data %>%
+        left_join(res_old$data,relationship = "many-to-many") %>% #behold the magic of dplyr automatically identifying columns to join on
+        mutate(report_diff=ifelse(is.na(report_diff),"NEW",report_diff))
+      
+      res_new
+    }
+    
+  },USE.NAMES = TRUE,simplify=FALSE)
+  
+  return(res)
+  
+}
+

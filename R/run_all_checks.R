@@ -74,7 +74,7 @@ run_all_checks <- function(metads = sdtmchecksmeta,
     
     # Run checks
     
-    all_rec <- parallel::mcmapply(
+    all_rec <- mcmapply(
         FUN = run_check,
         metads$check, metads$fxn_in, metads$xls_title, metads$pdf_title, metads$pdf_subtitle, metads$pdf_return, 
         verbose,
