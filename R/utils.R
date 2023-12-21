@@ -709,6 +709,9 @@ diff_reports=function(old_report,new_report){
     
   },USE.NAMES = TRUE,simplify=FALSE)
   
+  
+  class(res)=c(class(res),"sdtmchecks")
+  
   return(res)
   
   }
