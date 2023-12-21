@@ -1,5 +1,6 @@
 # sdtmchecks (development version)
 
+
 ## Refinements of existing data check functions
 
 * [`check_ae_aerel`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aerel.html) updated syntax with more dynamic inclusion of AEREL variables ([#259](https://github.com/pharmaverse/sdtmchecks/pull/259)), with thanks to `@vrakinav`
@@ -10,6 +11,8 @@
 ## New data check functions
 
 * [`check_ce_missing_month()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ce_missing_month.html) - flags if CE has a suspicious date value with year and day known but month missing.  Thanks `@rymarinelli`! ([#148](https://github.com/pharmaverse/sdtmchecks/issues/148))
+* [`check_ae_aeout_aeendtc_nonfatal()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeout_aeendtc_nonfatal.html) - flags AEs with inconsistent AE outcome (AEOUT) and AE resolution date (AEENDTC) for non-fatal AEs (based on AEOUT) ([#113](https://github.com/pharmaverse/sdtmchecks/issues/113)), with thanks to `@J-Lox`
+
 
 ## Refinements of existing report utilities
 
