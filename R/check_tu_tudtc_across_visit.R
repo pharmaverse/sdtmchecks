@@ -1,9 +1,12 @@
 #' @title Check TU Records where the same date occurs across multiple visits
 #'
 #' @description This check identifies records where the same date TUDTC occurs
-#'  across multiple visits. Only applies to assessments by investigator.
+#'  across multiple visits. Only applies to assessments by investigator, 
+#'  selected based on uppercased TUEVAL = "INVESTIGATOR" or missing or 
+#'  TUEVAL variable does not exist.
 #'
-#' @param TU Tumor Identification SDTM dataset with variables USUBJID, TUDTC, VISIT
+#' @param TU Tumor Identification SDTM dataset with variables USUBJID, TUDTC, VISIT,
+#' TUEVAL (optional)
 #' @param preproc An optional company specific preprocessing script
 #' @param ... Other arguments passed to methods
 #'
@@ -74,7 +77,8 @@ check_tu_tudtc_across_visit <- function(TU, preproc=identity,...) {
         # subset unique pairs to only instances where visit has >1 date
         mydf = merge(mydf0,mypairs0,by=c('USUBJID','TUDTC'),all.x = TRUE) %>% 
             left_join(tu_orig,by=c("USUBJID", "TUDTC", "VISIT")) %>% #merge in RAVE var if it exists
-            unique
+            unique()
+        
         rownames(mydf)=NULL
 
         ### if no consistency

@@ -5,7 +5,8 @@
 #'  selected based on uppercased RSEVAL = "INVESTIGATOR" or missing or 
 #'  RSEVAL variable does not exist.
 #'
-#' @param RS Disease Response SDTM dataset with variables USUBJID, RSDTC, VISIT
+#' @param RS Disease Response SDTM dataset with variables USUBJID, RSDTC, VISIT, 
+#' RSEVAL (optional)
 #' @param preproc An optional company specific preprocessing script
 #' @param ... Other arguments passed to methods
 #'

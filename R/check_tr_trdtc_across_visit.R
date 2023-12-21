@@ -1,9 +1,12 @@
 #' @title Check TR Longest Diameter Records where the same date occurs accross multiple visits
 #'
 #' @description This check identifies records where the same date TRDTC occurs
-#'  across multiple visits when TRTESTCD is "LDIAM". Only applies to assessments by investigator.
+#'  across multiple visits when TRTESTCD is "LDIAM". Only applies to assessments 
+#'  by investigator, selected based on uppercased TREVAL = "INVESTIGATOR" or 
+#'  missing or TREVAL variable does not exist.
 #'
-#' @param TR Tumor Result SDTM dataset with variables USUBJID, TRDTC, VISIT, TRTESTCD
+#' @param TR Tumor Result SDTM dataset with variables USUBJID, TRDTC, VISIT, TRTESTCD,
+#' TREVAL (optional)
 #' @param preproc An optional company specific preprocessing script
 #' @param ... Other arguments passed to methods
 #'
@@ -12,7 +15,7 @@
 #'
 #' @export
 #'
-#' @importFrom dplyr %>% filter select
+#' @importFrom dplyr %>% filter select left_join
 #' @importFrom stats aggregate
 #' @importFrom tidyselect any_of
 #'
@@ -34,55 +37,55 @@
 #'
 
 check_tr_trdtc_across_visit <- function(TR, preproc=identity,...) {
-
+    
     ###First check that required variables exist and return a message if they don't
     if((TR %lacks_any% c("USUBJID", "TRDTC", "VISIT", "TRTESTCD"))){
-
+        
         fail(lacks_msg(TR, c("USUBJID", "TRDTC", "VISIT", "TRTESTCD")))
-
+        
     } else{
         
         #Apply company specific preprocessing function
         TR = preproc(TR,...)
-
+        
         ### Find unique pairs of TRDTC and VISIT per USUBJID
-
+        
         if(TR %lacks_any% "TREVAL"){
-        trsub = TR %>%
-            filter(TRTESTCD == "LDIAM") %>%
-            select(USUBJID, TRDTC, VISIT, TRTESTCD,any_of("RAVE"))
+            trsub = TR %>%
+                filter(TRTESTCD == "LDIAM") %>%
+                select(USUBJID, TRDTC, VISIT, TRTESTCD,any_of("RAVE"))
         }else{
-        trsub = TR %>%
-            filter(TRTESTCD == "LDIAM" & (toupper(TREVAL) == "INVESTIGATOR" | is_sas_na(TREVAL))) %>%
-            select(USUBJID, TRDTC, VISIT, TRTESTCD,any_of("RAVE"))
+            trsub = TR %>%
+                filter(TRTESTCD == "LDIAM" & (toupper(TREVAL) == "INVESTIGATOR" | is_sas_na(TREVAL))) %>%
+                select(USUBJID, TRDTC, VISIT, TRTESTCD,any_of("RAVE"))
         }
         
-        tr_orig=trsub #Save RAVE for merging in later
+        tr_orig = trsub #Save RAVE for merging in later
         trsub = trsub %>% select(-any_of("RAVE")) #dont want to unique on RAVE var
-
+        
         if(nrow(trsub)>0){
             mypairs = unique(trsub)
             mypairs$x = 1
-
+            
             ### Get counts of visit values per date for each subject
-            mydf0 = aggregate(mypairs$x,by=list(USUBJID=mypairs$USUBJID, TRDTC=mypairs$TRDTC),FUN=sum)
-
+            mydf0 = aggregate(mypairs$x, by=list(USUBJID=mypairs$USUBJID, TRDTC=mypairs$TRDTC),FUN=sum)
+            
             ### Subset where count is >1 and output
             mydf0 = mydf0 %>%
                 select("USUBJID", "TRDTC") %>%
                 filter(mydf0$x>1)
-
+            
             mypairs0 = mypairs %>%
                 select("USUBJID", "TRDTC", "VISIT", "TRTESTCD")
-
-            mydf = merge(mydf0,mypairs0,by=c("USUBJID", "TRDTC"),all.x = TRUE) %>% 
-                left_join(tr_orig,by=c("USUBJID", "TRDTC", "VISIT", "TRTESTCD")) %>% #merge in RAVE var if it exists
-                unique
+            
+            mydf = merge(mydf0, mypairs0, by=c("USUBJID", "TRDTC"), all.x = TRUE) %>% 
+                left_join(tr_orig, by=c("USUBJID", "TRDTC", "VISIT", "TRTESTCD")) %>% #merge in RAVE var if it exists
+                unique()
             rownames(mydf)=NULL
         }else{
             mydf=data.frame()
         }
-
+        
         ### if no consistency
         if (nrow(mydf)==0) {
             pass()
