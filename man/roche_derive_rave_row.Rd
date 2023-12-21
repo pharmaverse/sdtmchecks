@@ -2,15 +2,15 @@
 % Please edit documentation in R/roche_utils.R
 \name{roche_derive_rave_row}
 \alias{roche_derive_rave_row}
-\title{Utility function to obtain Rave row}
+\title{Utility function to obtain Rave form name and row number}
 \usage{
 roche_derive_rave_row(
   dts,
-  domains = c("ae", "cm", "ds", "lb", "pr", "rs", "ss", "tr", "tu")
+  domains = c("ae", "ce", "cm", "ds", "lb", "pr", "rs", "ss", "tr", "tu")
 )
 }
 \arguments{
-\item{dts}{dataframe e.g. AE}
+\item{dts}{SDTM dataframe - e.g., AE}
 
 \item{domains}{domains you wish to identify a xxSPID variable from}
 }
@@ -18,7 +18,9 @@ roche_derive_rave_row(
 dataframe with Rave row number
 }
 \description{
-This function derives the Rave row number from xxSPID
+This function derives the Rave form name and row number from xxSPID.
+The xxSPID string may yield unexpected results for outsourced studies. Log forms
+will show the row number as #n. Non-log forms may show #0 after the form name.
 }
 \examples{
 
