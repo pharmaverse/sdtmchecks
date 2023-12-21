@@ -37,11 +37,11 @@ check_tu_tudtc_across_visit(TU)
 check_tu_tudtc_across_visit(TU, preproc=roche_derive_rave_row)
 
 # no records flagged because non-Investigator results
-#TU2 <- TU
-#TU2$TUEVAL <- "INDEPENDENT ASSESSOR"
+TU2 <- TU
+TU2$TUEVAL <- "INDEPENDENT ASSESSOR"
 
-#check_tu_tudtc_across_visit(TU2)
-#check_tu_tudtc_across_visit(TU2, preproc=roche_derive_rave_row)
+check_tu_tudtc_across_visit(TU2)
+check_tu_tudtc_across_visit(TU2, preproc=roche_derive_rave_row)
 
 # example with TUTESTCD and with records flagged
 TU3 <- TU
