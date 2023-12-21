@@ -5,12 +5,16 @@
 \title{Check non-missing DEAD status date in SS and non-missing according DS record with death date
 where status date is greater or equal to death date}
 \usage{
-check_ss_ssdtc_dead_ds(SS, DS)
+check_ss_ssdtc_dead_ds(SS, DS, preproc = identity, ...)
 }
 \arguments{
 \item{SS}{Subject Status SDTM dataset with variables USUBJID, SSDTC, SSSTRESC, VISIT}
 
 \item{DS}{Disposition SDTM dataset with variables USUBJID, DSSTDTC, DSDECOD, DSCAT}
+
+\item{preproc}{An optional company specific preprocessing script}
+
+\item{...}{Other arguments passed to methods}
 }
 \value{
 boolean value if check failed or passed with 'msg' attribute if the
@@ -28,48 +32,55 @@ SS <- data.frame(
  USUBJID = 1:5,
  SSDTC = "2020-01-02",
  SSSTRESC  = c("DEAD","DEAD","ALIVE","DEAD","ALIVE"),
- VISIT = "FOLLOW-UP"
+ VISIT = "FOLLOW-UP",
+ SSSPID = "FORMNAME-R:13/L:13XXXX"
 )
-
 
 DS <- data.frame(
  USUBJID = 1:5,
  DSSTDTC  = c("2020-01-02","2020-01-02", "2020-01-01", "2020-01-03", "2020-01-01"),
  DSDECOD = c(rep('DEATH', 5)),
+ DSSPID = "FORMNAME-R:13/L:13XXXX",
  DSCAT   = c("OTHER EVENT", rep("DISPOSITION EVENT", 4))
 )
 
 check_ss_ssdtc_dead_ds(SS, DS)
+check_ss_ssdtc_dead_ds(SS, DS, preproc=roche_derive_rave_row)
+
 
 SS <- data.frame(
  USUBJID = 1:5,
  SSDTC = "2020-01-02",
  SSSTRESC  = c( rep("DEAD", 5)),
- VISIT = "FOLLOW-UP"
+ VISIT = "FOLLOW-UP",
+ SSSPID = "FORMNAME-R:13/L:13XXXX"
 )
-
 
 DS <- data.frame(
  USUBJID = 1:5,
  DSSTDTC  = c("2020-01-02","2020-01-02", "2020-01-01", "2020-01-03", "2020-01-01"),
  DSDECOD = c(rep('DEATH', 5)),
+ DSSPID = "FORMNAME-R:13/L:13XXXX",
  DSCAT   = c(rep("DISPOSITION EVENT", 5))
 )
 
 check_ss_ssdtc_dead_ds(SS, DS)
+check_ss_ssdtc_dead_ds(SS, DS, preproc=roche_derive_rave_row)
+
 
 SS <- data.frame(
  USUBJID = 1:5,
  SSDTC = "2020-01-02",
  SSSTRESC  = c(rep("DEAD", 5)),
- VISIT = "FOLLOW-UP"
+ VISIT = "FOLLOW-UP",
+ SSSPID = "FORMNAME-R:13/L:13XXXX"
 )
-
 
 DS <- data.frame(
  USUBJID = 1:5,
  DSSTDTC  = 2,
  DSDECOD = c(rep('DEATH', 5)),
+ DSSPID = "FORMNAME-R:13/L:13XXXX",
  DSCAT   = c(rep("DISPOSITION EVENT", 5))
 )
 
