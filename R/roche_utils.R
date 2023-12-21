@@ -37,7 +37,7 @@
 #'
 
 
-roche_derive_rave_row <- function(dts,domains=c("ae","cm","ds","lb","pr","rs","ss","tr","tu")) {
+roche_derive_rave_row <- function(dts,domains=c("ae","ce","cm","ds","lb","pr","rs","ss","tr","tu")) {
   
   myvec <- paste0(toupper(unlist(domains)), "SPID")
   
