@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_tr_trstresn_ldiam.R
 \name{check_tr_trstresn_ldiam}
 \alias{check_tr_trstresn_ldiam}
-\title{Check for TR records with missing TRSTRESN for LDIAM}
+\title{Check for TR records with missing TRSTRESN for Longest Diameter (LDIAM)}
 \usage{
 check_tr_trstresn_ldiam(TR, preproc = identity, ...)
 }
@@ -21,8 +21,9 @@ attribute if the check failed
 }
 \description{
 This checks looks for TR records with missing values in numeric
-result/finding for the LDIAM tumor assessment test. Only applies to
-assessments by investigator.
+result/finding for the Longest Diameter (TRTESTCD is LDIAM) tumor measurement.
+Only applies to assessments by investigator, selected based on uppercased
+TREVAL = "INVESTIGATOR" or missing or TREVAL variable does not exist.
 }
 \examples{
 

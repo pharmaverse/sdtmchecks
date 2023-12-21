@@ -2,12 +2,13 @@
 % Please edit documentation in R/check_tr_trdtc_across_visit.R
 \name{check_tr_trdtc_across_visit}
 \alias{check_tr_trdtc_across_visit}
-\title{Check TR Longest Diameter Records where the same date occurs accross multiple visits}
+\title{Check TR Longest Diameter Records where the same date occurs across multiple visits}
 \usage{
 check_tr_trdtc_across_visit(TR, preproc = identity, ...)
 }
 \arguments{
-\item{TR}{Tumor Result SDTM dataset with variables USUBJID, TRDTC, VISIT, TRTESTCD}
+\item{TR}{Tumor Result SDTM dataset with variables USUBJID, TRDTC, TRTESTCD, VISIT,
+TREVAL (optional)}
 
 \item{preproc}{An optional company specific preprocessing script}
 
@@ -19,7 +20,9 @@ test failed
 }
 \description{
 This check identifies records where the same date TRDTC occurs
-across multiple visits when TRTESTCD is "LDIAM". Only applies to assessments by investigator.
+across multiple visits for Longest Diameter measurements (TRTESTCD is "LDIAM").
+Only applies to assessments by investigator, selected based on uppercased
+TREVAL = "INVESTIGATOR" or missing or TREVAL variable does not exist.
 }
 \examples{
 
