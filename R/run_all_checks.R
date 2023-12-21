@@ -104,9 +104,6 @@ run_all_checks <- function(metads = sdtmchecksmeta,
     
   cat("\n")
     
-  # add to class of results 
-  class(all_rec)=c(class(all_rec),"sdtmchecks")
-  
   # return the final list
   return(all_rec)
     
