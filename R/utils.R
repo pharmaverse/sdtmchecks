@@ -608,7 +608,7 @@ xlsx2list <-function(rptwb, firstrow=1){
 #' 
 #' This `diff_reports()` function requires a newer and older set of results from 
 #' `sdtmchecks::run_all_checks()`, which will generate a list of check results. 
-#' A added column "report_diff" is created with values of "NEW" and "OLD" 
+#' A added column "Status" is created with values of "NEW" and "OLD" 
 #' in the list of check results, flagging whether a given record that is present 
 #' in the new result (ie `new_report`) is also present in the old result (ie `old_report`).
 #' It makes a difference which report is defined as "new" and "old". 
@@ -618,7 +618,7 @@ xlsx2list <-function(rptwb, firstrow=1){
 #' @param old_report an older sdtmchecks list object as created by `run_all_checks`
 #' @param new_report a newer sdtmchecks list object as created by `run_all_checks`
 #'
-#' @return list of sdtmchecks results based on new_report with report_diff indicator
+#' @return list of sdtmchecks results based on new_report with Status indicator
 #' 
 #' @imporFrom dplyr %>% left_join mutate
 #' @export
@@ -674,7 +674,7 @@ diff_reports=function(old_report,new_report){
   # Second: Do the diff 
   #
   #    i.e., Compare the flagged records in the new vs. old report.
-  #          A new column "report_diff" will be added to all results of the 
+  #          A new column "Status" will be added to all results of the 
   #          "new_report" based on the flagged record comparison.
   #          The new column will have either "NEW" or "OLD" populated.
   ### -------------------------
@@ -684,25 +684,25 @@ diff_reports=function(old_report,new_report){
     if(!(check_name %in% names(old_report))){ #if check not in old report then these issues are new
       
       res_new=new_report[[check_name]]
-      res_new$data$report_diff="NEW"
+      res_new$data$Status="NEW"
       res_new
       
     }else if(nrow(old_report[[check_name]]$data)==0){ 
       #if check in the old report but old report didn't have any issues then these issues are new
       
       res_new=new_report[[check_name]]
-      res_new$data$report_diff="NEW"
+      res_new$data$Status="NEW"
       res_new
       
     }else{ #else both old and new report have some issues flagged, so we diff them
       
       res_new=new_report[[check_name]]
       res_old=old_report[[check_name]]
-      res_old$data$report_diff="OLD"
+      res_old$data$Status="OLD"
       
       res_new$data=res_new$data %>%
         left_join(res_old$data,relationship = "many-to-many") %>% #behold the magic of dplyr automatically identifying columns to join on
-        mutate(report_diff=ifelse(is.na(report_diff),"NEW",report_diff))
+        mutate(Status=ifelse(is.na(Status),"NEW",Status))
       
       res_new
     }
