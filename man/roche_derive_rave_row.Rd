@@ -6,7 +6,11 @@
 \usage{
 roche_derive_rave_row(
   dts,
+<<<<<<< HEAD
   domains = c("ae", "ce", "cm", "ds", "lb", "pr", "rs", "ss", "tr", "tu")
+=======
+  domains = c("ae", "ce", "cm", "ds", "lb", "pr", "ss", "tr", "tu")
+>>>>>>> fd7da34d7b091ade9f748a44a8300b1379a522ee
 )
 }
 \arguments{
