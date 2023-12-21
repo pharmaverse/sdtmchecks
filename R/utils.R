@@ -608,7 +608,7 @@ xlsx2list <-function(rptwb, firstrow=1){
 #' 
 #' This `diff_reports()` function requires a newer and older set of results from 
 #' `sdtmchecks::run_all_checks()`, which will generate a list of check results. 
-#' A added column "Status" is created with values of "NEW" and "OLD" 
+#' An added column "Status" is created with values of "NEW" and "OLD" 
 #' in the list of check results, flagging whether a given record that is present 
 #' in the new result (ie `new_report`) is also present in the old result (ie `old_report`).
 #' It makes a difference which report is defined as "new" and "old". 
@@ -620,7 +620,7 @@ xlsx2list <-function(rptwb, firstrow=1){
 #'
 #' @return list of sdtmchecks results based on new_report with Status indicator
 #' 
-#' @imporFrom dplyr %>% left_join mutate
+#' @importFrom dplyr %>% left_join mutate
 #' @export
 #' 
 #' @examples 
