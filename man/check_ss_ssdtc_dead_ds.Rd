@@ -32,7 +32,8 @@ SS <- data.frame(
  USUBJID = 1:5,
  SSDTC = "2020-01-02",
  SSSTRESC  = c("DEAD","DEAD","ALIVE","DEAD","ALIVE"),
- VISIT = "FOLLOW-UP"
+ VISIT = "FOLLOW-UP",
+ SSSPID = "FORMNAME-R:13/L:13XXXX"
 )
 
 DS <- data.frame(
@@ -51,7 +52,8 @@ SS <- data.frame(
  USUBJID = 1:5,
  SSDTC = "2020-01-02",
  SSSTRESC  = c( rep("DEAD", 5)),
- VISIT = "FOLLOW-UP"
+ VISIT = "FOLLOW-UP",
+ SSSPID = "FORMNAME-R:13/L:13XXXX"
 )
 
 DS <- data.frame(
@@ -70,7 +72,8 @@ SS <- data.frame(
  USUBJID = 1:5,
  SSDTC = "2020-01-02",
  SSSTRESC  = c(rep("DEAD", 5)),
- VISIT = "FOLLOW-UP"
+ VISIT = "FOLLOW-UP",
+ SSSPID = "FORMNAME-R:13/L:13XXXX"
 )
 
 DS <- data.frame(
