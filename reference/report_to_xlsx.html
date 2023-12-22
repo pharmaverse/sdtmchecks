@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.10</span>
       </span>
     </div>
 
@@ -96,7 +96,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">report_to_xlsx</span><span class="op">(</span><span class="va">res</span>, <span class="va">outfile</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">report_to_xlsx</span><span class="op">(</span><span class="va">res</span>, <span class="va">outfile</span>, extrastring <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -108,6 +108,10 @@
 <dt>outfile</dt>
 <dd><p>file path/name to write to</p></dd>
 
+
+<dt>extrastring</dt>
+<dd><p>optionally display extra info alongside version info, e.g. diff info</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -118,6 +122,7 @@
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p>Example programs for running data checks
+<code><a href="diff_reports.html">diff_reports</a>()</code>,
 <code><a href="run_all_checks.html">run_all_checks</a>()</code>,
 <code><a href="run_check.html">run_check</a>()</code></p></div>
     </div>

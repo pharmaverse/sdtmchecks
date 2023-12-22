@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.10</span>
       </span>
     </div>
 
@@ -136,6 +136,10 @@ they also have a DS record indicating this.</p></td>
         <td><p>Check for AE outcome (AEOUT) of 'FATAL' with non-missing resolution
 date that is not equal to the death date</p></td>
       </tr><tr><td>
+          <p><code><a href="check_ae_aeout_aeendtc_nonfatal.html">check_ae_aeout_aeendtc_nonfatal()</a></code> </p>
+        </td>
+        <td><p>Check for non-fatal AEs with inconsistent AEOUT and AEENDTC</p></td>
+      </tr><tr><td>
           <p><code><a href="check_ae_aerel.html">check_ae_aerel()</a></code> </p>
         </td>
         <td><p>Check for AEREL1 - AERELN when AEREL is missing and when AEREL is unexpected</p></td>
@@ -179,6 +183,10 @@ date that is not equal to the death date</p></td>
           <p><code><a href="check_ae_withdr_ds_discon.html">check_ae_withdr_ds_discon()</a></code> </p>
         </td>
         <td><p>Check if an AE leading to drug being withdrawn is reflected in DS</p></td>
+      </tr><tr><td>
+          <p><code><a href="check_ce_missing_month.html">check_ce_missing_month()</a></code> </p>
+        </td>
+        <td><p>Check for clinical events dates with year and day known but month unknown</p></td>
       </tr><tr><td>
           <p><code><a href="check_cm_cmdecod.html">check_cm_cmdecod()</a></code> </p>
         </td>
@@ -439,7 +447,7 @@ visit's (possible datetime data entry error)</p></td>
       </tr><tr><td>
           <p><code><a href="check_rs_rsdtc_across_visit.html">check_rs_rsdtc_across_visit()</a></code> </p>
         </td>
-        <td><p>Check RS Records where the same date occurs across multiple visits</p></td>
+        <td><p>Check RS records where the same date occurs across multiple visits</p></td>
       </tr><tr><td>
           <p><code><a href="check_rs_rsdtc_visit.html">check_rs_rsdtc_visit()</a></code> </p>
         </td>
@@ -482,7 +490,7 @@ where status date is greater or equal to death date</p></td>
       </tr><tr><td>
           <p><code><a href="check_tr_trdtc_across_visit.html">check_tr_trdtc_across_visit()</a></code> </p>
         </td>
-        <td><p>Check TR Longest Diameter Records where the same date occurs accross multiple visits</p></td>
+        <td><p>Check TR Longest Diameter Records where the same date occurs across multiple visits</p></td>
       </tr><tr><td>
           <p><code><a href="check_tr_trdtc_visit_ordinal_error.html">check_tr_trdtc_visit_ordinal_error()</a></code> </p>
         </td>
@@ -491,7 +499,7 @@ last visit's (possible date entry error)</p></td>
       </tr><tr><td>
           <p><code><a href="check_tr_trstresn_ldiam.html">check_tr_trstresn_ldiam()</a></code> </p>
         </td>
-        <td><p>Check for TR records with missing TRSTRESN for LDIAM</p></td>
+        <td><p>Check for TR records with missing TRSTRESN for Longest Diameter (LDIAM)</p></td>
       </tr><tr><td>
           <p><code><a href="check_ts_aedict.html">check_ts_aedict()</a></code> </p>
         </td>
@@ -604,6 +612,10 @@ message</p></td>
           <p class="section-desc"></p><p>Example programs for running one or more data checks</p>
         </th>
       </tr></tbody><tbody><tr><td>
+          <p><code><a href="diff_reports.html">diff_reports()</a></code> </p>
+        </td>
+        <td><p>Create a sdtmchecks list object with column indicating whether the issue was previously seen</p></td>
+      </tr><tr><td>
           <p><code><a href="report_to_xlsx.html">report_to_xlsx()</a></code> </p>
         </td>
         <td><p>Save report as an xlsx file</p></td>
@@ -643,7 +655,7 @@ for Pandoc to create PDF file</p></td>
       </tr></tbody><tbody><tr><td>
           <p><code><a href="roche_derive_rave_row.html">roche_derive_rave_row()</a></code> </p>
         </td>
-        <td><p>Utility function to obtain Rave row</p></td>
+        <td><p>Utility function to obtain Rave form name and row number</p></td>
       </tr><tr><td>
           <p><code><a href="roche_covid_df.html">roche_covid_df()</a></code> </p>
         </td>

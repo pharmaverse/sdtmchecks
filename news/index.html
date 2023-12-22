@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.10</span>
       </span>
     </div>
 
@@ -90,6 +90,59 @@
       <small>Source: <a href="https://github.com/pharmaverse/sdtmchecks/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.1.10" id="sdtmchecks-0110-light-ice">sdtmchecks 0.1.10 “Light Ice”<a class="anchor" aria-label="anchor" href="#sdtmchecks-0110-light-ice"></a></h2>
+<div class="section level3">
+<h3 id="refinements-of-existing-data-check-functions-0-1-10">Refinements of existing data check functions<a class="anchor" aria-label="anchor" href="#refinements-of-existing-data-check-functions-0-1-10"></a></h3>
+<ul><li>
+<a href="https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aedthdtc_ds_death.html"><code>check_ae_aedthdtc_ds_death</code></a> updated logic, as this check is primarily useful for legacy studies that mapped DSTERM to have the specific string “DEATH DUE TO ADVERSE EVENT.” Newer studies have updated mapping for DSTERM, where the specific AE is concatenated with the string “DEATH DUE TO” - e.g., “DEATH DUE TO INFLUENZA.” The check will be based on DEATH DUE TO ADVERSE EVENT given in DSTERM. Studies without this string will be given a pass. (<a href="https://github.com/pharmaverse/sdtmchecks/pull/101" class="external-link">#101</a>).</li>
+<li>
+<a href="https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aerel.html"><code>check_ae_aerel</code></a> updated syntax with more dynamic inclusion of AEREL variables (<a href="https://github.com/pharmaverse/sdtmchecks/pull/259" class="external-link">#259</a>), with thanks to <code>@vrakinav</code>
+</li>
+<li>
+<a href="https://pharmaverse.github.io/sdtmchecks/reference/check_ss_ssdtc_dead_ds.html"><code>check_ss_ssdtc_dead_ds</code></a> updated to include pre-processing input and return RAVE column if applicable (<a href="https://github.com/pharmaverse/sdtmchecks/pull/263" class="external-link">#263</a>)</li>
+<li>
+<a href="https://pharmaverse.github.io/sdtmchecks/reference/check_rs_rsdtc_across_visit.html"><code>check_rs_rsdtc_across_visit</code></a>, <a href="https://pharmaverse.github.io/sdtmchecks/reference/check_tr_trdtc_across_visit.html"><code>check_tr_trdtc_across_visit</code></a>, <a href="https://pharmaverse.github.io/sdtmchecks/reference/check_tu_tudtc_across_visit.html"><code>check_tu_tudtc_across_visit</code></a> updated to have more info, e.g., –TESTCD/RAVE info (<a href="https://github.com/pharmaverse/sdtmchecks/pull/260" class="external-link">#260</a>).</li>
+<li>
+<a href="https://pharmaverse.github.io/sdtmchecks/reference/check_tr_dup.html"><code>check_tr_dup</code></a> with required variables updated and removal of superceded function <a href="https://dplyr.tidyverse.org/reference/arrange_all.html" class="external-link"><code>dplyr::arrange_at()</code></a> (<a href="https://github.com/pharmaverse/sdtmchecks/issues/271" class="external-link">#271</a>)</li>
+</ul></div>
+<div class="section level3">
+<h3 id="new-data-check-functions-0-1-10">New data check functions<a class="anchor" aria-label="anchor" href="#new-data-check-functions-0-1-10"></a></h3>
+<ul><li>
+<a href="https://pharmaverse.github.io/sdtmchecks/reference/check_ce_missing_month.html"><code>check_ce_missing_month()</code></a> - flags if CE has a suspicious date value with year and day known but month missing (<a href="https://github.com/pharmaverse/sdtmchecks/issues/148" class="external-link">#148</a>), with thanks to <code>@rymarinelli</code>*</li>
+<li>
+<a href="https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeout_aeendtc_nonfatal.html"><code>check_ae_aeout_aeendtc_nonfatal()</code></a> - flags AEs with inconsistent AE outcome (AEOUT) and AE resolution date (AEENDTC) for non-fatal AEs (based on AEOUT) (<a href="https://github.com/pharmaverse/sdtmchecks/issues/113" class="external-link">#113</a>), with thanks to <code>@J-Lox</code>
+</li>
+</ul></div>
+<div class="section level3">
+<h3 id="refinements-of-existing-report-utilities-0-1-10">Refinements of existing report utilities<a class="anchor" aria-label="anchor" href="#refinements-of-existing-report-utilities-0-1-10"></a></h3>
+<ul><li>
+<a href="https://pharmaverse.github.io/sdtmchecks/reference/report_to_xlsx.html"><code>report_to_xlsx</code></a> with added PARAM of extrastring=““`</li>
+</ul></div>
+<div class="section level3">
+<h3 id="metadata-updates-0-1-10">Metadata updates<a class="anchor" aria-label="anchor" href="#metadata-updates-0-1-10"></a></h3>
+<ul><li>
+<a href="https://pharmaverse.github.io/sdtmchecks/reference/sdtmchecksmeta.html"><code>sdtmchecksmeta.RData</code></a> with added <code>preproc=roche_derive_rave_row</code>, newly added <a href="https://pharmaverse.github.io/sdtmchecks/reference/check_ce_missing_month.html"><code>check_ce_missing_month</code></a> and <a href="https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeout_aeendtc_nonfatal.html"><code>check_ae_aeout_aeendtc_nonfatal</code></a> functions, updated notes for changed logic of <a href="https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aedthdtc_ds_death.html"><code>check_ae_aedthdtc_ds_death</code></a>
+</li>
+</ul></div>
+<div class="section level3">
+<h3 id="misc-package-updates-0-1-10">Misc package updates<a class="anchor" aria-label="anchor" href="#misc-package-updates-0-1-10"></a></h3>
+<ul><li>Specify version &gt;= 1.1.1 for dplyr version in DESCRIPTION</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.1.9" id="sdtmchecks-019-bubble-and-squeak">sdtmchecks 0.1.9 “Bubble and Squeak”<a class="anchor" aria-label="anchor" href="#sdtmchecks-019-bubble-and-squeak"></a></h2>
+<div class="section level3">
+<h3 id="new-report-utility-functions-0-1-9">New report utility functions<a class="anchor" aria-label="anchor" href="#new-report-utility-functions-0-1-9"></a></h3>
+<ul><li>Added <a href="https://pharmaverse.github.io/sdtmchecks/reference/diff_report.html"><code>diff_report()</code></a> reporting function to <code>util.R</code> to compare report objects generated from <a href="https://pharmaverse.github.io/sdtmchecks/reference/run_all_checks.html"><code>run_all_checks()</code></a>, enabling identification of records newly flagged (<a href="https://github.com/pharmaverse/sdtmchecks/pull/264" class="external-link">#264</a>), with thanks to <code>@harriscw</code>
+</li>
+<li>Include “report_diff” to <code>globals.R</code> (<a href="https://github.com/pharmaverse/sdtmchecks/pull/265" class="external-link">#265</a>)</li>
+</ul></div>
+<div class="section level3">
+<h3 id="misc-package-updates-0-1-9">Misc package updates<a class="anchor" aria-label="anchor" href="#misc-package-updates-0-1-9"></a></h3>
+<ul><li>Automated security update in workflow (<a href="https://github.com/pharmaverse/sdtmchecks/pull/268" class="external-link">#268</a>)</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.8" id="sdtmchecks-018-bubble-and-squeak">sdtmchecks 0.1.8 “Bubble and Squeak”<a class="anchor" aria-label="anchor" href="#sdtmchecks-018-bubble-and-squeak"></a></h2>
 <div class="section level3">
