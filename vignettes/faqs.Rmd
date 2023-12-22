@@ -30,7 +30,7 @@ vignette: >
 
 **Q: Why doesn't the package install from CRAN properly?**
 
-**A:** The package is not available on CRAN and needs to be installed from GitHub. The syntax `devtools::install_github("pharmaverse/sdtmchecks", ref="main")` can be used and is the recommended version for end users. The "devel" branch, which is the default branch of the GitHub repo, is used for ongoing development work.
+**A:** The package is not available on CRAN. Please see the installation syntax [here](https://pharmaverse.github.io/sdtmchecks/index.html).
 
 <br>
  
@@ -46,7 +46,8 @@ vignette: >
 
 **Q: What is the difference between data checks of Pinnacle 21 (P21) and the sdtmchecks packages?**
 
-**A:** [P21 validation checks](https://www.pinnacle21.com/validation-rules/sdtm) are for CDISC conformance and quite comprehensive for eSubmission, whereas the sdtmchecks package aims to cover variables impacting analysis. There may be some overlap in checks from these two tools. CDISC codelist versions are not used as  reference for the sdtmchecks package. are for CDISC conformance and quite comprehensive for eSubmission, whereas the sdtmchecks package aims to cover variables impacting analysis. There may be a small amount of overlap in checks from these two tools - for example, AEs with missing preferred terms are flagged with both tools. Checks of controlled terminology and inclusion of all codelist items are covered in P21; data checks of this nature are not included in sdtmchecks. 
+**A:** [P21 validation checks](https://www.pinnacle21.com/validation-rules/sdtm) are for CDISC conformance and quite comprehensive for eSubmission, whereas the sdtmchecks package aims to cover variables impacting analysis. There may be some overlap in checks from these two tools - for example, AEs with missing preferred terms are flagged with both tools. CDISC codelist versions are not used as reference for the sdtmchecks package. Checks of controlled terminology and inclusion of all codelist items are covered in P21; data checks of this nature are not included in sdtmchecks. 
+
 
 <br>
 
