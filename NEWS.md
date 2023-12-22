@@ -1,4 +1,4 @@
-# sdtmchecks (development version)
+# sdtmchecks 0.1.10 "Light Ice"
 
 ## Refinements of existing data check functions
 
