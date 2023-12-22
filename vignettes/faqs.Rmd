@@ -70,11 +70,11 @@ vignette: >
 
 <br>
 
-**Q: What versions of SDTM are covered in the sdtmchecks package?**
+**Q: Does the SDTM Controlled Terminology (CT) version need to be entered in order to use the package?**
 
-**A:** The existing data checks are intended to broadly flag data issues. Some workarounds have been incorporated in data checks that include the EXOCCUR variable, which is not in SDTM IG 1.4 but was in Exposure (EX) domains based on earlier IG versions. Most checks run regardless of the study build date and SDTM version. Please feel free to share recommendations on making the checks more robust via logging an [issue](https://github.com/pharmaverse/sdtmchecks/issues).
+**A:** No, the data checks do not require CT version information as initial input. The search for strings is relatively broad and intended to cover older and newer CT versions. 
 
-We plan to augment the package documentation in coming weeks to include more information on SDTM IG coverage. 
+For example, RSTESTCD with "OVRLRESP" is expected as the value for Overall Response in RS for both solid tumor and hematology studies in oncology, and this string value is consistent across specific standards versions. If your study assigns a different, non-standard value to indicate Overall Response, then checking records through study-specific code will ensure important analysis-impacting data are not missed.
 
 <br>
 
