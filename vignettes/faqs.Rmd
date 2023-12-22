@@ -48,7 +48,6 @@ vignette: >
 
 **A:** [P21 validation checks](https://www.pinnacle21.com/validation-rules/sdtm) are for CDISC conformance and quite comprehensive for eSubmission, whereas the sdtmchecks package aims to cover variables impacting analysis. There may be some overlap in checks from these two tools - for example, AEs with missing preferred terms are flagged with both tools. CDISC codelist versions are not used as reference for the sdtmchecks package. Checks of controlled terminology and inclusion of all codelist items are covered in P21; data checks of this nature are not included in sdtmchecks. 
 
-
 <br>
 
 **Q: Can the data checks in this package be run in lieu of P21 validation checks?**
@@ -64,9 +63,9 @@ vignette: >
 <br>
 
 
-**Q: Does SDTM IG version information need to be entered in order to use the package?**
+**Q: Does [SDTM Implementation Guide (IG)](https://www.cdisc.org/standards/foundational/sdtmig) version information need to be entered in order to use the package?**
 
-**A:** No, the data checks do not require version information as initial input. 
+**A:** No, the data checks do not require IG version information as initial input. 
 
 <br>
 
