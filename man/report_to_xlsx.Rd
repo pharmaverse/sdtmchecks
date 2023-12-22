@@ -4,12 +4,14 @@
 \alias{report_to_xlsx}
 \title{Save report as an xlsx file}
 \usage{
-report_to_xlsx(res, outfile)
+report_to_xlsx(res, outfile, extrastring = "")
 }
 \arguments{
 \item{res}{results list created by run_all_checks}
 
 \item{outfile}{file path/name to write to}
+
+\item{extrastring}{optionally display extra info alongside version info, e.g. diff info}
 }
 \value{
 xlsx file
@@ -34,6 +36,7 @@ report_to_xlsx(res=all_rec,outfile="check_results.xlsx")
 }
 \seealso{
 Example programs for running data checks
+\code{\link{diff_reports}()},
 \code{\link{run_all_checks}()},
 \code{\link{run_check}()}
 }

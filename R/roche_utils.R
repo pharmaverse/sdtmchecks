@@ -1,9 +1,11 @@
 
-#' @title Utility function to obtain Rave row
+#' @title Utility function to obtain Rave form name and row number 
 #'
-#' @description This function derives the Rave row number from xxSPID
+#' @description This function derives the Rave form name and row number from xxSPID. 
+#' The xxSPID string may yield unexpected results for outsourced studies. Log forms 
+#' will show the row number as #n. Non-log forms may show #0 after the form name.
 #'
-#' @param dts dataframe e.g. AE
+#' @param dts SDTM dataframe - e.g., AE
 #' @param domains domains you wish to identify a xxSPID variable from
 #'
 #' @return dataframe with Rave row number
@@ -35,8 +37,9 @@
 #'
 
 
-roche_derive_rave_row <- function(dts,domains=c("ae","cm","ds","lb","pr","ss","tr","tu")) {
-  
+
+roche_derive_rave_row <- function(dts,domains=c("ae","ce","cm","ds","lb","pr","rs","ss","tr","tu")) {
+
   myvec <- paste0(toupper(unlist(domains)), "SPID")
   
   thevar=intersect(names(dts), myvec) #get --SPID variable of interest

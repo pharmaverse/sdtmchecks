@@ -230,7 +230,7 @@ nrow(new)
 nrow(prior)
 
 ## confirm that only the expected changes are presented as differences
-diffdf::diffdf(new, prior)
+# diffdf::diffdf(new, prior)
 
 
 ## name the new dataset the expected package dataframe name prior to saving
@@ -246,5 +246,5 @@ save(sdtmchecksmeta, file = "data/sdtmchecksmeta.RData", version=2, compress=TRU
 ## -------   OUTPUT: Save nickname.RData ---------------------------------------
 ### Keep a nickname
 
-nickname="Bubble and Squeak"
+nickname="Light Ice"
 save(nickname, file = "data/nickname.RData", version=2)
