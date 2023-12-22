@@ -17,7 +17,8 @@ TREVAL = "INVESTIGATOR" or missing or TREVAL variable does not exist.
 }
 \examples{
 
- TR <- data.frame(
+# example with an error
+TR <- data.frame(
  USUBJID  = c(1,1,2,2),
  TRCAT    = c(1,1,2,2),
  TRTESTCD = c(1,1,2,2),
@@ -40,6 +41,17 @@ TR2 <- TR
 TR2$TREVAL <- NULL
 
 check_tr_dup(TR2)
+
+# example with no records flagged because issues only among IRF records
+TR3 <- TR
+TR3$TREVAL <- "INDEPENDENT ASSESSOR"
+check_tr_dup(TR3)
+
+# example with required variable missing
+TR4 <- TR
+TR4$TRLINKID <- NULL
+check_tr_dup(TR4)
+
 
 }
 \author{
