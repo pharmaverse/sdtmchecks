@@ -72,6 +72,9 @@
   <ul class="dropdown-menu" role="menu">
 <li class="dropdown-header">Releases</li>
     <li>
+      <a href="../news/index.html#sdtmchecks-0110-light-ice">sdtmchecks 0.1.10</a>
+    </li>
+    <li>
       <a href="../news/index.html#sdtmchecks-018-bubble-and-squeak">sdtmchecks 0.1.8</a>
     </li>
     <li>
@@ -151,12 +154,8 @@ Data Check Functions page</a>.</p>
 <p><br></p>
 <p><strong>Q: Why doesn’t the package install from CRAN
 properly?</strong></p>
-<p><strong>A:</strong> The package is not available on CRAN and needs to
-be installed from GitHub. The syntax
-<code>devtools::install_github("pharmaverse/sdtmchecks", ref="main")</code>
-can be used and is the recommended version for end users. The “devel”
-branch, which is the default branch of the GitHub repo, is used for
-ongoing development work.</p>
+<p><strong>A:</strong> The package is not available on CRAN. Please see
+the installation syntax <a href="https://pharmaverse.github.io/sdtmchecks/index.html">here</a>.</p>
 <p><br></p>
 </div>
 <div class="section level2">
@@ -178,8 +177,11 @@ Data Check Functions page</a>.</p>
 checks</a> are for CDISC conformance and quite comprehensive for
 eSubmission, whereas the sdtmchecks package aims to cover variables
 impacting analysis. There may be some overlap in checks from these two
-tools. CDISC codelist versions are not used as reference for the
-sdtmchecks package.</p>
+tools - for example, AEs with missing preferred terms are flagged with
+both tools. CDISC codelist versions are not used as reference for the
+sdtmchecks package. Checks of controlled terminology and inclusion of
+all codelist items are covered in P21; data checks of this nature are
+not included in sdtmchecks.</p>
 <p><br></p>
 <p><strong>Q: Can the data checks in this package be run in lieu of P21
 validation checks?</strong></p>
@@ -194,29 +196,43 @@ investigator-based results rather than independent review facility data
 reported by a vendor in light of the former typically being more
 standardized.</p>
 <p><br></p>
-<p><strong>Q: Does SDTM IG version information need to be entered in
+<p><strong>Q: Does <a href="https://www.cdisc.org/standards/foundational/sdtmig" class="external-link">SDTM
+Implementation Guide (IG)</a> version information need to be entered in
 order to use the package?</strong></p>
-<p><strong>A:</strong> No, the data checks do not require version
+<p><strong>A:</strong> No, the data checks do not require IG version
 information as initial input.</p>
 <p><br></p>
-<p><strong>Q: What versions of SDTM are covered in the sdtmchecks
-package?</strong></p>
-<p><strong>A:</strong> The existing data checks are intended to broadly
-flag data issues. Some workarounds have been incorporated in data checks
-that include the EXOCCUR variable, which is not in SDTM IG 1.4 but was
-in Exposure (EX) domains based on earlier IG versions. Most checks run
-regardless of the study build date and SDTM version. Please feel free to
-share recommendations on making the checks more robust via logging an <a href="https://github.com/pharmaverse/sdtmchecks/issues" class="external-link">issue</a>.</p>
-<p>We plan to augment the package documentation in coming weeks to
-include more information on SDTM IG coverage.</p>
+<p><strong>Q: Does the SDTM Controlled Terminology (CT) version need to
+be entered in order to use the package?</strong></p>
+<p><strong>A:</strong> No, the data checks do not require CT version
+information as initial input. The search for strings is relatively broad
+and intended to cover older and newer CT versions.</p>
+<p>For example, RSTESTCD with “OVRLRESP” is expected as the value for
+Overall Response in RS for both solid tumor and hematology studies in
+oncology, and this string value is consistent across specific standards
+versions. If your study assigns a different, non-standard value to
+indicate Overall Response, then checking records through study-specific
+code will ensure important analysis-impacting data are not missed.</p>
 <p><br></p>
 <p><strong>Q: Which SDTM Implementation Guide (IG) version is used as
 the basis of the checks?</strong></p>
-<p><strong>A:</strong> The data checks are intended to run regardless of
-SDTM IG version. There are a few checks that only apply to a specific
-version. For example, “Check for EXDOSE&gt;0 when EXOCCUR is not ‘Y’”
-will return “EX is missing the variable: EXOCCUR” for SDTM IG 3.2+
-studies.</p>
+<p><strong>A:</strong> The existing data checks are intended to run
+regardless of SDTM IG and CT versions. The package emphasis is on
+general data issues that impact analysis. Most checks run regardless of
+the study build date and SDTM version.</p>
+<p>Some workarounds have been incorporated in data checks that require
+variables with known differences across versions.</p>
+<p>For example, some data checks functions include EXOCCUR, a variable
+in versions prior to SDTM IG 3.2/SDTM 1.4. If your study does not have
+an EXOCCUR variable in the EX domain, then running the function <a href="https://pharmaverse.github.io/sdtmchecks/reference/check_ex_exdose_exoccur.html"><code>check_ex_exdose_exoccur</code></a>,
+which checks for EXDOSE&gt;0 when EXOCCUR is not ‘Y’ will return <em>“EX
+is missing the variable: EXOCCUR”</em>.</p>
+<p>Later SDTM versions use Link ID variables –LNKID rather than –LINKID.
+A check function, such as <a href="https://pharmaverse.github.io/sdtmchecks/reference/check_tr_trstresn_ldiam.html"><code>check_tr_trstresn_ldiam</code></a>,
+allows either TRLNKID or TRLINKID and does not require the user to enter
+an SDTM version.</p>
+<p>Please feel free to share recommendations on making the checks more
+robust and version agnostic via logging an <a href="https://github.com/pharmaverse/sdtmchecks/issues" class="external-link">issue</a>.</p>
 <p><br></p>
 </div>
 <div class="section level2">
