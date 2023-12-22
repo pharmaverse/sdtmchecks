@@ -12,20 +12,52 @@ diff_reports(old_report, new_report)
 \item{new_report}{a newer sdtmchecks list object as created by \code{run_all_checks}}
 }
 \value{
-list
+list of sdtmchecks results based on new_report with Status indicator
 }
 \description{
-This function will compare two sdtmchecks list objects as created by \code{run_all_checks}.
-It creates a report with only records seen in the more recent report (ie \code{new_report}).
-It then adds a flag for whether this record was seen in the old report (ie \code{old_report}).
-This function ignores old results not in new report (because presumably they were resolved).
-A left join is performed, so it matters which report you define as 'new' and 'old'.
+This report will identify flagged records from an sdtmchecks report
+that are "new" and those that are "old" for a study. This will help quickly target
+newly emergent issues that may require a new query or investigation while indicating
+issues that were encountered from a prior report and may have already been queried.
+
+This \code{diff_reports()} function requires a newer and older set of results from
+\code{sdtmchecks::run_all_checks()}, which will generate a list of check results.
+An added column "Status" is created with values of "NEW" and "OLD"
+in the list of check results, flagging whether a given record that is present
+in the new result (ie \code{new_report}) is also present in the old result (ie \code{old_report}).
+It makes a difference which report is defined as "new" and "old".
+This code only keeps results flagged in the new report and drops
+old results not in the new report because they were presumably resolved.
 }
 \examples{
 \dontrun{
-  diff_reports(old_report=sdtmchecks_results_15JUL2022,
-               new_report=sdtmchecks_results_15AUG2022)
+
+## use the run_all_checks() function to generate list of check results 
+all_rec <- sdtmchecks::run_all_checks()
+
+## save results as .RDS file
+saveRDS(all_rec, file=paste0("saved_reports/sdtmchecks_", Sys.Date(), ".rds"))
+
+## re-run the above steps on a different snapshot for the same study
+
+## read in the previously created RDS files 
+old <- readRDS("saved_reports/sdtmchecks_01JAN2023.rds")
+new <- readRDS("saved_reports/sdtmchecks_01FEB2023.rds")
+
+## run sdtmchecks::diff_reports()
+res <- diff_reports(old_report=old, new_report=new)
+
+## output results as spreadsheet with sdtmchecks::report_to_xlsx()
+report_to_xlsx(res, outfile=paste0("saved_reports/sdtmchecks_diff_",Sys.Date(),".xlsx"))
+
 }
 
-
 }
+\seealso{
+Example programs for running data checks
+\code{\link{report_to_xlsx}()},
+\code{\link{run_all_checks}()},
+\code{\link{run_check}()}
+}
+\concept{ex_rpt}
+\keyword{ex_rpt}
