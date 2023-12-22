@@ -54,7 +54,7 @@
 #' 
 
 
-check_tr_dup <- function(TR, ){
+check_tr_dup <- function(TR){
     
     if (TR %lacks_any% c("USUBJID","TRCAT","TRTESTCD","TRDTC","TRSTRESC")){
         
