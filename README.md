@@ -3,6 +3,10 @@
 
 # sdtmchecks
 
+<!-- package hex logo -->
+
+<a href="https://pharmaverse.github.io/sdtmchecks/"><img src="man/figures/logo_em.png" align="right" height="138"/></a>
+
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/pharmaverse/sdtmchecks/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/pharmaverse/sdtmchecks/actions/workflows/R-CMD-check.yml)
@@ -10,8 +14,6 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/sdtmchecks)](https://cran.r-project.org/package=sdtmchecks)
 <!-- badges: end -->
-
-<img src="man/figures/logo_em.png" alt="drawing" align="right" width="200"/>
 
 The sdtmchecks package contains functions to identify common data issues
 in SDTM data. These checks are intended to be **generalizable**,

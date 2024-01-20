@@ -8,18 +8,20 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "man/figures/README-",
   out.width = "100%"
 )
 ```
 
 # sdtmchecks
 
+<!-- package hex logo -->
+<a href="https://pharmaverse.github.io/sdtmchecks/"><img src="man/figures/logo_em.png" align="right" height="138"/></a> 
+
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/pharmaverse/sdtmchecks/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/pharmaverse/sdtmchecks/actions/workflows/R-CMD-check.yml) [![codecov](https://codecov.io/github/pharmaverse/sdtmchecks/branch/devel/graph/badge.svg?token=ICYI400VDZ)](https://codecov.io/github/pharmaverse/sdtmchecks) [![CRAN status](https://www.r-pkg.org/badges/version/sdtmchecks)](https://cran.r-project.org/package=sdtmchecks)
 <!-- badges: end -->
+ 
 
-<img src="man/figures/logo_em.png" alt="drawing" align="right" width="200"/>
 
 The sdtmchecks package contains functions to identify common data issues in SDTM data. These checks are intended to be **generalizable**, **actionable**, and **meaningful for analysis**.
 
