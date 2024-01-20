@@ -1,3 +1,9 @@
+# sdtmchecks 0.1.10.900x -- dev
+
+* Fix minor typo in README ([#299](https://github.com/pharmaverse/sdtmchecks/issues/299))
+
+
+
 # sdtmchecks 0.1.10 "Light Ice"
 
 ## Refinements of existing data check functions
