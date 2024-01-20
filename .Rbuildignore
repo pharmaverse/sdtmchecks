@@ -21,3 +21,4 @@ inst\sdtmchecks_covr_report.R
 ^codecov\.yml$
 ^README\.Rmd$
 .renvignore
+^cran-comments\.md$
