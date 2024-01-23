@@ -2,7 +2,7 @@
 % Please edit documentation in R/roche_utils.R
 \name{roche_covid_df}
 \alias{roche_covid_df}
-\title{Check MedDRA version in TS and return dataframe with covid terms according to this version}
+\title{Check MedDRA version in TS and return dataframe with Covid-19 terms according to this version}
 \usage{
 roche_covid_df(TS = NULL)
 }
@@ -14,9 +14,11 @@ dataframe
 }
 \description{
 This function reads in a dataset with covid terms according to MedDRA version found in TS
-This function assumes you have a folder called "data" that contains .Rdata files with file names indexed
-by medDRA version, e.g. covid230.Rdata, covid231.Rdata, covid240.Rdata,etc.  It also assumes a pan
-MedDRA version data/covid.Rdata file which it will use if the specific version cant be found.
+This function assumes you have a folder called "data" that contains .Rdata
+files with file names indexed by MedDRA version, e.g.,
+covid230.Rdata, covid231.Rdata, covid240.Rdata, etc.
+It also assumes a pan-MedDRA version data/covid.Rdata file,
+which will use if the specific version cannot be found.
 }
 \examples{
 
@@ -25,7 +27,7 @@ MedDRA version data/covid.Rdata file which it will use if the specific version c
 ts1 <- data.frame(TSPARMCD = "AEDICT", TSVAL = c("MedDRA 22.0"))
 roche_covid_df(TS=ts1)
 
-#COVID datset chosen regardless of the 'v' precending version number
+#COVID datset chosen regardless of the 'v' preceding version number
 ts2 <- data.frame(TSPARMCD = "AEDICT", TSVAL = c("MedDRA v23.0"))
 roche_covid_df(TS=ts2)
 
