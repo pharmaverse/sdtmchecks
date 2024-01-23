@@ -73,12 +73,15 @@ roche_derive_rave_row <- function(dts,domains=c("ae","ce","cm","ds","lb","pr","r
 
 
 
-#' Check MedDRA version in TS and return dataframe with covid terms according to this version
+#' Check MedDRA version in TS and return dataframe with Covid-19 terms according to this version
 #'
 #' @description This function reads in a dataset with covid terms according to MedDRA version found in TS
-#'              This function assumes you have a folder called "data" that contains .Rdata files with file names indexed
-#'              by medDRA version, e.g. covid230.Rdata, covid231.Rdata, covid240.Rdata,etc.  It also assumes a pan
-#'              MedDRA version data/covid.Rdata file which it will use if the specific version cant be found.
+#'              This function assumes you have a folder called "data" that contains .Rdata 
+#'              files with file names indexed by MedDRA version, e.g., 
+#'              covid230.Rdata, covid231.Rdata, covid240.Rdata, etc.  
+#'              It also assumes a pan-MedDRA version data/covid.Rdata file,
+#'              which will use if the specific version cannot be found.
+#'              
 #' @return dataframe
 #' @param TS Trial Summary SDTM dataset (optional) with variables TSPARMCD, TSVAL
 #' @export
@@ -90,7 +93,7 @@ roche_derive_rave_row <- function(dts,domains=c("ae","ce","cm","ds","lb","pr","r
 #' ts1 <- data.frame(TSPARMCD = "AEDICT", TSVAL = c("MedDRA 22.0"))
 #' roche_covid_df(TS=ts1)
 #'
-#' #COVID datset chosen regardless of the 'v' precending version number
+#' #COVID datset chosen regardless of the 'v' preceding version number
 #' ts2 <- data.frame(TSPARMCD = "AEDICT", TSVAL = c("MedDRA v23.0"))
 #' roche_covid_df(TS=ts2)
 #' 
@@ -107,21 +110,59 @@ roche_derive_rave_row <- function(dts,domains=c("ae","ce","cm","ds","lb","pr","r
 #' }
 #' 
 
-
-roche_covid_df <- function(TS=NULL){
+roche_covid_df <- function(TS=NULL) {
   
-  # Check if there is ts domain in data pack
+  df_fail_msg <- "Internal Roche-specific dataset with COVID terms not available"
+  
+  # Check if interactive setting ---
+  if (interactive()){
+    
+    cat("interactive setting...")
+    cat("\n")
+    
+    # Check absence of covid_df object in Global Environment in interactive setting  ----
+    if (!("covid_df" %in% ls(envir = .GlobalEnv))) {
+      fail(df_fail_msg) 
+    }
+    
+  } # end of interactive setting check
+  
+  # Check if non-interactive setting ----
+  else if (!interactive()){
+    
+    # Check if assumption met - data/covid*.RData ----
+    ## check for data folder
+    ## legacy package -or- internal app use
+    
+    if (!dir.exists("data")) {
+      
+      message("There is no data subdirectory")
+      fail("Input subdirectory that would contain COVID preferred terms not available") 
+      
+    }
+    
+    else if (!file.exists("data/covid")) {
+      
+      message("There is no COVID preferred terms file in the data subdirectory. 
+            Datasets not available to users outside of internal Roche network")
+      fail(df_fail_msg) 
+    }
+  } # end of check for data/covid*.RData in non-interactive setting
+  
+  
+  ## regardless of interactive or non-interactive setting ----
+  # Check if there is TS domain in available domains ----
   if (!is.null(TS)) {
     
     # Keep only TSVAL and TSVALn for TSPARAMCD = "AEDICT"
     tsval <- subset(TS, TS$TSPARMCD=="AEDICT", "TSVAL")
     
-    # Check if there is TSPARAMCD = "AEDICT" in ts domain
+    # Check if there is TSPARMCD = "AEDICT" in TS domain ----
     if (nrow(tsval) > 0) {
       versions <- as.vector(tsval[[1]])
       
       condition <- ifelse(length(versions) == 1, TRUE, all(versions[1] == versions))
-      # Check if there are more than one record with TSPARAMCD = "AEDICT" and if there are equal versions of MedDRA in TSVAL values
+      # Check if more than one record with TSPARMCD = "AEDICT" and if equal versions of MedDRA in TSVAL values
       if (condition) {
         # Check if all TSVAL values are missing
         if (is_sas_na(versions[1])) {
@@ -143,12 +184,20 @@ roche_covid_df <- function(TS=NULL){
           }
         }
       }
-    } else {
+    } # end check for TS record with TSPARMCD = 'AEDICT'  
+    
+    # has TS dataset but dictionary not determined ----
+    else {
       covid_df_name <- 'covid'
     }
-  } else {
+  } # end of assignment when TS available
+  
+  # otherwise, if no TS, then use latest version 
+  else {
     covid_df_name <- 'covid'
   }
   
-    return(get(covid_df_name))
+  # return the object covid_df ----
+  return(get(covid_df_name))
+  
 }
