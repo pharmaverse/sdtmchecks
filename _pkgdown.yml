@@ -80,6 +80,8 @@ reference:
   
 news:
  releases:
+ - text: "sdtmchecks 0.1.11"  
+   href: news/index.html#sdtmchecks-0111-light-ice
  - text: "sdtmchecks 0.1.10"  
    href: news/index.html#sdtmchecks-0110-light-ice
  - text: "sdtmchecks 0.1.8"  

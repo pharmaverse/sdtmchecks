@@ -50,61 +50,61 @@ run_all_checks <- function(metads = sdtmchecksmeta,
                            type = c("ALL", "ONC", "COVID", "PRO", "OPHTH"),
                            verbose = TRUE,
                            ncores = 1) {
-    
-    if (!is.null(priority) & !all(priority %in% c("High", "Medium", "Low"))) {
-        stop("priority argument should only take values 'High','Medium', or 'Low'")
-        }
-    if (!is.null(type) & !all(type %in% c("ALL", "ONC", "COVID", "PRO", "OPHTH"))) {
-        stop("type argument should only take values 'ALL', 'ONC', 'COVID', 'PRO', 'OPHTH'")
-        }
-    
-    # subset meta dataset for specific Type and Priority
-    if (!is.null(priority)) {
-        metads <-subset(metads,metads$priority %in% priority)
-        }
-    
-    if (!is.null(type) ) {
-        metads <-subset(metads, metads$category %in% type)
-        }
-    
-    #Identify missing expected domains to cat out to the user later
-    expected.domains = sort(unique(strsplit(gsub(" ", "", paste(unique(metads$domains),
-                                                                collapse=",")), ",")[[1]]))
-    missing.domains = expected.domains[!(expected.domains %in% ls(envir = .GlobalEnv))]
-    
-    # Run checks
-    
-    all_rec <- mcmapply(
-        FUN = run_check,
-        metads$check, metads$fxn_in, metads$xls_title, metads$pdf_title, metads$pdf_subtitle, metads$pdf_return, 
-        verbose,
-        SIMPLIFY = FALSE,  # forces mcmapply to return a list
-        USE.NAMES = TRUE,  # generates list names
-        mc.cores = ncores
+  
+  if (!is.null(priority) & !all(priority %in% c("High", "Medium", "Low"))) {
+    stop("priority argument should only take values 'High','Medium', or 'Low'")
+  }
+  if (!is.null(type) & !all(type %in% c("ALL", "ONC", "COVID", "PRO", "OPHTH"))) {
+    stop("type argument should only take values 'ALL', 'ONC', 'COVID', 'PRO', 'OPHTH'")
+  }
+  
+  # subset meta dataset for specific Type and Priority
+  if (!is.null(priority)) {
+    metads <-subset(metads,metads$priority %in% priority)
+  }
+  
+  if (!is.null(type) ) {
+    metads <-subset(metads, metads$category %in% type)
+  }
+  
+  #Identify missing expected domains to cat out to the user later
+  expected.domains = sort(unique(strsplit(gsub(" ", "", paste(unique(metads$domains),
+                                                              collapse=",")), ",")[[1]]))
+  missing.domains = expected.domains[!(expected.domains %in% ls(envir = .GlobalEnv))]
+  
+  # Run checks
+  
+  all_rec <- mcmapply(
+    FUN = run_check,
+    metads$check, metads$fxn_in, metads$xls_title, metads$pdf_title, metads$pdf_subtitle, metads$pdf_return, 
+    verbose,
+    SIMPLIFY = FALSE,  # forces mcmapply to return a list
+    USE.NAMES = TRUE,  # generates list names
+    mc.cores = ncores
+  )
+  
+  if (verbose == TRUE & length(missing.domains) > 0) {
+    cat(
+      paste0(
+        "\nDomain not found: ",
+        missing.domains,
+        ". Checks requiring this domain were not run."
+      )
     )
-    
-    if (verbose == TRUE & length(missing.domains) > 0) {
-        cat(
-            paste0(
-                "\nDomain not found: ",
-                missing.domains,
-                ". Checks requiring this domain were not run."
-            )
-        )
-    }
-    
-    cat("\n")
-    
-    if(!("covid_df" %in% ls(envir = .GlobalEnv))){
-      warning("An object named 'covid_df' was not found in your global environment so the following checks were not run: 
+  }
+  
+  cat("\n")
+  
+  if(!("covid_df" %in% ls(envir = .GlobalEnv))){
+    warning("An object named 'covid_df' was not found in your global environment so the following checks were not run: 
               check_ae_aeacn_ds_disctx_covid
               check_ae_aeacnoth_ds_stddisc_covid
               check_dv_ae_aedecod_covid")
-    }
-    
+  }
+  
   cat("\n")
-    
+  
   # return the final list
   return(all_rec)
-    
+  
 } # end of function
