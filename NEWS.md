@@ -1,10 +1,9 @@
-
 # sdtmchecks 0.1.11 "Light Ice"
 
 
 ## Metadata updates
 
-* Re-create sdtmchecksmeta.RData with MedDRA dictionary version 27.0 listed instead of 26.1 ([#312](https://github.com/pharmaverse/sdtmchecks/issues/299))
+* Re-create sdtmchecksmeta.RData with MedDRA dictionary version 27.0 listed instead of 26.1 ([#312](https://github.com/pharmaverse/sdtmchecks/issues/312))
 
 ## Misc package updates
 
