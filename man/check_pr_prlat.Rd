@@ -82,8 +82,8 @@ check_pr_prlat(PR)
 \seealso{
 Other OPHTH: 
 \code{\link{check_ae_aelat}()},
-\code{\link{check_cm_cmlat_prior_ocular}()},
 \code{\link{check_cm_cmlat}()},
+\code{\link{check_cm_cmlat_prior_ocular}()},
 \code{\link{check_oe_bcva_1m_late_early_tot}()},
 \code{\link{check_oe_bcva_4m_late_early_tot}()},
 \code{\link{check_oe_bcva_4m_vs_1m_req}()},

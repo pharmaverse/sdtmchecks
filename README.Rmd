@@ -33,7 +33,7 @@ You can install {sdtmchecks} from [GitHub](https://github.com/) repo `pharmavers
 # install.packages("devtools")
 devtools::install_github("pharmaverse/sdtmchecks", ref = "main")
 ```
-Note: The release from *main branch* is the recommended versions for end users.
+Note: The release from *main branch* is the recommended version for end users.
 
 
 ### Development version (devel branch)

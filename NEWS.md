@@ -1,3 +1,17 @@
+# sdtmchecks 0.1.11 "Light Ice"
+
+
+## Metadata updates
+
+* Re-create sdtmchecksmeta.RData with MedDRA dictionary version 27.0 listed instead of 26.1 ([#312](https://github.com/pharmaverse/sdtmchecks/issues/312))
+
+## Misc package updates
+
+* Unit test accompanying new CE check [`check_ce_missing_month()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ce_missing_month.html) previously created by `@rymarinelli` added into tests/testthat subdirectory
+* Fix minor typo in README ([#299](https://github.com/pharmaverse/sdtmchecks/issues/299))
+* Add cran-comments.md ([#305](https://github.com/pharmaverse/sdtmchecks/pull/305))
+
+
 # sdtmchecks 0.1.10 "Light Ice"
 
 ## Refinements of existing data check functions
@@ -10,12 +24,12 @@
 
 ## New data check functions
 
-* [`check_ce_missing_month()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ce_missing_month.html) - flags if CE has a suspicious date value with year and day known but month missing ([#148](https://github.com/pharmaverse/sdtmchecks/issues/148)), with thanks to `@rymarinelli`*
+* [`check_ce_missing_month()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ce_missing_month.html) - flags if CE has a suspicious date value with year and day known but month missing ([#148](https://github.com/pharmaverse/sdtmchecks/issues/148)), with thanks to `@rymarinelli`
 * [`check_ae_aeout_aeendtc_nonfatal()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeout_aeendtc_nonfatal.html) - flags AEs with inconsistent AE outcome (AEOUT) and AE resolution date (AEENDTC) for non-fatal AEs (based on AEOUT) ([#113](https://github.com/pharmaverse/sdtmchecks/issues/113)), with thanks to `@J-Lox`
 
 ## Refinements of existing report utilities
 
-* [`report_to_xlsx`](https://pharmaverse.github.io/sdtmchecks/reference/report_to_xlsx.html) with added PARAM of extrastring=""`
+* [`report_to_xlsx`](https://pharmaverse.github.io/sdtmchecks/reference/report_to_xlsx.html) with added PARAM of `extrastring=""`
  
 ## Metadata updates
 
@@ -24,7 +38,7 @@
 ## Misc package updates
 
 * Specify version >= 1.1.1 for dplyr version in DESCRIPTION
-
+* Replace "report_diff" with "Status" in `globals.R` to align with update in [`diff_reports()`](https://pharmaverse.github.io/sdtmchecks/reference/diff_reports.html) ([#269](https://github.com/pharmaverse/sdtmchecks/pull/269))
 
 
 
@@ -32,8 +46,8 @@
 
 
 ## New report utility functions
-* Added [`diff_report()`](https://pharmaverse.github.io/sdtmchecks/reference/diff_report.html) reporting function to `util.R` to compare report objects generated from [`run_all_checks()`](https://pharmaverse.github.io/sdtmchecks/reference/run_all_checks.html), enabling identification of records newly flagged ([#264](https://github.com/pharmaverse/sdtmchecks/pull/264)), with thanks to `@harriscw`
-* Include "report_diff" to `globals.R` ([#265](https://github.com/pharmaverse/sdtmchecks/pull/265))
+* Added [`diff_reports()`](https://pharmaverse.github.io/sdtmchecks/reference/diff_reports.html) reporting function to `utils.R` to compare report objects generated from [`run_all_checks()`](https://pharmaverse.github.io/sdtmchecks/reference/run_all_checks.html), enabling identification of records newly flagged ([#264](https://github.com/pharmaverse/sdtmchecks/pull/264)), with thanks to `@harriscw`
+* Include "report_diff" in `globals.R` ([#265](https://github.com/pharmaverse/sdtmchecks/pull/265))
 
 ## Misc package updates
 
@@ -170,7 +184,7 @@
 
 ## New functions
 
-* New helper function utilities added to `util.R`
+* New helper function utilities added to `utils.R`
   + `create_R_script()` can use `sdtmchecksmeta.RData` as input to programmatically generate an R script with function calls ([#22](https://github.com/pharmaverse/sdtmchecks/issues/22))
   + `report_to_xlsx()` to generate the output results from selected data check functions as an .xlsx file including a tab for each check with potential discrepancies flagged and a summary page with conditional formatting to provide an overview of the results ([#11](https://github.com/pharmaverse/sdtmchecks/issues/11))
 
