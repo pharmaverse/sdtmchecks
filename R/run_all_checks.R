@@ -36,7 +36,7 @@
 #'
 #' \dontrun{
 #' 
-#' # Assuming sdtm datasets are in your global environment
+#' # Assuming SDTM datasets are in your global environment
 #' all_rec<-run_all_checks(metads=sdtmchecksmeta, 
 #'                         priority=c("High","Medium","Low"), 
 #'                         type=c("ALL", "ONC", "COVID", "PRO"))
@@ -50,6 +50,17 @@ run_all_checks <- function(metads = sdtmchecksmeta,
                            type = c("ALL", "ONC", "COVID", "PRO", "OPHTH"),
                            verbose = TRUE,
                            ncores = 1) {
+  
+# temporary
+  
+rlang::env_print(rlang::global_env()) 
+rlang::env_print(rlang::current_env()) 
+
+rlang::env_print(rlang::env_parent(rlang::global_env()))
+rlang::env_print(rlang::env_parent(rlang::current_env()))
+
+
+  #global_env() == current_env() 
     
     if (!is.null(priority) & !all(priority %in% c("High", "Medium", "Low"))) {
         stop("priority argument should only take values 'High','Medium', or 'Low'")
@@ -74,7 +85,7 @@ run_all_checks <- function(metads = sdtmchecksmeta,
     
     # Run checks
     
-    all_rec <- mcmapply(
+    all_rec <- parallel::mcmapply(
         FUN = run_check,
         metads$check, metads$fxn_in, metads$xls_title, metads$pdf_title, metads$pdf_subtitle, metads$pdf_return, 
         verbose,
