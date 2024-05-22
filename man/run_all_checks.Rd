@@ -44,7 +44,7 @@ command ??sdtmchecks
 
 \dontrun{
 
-# Assuming sdtm datasets are in your global environment
+# Assuming SDTM datasets are in your global environment
 all_rec<-run_all_checks(metads=sdtmchecksmeta, 
                         priority=c("High","Medium","Low"), 
                         type=c("ALL", "ONC", "COVID", "PRO"))
