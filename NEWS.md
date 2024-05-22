@@ -1,9 +1,10 @@
 
-# sdtmchecks 0.1.10.9002 -- dev
+# sdtmchecks 0.1.10.9003 -- dev
 
 * Unit test accompanying new CE check [`check_ce_missing_month()`](https://pharmaverse.github.io/sdtmchecks/reference/check_ce_missing_month.html) previously created by `@rymarinelli` added into tests/testthat subdirectory
 * Fix minor typo in README ([#299](https://github.com/pharmaverse/sdtmchecks/issues/299))
 * Add cran-comments.md ([#305](https://github.com/pharmaverse/sdtmchecks/pull/305))
+* Recreate sdtmchecksmeta.RData with MedDRA dictionary version 27.0 listed instead of 26.1 ([#312](https://github.com/pharmaverse/sdtmchecks/issues/299))
 
 
 
