@@ -21,9 +21,9 @@
 #' @examples
 #'
 #' AE <- data.frame(
-#'     USUBJID = 1:7,
-#'     AEDTHDTC = c(NA, "NA", "2015-03-12", "2017-01-22", "1999-11-07","",NA),
-#'     AEOUT = c("", "", "","FATAL","RECOVERED/RESOLVED","FATAL","FATAL"),
+#'     USUBJID = 1:8,
+#'     AEDTHDTC = c(NA, "NA", "2015-03-12", "2017-01-22", "1999-11-07","",NA, "2020-01-01"),
+#'     AEOUT = c("", "", "","FATAL","RECOVERED/RESOLVED","FATAL","FATAL", NA),
 #'     AESPID = "FORMNAME-R:13/L:13XXXX",
 #'     stringsAsFactors = FALSE
 #' )
@@ -50,13 +50,13 @@ check_ae_aeout <- function(AE,preproc=identity,...){
         AE = preproc(AE,...)
 
         df <- AE %>%
-            filter((!is_sas_na(AEDTHDTC) & AEOUT != "FATAL") | (AEOUT=="FATAL" & is_sas_na(AEDTHDTC))) %>%
+            filter((!is_sas_na(AEDTHDTC) & (AEOUT != "FATAL" | is_sas_na(AEOUT)) ) | (AEOUT=="FATAL" & is_sas_na(AEDTHDTC))) %>%
             select(any_of(c("USUBJID","AEDTHDTC","AEOUT","RAVE")))
 
         if( nrow(df) > 0 ){
-            fail("AEs with inconsistent AEDTHDTC and AEOUT found.", df)
+            fail(paste(nrow(df), "AE(s) with inconsistent AEDTHDTC and AEOUT found. "), df)
         } else {
             pass()
         }
     }
-}
+} 
