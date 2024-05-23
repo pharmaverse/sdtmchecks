@@ -19,8 +19,8 @@ boolean value if check failed or passed with 'msg' attribute if the
 test failed
 }
 \description{
-This check looks for death dates if AEOUT='FATAL' and for the
-reverse, i.e if there is a death date, then AEOUT should have the value
+This check looks for AE death dates if AEOUT='FATAL' and for the
+reverse, i.e if there is an AE death date, then AEOUT should have the value
 "FATAL".
 }
 \examples{
@@ -35,20 +35,42 @@ AE <- data.frame(
  stringsAsFactors = FALSE
 )
 
-# no case
+# pass
 check_dd_ae_aeout_aedthdtc(AE)
 
-# 2 cases
+# fail - 1 case (AEDTHDTC not populated but AEOUT == FATAL)
+AE1 <- AE
+AE1[3, "AEDTHDTC"] <- NA
+check_dd_ae_aeout_aedthdtc(AE1)
+check_dd_ae_aeout_aedthdtc(AE1,preproc=roche_derive_rave_row)
+
+# pass -- even though AEDTHDTC populated 
+AE2 <- AE
+AE2[1, "AEOUT"] <- NA
+check_dd_ae_aeout_aedthdtc(AE2)
+check_dd_ae_aeout_aedthdtc(AE2,preproc=roche_derive_rave_row)
+
+# 2 cases 
 AE[3, "AEDTHDTC"] <- NA
 AE[1, "AEOUT"] <- NA
 check_dd_ae_aeout_aedthdtc(AE)
 check_dd_ae_aeout_aedthdtc(AE,preproc=roche_derive_rave_row)
 
-# check for non existence of vars
+# 2 cases 
+AE[1, "AEOUT"] <- 'NOT RECOVERED/NOT RESOLVED'
+check_dd_ae_aeout_aedthdtc(AE)
+check_dd_ae_aeout_aedthdtc(AE,preproc=roche_derive_rave_row)
+
+# non-critical variable missing
+AE$AESPID <- NULL
+check_dd_ae_aeout_aedthdtc(AE)
+check_dd_ae_aeout_aedthdtc(AE,preproc=roche_derive_rave_row)
+
+# critical variables are missing
 AE$AEDTHDTC <- NULL
 AE$USUBJID <- NULL
 check_dd_ae_aeout_aedthdtc(AE)
-
+check_dd_ae_aeout_aedthdtc(AE,preproc=roche_derive_rave_row)
 
 }
 \author{
