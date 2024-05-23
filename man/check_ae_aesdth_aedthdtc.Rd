@@ -43,7 +43,7 @@ check_ae_aesdth_aedthdtc(AE,preproc=roche_derive_rave_row)
 AE1 <- AE
 AE1$AEDTHDTC[3] <- NA
 AE1$AESDTH[3] <- "Y"
-AE1
+
 check_ae_aesdth_aedthdtc(AE1)
 check_ae_aesdth_aedthdtc(AE1,preproc=roche_derive_rave_row)
 
@@ -51,7 +51,7 @@ check_ae_aesdth_aedthdtc(AE1,preproc=roche_derive_rave_row)
 AE2 <- AE1
 AE2$AEDTHDTC[4] <- ""
 AE2$AESDTH[4] <- "Y"
-AE2
+
 check_ae_aesdth_aedthdtc(AE2)
 check_ae_aesdth_aedthdtc(AE2,preproc=roche_derive_rave_row)
 
