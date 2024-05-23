@@ -2,7 +2,8 @@ Package: sdtmchecks
 Title: Data Quality Checks for SDTM Datasets
 Version: 0.1.11.9004
 Authors@R: 
-    person("Will", "Harris", , "harric17@gene.com", role = c("aut", "cre"))
+    person("Will", "Harris", , "harric17@gene.com", role = c("aut", "cre"),
+     comment = c(ORCID = "0000-0002-9807-1274"))
 Description: Functions to identify common data issues in SDTM data. These checks are intended to be generalizable, actionable, and meaningful for analysis. 
 License: Apache License (>= 2)
 Encoding: UTF-8
