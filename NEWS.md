@@ -1,3 +1,11 @@
+# sdtmchecks 0.1.11.9004 "Light Ice"
+
+## Refinements of existing data check functions
+
+* [`check_ae_aesdth_aedthdtc`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aesdth_aedthdtc.html) include AETERM for easier querying, added more header exampes, updated return message. ([#323](https://github.com/pharmaverse/sdtmchecks/issues/323)). Update associated unit test to include AETERM ([#324](https://github.com/pharmaverse/sdtmchecks/issues/324)). 
+
+
+
 # sdtmchecks 0.1.11 "Light Ice"
 
 

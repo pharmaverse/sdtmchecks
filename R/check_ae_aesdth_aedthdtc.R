@@ -4,7 +4,7 @@
 #'   but no AEDTHDTC (death date) value
 #'
 #' @param AE Adverse Event SDTM dataset with variables USUBJID, AEDTHDTC,
-#'   AESDTH, AEDECOD and AESTDTC
+#'   AESDTH, AETERM, AEDECOD and AESTDTC
 #' @param preproc An optional company specific preprocessing script
 #' @param ... Other arguments passed to methods
 #'
@@ -22,22 +22,54 @@
 #'
 #' @examples
 #'
-#' AE <- data.frame(USUBJID = c(1:5), AEDTHDTC = c(1:2, NA, "NA", 3),
-#'                  AESDTH = c("", rep("Y",2), rep("", 2)),
-#'                  AEDECOD = letters[1:5], AESTDTC = c(1:5),
-#'                  AESPID = "FORMNAME-R:5/L:5XXXX",
-#'                  stringsAsFactors=FALSE)
 #'
+#' AE <- data.frame(
+#' USUBJID = c(1:7), 
+#' AEDECOD = c(letters[1:5], "", NA), 
+#' AETERM = letters[1:7],
+#' AESDTH = c(NA, rep("", 4), "Y", "Y"),
+#' AEDTHDTC = c(1:5, "2020", "2020-01-02"),
+#' AESTDTC = c(1:7),
+#' AESPID = "FORMNAME-R:5/L:5XXXX",
+#' stringsAsFactors=FALSE)
+#' 
+#' # expect pass
 #' check_ae_aesdth_aedthdtc(AE)
 #' check_ae_aesdth_aedthdtc(AE,preproc=roche_derive_rave_row)
+#' 
+#' # expect fail 
+#' AE1 <- AE
+#' AE1$AEDTHDTC[3] <- NA
+#' AE1$AESDTH[3] <- "Y"
+#' AE1
+#' check_ae_aesdth_aedthdtc(AE1)
+#' check_ae_aesdth_aedthdtc(AE1,preproc=roche_derive_rave_row)
+#' 
+#' # expect fail 
+#' AE2 <- AE1
+#' AE2$AEDTHDTC[4] <- ""
+#' AE2$AESDTH[4] <- "Y"
+#' AE2
+#' check_ae_aesdth_aedthdtc(AE2)
+#' check_ae_aesdth_aedthdtc(AE2,preproc=roche_derive_rave_row)
+#' 
+#' # non-required variable missing
+#' AE2$AESPID <- NULL
+#' check_ae_aesdth_aedthdtc(AE2)
+#' check_ae_aesdth_aedthdtc(AE2,preproc=roche_derive_rave_row)
+#' 
+#' # required variable missing 
+#' AE2$AESDTH <- NULL
+#' check_ae_aesdth_aedthdtc(AE2)
+#' check_ae_aesdth_aedthdtc(AE2,preproc=roche_derive_rave_row)
 #'
 
 check_ae_aesdth_aedthdtc <- function(AE,preproc=identity,...) {
 
     # Checks if required variables are present
-    if (AE %lacks_any% c("USUBJID", "AEDTHDTC", "AESDTH", "AEDECOD", "AESTDTC")) {
+    if (AE %lacks_any% c("USUBJID", "AEDTHDTC", "AESDTH", "AETERM", "AEDECOD", "AESTDTC")) {
 
-        fail(lacks_msg(AE, c("USUBJID", "AEDTHDTC", "AESDTH", "AEDECOD", "AESTDTC")))
+        fail(lacks_msg(AE, c("USUBJID", "AEDTHDTC", "AESDTH", "AETERM", "AEDECOD", "AESTDTC")))
 
     } else {
 
@@ -53,7 +85,7 @@ check_ae_aesdth_aedthdtc <- function(AE,preproc=identity,...) {
         # Subsets AE to select variables and rows where
         # AESDTH = "Y" and AEDTHDTC does not have a value
         df <- AE %>%
-            select(any_of(c("USUBJID", "AEDECOD", "AESTDTC", "AESDTH", "AEDTHDTC","RAVE"))) %>%
+            select(any_of(c("USUBJID", "AETERM", "AEDECOD", "AESTDTC", "AESDTH", "AEDTHDTC","RAVE"))) %>%
             filter(has_aesdth, no_aedthdtc)
 
         # Outputs a resulting message depending on whether there are instances
@@ -64,7 +96,7 @@ check_ae_aesdth_aedthdtc <- function(AE,preproc=identity,...) {
 
          } else {
 
-             fail("AE has AESDTH equal to 'Y' where AEDTHDTC does not have a value. ", df)
+             fail(paste0("AE has ", nrow(df), " record(s) with AESDTH equal to 'Y' where AEDTHDTC does not have a value. "), df)
         }
     }
 }
