@@ -25,9 +25,9 @@ outcome (AEOUT) is fatal
 \examples{
 
 AE <- data.frame(
-    USUBJID = 1:7,
-    AEDTHDTC = c(NA, "NA", "2015-03-12", "2017-01-22", "1999-11-07","",NA),
-    AEOUT = c("", "", "","FATAL","RECOVERED/RESOLVED","FATAL","FATAL"),
+    USUBJID = 1:8,
+    AEDTHDTC = c(NA, "NA", "2015-03-12", "2017-01-22", "1999-11-07","",NA, "2020-01-01"),
+    AEOUT = c("", "", "","FATAL","RECOVERED/RESOLVED","FATAL","FATAL", NA),
     AESPID = "FORMNAME-R:13/L:13XXXX",
     stringsAsFactors = FALSE
 )
