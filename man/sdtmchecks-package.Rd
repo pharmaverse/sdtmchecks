@@ -18,7 +18,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Will Harris \email{harric17@gene.com}
+\strong{Maintainer}: Will Harris \email{harric17@gene.com} (\href{https://orcid.org/0000-0002-9807-1274}{ORCID})
 
 }
 \keyword{internal}
