@@ -1,3 +1,17 @@
+# sdtmchecks 0.1.11.9002 "Light Ice"
+
+
+## Refinements of existing data check functions
+
+* [`check_dd_ae_aeout_aedthdtc`](https://pharmaverse.github.io/sdtmchecks/reference/check_dd_ae_aeout_aedthdtc.html) fix logic for the scenario when AEOUT is not populated but there is a non-missing AEDTHDTC, update return message. This check overlaps with [`check_ae_aeout`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeout.html), but both will be retained for now to avoid breaking changes ([#310](https://github.com/pharmaverse/sdtmchecks/issues/310))
+
+## Misc package updates
+
+* Update GitHub workflows ([#316](https://github.com/pharmaverse/sdtmchecks/issues/316))
+
+
+
+
 # sdtmchecks 0.1.11 "Light Ice"
 
 
