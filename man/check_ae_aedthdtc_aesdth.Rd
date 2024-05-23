@@ -8,7 +8,7 @@ check_ae_aedthdtc_aesdth(AE, preproc = identity, ...)
 }
 \arguments{
 \item{AE}{Adverse Event SDTM dataset with variables USUBJID, AEDTHDTC,
-AESDTH, AEDECOD, and AESTDTC}
+AESDTH, AEDECOD, AETERM, and AESTDTC}
 
 \item{preproc}{An optional company specific preprocessing script}
 
@@ -25,16 +25,43 @@ value and AESDTH not equal to "Y"
 \examples{
 
 
-AE <- data.frame(USUBJID = c(1:5),
-                 AEDTHDTC = c(rep("2020-01-01",3), "NA", NA),
-                 AESDTH = c(rep("", 2), "Y", rep("", 2)),
-                 AEDECOD = letters[1:5],
-                 AESTDTC = "2020-01-01",
-                 AESPID = "FORMNAME-R:13/L:13XXXX",
-                 stringsAsFactors=FALSE)
+AE <- data.frame(
+USUBJID = c(1:7), 
+AEDECOD = c(letters[1:5], "", NA), 
+AETERM = letters[1:7],
+AESDTH = "Y",
+AEDTHDTC = "2020-01-02",
+AESTDTC = c(1:7),
+AESPID = "FORMNAME-R:5/L:5XXXX",
+stringsAsFactors=FALSE)
 
+# expect pass
 check_ae_aedthdtc_aesdth(AE)
 check_ae_aedthdtc_aesdth(AE,preproc=roche_derive_rave_row)
+
+# expect fail 
+AE1 <- AE
+AE1$AESDTH[3] <- "N"
+check_ae_aedthdtc_aesdth(AE1)
+check_ae_aedthdtc_aesdth(AE1,preproc=roche_derive_rave_row)
+
+# expect fail with AESDTH = NA
+AE2 <- AE
+AE2$AESDTH[4] <- NA
+check_ae_aedthdtc_aesdth(AE2)
+check_ae_aedthdtc_aesdth(AE2,preproc=roche_derive_rave_row)
+
+# non-required variable missing
+AE2$AESPID <- NULL
+check_ae_aedthdtc_aesdth(AE2)
+check_ae_aedthdtc_aesdth(AE2,preproc=roche_derive_rave_row)
+
+# required variable missing 
+AE2$AESDTH <- NULL
+check_ae_aedthdtc_aesdth(AE2)
+check_ae_aedthdtc_aesdth(AE2,preproc=roche_derive_rave_row)
+
+
 
 }
 \author{
