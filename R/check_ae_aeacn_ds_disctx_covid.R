@@ -1,4 +1,4 @@
-#' @title Check for COVID-19 AE with DRUG WITHDRAWN action without DS Trt Discon
+#' @title Check for COVID-19 AE with DRUG WITHDRAWN action without "ADVERSE EVENT" for DS Trt Discon
 #'
 #' @description This checks for a COVID-19 AE reported with Action Taken 
 #' (AEACN*==DRUG WITHDRAWN) but without a corresponding DS record indicating 
@@ -37,6 +37,7 @@
 #'     AETERM  = c("abc Covid-19", "covid TEST POSITIVE",rep("other AE",4)),
 #'     AEDECOD = c("COVID-19", "CORONAVIRUS POSITIVE", rep("OTHER AE",4)),
 #'     AEACN = c("DRUG WITHDRAWN", rep("DOSE NOT CHANGED",5)),
+#'     AESPID = "FORMNAME-R:13/L:13XXXX",
 #'     stringsAsFactors = FALSE
 #' )
 #'
@@ -44,16 +45,47 @@
 #'  USUBJID = c(1,1,2,3,4),
 #'  DSSPID  = 'XXX-DISCTX-XXX',
 #'  DSCAT   = "DISPOSITION EVENT",
-#'  DSDECOD = "REASON",
+#'  DSDECOD = "OTHER REASON",
+#'  DSSEQ = c(1,2,1,1,1),
 #'  stringsAsFactors = FALSE
 #' )
 #'
+#' # expect fail
 #' check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df)
 #'
+#' 
+#' AE2 <- data.frame( 
+#'     AEACN1 =  rep(NA, nrow(AE)),
+#'     AEACN2 = c("DRUG WITHDRAWN", rep("DOSE NOT CHANGED", nrow(AE)-1)),
+#'     AEACN3 = c("DRUG WITHDRAWN", rep("DOSE NOT CHANGED", nrow(AE)-1)),
+#'     AEACN4 = "",
+#'     stringsAsFactors = FALSE
+#' )
+#' AE2 <- cbind(AE, AE2) 
+#' AE2$AEACN <- "MULTIPLE" 
+#' 
+#' # expect fail
+#' check_ae_aeacn_ds_disctx_covid(AE2, DS, covid_df)
+#' 
 #' DS[1, "DSDECOD"] <- 'ADVERSE EVENT'
+#' # this passes, one form with DSDECOD = "ADVERSE EVENT"
+#' ## NOTE: This may be a false negative if study-specific data collection 
+#' ##       requires >1 record with DSDECOD = "ADVERSE EVENT" and not just one record
+#' check_ae_aeacn_ds_disctx_covid(AE2, DS, covid_df)
+#'
+#' # expect pass
 #' check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df)
+#' 
 #'
-#'
+#' # non-required variable is missing
+#' DS$DSSEQ <- NULL
+#' check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df)
+#' 
+#' # required variable is missing 
+#' DS$DSSPID <- NULL
+#' check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df)
+#' 
+#' 
 
 check_ae_aeacn_ds_disctx_covid <- function(AE,DS,covid_df = NULL) {
 
