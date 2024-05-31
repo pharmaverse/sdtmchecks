@@ -84,8 +84,7 @@ roche_derive_rave_row <- function(dts,domains=c("ae","ce","cm","ds","lb","pr","r
 #' @export
 #' @keywords internal
 #' @examples
-#'
-#'\dontrun{
+#' \dontrun{
 #' #First COVID dataset is from v23.0, so use the latest
 #' ts1 <- data.frame(TSPARMCD = "AEDICT", TSVAL = c("MedDRA 22.0"))
 #' roche_covid_df(TS=ts1)
@@ -105,7 +104,6 @@ roche_derive_rave_row <- function(dts,domains=c("ae","ce","cm","ds","lb","pr","r
 #' ts4 <- data.frame(TSPARMCD = "AEDICT", TSVAL = c("MedDRA v40.1"))
 #' roche_covid_df(TS=ts4)
 #' }
-#' 
 
 
 roche_covid_df <- function(TS=NULL){

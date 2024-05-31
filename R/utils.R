@@ -484,8 +484,8 @@ report_to_xlsx = function(res,outfile,extrastring=""){
 #'
 #' @examples
 #' 
-#' \dontrun{
-#'
+#' 
+#' # All checks are output to the file
 #' create_R_script(file = "run_the_checks.R")
 #' 
 #' # Only include selected checks
@@ -500,7 +500,6 @@ report_to_xlsx = function(res,outfile,extrastring=""){
 #' 
 #' create_R_script(metads = mymetads, file = "run_the_checks.R")
 #' 
-#' }
 
 create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R") {
   
@@ -562,8 +561,6 @@ create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R") 
 #'
 #' \dontrun{
 #'
-#' library(openxlsx)
-#'
 #' rptfile <- "Downloads/sdtmchecks_GO12345_2021-03-12.xlsx"
 #' rptwb <- openxlsx::loadWorkbook(rptfile)
 #' names(rptwb)
@@ -582,7 +579,7 @@ xlsx2list <-function(rptwb, firstrow=1){
     
     # startRow is the row with variable/column names
     # default is 1
-    rptsheet <- openxlsx::read.xlsx(xlsxFile = rptwb, sheet = rpttab, startRow=firstrow, skipEmptyRows = TRUE, detectDates = TRUE)
+    rptsheet <- read.xlsx(xlsxFile = rptwb, sheet = rpttab, startRow=firstrow, skipEmptyRows = TRUE, detectDates = TRUE)
     rptlist[[rpttab]] <- list(rptsheet)
   }
   

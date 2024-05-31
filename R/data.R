@@ -28,9 +28,6 @@
 #' data(sdtmchecksmeta)
 #' head(sdtmchecksmeta[,1:5])
 #'
-#' \dontrun{
-#'  sdtmchecksmeta
-#' }
 
 "sdtmchecksmeta"
 
