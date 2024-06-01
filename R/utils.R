@@ -484,7 +484,7 @@ report_to_xlsx = function(res,outfile,extrastring=""){
 #'
 #' @examples
 #' 
-#' 
+#' \dontrun{
 #' # All checks are output to the file
 #' create_R_script(file = "run_the_checks.R")
 #' 
@@ -499,6 +499,7 @@ report_to_xlsx = function(res,outfile,extrastring=""){
 #' mutate(fxn_in=fxn_in_roche)
 #' 
 #' create_R_script(metads = mymetads, file = "run_the_checks.R")
+#' }
 #' 
 
 create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R") {
