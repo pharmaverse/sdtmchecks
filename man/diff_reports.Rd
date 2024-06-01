@@ -71,7 +71,7 @@ old <- run_all_checks(metads=metads)
              "FORMNAME-R:2/L:2XXXX",
              "FORMNAME-R:19/L:19XXXX",
              "FORMNAME-R:5/L:5XXXX",
-             "FORMNAME-R:1/L:5XXXX",
+             "FORMNAME-R:1/L:5XXXX"
              ),
  stringsAsFactors = FALSE
 )
