@@ -30,27 +30,65 @@ This code only keeps results flagged in the new report and drops
 old results not in the new report because they were presumably resolved.
 }
 \examples{
-\dontrun{
 
-## use the run_all_checks() function to generate list of check results 
-all_rec <- sdtmchecks::run_all_checks()
+# Step 1: Simular an older AE dataset with one missing preferred term
 
-## save results as .RDS file
-saveRDS(all_rec, file=paste0("saved_reports/sdtmchecks_", Sys.Date(), ".rds"))
+ ae <- data.frame(
+ USUBJID = 1:5,
+ DOMAIN = c(rep("AE", 5)),
+ AESEQ = 1:5,
+ AESTDTC = 1:5,
+ AETERM = 1:5,
+ AEDECOD = 1:5,
+  AESPID = c("FORMNAME-R:13/L:13XXXX",
+             "FORMNAME-R:16/L:16XXXX",
+             "FORMNAME-R:2/L:2XXXX",
+             "FORMNAME-R:19/L:19XXXX",
+             "FORMNAME-R:5/L:5XXXX"),
+ stringsAsFactors = FALSE
+)
 
-## re-run the above steps on a different snapshot for the same study
+ae$AEDECOD[1] = NA
 
-## read in the previously created RDS files 
-old <- readRDS("saved_reports/sdtmchecks_01JAN2023.rds")
-new <- readRDS("saved_reports/sdtmchecks_01FEB2023.rds")
+# Step 2: Use the run_all_checks() function to generate list of check results on this "old" data
+ 
+metads <- sdtmchecksmeta[sdtmchecksmeta$check=="check_ae_aedecod",] # Filter sdtmchecksmeta so that only one check is present
+old <- run_all_checks(metads=metads)
 
-## run sdtmchecks::diff_reports()
+
+
+#Step 3: Simulate a newer, updated AE dataset with another record with a new missing preferred term
+
+ ae <- data.frame(
+ USUBJID = 1:6,
+ DOMAIN = c(rep("AE", 6)),
+ AESEQ = 1:6,
+ AESTDTC = 1:6,
+ AETERM = 1:6,
+ AEDECOD = 1:6,
+  AESPID = c("FORMNAME-R:13/L:13XXXX",
+             "FORMNAME-R:16/L:16XXXX",
+             "FORMNAME-R:2/L:2XXXX",
+             "FORMNAME-R:19/L:19XXXX",
+             "FORMNAME-R:5/L:5XXXX",
+             "FORMNAME-R:1/L:5XXXX",
+             ),
+ stringsAsFactors = FALSE
+)
+
+ae$AEDECOD[1] = NA
+ae$AEDECOD[6] = NA
+
+# Step 4: use the run_all_checks() function to generate list of check results  on this "new" data
+
+new <- run_all_checks(metads=metads)
+
+# Step 5: Diff to create a column indicating if the finding is new
 res <- diff_reports(old_report=old, new_report=new)
 
-## output results as spreadsheet with sdtmchecks::report_to_xlsx()
-report_to_xlsx(res, outfile=paste0("saved_reports/sdtmchecks_diff_",Sys.Date(),".xlsx"))
+## optionally output results as spreadsheet with sdtmchecks::report_to_xlsx()
+# report_to_xlsx(res, outfile=paste0("saved_reports/sdtmchecks_diff_",Sys.Date(),".xlsx"))
 
-}
 
 }
 \seealso{

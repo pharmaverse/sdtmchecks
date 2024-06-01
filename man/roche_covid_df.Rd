@@ -19,6 +19,7 @@ by medDRA version, e.g. covid230.Rdata, covid231.Rdata, covid240.Rdata,etc.  It 
 MedDRA version data/covid.Rdata file which it will use if the specific version cant be found.
 }
 \examples{
+
 \dontrun{
 #First COVID dataset is from v23.0, so use the latest
 ts1 <- data.frame(TSPARMCD = "AEDICT", TSVAL = c("MedDRA 22.0"))
