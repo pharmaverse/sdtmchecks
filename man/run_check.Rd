@@ -66,7 +66,8 @@ to look up documentation for the data checks package, please use command ??sdtmc
 
 ae$AEDECOD[1] = NA
 
-metads <- sdtmchecksmeta[sdtmchecksmeta$check=="check_ae_aedecod",] # Filter sdtmchecksmeta so that only one check is present
+# Filter sdtmchecksmeta so that only one check is present
+metads <- sdtmchecksmeta[sdtmchecksmeta$check=="check_ae_aedecod",] 
 
 run_check(
   check = metads$check,
@@ -75,7 +76,7 @@ run_check(
   pdf_title = metads$pdf_title,
   pdf_subtitle = metads$pdf_subtitle,
   pdf_return = metads$pdf_return,
-  verbose = T
+  verbose = FALSE
 )
 }
 \seealso{
