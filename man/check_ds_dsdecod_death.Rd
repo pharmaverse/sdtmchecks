@@ -14,6 +14,9 @@ optional variables DSCAT, DSSTDTC, DSSPID}
 
 \item{...}{Other arguments passed to methods}
 }
+\value{
+boolean value if check returns 0 obs, otherwise return subset dataframe.
+}
 \description{
 If a patient has a record where DS.DSDECOD == DEATH they should
 also have a Study Discon Record

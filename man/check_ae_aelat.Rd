@@ -14,6 +14,9 @@ AEDECOD, AETERM, AESTDTC (if present), AESPID (if present)}
 
 \item{...}{Other arguments passed to methods}
 }
+\value{
+boolean value if check returns 0 obs, otherwise return subset dataframe.
+}
 \description{
 This check looks if AESOC has Eye, and AELAT is missing.
 }
@@ -49,8 +52,8 @@ check_ae_aelat(AE,preproc=roche_derive_rave_row)
 }
 \seealso{
 Other OPHTH: 
-\code{\link{check_cm_cmlat}()},
 \code{\link{check_cm_cmlat_prior_ocular}()},
+\code{\link{check_cm_cmlat}()},
 \code{\link{check_oe_bcva_1m_late_early_tot}()},
 \code{\link{check_oe_bcva_4m_late_early_tot}()},
 \code{\link{check_oe_bcva_4m_vs_1m_req}()},

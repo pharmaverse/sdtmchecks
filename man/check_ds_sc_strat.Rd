@@ -11,6 +11,9 @@ check_ds_sc_strat(DS, SC)
 
 \item{SC}{Subject Characteristics Dataset with variables USUBJID, SCTEST, SCTESTCD, SCCAT, SCORRES}
 }
+\value{
+boolean value if check returns 0 obs, otherwise return subset dataframe.
+}
 \description{
 Check if Study is randomized (DS.DSDECOD == "RANDOMIZED" or "RANDOMIZATION"), and subject Characteristics Domain (SC) has no stratification factors reported.
 }

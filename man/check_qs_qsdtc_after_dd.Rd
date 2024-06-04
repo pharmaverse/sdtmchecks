@@ -16,6 +16,9 @@ DSSTDTC, DSDECOD, and DSTERM}
 \item{QS}{Questionnaire Test Findings SDTM dataset with variables
 USUBJID, QSDTC, QSCAT, and QSORRES}
 }
+\value{
+boolean value if check returns 0 obs, otherwise return subset dataframe.
+}
 \description{
 This check looks for QS dates that occur after death date
 }
@@ -24,7 +27,7 @@ This check looks for QS dates that occur after death date
 AE <- data.frame(USUBJID = c(1,1,1,2,2,2),
                  AEDTHDTC = c("", "", "2016-01-01", "", "2016-01", "2016-01-01"),
                  AESTDTC = "2016-01-01",
-                 AEDECOD = LETTERS[1:6], 
+                 AEDECOD = LETTERS[1:6],
                  AETERM = LETTERS[1:6],
                  stringsAsFactors = FALSE)
 
@@ -35,7 +38,7 @@ DS <- data.frame(USUBJID = c(1,1,1,2,2,2),
                  stringsAsFactors = FALSE)
 
 QS <- data.frame(USUBJID = c(1,1,1,2,2,2),
-                 QSDTC   = c("2015-06-30", "2015-09-30", "2015-12-30", 
+                 QSDTC   = c("2015-06-30", "2015-09-30", "2015-12-30",
                              "2015-06-30", "2015-09-30", "2015-12-30"),
                  QSCAT   = "A",
                  QSORRES =  LETTERS[1:6],

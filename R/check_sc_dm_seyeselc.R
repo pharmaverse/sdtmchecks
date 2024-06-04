@@ -1,20 +1,22 @@
 #' @title Check SC Study Eye Selection assignments among DM patients
 #'
-#' @description Check if SC.SCCAT = "STUDY EYE SELECTION" and SC.SCTESTCD = "FOCID", 
-#' then SC.SCORRES should have "OS", "OD", or "OU" values. Flag if subject is in 
-#' DM and without an associated SC.SCORRES value or the STUDY EYE SELECTION value 
+#' @description Check if SC.SCCAT = "STUDY EYE SELECTION" and SC.SCTESTCD = "FOCID",
+#' then SC.SCORRES should have "OS", "OD", or "OU" values. Flag if subject is in
+#' DM and without an associated SC.SCORRES value or the STUDY EYE SELECTION value
 #' is not "OS", "OD", or "OU".
 #'
 #' @param DM Subject Demographics SDTM dataset with variable USUBJID
-#' @param SC Subject Characteristics SDTM dataset for Ophtho Study with variables 
+#' @param SC Subject Characteristics SDTM dataset for Ophtho Study with variables
 #' USUBJID, SCTESTCD, SCTEST, SCCAT, SCORRES, SCDTC
 #'
 #' @importFrom dplyr %>% filter mutate select
 #'
+#' @return boolean value if check returns 0 obs, otherwise return subset dataframe.
+#'
 #' @export
-#' 
+#'
 #' @family OPHTH
-#' 
+#'
 #' @keywords OPHTH
 #'
 #' @author Monarch Shah (HackR 2021 Team Eye)

@@ -15,6 +15,9 @@ USUBJID, CMCAT, CMLAT, CMDECOD, CMTRT, CMROUTE, CMSPID (if Present), CMSTDTC (if
 
 \item{...}{Other arguments passed to methods}
 }
+\value{
+boolean value if check returns 0 obs, otherwise return subset dataframe.
+}
 \description{
 This check assesses CMCAT = "CONCOMITANT MEDICATIONS" and flags potential
 ocular records with missing/inconsistent route and laterality: for eye-related
@@ -30,7 +33,7 @@ CM <- data.frame(
    CMLAT   = c("Left", "","Bilateral", "", "", "LEFT", ""),
    CMTRT  = c("A", "B", "A", "B", "A", "A", "B"),
    CMDECOD = c("A", "B", "A", "B", "A", "A", "B"),
-   CMROUTE = c("","OPHTHALMIC","INTRAVITREAL","INTRAVITREAL", 
+   CMROUTE = c("","OPHTHALMIC","INTRAVITREAL","INTRAVITREAL",
                "opHTHALMIC", "INTRaOCULAr", "INTRaOCULAr"),
    CMSPID  = "FORMNAME-R:13/L:13XXXX",
    stringsAsFactors = FALSE)
@@ -40,7 +43,7 @@ CM <- data.frame(
    USUBJID = 1:5,
    CMCAT = rep("CONCOMITANT MEDICATIONS",5),
    CMSTDTC = 1:5,
-   CMLAT   = c("Left", "LEFT","Bilateral", 
+   CMLAT   = c("Left", "LEFT","Bilateral",
                "RIGHT", "RIgHT"),
    CMTRT  = c("A", "B", "A", "B", "A"),
    CMDECOD = c("A", "B", "A", "B", "A"),

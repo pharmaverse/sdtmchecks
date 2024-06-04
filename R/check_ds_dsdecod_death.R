@@ -15,6 +15,8 @@
 #'
 #' @importFrom dplyr distinct %>% select filter
 #'
+#' @return boolean value if check returns 0 obs, otherwise return subset dataframe.
+#'
 #' @export
 #'
 #' @examples

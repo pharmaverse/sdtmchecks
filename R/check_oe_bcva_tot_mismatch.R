@@ -9,10 +9,12 @@
 #' OESTRESN, OESTAT (if present), OELAT, VISIT, OEDTC
 #'
 #' @importFrom dplyr %>% filter mutate select
-#' 
+#'
 #' @family OPHTH
-#' 
+#'
 #' @keywords OPHTH
+#'
+#' @return boolean value if check returns 0 obs, otherwise return subset dataframe.
 #'
 #' @export
 #'

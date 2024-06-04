@@ -13,6 +13,9 @@ check_ae_death(AE, preproc = identity, ...)
 
 \item{...}{Other arguments passed to methods}
 }
+\value{
+boolean value if check returns 0 obs, otherwise return subset dataframe.
+}
 \description{
 Checks for grade 5 AEs not marked fatal (AEOUT), death not indicated (AESDTH), or no death date (AESDTHDTC)
 }

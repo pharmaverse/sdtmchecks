@@ -15,6 +15,9 @@ check_cm_cmlat_prior_ocular(CM, preproc = identity, ...)
 
 \item{...}{Other arguments passed to methods}
 }
+\value{
+boolean value if check returns 0 obs, otherwise return subset dataframe.
+}
 \description{
 This check assesses ocular CMCAT records and flags records with
 missing/inconsistent laterality
