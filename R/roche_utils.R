@@ -81,6 +81,7 @@ roche_derive_rave_row <- function(dts,domains=c("ae","ce","cm","ds","lb","pr","r
 #'              MedDRA version data/covid.Rdata file which it will use if the specific version cant be found.
 #' @return dataframe
 #' @param TS Trial Summary SDTM dataset (optional) with variables TSPARMCD, TSVAL
+#' @param path_to_files path with datasets containing covid terms with file names containing the string "covid" and MedDRA version
 #' @export
 #' @keywords internal
 #' @examples
@@ -107,7 +108,7 @@ roche_derive_rave_row <- function(dts,domains=c("ae","ce","cm","ds","lb","pr","r
 #' }
 
 
-roche_covid_df <- function(TS=NULL){
+roche_covid_df <- function(TS=NULL,path_to_files="data/"){
   
   # Check if there is ts domain in data pack
   if (!is.null(TS)) {
@@ -131,7 +132,7 @@ roche_covid_df <- function(TS=NULL){
           version_n <- as.numeric(paste0(v_n[1], v_n[2]))
           
           # Available MedDRA versions with COVID baskets
-          covid_dt <- list.files(path = "data/", pattern = "covid")
+          covid_dt <- list.files(path = path_to_files, pattern = "covid")
           covid_n <- as.numeric(unlist(regmatches(covid_dt, gregexpr("[0-9]+", covid_dt))))
           
           # Check if MedDRA version is one of available list
