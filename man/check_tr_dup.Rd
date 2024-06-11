@@ -11,7 +11,7 @@ check_tr_dup(TR)
 TRDTC, TRSPID (if it exists)}
 }
 \value{
-boolean value if check returns 0 obs, otherwise return subset dataframe.
+boolean value if check failed or passed with 'msg' attribute if the test failed
 }
 \description{
 This check looks for duplicate TR records and returns a data frame.

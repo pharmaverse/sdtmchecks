@@ -10,7 +10,7 @@ check_ex_visit(EX)
 \item{EX}{Exposure SDTM dataset with variables USUBJID,EXTRT,EXSTDTC,VISIT, and optional variable EXOCCUR}
 }
 \value{
-boolean value if check returns 0 obs, otherwise return subset dataframe.
+boolean value if check failed or passed with 'msg' attribute if the test failed
 }
 \description{
 This check looks missing EX.VISIT values when EX.EXOCCUR=Y (or EX.EXOCCUR doesn't exist)

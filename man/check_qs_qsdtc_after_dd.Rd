@@ -17,7 +17,7 @@ DSSTDTC, DSDECOD, and DSTERM}
 USUBJID, QSDTC, QSCAT, and QSORRES}
 }
 \value{
-boolean value if check returns 0 obs, otherwise return subset dataframe.
+boolean value if check failed or passed with 'msg' attribute if the test failed
 }
 \description{
 This check looks for QS dates that occur after death date

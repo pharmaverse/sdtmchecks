@@ -16,7 +16,7 @@
 #'
 #' @importFrom tidyselect any_of
 #'
-#' @return boolean value if check returns 0 obs, otherwise return subset dataframe.
+#' @return boolean value if check failed or passed with 'msg' attribute if the test failed
 #'
 #' @export
 #'

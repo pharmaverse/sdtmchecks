@@ -11,7 +11,7 @@ check_oe_bcva_tot_mismatch(OE)
 OESTRESN, OESTAT (if present), OELAT, VISIT, OEDTC}
 }
 \value{
-boolean value if check returns 0 obs, otherwise return subset dataframe.
+boolean value if check failed or passed with 'msg' attribute if the test failed
 }
 \description{
 This ophthalmology check looks for any mismatch between the
@@ -96,8 +96,8 @@ check_oe_bcva_tot_mismatch(OE)
 \seealso{
 Other OPHTH: 
 \code{\link{check_ae_aelat}()},
-\code{\link{check_cm_cmlat}()},
 \code{\link{check_cm_cmlat_prior_ocular}()},
+\code{\link{check_cm_cmlat}()},
 \code{\link{check_oe_bcva_1m_late_early_tot}()},
 \code{\link{check_oe_bcva_4m_late_early_tot}()},
 \code{\link{check_oe_bcva_4m_vs_1m_req}()},

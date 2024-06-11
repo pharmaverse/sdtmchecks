@@ -17,7 +17,7 @@
 #'
 #' @author Edgar Manukyan, N Springfield updated on 14SEP2020
 #'
-#' @return boolean value if check returns 0 obs, otherwise return subset dataframe.
+#' @return boolean value if check failed or passed with 'msg' attribute if the test failed
 #'
 #' @export
 #'

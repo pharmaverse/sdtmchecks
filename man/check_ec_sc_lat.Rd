@@ -14,7 +14,7 @@ USUBJID, ECCAT (if available), ECLOC, ECMOOD, ECLAT, ECSTDY, VISIT, ECSTDTC, ECO
 USUBJID, SCTEST, SCTESTCD, SCCAT, SCORRES, SCDTC}
 }
 \value{
-boolean value if check returns 0 obs, otherwise return subset dataframe.
+boolean value if check failed or passed with 'msg' attribute if the test failed
 }
 \description{
 Check if Study Drug is not administered in the Study Eye.
