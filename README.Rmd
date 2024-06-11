@@ -28,7 +28,7 @@ The sdtmchecks package contains functions to identify common data issues in SDTM
 
 ## Installation
 
-### Main version 
+### CRAN
 
 You can install {sdtmchecks} from [CRAN](https://cran.r-project.org/):
 
