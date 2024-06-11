@@ -4,7 +4,11 @@
 \alias{check_ae_aeacn_ds_disctx_covid}
 \title{Check for COVID-19 AE with DRUG WITHDRAWN action without "ADVERSE EVENT" for DS Trt Discon}
 \usage{
-check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df = NULL)
+check_ae_aeacn_ds_disctx_covid(
+  AE,
+  DS,
+  covid_terms = c("COVID-19", "CORONAVIRUS POSITIVE")
+)
 }
 \arguments{
 \item{AE}{Adverse Events SDTM dataset with variables USUBJID, AETERM, AEDECOD,
@@ -12,8 +16,7 @@ AESTDTC, AEACNx}
 
 \item{DS}{Disposition SDTM dataset with variables USUBJID, DSSPID, DSCAT, DSDECOD}
 
-\item{covid_df}{Dataframe of AE preferred terms for COVID-19, containing the
-variable REFTERM}
+\item{covid_terms}{A length >=1 vector of AE terms identify COVID-19 (case does not matter)}
 }
 \value{
 boolean value if check returns 0 obs, otherwise return subset dataframe.
@@ -29,10 +32,6 @@ drug(s).
 }
 \examples{
 
-covid_df = data.frame(REFTERM = c("COVID-19",
-                                  "CORONAVIRUS POSITIVE"
-                                  )
-                     )
 AE <- data.frame(
     STUDYID = 1,
     USUBJID = c(1,2,3,1,2,3),
@@ -54,7 +53,7 @@ DS <- data.frame(
 )
 
 # expect fail
-check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df)
+check_ae_aeacn_ds_disctx_covid(AE, DS)
 
 
 AE2 <- data.frame( 
@@ -68,25 +67,25 @@ AE2 <- cbind(AE, AE2)
 AE2$AEACN <- "MULTIPLE" 
 
 # expect fail
-check_ae_aeacn_ds_disctx_covid(AE2, DS, covid_df)
+check_ae_aeacn_ds_disctx_covid(AE2, DS)
 
 DS[1, "DSDECOD"] <- 'ADVERSE EVENT'
 # this passes, one form with DSDECOD = "ADVERSE EVENT"
 ## NOTE: This may be a false negative if study-specific data collection 
 ##       requires >1 record with DSDECOD = "ADVERSE EVENT" and not just one record
-check_ae_aeacn_ds_disctx_covid(AE2, DS, covid_df)
+check_ae_aeacn_ds_disctx_covid(AE2, DS)
 
 # expect pass
-check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df)
+check_ae_aeacn_ds_disctx_covid(AE, DS)
 
 
 # non-required variable is missing
 DS$DSSEQ <- NULL
-check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df)
+check_ae_aeacn_ds_disctx_covid(AE, DS)
 
 # required variable is missing 
 DS$DSSPID <- NULL
-check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df)
+check_ae_aeacn_ds_disctx_covid(AE, DS)
 
 
 }
