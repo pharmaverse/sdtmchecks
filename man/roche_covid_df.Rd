@@ -4,10 +4,12 @@
 \alias{roche_covid_df}
 \title{Check MedDRA version in TS and return dataframe with covid terms according to this version}
 \usage{
-roche_covid_df(TS = NULL)
+roche_covid_df(TS = NULL, path_to_files = "data/")
 }
 \arguments{
 \item{TS}{Trial Summary SDTM dataset (optional) with variables TSPARMCD, TSVAL}
+
+\item{path_to_files}{path with datasets containing covid terms with file names containing the string "covid" and MedDRA version}
 }
 \value{
 dataframe
