@@ -9,14 +9,14 @@
 #' @param AE Adverse Events SDTM dataset with variables USUBJID, AEDECOD, 
 #' AEACNOT* (can be multiple variables)
 #' @param DS Disposition SDTM dataset with variables USUBJID, DSSCAT, DSDECOD
-#' @param covid_df dataframe of AE terms identify COVID-19, contains variable REFTERM
+#' @param covid_terms A length >=1 vector of AE terms identify COVID-19 (case does not matter)
 #'
 #' @return boolean value if check failed or passed with 'msg' attribute if the
 #'   test failed
 #'
 #' @export
 #'
-#' @importFrom dplyr %>% filter select rename semi_join mutate distinct
+#' @importFrom dplyr %>% filter select
 #'
 #' @author Natalie Springfield
 #' 
@@ -25,15 +25,10 @@
 #' @keywords COVID
 #'
 #' @examples
-#' 
-#' covid_df = data.frame(REFTERM = c("COVID-19",
-#'                                   "CORONAVIRUS POSITIVE"
-#'                                   )
-#'                      )
 #'
 #' AE <- data.frame(
 #'  USUBJID = 1:5,
-#'  AEDECOD = c("covid-19", "covid-19", "covid-19","Some AE", "CORONAVIRUS POSITIVE" ),
+#'  AEDECOD = c("This is a covid AE", "covid-19", "covid-19","Some AE", "CORONAVIRUS POSITIVE" ),
 #'  AEACNOTH=c("SUBJECT DISCONTINUED FROM STUDY",
 #'             "NONE",
 #'             "NONE", 
@@ -59,14 +54,21 @@
 #'  DSDECOD="DISCON REASON"
 #' )
 #'
-#' check_ae_aeacnoth_ds_stddisc_covid(AE,DS,covid_df = covid_df)
+#' #expect fail
+#' check_ae_aeacnoth_ds_stddisc_covid(AE,DS)
+#' 
+#' #use custom terms for identifying covid AEs
+#' check_ae_aeacnoth_ds_stddisc_covid(AE,DS,covid_terms=c("COVID-19", "CORONAVIRUS POSITIVE","THIS IS A COVID AE"))
 #'
 
-check_ae_aeacnoth_ds_stddisc_covid <- function(AE,DS,covid_df = NULL) {
+check_ae_aeacnoth_ds_stddisc_covid <- function(AE,DS,covid_terms=c("COVID-19", "CORONAVIRUS POSITIVE")) {
 
-    if(is.null(covid_df)){
+    if(is.null(covid_terms)|
+       (!is.null(covid_terms) & !is.vector(covid_terms))|
+       (!is.null(covid_terms) & is.vector(covid_terms) & length(covid_terms)<1)|
+       (!is.null(covid_terms) & is.vector(covid_terms) & length(covid_terms)>=1 & all(is_sas_na(covid_terms)))
+       ){
         
-        message("check_ae_aeacnoth_ds_stddisc_covid: Check not run, did not detect COVID-19 preferred terms")
         fail("Check not run, did not detect COVID-19 preferred terms") 
         
     }else if( AE %lacks_any% c("USUBJID","AEDECOD","AEACNOTH")) {
@@ -79,25 +81,9 @@ check_ae_aeacnoth_ds_stddisc_covid <- function(AE,DS,covid_df = NULL) {
 
     } else{
 
-        # Select unique COVID AE TERMS from COVID.RData
-        # apply uppercasing
-        covid_ae <- covid_df %>%
-            mutate(REFTERM=toupper(REFTERM)) %>%
-            select(REFTERM) %>%
-            distinct(REFTERM) %>%
-            rename(AEDECOD=REFTERM)
-
-        attr(covid_ae$AEDECOD, "label") <- "Dictionary-Derived Term"
-        #attributes(covid_ae$AEDECOD)
-
-        # Select AE records where AE.AEDECOD matches COVID-related terms COVID_AE.AEDECOD
-        # apply uppercasing
-        attr(AE$AEDECOD, "label") <- "Dictionary-Derived Term"
+        # Select AE recs where uppercased AE.AEDECOD matches COVID-related terms COVID_AE.AEDECOD
         ae0 <- AE %>%
-            mutate(AEDECOD=toupper(AEDECOD)) %>%
-            semi_join(covid_ae, by = "AEDECOD")
-
-        #attributes(ae0$AEDECOD)
+            filter(toupper(AEDECOD) %in% toupper(covid_terms))
 
         # Select column variables matching AEACNOT* (i.e. AEACNOTH, AEACNOT*1, AEACNOT*2...)
         aeacnoth_colnm<-colnames(ae0)[which(startsWith(colnames(ae0),"AEACNOT"))]
@@ -125,8 +111,11 @@ check_ae_aeacnoth_ds_stddisc_covid <- function(AE,DS,covid_df = NULL) {
             pass()
             ### Otherwise return subset dataframe/message
         }else if(nrow(mydf)>0){
-            fail((paste("Found", length(unique(mydf$USUBJID)),
-                        "patient(s) with COVID-related AE(s) leading to Study Discon, but no corresponding Study Discon in DS. ")),
+            fail(paste("Found", length(unique(mydf$USUBJID)),
+                        "patient(s) with COVID-related AE(s) leading to Study Discon, but no corresponding Study Discon in DS. ",
+                       "The following terms were used for identifying Covid AEs:",
+                       paste(covid_terms,collapse=", ")
+                       ),
                  mydf)
         }
     }
