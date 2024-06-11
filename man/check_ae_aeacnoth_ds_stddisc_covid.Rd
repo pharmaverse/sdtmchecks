@@ -4,7 +4,11 @@
 \alias{check_ae_aeacnoth_ds_stddisc_covid}
 \title{Check for COVID-19 AE leading to Study Discon without DS Study Discon}
 \usage{
-check_ae_aeacnoth_ds_stddisc_covid(AE, DS, covid_df = NULL)
+check_ae_aeacnoth_ds_stddisc_covid(
+  AE,
+  DS,
+  covid_terms = c("COVID-19", "CORONAVIRUS POSITIVE")
+)
 }
 \arguments{
 \item{AE}{Adverse Events SDTM dataset with variables USUBJID, AEDECOD,
@@ -12,7 +16,7 @@ AEACNOT* (can be multiple variables)}
 
 \item{DS}{Disposition SDTM dataset with variables USUBJID, DSSCAT, DSDECOD}
 
-\item{covid_df}{dataframe of AE terms identify COVID-19, contains variable REFTERM}
+\item{covid_terms}{A length >=1 vector of AE terms identify COVID-19 (case does not matter)}
 }
 \value{
 boolean value if check failed or passed with 'msg' attribute if the
@@ -27,14 +31,9 @@ record in DS (DS.DSSCAT includes "STUDY" and "DISCON" and excludes "DRUG" and
 }
 \examples{
 
-covid_df = data.frame(REFTERM = c("COVID-19",
-                                  "CORONAVIRUS POSITIVE"
-                                  )
-                     )
-
 AE <- data.frame(
  USUBJID = 1:5,
- AEDECOD = c("covid-19", "covid-19", "covid-19","Some AE", "CORONAVIRUS POSITIVE" ),
+ AEDECOD = c("This is a covid AE", "covid-19", "covid-19","Some AE", "CORONAVIRUS POSITIVE" ),
  AEACNOTH=c("SUBJECT DISCONTINUED FROM STUDY",
             "NONE",
             "NONE", 
@@ -60,7 +59,11 @@ DS <- data.frame(
  DSDECOD="DISCON REASON"
 )
 
-check_ae_aeacnoth_ds_stddisc_covid(AE,DS,covid_df = covid_df)
+#expect fail
+check_ae_aeacnoth_ds_stddisc_covid(AE,DS)
+
+#use custom terms for identifying covid AEs
+check_ae_aeacnoth_ds_stddisc_covid(AE,DS,covid_terms=c("COVID-19", "CORONAVIRUS POSITIVE","THIS IS A COVID AE"))
 
 }
 \seealso{
