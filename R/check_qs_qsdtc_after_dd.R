@@ -16,6 +16,8 @@
 #'
 #' @importFrom tidyselect any_of
 #'
+#' @return boolean value if check failed or passed with 'msg' attribute if the test failed
+#'
 #' @export
 #'
 #' @author Monarch Shah
@@ -25,7 +27,7 @@
 #' AE <- data.frame(USUBJID = c(1,1,1,2,2,2),
 #'                  AEDTHDTC = c("", "", "2016-01-01", "", "2016-01", "2016-01-01"),
 #'                  AESTDTC = "2016-01-01",
-#'                  AEDECOD = LETTERS[1:6], 
+#'                  AEDECOD = LETTERS[1:6],
 #'                  AETERM = LETTERS[1:6],
 #'                  stringsAsFactors = FALSE)
 #'
@@ -36,7 +38,7 @@
 #'                  stringsAsFactors = FALSE)
 #'
 #' QS <- data.frame(USUBJID = c(1,1,1,2,2,2),
-#'                  QSDTC   = c("2015-06-30", "2015-09-30", "2015-12-30", 
+#'                  QSDTC   = c("2015-06-30", "2015-09-30", "2015-12-30",
 #'                              "2015-06-30", "2015-09-30", "2015-12-30"),
 #'                  QSCAT   = "A",
 #'                  QSORRES =  LETTERS[1:6],
@@ -142,7 +144,7 @@ check_qs_qsdtc_after_dd <- function(AE, DS, QS) {
             if  (QS %has_all% c("QSSTAT")) {
             suppressWarnings(
                 mydf0 <- QS %>%
-                    filter(grepl("NOT DONE", QSSTAT, ignore.case = TRUE) == FALSE & USUBJID %in% death_dates[["USUBJID"]] & 
+                    filter(grepl("NOT DONE", QSSTAT, ignore.case = TRUE) == FALSE & USUBJID %in% death_dates[["USUBJID"]] &
                                !is_sas_na(QSDTC) & !is_sas_na(QSORRES)) %>%
                     left_join(death_dates, by = "USUBJID")
             ) }
