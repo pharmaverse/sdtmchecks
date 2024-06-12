@@ -65,6 +65,13 @@ check_dv_ae_aedecod_covid <- function(AE,DV,covid_terms=c("COVID-19", "CORONAVIR
         fail(lacks_msg(DV, c("USUBJID","DVREAS")))
 
     } else{
+        
+        #let used know terms used
+        if(identical(covid_terms,c("COVID-19", "CORONAVIRUS POSITIVE"))){
+            outmsg=paste("Default terms used for identifying Covid AEs:",paste(covid_terms,collapse=","))
+        }else{
+            outmsg=""
+        }
 
         # Select AE recs where uppercased AE.AEDECOD matches COVID-related terms COVID_AE.AEDECOD
         ae0 <- AE %>%
@@ -89,8 +96,7 @@ check_dv_ae_aedecod_covid <- function(AE,DV,covid_terms=c("COVID-19", "CORONAVIR
         }else if(nrow(mydf)>0){
             fail( paste("Found", length(unique(mydf$USUBJID)),
                          "patient(s) with COVID-related Protocol Deviation, but no AE record with COVID terms. ",
-                        "The following terms were used for identifying Covid AEs:",
-                        paste(covid_terms,collapse=", ")
+                        outmsg
                         ),
                   mydf
             )

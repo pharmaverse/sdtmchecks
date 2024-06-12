@@ -80,6 +80,13 @@ check_ae_aeacnoth_ds_stddisc_covid <- function(AE,DS,covid_terms=c("COVID-19", "
         fail(lacks_msg(DS, c("USUBJID", "DSSCAT","DSDECOD")))
 
     } else{
+        
+        #let used know terms used
+        if(identical(covid_terms,c("COVID-19", "CORONAVIRUS POSITIVE"))){
+            outmsg=paste("Default terms used for identifying Covid AEs:",paste(covid_terms,collapse=","))
+        }else{
+            outmsg=""
+        }
 
         # Select AE recs where uppercased AE.AEDECOD matches COVID-related terms COVID_AE.AEDECOD
         ae0 <- AE %>%
@@ -113,8 +120,7 @@ check_ae_aeacnoth_ds_stddisc_covid <- function(AE,DS,covid_terms=c("COVID-19", "
         }else if(nrow(mydf)>0){
             fail(paste("Found", length(unique(mydf$USUBJID)),
                         "patient(s) with COVID-related AE(s) leading to Study Discon, but no corresponding Study Discon in DS. ",
-                       "The following terms were used for identifying Covid AEs:",
-                       paste(covid_terms,collapse=", ")
+                       outmsg
                        ),
                  mydf)
         }

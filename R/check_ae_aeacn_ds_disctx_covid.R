@@ -101,6 +101,13 @@ check_ae_aeacn_ds_disctx_covid <- function(AE,DS,covid_terms=c("COVID-19", "CORO
         fail(lacks_msg(DS, c("USUBJID", "DSSPID", "DSCAT", "DSDECOD")))
 
     } else{
+        
+        #let used know terms used
+        if(identical(covid_terms,c("COVID-19", "CORONAVIRUS POSITIVE"))){
+            outmsg=paste("Default terms used for identifying Covid AEs:",paste(covid_terms,collapse=","))
+        }else{
+            outmsg=""
+        }
 
         # keep COVID-19 AEs on which we want to check action taken with treatment
         ae_covid <- AE %>% 
@@ -157,8 +164,7 @@ check_ae_aeacn_ds_disctx_covid <- function(AE,DS,covid_terms=c("COVID-19", "CORO
 
             return(fail(paste(length(unique(mydf$USUBJID)),
                               " patient(s) with COVID-19 AE indicating drug withdrawn but no Treatment Discon form indicating AE. ",
-                              "The following terms were used for identifying Covid AEs:",
-                              paste(covid_terms,collapse=", ")
+                              outmsg
                               
                               , sep=""), mydf))
 
