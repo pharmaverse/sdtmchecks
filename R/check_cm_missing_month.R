@@ -67,9 +67,14 @@ if(CM %lacks_any% c("USUBJID", "CMTRT", "CMSTDTC","CMENDTC")){
       }else if(nrow(mydf)>0){
 
           fail(paste("There are ",length(unique(mydf$USUBJID)),
-                     " patients with a conmed date that has year and day present but missing month. ",sep=""),
+                     " patient(s) with a conmed date that has year and day present but missing month. ",sep=""),
                mydf)
 
         }
       }
 }
+
+
+
+
+
