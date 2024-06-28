@@ -10,6 +10,9 @@ check_oe_bcva_4m_vs_1m_req(OE)
 \item{OE}{Ophtho Dataset with variables USUBJID, OECAT, OESCAT, OETSTDTL, OESTRESN, OESTAT, OELAT,
 OERESCAT, VISIT, OEDTC, OEDY}
 }
+\value{
+boolean value if check failed or passed with 'msg' attribute if the test failed
+}
 \description{
 This ophthalmology function is to check if BCVA 1m test is done per BCVA 4m result.
 Patient, Visits, Laterality where Low Vision Tests were done are excluded from this check.
@@ -27,12 +30,12 @@ OE_1m_done <- data.frame(
   OETSTDTL = c(rep("TESTING DISTANCE: 4M", 4), rep("TESTING DISTANCE: 1M", 3)),
   OESCAT = c(rep("", 3), "TOTAL", rep("", 2), "TOTAL"),
   OESTAT = rep("", 7),
-  OERESCAT = c("ROW 1 - SNELLEN 20/200", 
-               "ROW 2 - SNELLEN 20/160", 
-               "ROW 3 - SNELLEN 20/125", 
+  OERESCAT = c("ROW 1 - SNELLEN 20/200",
+               "ROW 2 - SNELLEN 20/160",
+               "ROW 3 - SNELLEN 20/125",
                "",
-               "ROW 1 - SNELLEN 20/200", 
-               "ROW 2 - SNELLEN 20/160", 
+               "ROW 1 - SNELLEN 20/200",
+               "ROW 2 - SNELLEN 20/160",
                ""),
   VISIT = "WEEK 1",
   VISITNUM = 5,
@@ -50,9 +53,9 @@ OE_1m_not_done <- data.frame(
   OETSTDTL = "TESTING DISTANCE: 4M",
   OESCAT = c(rep("", 3), "TOTAL"),
   OESTAT = "",
-  OERESCAT = c("ROW 1 - SNELLEN 20/200", 
-               "ROW 2 - SNELLEN 20/160", 
-               "ROW 3 - SNELLEN 20/125", 
+  OERESCAT = c("ROW 1 - SNELLEN 20/200",
+               "ROW 2 - SNELLEN 20/160",
+               "ROW 3 - SNELLEN 20/125",
                ""),
   VISIT = "WEEK 1",
   VISITNUM = 5,

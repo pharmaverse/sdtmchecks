@@ -6,7 +6,7 @@
 \alias{sdtmchecks-package}
 \title{sdtmchecks: Data Quality Checks for SDTM Datasets}
 \description{
-Functions to identify common data issues in SDTM data. These checks are intended to be generalizable, actionable, and meaningful for analysis.
+Code to identify common data issues in SDTM data. These checks are intended to be generalizable, actionable, and meaningful for analysis.
 }
 \seealso{
 Useful links:

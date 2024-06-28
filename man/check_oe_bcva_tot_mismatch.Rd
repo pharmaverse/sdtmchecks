@@ -10,6 +10,9 @@ check_oe_bcva_tot_mismatch(OE)
 \item{OE}{Ophtho Dataset with variables USUBJID, OETESTCD, OECAT, OESCAT, OETSTDTL,
 OESTRESN, OESTAT (if present), OELAT, VISIT, OEDTC}
 }
+\value{
+boolean value if check failed or passed with 'msg' attribute if the test failed
+}
 \description{
 This ophthalmology check looks for any mismatch between the
 Derived Best Corrected Visual Acuity (BCVA) Total Score &

@@ -12,6 +12,8 @@
 #' @importFrom dplyr %>% select filter group_by_all n
 #' @importFrom tidyselect any_of
 #'
+#' @return boolean value if check failed or passed with 'msg' attribute if the test failed
+#'
 #' @export
 #'
 #' @examples
@@ -30,17 +32,17 @@
 #' )
 #'
 #' check_tr_dup(TR)
-#' 
+#'
 #' TR1 <- TR
 #' TR1$TRSPID <- NULL
-#' 
+#'
 #' check_tr_dup(TR1)
-#' 
+#'
 #' TR2 <- TR
 #' TR2$TREVAL <- NULL
-#' 
+#'
 #' check_tr_dup(TR2)
-#' 
+#'
 #' # example with no records flagged because issues only among IRF records
 #' TR3 <- TR
 #' TR3$TREVAL <- "INDEPENDENT ASSESSOR"
@@ -50,37 +52,37 @@
 #' TR4 <- TR
 #' TR4$TRLINKID <- NULL
 #' check_tr_dup(TR4)
-#' 
-#' 
+#'
+#'
 
 
 check_tr_dup <- function(TR){
-    
+
     if (TR %lacks_any% c("USUBJID","TRCAT","TRTESTCD","TRDTC","TRSTRESC")){
-        
+
         fail (lacks_msg(TR, c("USUBJID","TRCAT","TRTESTCD","TRDTC","TRSTRESC")))
-        
+
     } else if (TR %lacks_all% c("TRLINKID", "TRLNKID")) {
-        
+
         fail("TR is missing both the TRLINKID and TRLNKID variables. ")
-        
+
     } else{
-        
+
         myvars <- c("USUBJID","TRCAT","TRTESTCD",names(TR)[names(TR) %in% c("TRLINKID","TRLNKID")],names(TR)[names(TR) %in% "TRSPID"],"TRDTC","TRSTRESC")
-        
+
         if(TR %lacks_any% "TREVAL"){
-            
+
             # for TR domains without TREVAL
-            
+
             # leave only variables on which we want to check duplicate TR records
             # Subsets to duplicated entries only
             tr1 <- TR %>%
                 select(any_of(myvars)) %>%
                 group_by_all() %>%
                 filter(n()>1)
-            
+
         }else{
-            
+
             # for TR domains with TREVAL
             # Subsets to duplicated entries only
             tr1 <- TR %>%
@@ -89,14 +91,14 @@ check_tr_dup <- function(TR){
                 group_by_all() %>%
                 filter(n()>1)
         }
-        
+
         # duplicate TR records
         dups <- subset(tr1, duplicated(tr1), myvars)
         rownames(dups)=NULL
-        
+
         # declare number of duplicated TR records and print them
         n0 <- paste('There are ', nrow(dups), ' duplicated TR records. ', sep ='')
-        
+
         if (nrow(dups) == 0){
             pass()
         } else{

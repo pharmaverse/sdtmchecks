@@ -15,6 +15,9 @@ check_cm_cmlat_prior_ocular(CM, preproc = identity, ...)
 
 \item{...}{Other arguments passed to methods}
 }
+\value{
+boolean value if check failed or passed with 'msg' attribute if the test failed
+}
 \description{
 This check assesses ocular CMCAT records and flags records with
 missing/inconsistent laterality

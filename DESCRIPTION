@@ -8,7 +8,7 @@ Authors@R:
     person("Adrian", "Waddell", role = "aut"),
     person("F. Hoffmann-La Roche AG", role = c("cph", "fnd")),
     )
-Description: Functions to identify common data issues in SDTM data. These checks are intended to be generalizable, actionable, and meaningful for analysis. 
+Description: Code to identify common data issues in SDTM data. These checks are intended to be generalizable, actionable, and meaningful for analysis. 
 License: Apache License (>= 2)
 Encoding: UTF-8
 Language: en-US

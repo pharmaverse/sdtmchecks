@@ -11,10 +11,12 @@
 #'
 #' @importFrom dplyr %>% filter mutate select
 #' @importFrom tidyselect any_of
-#' 
+#'
 #' @family OPHTH
-#' 
+#'
 #' @keywords OPHTH
+#'
+#' @return boolean value if check failed or passed with 'msg' attribute if the test failed
 #'
 #' @export
 #'
@@ -98,10 +100,10 @@ check_cm_cmlat_prior_ocular <- function(CM,preproc = identity,...) {
             filter(grepl("OCULAR", toupper(CMCAT), fixed = T) &
                    !grepl("NON-OCULAR", toupper(CMCAT), fixed = T)) %>%
             select(any_of(c("CMSTDTC", "RAVE", "CMLOC", "CMINDC", "CMDOSFRM","CMLAT", "CMTRT"))) %>%
-            mutate(MISFLAG =  ifelse(!(toupper(CMLAT) %in% c("LEFT", "RIGHT", "BILATERAL")), 1, 0)) 
+            mutate(MISFLAG =  ifelse(!(toupper(CMLAT) %in% c("LEFT", "RIGHT", "BILATERAL")), 1, 0))
 
         mydf <- mydf %>% filter(MISFLAG == 1) %>% select(-MISFLAG)
-        
+
         rownames(mydf)=NULL
 
         if ((nrow(mydf) > 0 ) == FALSE) {

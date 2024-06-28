@@ -9,6 +9,9 @@ check_ex_extrt_exoccur(EX)
 \arguments{
 \item{EX}{Exposure domain with variables USUBJID, EXSTDTC, EXTRT, EXDOSE}
 }
+\value{
+boolean value if check failed or passed with 'msg' attribute if the test failed
+}
 \description{
 This check looks for EX records where EXTRT is missing but EXOCCUR=Y (or EXOCCUR doesn't exist) and returns a data frame
 }
