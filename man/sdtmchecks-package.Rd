@@ -4,9 +4,9 @@
 \name{sdtmchecks-package}
 \alias{sdtmchecks}
 \alias{sdtmchecks-package}
-\title{sdtmchecks: Data Quality Checks for SDTM Datasets}
+\title{sdtmchecks: Data Quality Checks for Study Data Tabulation Model (SDTM) Datasets}
 \description{
-A series of checks to identify common issues in SDTM data. These checks are intended to be generalizable, actionable, and meaningful for analysis.
+A series of checks to identify common issues in Study Data Tabulation Model (SDTM) datasets. These checks are intended to be generalizable, actionable, and meaningful for analysis.
 }
 \seealso{
 Useful links:

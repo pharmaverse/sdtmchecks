@@ -19,7 +19,7 @@ test failed
 }
 \description{
 This check looks for consistency when DS.DSSPID=DISCTX*
-then there should be AE.AEACN\link{n}=DRUG WITHDRAWN
+then there should be AE.AEACN*=DRUG WITHDRAWN
 }
 \examples{
 
