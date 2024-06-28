@@ -58,7 +58,11 @@
 #' check_ae_aeacnoth_ds_stddisc_covid(AE,DS)
 #' 
 #' #use custom terms for identifying covid AEs
-#' check_ae_aeacnoth_ds_stddisc_covid(AE,DS,covid_terms=c("COVID-19", "CORONAVIRUS POSITIVE","THIS IS A COVID AE"))
+#' check_ae_aeacnoth_ds_stddisc_covid(
+#'   AE,
+#'   DS,
+#'   covid_terms=c("COVID-19", "CORONAVIRUS POSITIVE","THIS IS A COVID AE")
+#'   )
 #'
 
 check_ae_aeacnoth_ds_stddisc_covid <- function(AE,DS,covid_terms=c("COVID-19", "CORONAVIRUS POSITIVE")) {

@@ -6,7 +6,7 @@
 \alias{sdtmchecks-package}
 \title{sdtmchecks: Data Quality Checks for SDTM Datasets}
 \description{
-Code to identify common data issues in SDTM data. These checks are intended to be generalizable, actionable, and meaningful for analysis.
+A series of checks to identify common issues in SDTM data. These checks are intended to be generalizable, actionable, and meaningful for analysis.
 }
 \seealso{
 Useful links:
@@ -14,6 +14,22 @@ Useful links:
   \item \url{https://pharmaverse.github.io/sdtmchecks/}
   \item \url{https://github.com/pharmaverse/sdtmchecks}
   \item Report bugs at \url{https://github.com/pharmaverse/sdtmchecks/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Will Harris \email{harric17@gene.com}
+
+Authors:
+\itemize{
+  \item Sara Bodach
+  \item Edgar Manukyan
+  \item Adrian Waddell
+}
+
+Other contributors:
+\itemize{
+  \item F. Hoffmann-La Roche AG [copyright holder, funder]
 }
 
 }

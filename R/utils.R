@@ -644,7 +644,8 @@ xlsx2list <-function(rptwb, firstrow=1){
 #' 
 #' # Step 2: Use the run_all_checks() function to generate list of check results on this "old" data
 #'  
-#' metads <- sdtmchecksmeta[sdtmchecksmeta$check=="check_ae_aedecod",] # Filter sdtmchecksmeta so that only one check is present
+#' # Filter sdtmchecksmeta so that only one check is present
+#' metads <- sdtmchecksmeta[sdtmchecksmeta$check=="check_ae_aedecod",] 
 #' old <- run_all_checks(metads=metads)
 #' 
 #' 
