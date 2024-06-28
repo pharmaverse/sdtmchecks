@@ -1,9 +1,13 @@
-# sdtmchecks 0.1.11.9010 "Light Ice"
+# sdtmchecks 0.1.12 "CRAN Try"
 
 
 ## Refinements of existing data check functions
 
 * Covid related checks have been updated to expect a character vector of terms identifying covid related AEs.  Specifically [`check_ae_aeacn_ds_disctx_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeacn_ds_disctx_covid.html),[`check_ae_aeacnoth_ds_stddisc_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeacnoth_ds_stddisc_covid.html),[`check_dv_ae_aedecod_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_dv_ae_aedecod_covid.html) are affected.
+
+## Misc package updates
+
+* General updates for CRAN compliance, e.g. to DESCRIPTION file, Roxygen headers, etc
 
 
 
@@ -148,7 +152,7 @@
   * Commented out template assigned in [_pkgdown.yml](https://github.com/pharmaverse/sdtmchecks/blob/main/_pkgdown.yml) file ([#104](https://github.com/pharmaverse/sdtmchecks/issues/104))
   * Added clickable version releases as links in News dropdown of pkgdown site ([#121](https://github.com/pharmaverse/sdtmchecks/pull/121))
   * Edited headings in [Get started article](https://pharmaverse.github.io/sdtmchecks/articles/sdtmchecks.html) ([#114](https://github.com/pharmaverse/sdtmchecks/pull/114))
-  * Added a few bullet points to [Writing a New Check](https://r.roche.com/s/75335867330e8e3b52af3/files/pharmaverse/sdtmchecks/docs/articles/write_a_check.html)
+  * Added a few bullet points to [Writing a New Check](https://pharmaverse.github.io/sdtmchecks/articles/write_a_check.html)
   * Updated [pkgdown site](https://pharmaverse.github.io/sdtmchecks/index.html) based on latest version of {Roxygen2} ([v7.2.3](https://github.com/r-lib/roxygen2/releases/tag/v7.2.3)) instead of ([v7.1.1](https://github.com/r-lib/roxygen2/releases/tag/v7.1.1)). DESCRIPTION reflects version in `RoxygenNote`, and associated man/*.Rd files updated. 
   * Roxygen2 header updates to include `@family` and `@keyword` for functions in `run_all_checks.R`, `run_check.R`, `utils.R` ([#85](https://github.com/pharmaverse/sdtmchecks/pull/85))
   * Moved sdtmchecks package information from `utils.R` to `sdtmchecks-package.R` ([#85](https://github.com/pharmaverse/sdtmchecks/pull/85)) 
@@ -222,7 +226,7 @@
 ## Misc updates
 
 * Add CI/CD workflow ([#2](https://github.com/pharmaverse/sdtmchecks/issues/2), [#8](https://github.com/pharmaverse/sdtmchecks/issues/8))
-* Add package nickname as [`nickname.RData`](https://pharmaverse.github.io/sdtmchecks/reference/nickname.html) and reference in `data.R`, `globals.R` ([#12](https://github.com/pharmaverse/sdtmchecks/issues/12))
+* Add package nickname as [`nickname.RData`](https://pharmaverse.github.io/sdtmchecks/reference/nickname.html) and reference in `data.R`, `globals.R`
 * Remove repeated occurrence of `convert_var_to_ascii()` from utils.R ([#31](https://github.com/pharmaverse/sdtmchecks/issues/31))
 
 

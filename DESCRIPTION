@@ -1,6 +1,6 @@
 Package: sdtmchecks
-Title: Data Quality Checks for SDTM Datasets
-Version: 0.1.11.9010
+Title: Data Quality Checks for Study Data Tabulation Model (SDTM) Datasets
+Version: 0.1.12
 Authors@R: c(
     person(given="Will", 
            family="Harris",
@@ -18,7 +18,7 @@ Authors@R: c(
     person(given="F. Hoffmann-La Roche AG", 
            role = c("cph", "fnd"))
     )
-Description: A series of checks to identify common issues in SDTM data. These checks are intended to be generalizable, actionable, and meaningful for analysis. 
+Description: A series of checks to identify common issues in Study Data Tabulation Model (SDTM) datasets. These checks are intended to be generalizable, actionable, and meaningful for analysis. 
 License: Apache License (>= 2)
 Encoding: UTF-8
 Language: en-US
