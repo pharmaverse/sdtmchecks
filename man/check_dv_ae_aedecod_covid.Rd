@@ -15,7 +15,7 @@ check_dv_ae_aedecod_covid(
 
 \item{DV}{Protocol Deviation SDTM dataset with variables USUBJID, DVREAS}
 
-\item{covid_terms}{A length >=1 vector of AE terms identify COVID-19 (case does not matter)}
+\item{covid_terms}{A length >=1 vector of AE terms identifying COVID-19 (case does not matter)}
 }
 \value{
 boolean value if check returns 0 obs, otherwise return subset dataframe.

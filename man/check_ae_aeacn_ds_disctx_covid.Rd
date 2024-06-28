@@ -16,7 +16,7 @@ AESTDTC, AEACNx}
 
 \item{DS}{Disposition SDTM dataset with variables USUBJID, DSSPID, DSCAT, DSDECOD}
 
-\item{covid_terms}{A length >=1 vector of AE terms identify COVID-19 (case does not matter)}
+\item{covid_terms}{A length >=1 vector of AE terms identifying COVID-19 (case does not matter)}
 }
 \value{
 boolean value if check returns 0 obs, otherwise return subset dataframe.
