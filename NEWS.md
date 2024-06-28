@@ -1,3 +1,12 @@
+# sdtmchecks 0.1.11.9010 "Light Ice"
+
+
+## Refinements of existing data check functions
+
+* Covid related checks have been updated to expect a character vector of terms identifying covid related AEs.  Specifically [`check_ae_aeacn_ds_disctx_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeacn_ds_disctx_covid.html),[`check_ae_aeacnoth_ds_stddisc_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeacnoth_ds_stddisc_covid.html),[`check_dv_ae_aedecod_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_dv_ae_aedecod_covid.html) are affected.
+
+
+
 # sdtmchecks 0.1.11.9008 "Light Ice"
 
 
