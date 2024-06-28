@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11.9010</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.12</span>
       </span>
     </div>
 
@@ -97,10 +97,14 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="0.1.11.9010" id="sdtmchecks-01119010-light-ice">sdtmchecks 0.1.11.9010 “Light Ice”<a class="anchor" aria-label="anchor" href="#sdtmchecks-01119010-light-ice"></a></h2>
+<h2 class="page-header" data-toc-text="0.1.12" id="sdtmchecks-0112-cran-try">sdtmchecks 0.1.12 “CRAN Try”<a class="anchor" aria-label="anchor" href="#sdtmchecks-0112-cran-try"></a></h2>
 <div class="section level3">
-<h3 id="refinements-of-existing-data-check-functions-0-1-11-9010">Refinements of existing data check functions<a class="anchor" aria-label="anchor" href="#refinements-of-existing-data-check-functions-0-1-11-9010"></a></h3>
+<h3 id="refinements-of-existing-data-check-functions-0-1-12">Refinements of existing data check functions<a class="anchor" aria-label="anchor" href="#refinements-of-existing-data-check-functions-0-1-12"></a></h3>
 <ul><li>Covid related checks have been updated to expect a character vector of terms identifying covid related AEs. Specifically <a href="https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeacn_ds_disctx_covid.html"><code>check_ae_aeacn_ds_disctx_covid</code></a>,<a href="https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeacnoth_ds_stddisc_covid.html"><code>check_ae_aeacnoth_ds_stddisc_covid</code></a>,<a href="https://pharmaverse.github.io/sdtmchecks/reference/check_dv_ae_aedecod_covid.html"><code>check_dv_ae_aedecod_covid</code></a> are affected.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="misc-package-updates-0-1-12">Misc package updates<a class="anchor" aria-label="anchor" href="#misc-package-updates-0-1-12"></a></h3>
+<ul><li>General updates for CRAN compliance, e.g. to DESCRIPTION file, Roxygen headers, etc</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -269,7 +273,7 @@
 <li>Commented out template assigned in <a href="https://github.com/pharmaverse/sdtmchecks/blob/main/_pkgdown.yml" class="external-link">_pkgdown.yml</a> file (<a href="https://github.com/pharmaverse/sdtmchecks/issues/104" class="external-link">#104</a>)</li>
 <li>Added clickable version releases as links in News dropdown of pkgdown site (<a href="https://github.com/pharmaverse/sdtmchecks/pull/121" class="external-link">#121</a>)</li>
 <li>Edited headings in <a href="https://pharmaverse.github.io/sdtmchecks/articles/sdtmchecks.html">Get started article</a> (<a href="https://github.com/pharmaverse/sdtmchecks/pull/114" class="external-link">#114</a>)</li>
-<li>Added a few bullet points to <a href="https://r.roche.com/s/75335867330e8e3b52af3/files/pharmaverse/sdtmchecks/docs/articles/write_a_check.html" class="external-link">Writing a New Check</a>
+<li>Added a few bullet points to <a href="https://pharmaverse.github.io/sdtmchecks/articles/write_a_check.html">Writing a New Check</a>
 </li>
 <li>Updated <a href="https://pharmaverse.github.io/sdtmchecks/index.html">pkgdown site</a> based on latest version of {Roxygen2} (<a href="https://github.com/r-lib/roxygen2/releases/tag/v7.2.3" class="external-link">v7.2.3</a>) instead of (<a href="https://github.com/r-lib/roxygen2/releases/tag/v7.1.1" class="external-link">v7.1.1</a>). DESCRIPTION reflects version in <code>RoxygenNote</code>, and associated man/*.Rd files updated.</li>
 <li>Roxygen2 header updates to include <code>@family</code> and <code>@keyword</code> for functions in <code>run_all_checks.R</code>, <code>run_check.R</code>, <code>utils.R</code> (<a href="https://github.com/pharmaverse/sdtmchecks/pull/85" class="external-link">#85</a>)</li>
@@ -360,7 +364,8 @@
 <div class="section level3">
 <h3 id="misc-updates-0-1-4">Misc updates<a class="anchor" aria-label="anchor" href="#misc-updates-0-1-4"></a></h3>
 <ul><li>Add CI/CD workflow (<a href="https://github.com/pharmaverse/sdtmchecks/issues/2" class="external-link">#2</a>, <a href="https://github.com/pharmaverse/sdtmchecks/issues/8" class="external-link">#8</a>)</li>
-<li>Add package nickname as <a href="https://pharmaverse.github.io/sdtmchecks/reference/nickname.html"><code>nickname.RData</code></a> and reference in <code>data.R</code>, <code>globals.R</code> (<a href="https://github.com/pharmaverse/sdtmchecks/issues/12" class="external-link">#12</a>)</li>
+<li>Add package nickname as <a href="https://pharmaverse.github.io/sdtmchecks/reference/nickname.html"><code>nickname.RData</code></a> and reference in <code>data.R</code>, <code>globals.R</code>
+</li>
 <li>Remove repeated occurrence of <code><a href="../reference/convert_var_to_ascii.html">convert_var_to_ascii()</a></code> from utils.R (<a href="https://github.com/pharmaverse/sdtmchecks/issues/31" class="external-link">#31</a>)</li>
 </ul></div>
 </div>
