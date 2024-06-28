@@ -11,7 +11,7 @@
 #' @param AE Adverse Events SDTM dataset with variables USUBJID, AETERM, AEDECOD, 
 #' AESTDTC, AEACNx
 #' @param DS Disposition SDTM dataset with variables USUBJID, DSSPID, DSCAT, DSDECOD
-#' @param covid_terms A length >=1 vector of AE terms identify COVID-19 (case does not matter)
+#' @param covid_terms A length >=1 vector of AE terms identifying COVID-19 (case does not matter)
 #'
 #' @return boolean value if check returns 0 obs, otherwise return subset dataframe.
 #'
@@ -85,12 +85,12 @@
 check_ae_aeacn_ds_disctx_covid <- function(AE,DS,covid_terms=c("COVID-19", "CORONAVIRUS POSITIVE")) {
 
     if(is.null(covid_terms)|
-       (!is.null(covid_terms) & !is.vector(covid_terms))|
-       (!is.null(covid_terms) & is.vector(covid_terms) & length(covid_terms)<1)|
-       (!is.null(covid_terms) & is.vector(covid_terms) & length(covid_terms)>=1 & all(is_sas_na(covid_terms)))
+       (!is.null(covid_terms) & !is.character(covid_terms))|
+       (!is.null(covid_terms) & is.character(covid_terms) & length(covid_terms)<1)|
+       (!is.null(covid_terms) & is.character(covid_terms) & length(covid_terms)>=1 & all(is_sas_na(covid_terms)))
     ){
        
-        fail("Check not run, did not detect COVID-19 preferred terms") 
+        fail("Check not run, did not detect COVID-19 preferred terms.  Character vector of terms expected.") 
         
     } else if( AE %lacks_any% c("USUBJID", "AETERM", "AEDECOD", "AESTDTC", "AEACN")){
 
