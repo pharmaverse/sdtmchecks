@@ -18,7 +18,7 @@ value and AESDTH not equal to "Y"'><!-- mathjax --><script src="https://cdnjs.cl
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11.9010</span>
       </span>
     </div>
 
@@ -111,7 +111,7 @@ value and AESDTH not equal to "Y"</p>
     <h2>Arguments</h2>
     <dl><dt>AE</dt>
 <dd><p>Adverse Event SDTM dataset with variables USUBJID, AEDTHDTC,
-AESDTH, AEDECOD, and AESTDTC</p></dd>
+AESDTH, AEDECOD, AETERM, and AESTDTC</p></dd>
 
 
 <dt>preproc</dt>
@@ -138,30 +138,87 @@ attribute if the check failed</p>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">AE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>USUBJID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                 AEDTHDTC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"2020-01-01"</span>,<span class="fl">3</span><span class="op">)</span>, <span class="st">"NA"</span>, <span class="cn">NA</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                 AESDTH <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">""</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"Y"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">""</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                 AEDECOD <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>,</span></span>
-<span class="r-in"><span>                 AESTDTC <span class="op">=</span> <span class="st">"2020-01-01"</span>,</span></span>
-<span class="r-in"><span>                 AESPID <span class="op">=</span> <span class="st">"FORMNAME-R:13/L:13XXXX"</span>,</span></span>
-<span class="r-in"><span>                 stringsAsFactors<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">AE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>USUBJID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>AEDECOD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, <span class="st">""</span>, <span class="cn">NA</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>AETERM <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span>,</span></span>
+<span class="r-in"><span>AESDTH <span class="op">=</span> <span class="st">"Y"</span>,</span></span>
+<span class="r-in"><span>AEDTHDTC <span class="op">=</span> <span class="st">"2020-01-02"</span>,</span></span>
+<span class="r-in"><span>AESTDTC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>AESPID <span class="op">=</span> <span class="st">"FORMNAME-R:5/L:5XXXX"</span>,</span></span>
+<span class="r-in"><span>stringsAsFactors<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># expect pass</span></span></span>
 <span class="r-in"><span><span class="fu">check_ae_aedthdtc_aesdth</span><span class="op">(</span><span class="va">AE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE has AESDTH not equal to 'Y' where AEDTHDTC has a value. "</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID AEDECOD    AESTDTC   AEDTHDTC AESDTH</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       1       a 2020-01-01 2020-01-01       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2       2       b 2020-01-01 2020-01-01       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="fu">check_ae_aedthdtc_aesdth</span><span class="op">(</span><span class="va">AE</span>,preproc<span class="op">=</span><span class="va">roche_derive_rave_row</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># expect fail </span></span></span>
+<span class="r-in"><span><span class="va">AE1</span> <span class="op">&lt;-</span> <span class="va">AE</span></span></span>
+<span class="r-in"><span><span class="va">AE1</span><span class="op">$</span><span class="va">AESDTH</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"N"</span></span></span>
+<span class="r-in"><span><span class="fu">check_ae_aedthdtc_aesdth</span><span class="op">(</span><span class="va">AE1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE has AESDTH not equal to 'Y' where AEDTHDTC has a value. "</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE has 1 record(s) with AESDTH not equal to 'Y' where AEDTHDTC has a value. "</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID AEDECOD    AESTDTC   AEDTHDTC AESDTH          RAVE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       1       a 2020-01-01 2020-01-01        FORMNAME-R:13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2       2       b 2020-01-01 2020-01-01        FORMNAME-R:13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID AETERM AEDECOD AESTDTC   AEDTHDTC AESDTH</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       3      c       c       3 2020-01-02      N</span>
+<span class="r-in"><span><span class="fu">check_ae_aedthdtc_aesdth</span><span class="op">(</span><span class="va">AE1</span>,preproc<span class="op">=</span><span class="va">roche_derive_rave_row</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE has 1 record(s) with AESDTH not equal to 'Y' where AEDTHDTC has a value. "</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID AETERM AEDECOD AESTDTC   AEDTHDTC AESDTH         RAVE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       3      c       c       3 2020-01-02      N FORMNAME-R:5</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># expect fail with AESDTH = NA</span></span></span>
+<span class="r-in"><span><span class="va">AE2</span> <span class="op">&lt;-</span> <span class="va">AE</span></span></span>
+<span class="r-in"><span><span class="va">AE2</span><span class="op">$</span><span class="va">AESDTH</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span></span>
+<span class="r-in"><span><span class="fu">check_ae_aedthdtc_aesdth</span><span class="op">(</span><span class="va">AE2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE has 1 record(s) with AESDTH not equal to 'Y' where AEDTHDTC has a value. "</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID AETERM AEDECOD AESTDTC   AEDTHDTC AESDTH</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       4      d       d       4 2020-01-02   &lt;NA&gt;</span>
+<span class="r-in"><span><span class="fu">check_ae_aedthdtc_aesdth</span><span class="op">(</span><span class="va">AE2</span>,preproc<span class="op">=</span><span class="va">roche_derive_rave_row</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE has 1 record(s) with AESDTH not equal to 'Y' where AEDTHDTC has a value. "</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID AETERM AEDECOD AESTDTC   AEDTHDTC AESDTH         RAVE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       4      d       d       4 2020-01-02   &lt;NA&gt; FORMNAME-R:5</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># non-required variable missing</span></span></span>
+<span class="r-in"><span><span class="va">AE2</span><span class="op">$</span><span class="va">AESPID</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span></span>
+<span class="r-in"><span><span class="fu">check_ae_aedthdtc_aesdth</span><span class="op">(</span><span class="va">AE2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE has 1 record(s) with AESDTH not equal to 'Y' where AEDTHDTC has a value. "</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID AETERM AEDECOD AESTDTC   AEDTHDTC AESDTH</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       4      d       d       4 2020-01-02   &lt;NA&gt;</span>
+<span class="r-in"><span><span class="fu">check_ae_aedthdtc_aesdth</span><span class="op">(</span><span class="va">AE2</span>,preproc<span class="op">=</span><span class="va">roche_derive_rave_row</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE has 1 record(s) with AESDTH not equal to 'Y' where AEDTHDTC has a value. "</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID AETERM AEDECOD AESTDTC   AEDTHDTC AESDTH</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       4      d       d       4 2020-01-02   &lt;NA&gt;</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># required variable missing </span></span></span>
+<span class="r-in"><span><span class="va">AE2</span><span class="op">$</span><span class="va">AESDTH</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span></span>
+<span class="r-in"><span><span class="fu">check_ae_aedthdtc_aesdth</span><span class="op">(</span><span class="va">AE2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE is missing the variable: AESDTH"</span>
+<span class="r-in"><span><span class="fu">check_ae_aedthdtc_aesdth</span><span class="op">(</span><span class="va">AE2</span>,preproc<span class="op">=</span><span class="va">roche_derive_rave_row</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE is missing the variable: AESDTH"</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -173,7 +230,7 @@ attribute if the check failed</p>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Will Harris.</p>
+  <p></p><p>Developed by Will Harris, Sara Bodach, Edgar Manukyan, Adrian Waddell, F. Hoffmann-La Roche AG.</p>
 </div>
 
 <div class="pkgdown">

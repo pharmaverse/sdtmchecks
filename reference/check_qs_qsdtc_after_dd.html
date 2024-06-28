@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11.9010</span>
       </span>
     </div>
 
@@ -122,6 +122,12 @@ DSSTDTC, DSDECOD, and DSTERM</p></dd>
 USUBJID, QSDTC, QSCAT, and QSORRES</p></dd>
 
 </dl></div>
+    <div id="value">
+    <h2>Value</h2>
+    
+
+<p>boolean value if check failed or passed with 'msg' attribute if the test failed</p>
+    </div>
     <div id="author">
     <h2>Author</h2>
     <p>Monarch Shah</p>
@@ -133,7 +139,7 @@ USUBJID, QSDTC, QSCAT, and QSORRES</p></dd>
 <span class="r-in"><span><span class="va">AE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>USUBJID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                 AEDTHDTC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">""</span>, <span class="st">"2016-01-01"</span>, <span class="st">""</span>, <span class="st">"2016-01"</span>, <span class="st">"2016-01-01"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                 AESTDTC <span class="op">=</span> <span class="st">"2016-01-01"</span>,</span></span>
-<span class="r-in"><span>                 AEDECOD <span class="op">=</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>                 AEDECOD <span class="op">=</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>                 AETERM <span class="op">=</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>                 stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -144,7 +150,7 @@ USUBJID, QSDTC, QSCAT, and QSORRES</p></dd>
 <span class="r-in"><span>                 stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">QS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>USUBJID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                 QSDTC   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2015-06-30"</span>, <span class="st">"2015-09-30"</span>, <span class="st">"2015-12-30"</span>, </span></span>
+<span class="r-in"><span>                 QSDTC   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2015-06-30"</span>, <span class="st">"2015-09-30"</span>, <span class="st">"2015-12-30"</span>,</span></span>
 <span class="r-in"><span>                             <span class="st">"2015-06-30"</span>, <span class="st">"2015-09-30"</span>, <span class="st">"2015-12-30"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                 QSCAT   <span class="op">=</span> <span class="st">"A"</span>,</span></span>
 <span class="r-in"><span>                 QSORRES <span class="op">=</span>  <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>,</span></span>
@@ -237,7 +243,7 @@ USUBJID, QSDTC, QSCAT, and QSORRES</p></dd>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Will Harris.</p>
+  <p></p><p>Developed by Will Harris, Sara Bodach, Edgar Manukyan, Adrian Waddell, F. Hoffmann-La Roche AG.</p>
 </div>
 
 <div class="pkgdown">

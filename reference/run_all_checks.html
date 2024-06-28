@@ -19,7 +19,7 @@ These dataframes should have lowercase names, e.g., dm."><!-- mathjax --><script
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11.9010</span>
       </span>
     </div>
 
@@ -164,16 +164,33 @@ command ??sdtmchecks</p>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Assuming sdtm datasets are in your global environment</span></span></span>
+<span class="r-in"><span><span class="co"># Note we are only specifying AE and DS here so all unrelated checks wont be run</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">ae</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    STUDYID <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>    USUBJID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    AESTDTC <span class="op">=</span> <span class="st">'2020-05-05'</span>,</span></span>
+<span class="r-in"><span>    AETERM  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"abc Covid-19"</span>, <span class="st">"covid TEST POSITIVE"</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"other AE"</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    AEDECOD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"COVID-19"</span>, <span class="st">"CORONAVIRUS POSITIVE"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"OTHER AE"</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    AEACN <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DRUG WITHDRAWN"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"DOSE NOT CHANGED"</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    AESPID <span class="op">=</span> <span class="st">"FORMNAME-R:13/L:13XXXX"</span>,</span></span>
+<span class="r-in"><span>    stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">ds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span> USUBJID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> DSSPID  <span class="op">=</span> <span class="st">'XXX-DISCTX-XXX'</span>,</span></span>
+<span class="r-in"><span> DSCAT   <span class="op">=</span> <span class="st">"DISPOSITION EVENT"</span>,</span></span>
+<span class="r-in"><span> DSDECOD <span class="op">=</span> <span class="st">"OTHER REASON"</span>,</span></span>
+<span class="r-in"><span> DSSEQ <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">all_rec</span><span class="op">&lt;-</span><span class="fu">run_all_checks</span><span class="op">(</span>metads<span class="op">=</span><span class="va">sdtmchecksmeta</span>, </span></span>
-<span class="r-in"><span>                        priority<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"High"</span>,<span class="st">"Medium"</span>,<span class="st">"Low"</span><span class="op">)</span>, </span></span>
-<span class="r-in"><span>                        type<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ALL"</span>, <span class="st">"ONC"</span>, <span class="st">"COVID"</span>, <span class="st">"PRO"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">all_rec</span><span class="op">&lt;-</span><span class="fu">run_all_checks</span><span class="op">(</span>metads<span class="op">=</span><span class="va">sdtmchecksmeta</span>, </span></span>
-<span class="r-in"><span>                        priority<span class="op">=</span><span class="cn">NULL</span>, </span></span>
-<span class="r-in"><span>                        type<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ONC"</span>, <span class="st">"COVID"</span>, <span class="st">"PRO"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span>                        verbose<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span>                        </span></span>
 </code></pre></div>
     </div>
   </div>
@@ -184,7 +201,7 @@ command ??sdtmchecks</p>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Will Harris.</p>
+  <p></p><p>Developed by Will Harris, Sara Bodach, Edgar Manukyan, Adrian Waddell, F. Hoffmann-La Roche AG.</p>
 </div>
 
 <div class="pkgdown">

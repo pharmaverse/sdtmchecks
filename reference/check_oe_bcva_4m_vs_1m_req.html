@@ -24,7 +24,7 @@ If they are happening on different dates, such records will be removed and not c
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11.9010</span>
       </span>
     </div>
 
@@ -126,6 +126,12 @@ If they are happening on different dates, such records will be removed and not c
 OERESCAT, VISIT, OEDTC, OEDY</p></dd>
 
 </dl></div>
+    <div id="value">
+    <h2>Value</h2>
+    
+
+<p>boolean value if check failed or passed with 'msg' attribute if the test failed</p>
+    </div>
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p>Other OPHTH: 
@@ -153,12 +159,12 @@ OERESCAT, VISIT, OEDTC, OEDY</p></dd>
 <span class="r-in"><span>  OETSTDTL <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"TESTING DISTANCE: 4M"</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"TESTING DISTANCE: 1M"</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  OESCAT <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">""</span>, <span class="fl">3</span><span class="op">)</span>, <span class="st">"TOTAL"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">""</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"TOTAL"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  OESTAT <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">""</span>, <span class="fl">7</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  OERESCAT <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ROW 1 - SNELLEN 20/200"</span>, </span></span>
-<span class="r-in"><span>               <span class="st">"ROW 2 - SNELLEN 20/160"</span>, </span></span>
-<span class="r-in"><span>               <span class="st">"ROW 3 - SNELLEN 20/125"</span>, </span></span>
+<span class="r-in"><span>  OERESCAT <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ROW 1 - SNELLEN 20/200"</span>,</span></span>
+<span class="r-in"><span>               <span class="st">"ROW 2 - SNELLEN 20/160"</span>,</span></span>
+<span class="r-in"><span>               <span class="st">"ROW 3 - SNELLEN 20/125"</span>,</span></span>
 <span class="r-in"><span>               <span class="st">""</span>,</span></span>
-<span class="r-in"><span>               <span class="st">"ROW 1 - SNELLEN 20/200"</span>, </span></span>
-<span class="r-in"><span>               <span class="st">"ROW 2 - SNELLEN 20/160"</span>, </span></span>
+<span class="r-in"><span>               <span class="st">"ROW 1 - SNELLEN 20/200"</span>,</span></span>
+<span class="r-in"><span>               <span class="st">"ROW 2 - SNELLEN 20/160"</span>,</span></span>
 <span class="r-in"><span>               <span class="st">""</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  VISIT <span class="op">=</span> <span class="st">"WEEK 1"</span>,</span></span>
 <span class="r-in"><span>  VISITNUM <span class="op">=</span> <span class="fl">5</span>,</span></span>
@@ -184,9 +190,9 @@ OERESCAT, VISIT, OEDTC, OEDY</p></dd>
 <span class="r-in"><span>  OETSTDTL <span class="op">=</span> <span class="st">"TESTING DISTANCE: 4M"</span>,</span></span>
 <span class="r-in"><span>  OESCAT <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">""</span>, <span class="fl">3</span><span class="op">)</span>, <span class="st">"TOTAL"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  OESTAT <span class="op">=</span> <span class="st">""</span>,</span></span>
-<span class="r-in"><span>  OERESCAT <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ROW 1 - SNELLEN 20/200"</span>, </span></span>
-<span class="r-in"><span>               <span class="st">"ROW 2 - SNELLEN 20/160"</span>, </span></span>
-<span class="r-in"><span>               <span class="st">"ROW 3 - SNELLEN 20/125"</span>, </span></span>
+<span class="r-in"><span>  OERESCAT <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ROW 1 - SNELLEN 20/200"</span>,</span></span>
+<span class="r-in"><span>               <span class="st">"ROW 2 - SNELLEN 20/160"</span>,</span></span>
+<span class="r-in"><span>               <span class="st">"ROW 3 - SNELLEN 20/125"</span>,</span></span>
 <span class="r-in"><span>               <span class="st">""</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  VISIT <span class="op">=</span> <span class="st">"WEEK 1"</span>,</span></span>
 <span class="r-in"><span>  VISITNUM <span class="op">=</span> <span class="fl">5</span>,</span></span>
@@ -216,7 +222,7 @@ OERESCAT, VISIT, OEDTC, OEDY</p></dd>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Will Harris.</p>
+  <p></p><p>Developed by Will Harris, Sara Bodach, Edgar Manukyan, Adrian Waddell, F. Hoffmann-La Roche AG.</p>
 </div>
 
 <div class="pkgdown">

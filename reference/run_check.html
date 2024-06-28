@@ -23,7 +23,7 @@ the run_all_checks_parallel function, which loops over the checks in the rows of
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11.9010</span>
       </span>
     </div>
 
@@ -176,22 +176,59 @@ the run_all_checks_parallel function, which loops over the checks in the rows of
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Assuming sdtm datasets are in your global environment</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">metads</span> <span class="op">&lt;-</span> <span class="va">sdtmchecksmeta</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span> <span class="co"># Filter sdtmchecksmeta so that only one check is present</span></span></span>
+<span class="r-in"><span> <span class="va">ae</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span> USUBJID <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span></span>
+<span class="r-in"><span> DOMAIN <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"AE"</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> AESEQ <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span></span>
+<span class="r-in"><span> AESTDTC <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span></span>
+<span class="r-in"><span> AETERM <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span></span>
+<span class="r-in"><span> AEDECOD <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span></span>
+<span class="r-in"><span>  AESPID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FORMNAME-R:13/L:13XXXX"</span>,</span></span>
+<span class="r-in"><span>             <span class="st">"FORMNAME-R:16/L:16XXXX"</span>,</span></span>
+<span class="r-in"><span>             <span class="st">"FORMNAME-R:2/L:2XXXX"</span>,</span></span>
+<span class="r-in"><span>             <span class="st">"FORMNAME-R:19/L:19XXXX"</span>,</span></span>
+<span class="r-in"><span>             <span class="st">"FORMNAME-R:5/L:5XXXX"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">rec</span> <span class="op">&lt;-</span> <span class="fu">run_check</span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">ae</span><span class="op">$</span><span class="va">AEDECOD</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">=</span> <span class="cn">NA</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Filter sdtmchecksmeta so that only one check is present</span></span></span>
+<span class="r-in"><span><span class="va">metads</span> <span class="op">&lt;-</span> <span class="va">sdtmchecksmeta</span><span class="op">[</span><span class="va">sdtmchecksmeta</span><span class="op">$</span><span class="va">check</span><span class="op">==</span><span class="st">"check_ae_aedecod"</span>,<span class="op">]</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">run_check</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  check <span class="op">=</span> <span class="va">metads</span><span class="op">$</span><span class="va">check</span>,</span></span>
 <span class="r-in"><span>  fxn_in <span class="op">=</span> <span class="va">metads</span><span class="op">$</span><span class="va">fxn_in</span>,</span></span>
 <span class="r-in"><span>  xls_title <span class="op">=</span> <span class="va">metads</span><span class="op">$</span><span class="va">xls_title</span>,</span></span>
 <span class="r-in"><span>  pdf_title <span class="op">=</span> <span class="va">metads</span><span class="op">$</span><span class="va">pdf_title</span>,</span></span>
 <span class="r-in"><span>  pdf_subtitle <span class="op">=</span> <span class="va">metads</span><span class="op">$</span><span class="va">pdf_subtitle</span>,</span></span>
 <span class="r-in"><span>  pdf_return <span class="op">=</span> <span class="va">metads</span><span class="op">$</span><span class="va">pdf_return</span>,</span></span>
-<span class="r-in"><span>  verbose <span class="op">=</span> <span class="cn">T</span></span></span>
+<span class="r-in"><span>  verbose <span class="op">=</span> <span class="cn">FALSE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $xls_title</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE Missing PT"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $pdf_title</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Check for AEs with missing Dictionary Derived Term"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $pdf_subtitle</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "* This check looks for AEs with missing Dictionary Derived Term (AEDECOD)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $nrec</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $notes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "ATTENTION! Check was not run: AE does not exist or failed to read"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $msg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> character(0)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> data frame with 0 columns and 0 rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </div>
@@ -202,7 +239,7 @@ the run_all_checks_parallel function, which loops over the checks in the rows of
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Will Harris.</p>
+  <p></p><p>Developed by Will Harris, Sara Bodach, Edgar Manukyan, Adrian Waddell, F. Hoffmann-La Roche AG.</p>
 </div>
 
 <div class="pkgdown">

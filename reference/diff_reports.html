@@ -28,7 +28,7 @@ old results not in the new report because they were presumably resolved.'><!-- m
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11.9010</span>
       </span>
     </div>
 
@@ -153,27 +153,69 @@ old results not in the new report because they were presumably resolved.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Step 1: Simular an older AE dataset with one missing preferred term</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## use the run_all_checks() function to generate list of check results </span></span></span>
-<span class="r-in"><span><span class="va">all_rec</span> <span class="op">&lt;-</span> <span class="fu">sdtmchecks</span><span class="fu">::</span><span class="fu"><a href="run_all_checks.html">run_all_checks</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="va">ae</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span> USUBJID <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span></span>
+<span class="r-in"><span> DOMAIN <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"AE"</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> AESEQ <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span></span>
+<span class="r-in"><span> AESTDTC <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span></span>
+<span class="r-in"><span> AETERM <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span></span>
+<span class="r-in"><span> AEDECOD <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span></span>
+<span class="r-in"><span>  AESPID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FORMNAME-R:13/L:13XXXX"</span>,</span></span>
+<span class="r-in"><span>             <span class="st">"FORMNAME-R:16/L:16XXXX"</span>,</span></span>
+<span class="r-in"><span>             <span class="st">"FORMNAME-R:2/L:2XXXX"</span>,</span></span>
+<span class="r-in"><span>             <span class="st">"FORMNAME-R:19/L:19XXXX"</span>,</span></span>
+<span class="r-in"><span>             <span class="st">"FORMNAME-R:5/L:5XXXX"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## save results as .RDS file</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">all_rec</span>, file<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"saved_reports/sdtmchecks_"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">".rds"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ae</span><span class="op">$</span><span class="va">AEDECOD</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">=</span> <span class="cn">NA</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## re-run the above steps on a different snapshot for the same study</span></span></span>
+<span class="r-in"><span><span class="co"># Step 2: Use the run_all_checks() function to generate list of check results on this "old" data</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span><span class="va">metads</span> <span class="op">&lt;-</span> <span class="va">sdtmchecksmeta</span><span class="op">[</span><span class="va">sdtmchecksmeta</span><span class="op">$</span><span class="va">check</span><span class="op">==</span><span class="st">"check_ae_aedecod"</span>,<span class="op">]</span> <span class="co"># Filter sdtmchecksmeta so that only one check is present</span></span></span>
+<span class="r-in"><span><span class="va">old</span> <span class="op">&lt;-</span> <span class="fu"><a href="run_all_checks.html">run_all_checks</a></span><span class="op">(</span>metads<span class="op">=</span><span class="va">metads</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Domain not found: ae. Checks requiring this domain were not run.</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## read in the previously created RDS files </span></span></span>
-<span class="r-in"><span><span class="va">old</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="st">"saved_reports/sdtmchecks_01JAN2023.rds"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">new</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="st">"saved_reports/sdtmchecks_01FEB2023.rds"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## run sdtmchecks::diff_reports()</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#Step 3: Simulate a newer, updated AE dataset with another record with a new missing preferred term</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span> <span class="va">ae</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span> USUBJID <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,</span></span>
+<span class="r-in"><span> DOMAIN <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"AE"</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> AESEQ <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,</span></span>
+<span class="r-in"><span> AESTDTC <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,</span></span>
+<span class="r-in"><span> AETERM <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,</span></span>
+<span class="r-in"><span> AEDECOD <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,</span></span>
+<span class="r-in"><span>  AESPID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FORMNAME-R:13/L:13XXXX"</span>,</span></span>
+<span class="r-in"><span>             <span class="st">"FORMNAME-R:16/L:16XXXX"</span>,</span></span>
+<span class="r-in"><span>             <span class="st">"FORMNAME-R:2/L:2XXXX"</span>,</span></span>
+<span class="r-in"><span>             <span class="st">"FORMNAME-R:19/L:19XXXX"</span>,</span></span>
+<span class="r-in"><span>             <span class="st">"FORMNAME-R:5/L:5XXXX"</span>,</span></span>
+<span class="r-in"><span>             <span class="st">"FORMNAME-R:1/L:5XXXX"</span></span></span>
+<span class="r-in"><span>             <span class="op">)</span>,</span></span>
+<span class="r-in"><span> stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">ae</span><span class="op">$</span><span class="va">AEDECOD</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">=</span> <span class="cn">NA</span></span></span>
+<span class="r-in"><span><span class="va">ae</span><span class="op">$</span><span class="va">AEDECOD</span><span class="op">[</span><span class="fl">6</span><span class="op">]</span> <span class="op">=</span> <span class="cn">NA</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Step 4: use the run_all_checks() function to generate list of check results  on this "new" data</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">new</span> <span class="op">&lt;-</span> <span class="fu"><a href="run_all_checks.html">run_all_checks</a></span><span class="op">(</span>metads<span class="op">=</span><span class="va">metads</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Domain not found: ae. Checks requiring this domain were not run.</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Step 5: Diff to create a column indicating if the finding is new</span></span></span>
 <span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">diff_reports</span><span class="op">(</span>old_report<span class="op">=</span><span class="va">old</span>, new_report<span class="op">=</span><span class="va">new</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## output results as spreadsheet with sdtmchecks::report_to_xlsx()</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="report_to_xlsx.html">report_to_xlsx</a></span><span class="op">(</span><span class="va">res</span>, outfile<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"saved_reports/sdtmchecks_diff_"</span>,<span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>,<span class="st">".xlsx"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">## optionally output results as spreadsheet with sdtmchecks::report_to_xlsx()</span></span></span>
+<span class="r-in"><span><span class="co"># report_to_xlsx(res, outfile=paste0("saved_reports/sdtmchecks_diff_",Sys.Date(),".xlsx"))</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -185,7 +227,7 @@ old results not in the new report because they were presumably resolved.</p>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Will Harris.</p>
+  <p></p><p>Developed by Will Harris, Sara Bodach, Edgar Manukyan, Adrian Waddell, F. Hoffmann-La Roche AG.</p>
 </div>
 
 <div class="pkgdown">

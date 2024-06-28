@@ -21,7 +21,7 @@ record in DS (DS.DSSCAT includes "STUDY" and "DISCON" and excludes "DRUG" and
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.11.9010</span>
       </span>
     </div>
 
@@ -110,7 +110,11 @@ record in DS (DS.DSSCAT includes "STUDY" and "DISCON" and excludes "DRUG" and
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">check_ae_aeacnoth_ds_stddisc_covid</span><span class="op">(</span><span class="va">AE</span>, <span class="va">DS</span>, covid_df <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">check_ae_aeacnoth_ds_stddisc_covid</span><span class="op">(</span></span>
+<span>  <span class="va">AE</span>,</span>
+<span>  <span class="va">DS</span>,</span>
+<span>  covid_terms <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"COVID-19"</span>, <span class="st">"CORONAVIRUS POSITIVE"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -124,8 +128,8 @@ AEACNOT* (can be multiple variables)</p></dd>
 <dd><p>Disposition SDTM dataset with variables USUBJID, DSSCAT, DSDECOD</p></dd>
 
 
-<dt>covid_df</dt>
-<dd><p>dataframe of AE terms identify COVID-19, contains variable REFTERM</p></dd>
+<dt>covid_terms</dt>
+<dd><p>A length &gt;=1 vector of AE terms identifying COVID-19 (case does not matter)</p></dd>
 
 </dl></div>
     <div id="value">
@@ -150,14 +154,9 @@ test failed</p>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">covid_df</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>REFTERM <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"COVID-19"</span>,</span></span>
-<span class="r-in"><span>                                  <span class="st">"CORONAVIRUS POSITIVE"</span></span></span>
-<span class="r-in"><span>                                  <span class="op">)</span></span></span>
-<span class="r-in"><span>                     <span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">AE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span> USUBJID <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span></span>
-<span class="r-in"><span> AEDECOD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"covid-19"</span>, <span class="st">"covid-19"</span>, <span class="st">"covid-19"</span>,<span class="st">"Some AE"</span>, <span class="st">"CORONAVIRUS POSITIVE"</span> <span class="op">)</span>,</span></span>
+<span class="r-in"><span> AEDECOD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"This is a covid AE"</span>, <span class="st">"covid-19"</span>, <span class="st">"covid-19"</span>,<span class="st">"Some AE"</span>, <span class="st">"CORONAVIRUS POSITIVE"</span> <span class="op">)</span>,</span></span>
 <span class="r-in"><span> AEACNOTH<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SUBJECT DISCONTINUED FROM STUDY"</span>,</span></span>
 <span class="r-in"><span>            <span class="st">"NONE"</span>,</span></span>
 <span class="r-in"><span>            <span class="st">"NONE"</span>, </span></span>
@@ -183,13 +182,25 @@ test failed</p>
 <span class="r-in"><span> DSDECOD<span class="op">=</span><span class="st">"DISCON REASON"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">check_ae_aeacnoth_ds_stddisc_covid</span><span class="op">(</span><span class="va">AE</span>,<span class="va">DS</span>,covid_df <span class="op">=</span> <span class="va">covid_df</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">#expect fail</span></span></span>
+<span class="r-in"><span><span class="fu">check_ae_aeacnoth_ds_stddisc_covid</span><span class="op">(</span><span class="va">AE</span>,<span class="va">DS</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Found 2 patient(s) with COVID-related AE(s) leading to Study Discon, but no corresponding Study Discon in DS. "</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Found 1 patient(s) with COVID-related AE(s) leading to Study Discon, but no corresponding Study Discon in DS.  Default terms used for identifying Covid AEs: COVID-19,CORONAVIRUS POSITIVE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID              AEDECOD DSDECOD DSSCAT AEACNOTH</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       5 CORONAVIRUS POSITIVE    &lt;NA&gt;   &lt;NA&gt;     NONE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         AEACNOTH1 AEACNOTH2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 SUBJECT DISCONTINUED FROM STUDY      NONE</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#use custom terms for identifying covid AEs</span></span></span>
+<span class="r-in"><span><span class="fu">check_ae_aeacnoth_ds_stddisc_covid</span><span class="op">(</span><span class="va">AE</span>,<span class="va">DS</span>,covid_terms<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"COVID-19"</span>, <span class="st">"CORONAVIRUS POSITIVE"</span>,<span class="st">"THIS IS A COVID AE"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Found 2 patient(s) with COVID-related AE(s) leading to Study Discon, but no corresponding Study Discon in DS.  "</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"data")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   USUBJID              AEDECOD DSDECOD DSSCAT                        AEACNOTH</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       1             COVID-19    &lt;NA&gt;   &lt;NA&gt; SUBJECT DISCONTINUED FROM STUDY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       1   This is a covid AE    &lt;NA&gt;   &lt;NA&gt; SUBJECT DISCONTINUED FROM STUDY</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3       5 CORONAVIRUS POSITIVE    &lt;NA&gt;   &lt;NA&gt;                            NONE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         AEACNOTH1                       AEACNOTH2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 SUBJECT DISCONTINUED FROM STUDY SUBJECT DISCONTINUED FROM STUDY</span>
@@ -205,7 +216,7 @@ test failed</p>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Will Harris.</p>
+  <p></p><p>Developed by Will Harris, Sara Bodach, Edgar Manukyan, Adrian Waddell, F. Hoffmann-La Roche AG.</p>
 </div>
 
 <div class="pkgdown">
