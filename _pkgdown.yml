@@ -75,7 +75,6 @@ reference:
   desc: Helper functions for data checks tailored to company-specific data inputs.
   contents:
   - roche_derive_rave_row
-  - roche_covid_df
   
   
 news:
