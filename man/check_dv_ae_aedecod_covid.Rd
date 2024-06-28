@@ -4,14 +4,18 @@
 \alias{check_dv_ae_aedecod_covid}
 \title{Check for consistency between DV and AE for COVID-19 events}
 \usage{
-check_dv_ae_aedecod_covid(AE, DV, covid_df = NULL)
+check_dv_ae_aedecod_covid(
+  AE,
+  DV,
+  covid_terms = c("COVID-19", "CORONAVIRUS POSITIVE")
+)
 }
 \arguments{
 \item{AE}{Adverse Events SDTM dataset with variables USUBJID, AEDECOD}
 
 \item{DV}{Protocol Deviation SDTM dataset with variables USUBJID, DVREAS}
 
-\item{covid_df}{Dataframe of AE terms identify COVID-19, contains variable REFTERM}
+\item{covid_terms}{A length >=1 vector of AE terms identifying COVID-19 (case does not matter)}
 }
 \value{
 boolean value if check returns 0 obs, otherwise return subset dataframe.
@@ -22,14 +26,9 @@ should also have COVID-related AE where AE.AEDECOD matches covid.REFTERM.
 }
 \examples{
 
-covid_df = data.frame(REFTERM = c("COVID-19",
-                                  "CORONAVIRUS POSITIVE"
-                                  )
-                     )
-
 AE <- data.frame(
  USUBJID = 1:6,
- AEDECOD = c("covid-19", "covid-19","some AE","some AE","CORONAVIRUS POSITIVE","UNMAPPED")
+ AEDECOD = c("pandemic", "covid-19","some AE","some AE","CORONAVIRUS POSITIVE","UNMAPPED")
 )
 
 DV <- data.frame(
@@ -42,7 +41,12 @@ DV <- data.frame(
           "SUSPECTED EPIDEMIC/PANDEMIC INFECTION")
 )
 
-check_dv_ae_aedecod_covid(AE,DV,covid_df)
+check_dv_ae_aedecod_covid(AE,DV)
+
+
+# Pass specific covid terms
+
+check_dv_ae_aedecod_covid(AE,DV,covid_terms=c("COVID-19", "CORONAVIRUS POSITIVE","PANDEMIC"))
 
 }
 \seealso{

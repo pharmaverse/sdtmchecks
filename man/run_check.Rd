@@ -46,22 +46,38 @@ to look up documentation for the data checks package, please use command ??sdtmc
 }
 \examples{
 
-\dontrun{
 
 # Assuming sdtm datasets are in your global environment
 
-metads <- sdtmchecksmeta[1,] # Filter sdtmchecksmeta so that only one check is present
+ ae <- data.frame(
+ USUBJID = 1:5,
+ DOMAIN = c(rep("AE", 5)),
+ AESEQ = 1:5,
+ AESTDTC = 1:5,
+ AETERM = 1:5,
+ AEDECOD = 1:5,
+  AESPID = c("FORMNAME-R:13/L:13XXXX",
+             "FORMNAME-R:16/L:16XXXX",
+             "FORMNAME-R:2/L:2XXXX",
+             "FORMNAME-R:19/L:19XXXX",
+             "FORMNAME-R:5/L:5XXXX"),
+ stringsAsFactors = FALSE
+)
 
-rec <- run_check(
+ae$AEDECOD[1] = NA
+
+# Filter sdtmchecksmeta so that only one check is present
+metads <- sdtmchecksmeta[sdtmchecksmeta$check=="check_ae_aedecod",] 
+
+run_check(
   check = metads$check,
   fxn_in = metads$fxn_in,
   xls_title = metads$xls_title,
   pdf_title = metads$pdf_title,
   pdf_subtitle = metads$pdf_subtitle,
   pdf_return = metads$pdf_return,
-  verbose = T
+  verbose = FALSE
 )
-}
 }
 \seealso{
 Example programs for running data checks

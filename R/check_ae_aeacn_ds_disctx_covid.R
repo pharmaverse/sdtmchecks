@@ -11,8 +11,7 @@
 #' @param AE Adverse Events SDTM dataset with variables USUBJID, AETERM, AEDECOD, 
 #' AESTDTC, AEACNx
 #' @param DS Disposition SDTM dataset with variables USUBJID, DSSPID, DSCAT, DSDECOD
-#' @param covid_df Dataframe of AE preferred terms for COVID-19, containing the 
-#' variable REFTERM
+#' @param covid_terms A length >=1 vector of AE terms identifying COVID-19 (case does not matter)
 #'
 #' @return boolean value if check returns 0 obs, otherwise return subset dataframe.
 #'
@@ -26,10 +25,6 @@
 #'
 #' @examples
 #' 
-#' covid_df = data.frame(REFTERM = c("COVID-19",
-#'                                   "CORONAVIRUS POSITIVE"
-#'                                   )
-#'                      )
 #' AE <- data.frame(
 #'     STUDYID = 1,
 #'     USUBJID = c(1,2,3,1,2,3),
@@ -51,7 +46,7 @@
 #' )
 #'
 #' # expect fail
-#' check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df)
+#' check_ae_aeacn_ds_disctx_covid(AE, DS)
 #'
 #' 
 #' AE2 <- data.frame( 
@@ -65,34 +60,37 @@
 #' AE2$AEACN <- "MULTIPLE" 
 #' 
 #' # expect fail
-#' check_ae_aeacn_ds_disctx_covid(AE2, DS, covid_df)
+#' check_ae_aeacn_ds_disctx_covid(AE2, DS)
 #' 
 #' DS[1, "DSDECOD"] <- 'ADVERSE EVENT'
 #' # this passes, one form with DSDECOD = "ADVERSE EVENT"
 #' ## NOTE: This may be a false negative if study-specific data collection 
 #' ##       requires >1 record with DSDECOD = "ADVERSE EVENT" and not just one record
-#' check_ae_aeacn_ds_disctx_covid(AE2, DS, covid_df)
+#' check_ae_aeacn_ds_disctx_covid(AE2, DS)
 #'
 #' # expect pass
-#' check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df)
+#' check_ae_aeacn_ds_disctx_covid(AE, DS)
 #' 
 #'
 #' # non-required variable is missing
 #' DS$DSSEQ <- NULL
-#' check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df)
+#' check_ae_aeacn_ds_disctx_covid(AE, DS)
 #' 
 #' # required variable is missing 
 #' DS$DSSPID <- NULL
-#' check_ae_aeacn_ds_disctx_covid(AE, DS, covid_df)
+#' check_ae_aeacn_ds_disctx_covid(AE, DS)
 #' 
 #' 
 
-check_ae_aeacn_ds_disctx_covid <- function(AE,DS,covid_df = NULL) {
+check_ae_aeacn_ds_disctx_covid <- function(AE,DS,covid_terms=c("COVID-19", "CORONAVIRUS POSITIVE")) {
 
-    if (is.null(covid_df)){
+    if(is.null(covid_terms)|
+       (!is.null(covid_terms) & !is.character(covid_terms))|
+       (!is.null(covid_terms) & is.character(covid_terms) & length(covid_terms)<1)|
+       (!is.null(covid_terms) & is.character(covid_terms) & length(covid_terms)>=1 & all(is_sas_na(covid_terms)))
+    ){
        
-        message("check_ae_aeacn_ds_disctx_covid: Check not run, did not detect COVID-19 preferred terms")
-        fail("Check not run, did not detect COVID-19 preferred terms") 
+        fail("Check not run, did not detect COVID-19 preferred terms.  Character vector of terms expected.") 
         
     } else if( AE %lacks_any% c("USUBJID", "AETERM", "AEDECOD", "AESTDTC", "AEACN")){
 
@@ -103,10 +101,17 @@ check_ae_aeacn_ds_disctx_covid <- function(AE,DS,covid_df = NULL) {
         fail(lacks_msg(DS, c("USUBJID", "DSSPID", "DSCAT", "DSDECOD")))
 
     } else{
+        
+        #let used know terms used
+        if(identical(covid_terms,c("COVID-19", "CORONAVIRUS POSITIVE"))){
+            outmsg=paste("Default terms used for identifying Covid AEs:",paste(covid_terms,collapse=","))
+        }else{
+            outmsg=""
+        }
 
         # keep COVID-19 AEs on which we want to check action taken with treatment
-        ae_covid <- merge(x = AE, y = covid_df,
-                          by.x = toupper("AEDECOD"), by.y = toupper("REFTERM"))
+        ae_covid <- AE %>% 
+            filter(toupper(AEDECOD) %in% toupper(covid_terms))
 
         # keep columns that are needed
         ae0 <- subset(ae_covid,
@@ -158,7 +163,10 @@ check_ae_aeacn_ds_disctx_covid <- function(AE,DS,covid_df = NULL) {
         } else if (nrow(mydf)>0) {
 
             return(fail(paste(length(unique(mydf$USUBJID)),
-                              " patient(s) with COVID-19 AE indicating drug withdrawn but no Treatment Discon form indicating AE. ", sep=""), mydf))
+                              " patient(s) with COVID-19 AE indicating drug withdrawn but no Treatment Discon form indicating AE. ",
+                              outmsg
+                              
+                              , sep=""), mydf))
 
         } #end else if mydf>0
     }  # end else if all required vars present

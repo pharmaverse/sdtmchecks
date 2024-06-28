@@ -5,13 +5,13 @@
 #'
 #' @param AE Adverse Events SDTM dataset with variables USUBJID, AEDECOD
 #' @param DV Protocol Deviation SDTM dataset with variables USUBJID, DVREAS
-#' @param covid_df Dataframe of AE terms identify COVID-19, contains variable REFTERM
+#' @param covid_terms A length >=1 vector of AE terms identifying COVID-19 (case does not matter)
 #'
 #' @return boolean value if check returns 0 obs, otherwise return subset dataframe.
 #'
 #' @export
 #'
-#' @importFrom dplyr %>% filter select rename semi_join mutate distinct
+#' @importFrom dplyr %>% filter select
 #'
 #' @author Natalie Springfield
 #' 
@@ -21,14 +21,9 @@
 #'
 #' @examples
 #' 
-#' covid_df = data.frame(REFTERM = c("COVID-19",
-#'                                   "CORONAVIRUS POSITIVE"
-#'                                   )
-#'                      )
-#' 
 #' AE <- data.frame(
 #'  USUBJID = 1:6,
-#'  AEDECOD = c("covid-19", "covid-19","some AE","some AE","CORONAVIRUS POSITIVE","UNMAPPED")
+#'  AEDECOD = c("pandemic", "covid-19","some AE","some AE","CORONAVIRUS POSITIVE","UNMAPPED")
 #' )
 #'
 #' DV <- data.frame(
@@ -41,17 +36,25 @@
 #'           "SUSPECTED EPIDEMIC/PANDEMIC INFECTION")
 #' )
 #'
-#' check_dv_ae_aedecod_covid(AE,DV,covid_df)
+#' check_dv_ae_aedecod_covid(AE,DV)
+#'
+#'
+#' # Pass specific covid terms
+#' 
+#' check_dv_ae_aedecod_covid(AE,DV,covid_terms=c("COVID-19", "CORONAVIRUS POSITIVE","PANDEMIC"))
 #'
 
 
 
-check_dv_ae_aedecod_covid <- function(AE,DV,covid_df=NULL){
+check_dv_ae_aedecod_covid <- function(AE,DV,covid_terms=c("COVID-19", "CORONAVIRUS POSITIVE")){
 
-    if(is.null(covid_df)){
+    if(is.null(covid_terms)|
+       (!is.null(covid_terms) & !is.character(covid_terms))|
+       (!is.null(covid_terms) & is.character(covid_terms) & length(covid_terms)<1)|
+       (!is.null(covid_terms) & is.character(covid_terms) & length(covid_terms)>=1 & all(is_sas_na(covid_terms)))
+    ){
         
-        message("check_dv_ae_aedecod_covid: Check not run, did not detect COVID-19 preferred terms")
-        fail("Check not run, did not detect COVID-19 preferred terms") 
+        fail("Check not run, did not detect COVID-19 preferred terms.  Character vector of terms expected.") 
         
     }else if( AE %lacks_any% c("USUBJID","AEDECOD")){
 
@@ -62,23 +65,18 @@ check_dv_ae_aedecod_covid <- function(AE,DV,covid_df=NULL){
         fail(lacks_msg(DV, c("USUBJID","DVREAS")))
 
     } else{
-
-        # Select unique uppercased COVID AE TERMS from COVID.RData
-        covid_ae <- covid_df %>%
-            mutate(REFTERM=toupper(REFTERM)) %>%
-            select(REFTERM) %>%
-            distinct(REFTERM) %>%
-            rename(AEDECOD=REFTERM)
-
-        attr(covid_ae$AEDECOD, "label") <- "Dictionary-Derived Term"
-        #attributes(covid_ae$AEDECOD)
+        
+        #let used know terms used
+        if(identical(covid_terms,c("COVID-19", "CORONAVIRUS POSITIVE"))){
+            outmsg=paste("Default terms used for identifying Covid AEs:",paste(covid_terms,collapse=","))
+        }else{
+            outmsg=""
+        }
 
         # Select AE recs where uppercased AE.AEDECOD matches COVID-related terms COVID_AE.AEDECOD
-        attr(AE$AEDECOD, "label") <- "Dictionary-Derived Term"
         ae0 <- AE %>%
-            select(USUBJID,AEDECOD) %>%
-            mutate(AEDECOD=toupper(AEDECOD)) %>%
-            semi_join(covid_ae, by = "AEDECOD")
+            filter(toupper(AEDECOD) %in% toupper(covid_terms)) %>% 
+            select(USUBJID,AEDECOD)
 
 
         # Select DV recs where DVREAS='CONFIRMED OR SUSPECTED EPIDEMIC/PANDEMIC INFECTION'
@@ -90,16 +88,16 @@ check_dv_ae_aedecod_covid <- function(AE,DV,covid_df=NULL){
         mydfprep <- merge(unique(dv0), unique(ae0), by="USUBJID" , all.x=TRUE)
         mydf <- subset(mydfprep, is_sas_na(mydfprep$AEDECOD))
 
-
-
         ### Return pass if all records with COVID-related DV.DVREAS had corresponding AE.AEDECOD
         if(nrow(mydf)==0){
             pass()
             ### Return subset dataframe/message if there are records with COVID-related DV.DVREAS
             ### but no AE records
         }else if(nrow(mydf)>0){
-            fail( (paste("Found", length(unique(mydf$USUBJID)),
-                         "patient(s) with COVID-related Protocol Deviation, but no AE record with COVID terms. ")),
+            fail( paste("Found", length(unique(mydf$USUBJID)),
+                         "patient(s) with COVID-related Protocol Deviation, but no AE record with COVID terms. ",
+                        outmsg
+                        ),
                   mydf
             )
 
