@@ -2,13 +2,23 @@ Package: sdtmchecks
 Title: Data Quality Checks for SDTM Datasets
 Version: 0.1.11.9010
 Authors@R: c(
-    person("Will", "Harris", , "harric17@gene.com", role = c("aut", "cre")),
-    person("Sara", "Bodach", role = "aut"),
-    person("Edgar", "Manukyan", role = "aut"),
-    person("Adrian", "Waddell", role = "aut"),
-    person("F. Hoffmann-La Roche AG", role = c("cph", "fnd"))
+    person(given="Will", 
+           family="Harris",
+           email="harric17@gene.com", 
+           role = c("aut", "cre")),
+    person(given="Sara", 
+          family="Bodach", 
+          role = "aut"),
+    person(given="Edgar", 
+           family="Manukyan", 
+           role = "aut"),
+    person(given="Adrian", 
+           family="Waddell", 
+           role = "aut"),
+    person(given="F. Hoffmann-La Roche AG", 
+           role = c("cph", "fnd"))
     )
-Description: Identify common data issues in SDTM data. These checks are intended to be generalizable, actionable, and meaningful for analysis. 
+Description: A series of checks to identify common data issues in SDTM data. These checks are intended to be generalizable, actionable, and meaningful for analysis. 
 License: Apache License (>= 2)
 Encoding: UTF-8
 Language: en-US
