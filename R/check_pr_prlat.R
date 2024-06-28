@@ -2,8 +2,8 @@
 #'
 #' @description This check assesses observations where PRCAT contains the word OCULAR and flags records with missing/inconsistent laterality
 #'
-#' @param PR Procedure/Surgery Dataset for Ophtho Study with variables USUBJID, 
-#' PRCAT, PRLAT, PRTRT, PROCCUR, PRPRESP, PRSPID (if Present), 
+#' @param PR Procedure/Surgery Dataset for Ophtho Study with variables USUBJID,
+#' PRCAT, PRLAT, PRTRT, PROCCUR, PRPRESP, PRSPID (if Present),
 #' PRSTDTC (if Present), PRINDC (if Present)
 #'
 #' @importFrom dplyr %>% filter mutate select intersect
@@ -12,11 +12,12 @@
 #'
 #' @importFrom dplyr %>% filter select
 #' @importFrom tidyselect any_of
-#' 
+#'
 #' @family OPHTH
-#' 
+#'
 #' @keywords OPHTH
 #'
+#' @return boolean value if check failed or passed with 'msg' attribute if the test failed
 #'
 #' @export
 #'
@@ -108,7 +109,7 @@ check_pr_prlat <- function(PR,preproc=identity,...) {
         my_select_var <- c("USUBJID", "PRCAT", int_var, "PRLAT", "PRTRT")
 
         mydf = PR %>%
-            filter(grepl("OCULAR", toupper(PRCAT), fixed = T) & ! grepl("NON-OCULAR", toupper(PRCAT), fixed = T) & 
+            filter(grepl("OCULAR", toupper(PRCAT), fixed = T) & ! grepl("NON-OCULAR", toupper(PRCAT), fixed = T) &
                        ((PRPRESP == "Y" & PROCCUR == "Y") | (is_sas_na(PRPRESP) & is_sas_na(PROCCUR)))) %>%
             select(any_of(my_select_var)) %>%
             mutate(MISFLAG = ifelse(!(toupper(PRLAT) %in% c("LEFT", "RIGHT", "BILATERAL")), 1, 0))
@@ -120,8 +121,8 @@ check_pr_prlat <- function(PR,preproc=identity,...) {
         if ((nrow(mydf) > 0 ) == FALSE) {
             pass()
         } else {
-            fail(paste0(nrow(mydf), 
-                        " record(s) with PRLAT Missing from records with PRCAT containing the word OCULAR when expected to be populated. "), 
+            fail(paste0(nrow(mydf),
+                        " record(s) with PRLAT Missing from records with PRCAT containing the word OCULAR when expected to be populated. "),
                  mydf )
 
         }

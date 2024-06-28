@@ -34,16 +34,32 @@
 #'
 #' @examples
 #'
-#' \dontrun{
-#' 
 #' # Assuming sdtm datasets are in your global environment
+#' # Note we are only specifying AE and DS here so all unrelated checks wont be run
+#' 
+#' ae <- data.frame(
+#'     STUDYID = 1,
+#'     USUBJID = c(1,2,3,1,2,3),
+#'     AESTDTC = '2020-05-05',
+#'     AETERM  = c("abc Covid-19", "covid TEST POSITIVE",rep("other AE",4)),
+#'     AEDECOD = c("COVID-19", "CORONAVIRUS POSITIVE", rep("OTHER AE",4)),
+#'     AEACN = c("DRUG WITHDRAWN", rep("DOSE NOT CHANGED",5)),
+#'     AESPID = "FORMNAME-R:13/L:13XXXX",
+#'     stringsAsFactors = FALSE
+#' )
+#'
+#' ds <- data.frame(
+#'  USUBJID = c(1,1,2,3,4),
+#'  DSSPID  = 'XXX-DISCTX-XXX',
+#'  DSCAT   = "DISPOSITION EVENT",
+#'  DSDECOD = "OTHER REASON",
+#'  DSSEQ = c(1,2,1,1,1),
+#'  stringsAsFactors = FALSE
+#' )
+#' 
 #' all_rec<-run_all_checks(metads=sdtmchecksmeta, 
-#'                         priority=c("High","Medium","Low"), 
-#'                         type=c("ALL", "ONC", "COVID", "PRO"))
-#' all_rec<-run_all_checks(metads=sdtmchecksmeta, 
-#'                         priority=NULL, 
-#'                         type=c("ONC", "COVID", "PRO"))
-#' }
+#'                         verbose=FALSE)
+#'                         
 
 run_all_checks <- function(metads = sdtmchecksmeta,
                            priority = c("High", "Medium", "Low"),
@@ -91,15 +107,6 @@ run_all_checks <- function(metads = sdtmchecksmeta,
         ". Checks requiring this domain were not run."
       )
     )
-  }
-  
-  cat("\n")
-  
-  if(!("covid_df" %in% ls(envir = .GlobalEnv))){
-    warning("An object named 'covid_df' was not found in your global environment so the following checks were not run: 
-              check_ae_aeacn_ds_disctx_covid
-              check_ae_aeacnoth_ds_stddisc_covid
-              check_dv_ae_aedecod_covid")
   }
   
   cat("\n")

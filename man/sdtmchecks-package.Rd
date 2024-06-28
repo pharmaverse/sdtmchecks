@@ -6,7 +6,7 @@
 \alias{sdtmchecks-package}
 \title{sdtmchecks: Data Quality Checks for SDTM Datasets}
 \description{
-Functions to identify common data issues in SDTM data. These checks are intended to be generalizable, actionable, and meaningful for analysis.
+Code to identify common data issues in SDTM data. These checks are intended to be generalizable, actionable, and meaningful for analysis.
 }
 \seealso{
 Useful links:
@@ -15,10 +15,6 @@ Useful links:
   \item \url{https://github.com/pharmaverse/sdtmchecks}
   \item Report bugs at \url{https://github.com/pharmaverse/sdtmchecks/issues}
 }
-
-}
-\author{
-\strong{Maintainer}: Will Harris \email{harric17@gene.com}
 
 }
 \keyword{internal}

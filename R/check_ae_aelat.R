@@ -8,10 +8,12 @@
 #' @param ... Other arguments passed to methods
 #'
 #' @importFrom dplyr %>% filter select mutate
-#' 
+#'
 #' @family OPHTH
-#' 
+#'
 #' @keywords OPHTH
+#'
+#' @return boolean value if check failed or passed with 'msg' attribute if the test failed
 #'
 #' @export
 #'

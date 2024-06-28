@@ -10,6 +10,9 @@ check_tr_dup(TR)
 \item{TR}{dataframe with variables USUBJID, TRCAT, TRLINKID/TRLNKID, TRTESTCD, TRSTRESC,
 TRDTC, TRSPID (if it exists)}
 }
+\value{
+boolean value if check failed or passed with 'msg' attribute if the test failed
+}
 \description{
 This check looks for duplicate TR records and returns a data frame.
 Only applies to assessments by Investigator, selected based on uppercased

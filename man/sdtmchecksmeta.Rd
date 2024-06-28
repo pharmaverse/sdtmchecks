@@ -31,8 +31,5 @@ A dataset containing the SDTM checks in the package. The data can be used as inp
 data(sdtmchecksmeta)
 head(sdtmchecksmeta[,1:5])
 
-\dontrun{
- sdtmchecksmeta
-}
 }
 \keyword{datasets}

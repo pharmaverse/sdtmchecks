@@ -1,3 +1,30 @@
+# sdtmchecks 0.1.11.9010 "Light Ice"
+
+
+## Refinements of existing data check functions
+
+* Covid related checks have been updated to expect a character vector of terms identifying covid related AEs.  Specifically [`check_ae_aeacn_ds_disctx_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeacn_ds_disctx_covid.html),[`check_ae_aeacnoth_ds_stddisc_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeacnoth_ds_stddisc_covid.html),[`check_dv_ae_aedecod_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_dv_ae_aedecod_covid.html) are affected.
+
+
+
+# sdtmchecks 0.1.11.9008 "Light Ice"
+
+
+## Refinements of existing data check functions
+
+* [`check_ae_aeacn_ds_disctx_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeacn_ds_disctx_covid.html) add more header and unit tests, update header description that the check specifically looks for DSDECOD = 'ADVERSE EVENT' and include a note that a single DSDECOD = 'ADVERSE EVENT' will yield a pass but there may be multiple records in DS expected with this value [#330](https://github.com/pharmaverse/sdtmchecks/issues/330)
+* [`check_ae_aeacnoth`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeacnoth.html) add more header and unit tests for NA, minor update to return message [#328](https://github.com/pharmaverse/sdtmchecks/issues/328)
+* [`check_ae_aeout`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeout.html) fix logic for the scenario when AEOUT is not populated but there is a non-missing AEDTHDTC, update return message ([#318](https://github.com/pharmaverse/sdtmchecks/issues/318))
+* [`check_ae_aesdth_aedthdtc`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aesdth_aedthdtc.html) include AETERM for easier querying, added more header examples, updated return message. ([#323](https://github.com/pharmaverse/sdtmchecks/issues/323)). Update associated unit test to include AETERM ([#324](https://github.com/pharmaverse/sdtmchecks/issues/324)). 
+* [`check_ae_aesdthdtc_aesdth`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aedthdtc_aesdth.html) bug fix for NA values not detected via original `!(AE[["AESDTH"]]=="Y")` logic leading to possible false negative result [#247](https://github.com/pharmaverse/sdtmchecks/issues/247), include AETERM for easier querying, added more header examples, updated return message. ([#322](https://github.com/pharmaverse/sdtmchecks/issues/322)). Update associated unit test to include AETERM ([#324](https://github.com/pharmaverse/sdtmchecks/pull/324)). 
+* [`check_dd_ae_aeout_aedthdtc`](https://pharmaverse.github.io/sdtmchecks/reference/check_dd_ae_aeout_aedthdtc.html) fix logic for the scenario when AEOUT is not populated but there is a non-missing AEDTHDTC, update return message. This check overlaps with [`check_ae_aeout`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeout.html), but both will be retained for now to avoid breaking changes ([#310](https://github.com/pharmaverse/sdtmchecks/issues/310))
+
+## Misc package updates
+
+* Update GitHub workflows ([#316](https://github.com/pharmaverse/sdtmchecks/issues/316))
+
+
+
 # sdtmchecks 0.1.11 "Light Ice"
 
 

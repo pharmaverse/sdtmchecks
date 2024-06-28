@@ -30,6 +30,7 @@
 #'  AESPID = "FORMNAME-R:13/L:13XXXX"
 #' )
 #'
+#' # pass
 #' check_ae_aeacnoth(AE)
 #'
 #' AE$AEACNOTH[1] = ""
@@ -47,8 +48,23 @@
 #' AE$AEACNOTH[5] = "MULTIPLE"
 #' AE$AEACNOT1[5] = ""
 #' AE$AEACNOT2[5] = ""
+#' 
+#' # fail
 #' check_ae_aeacnoth(AE)
 #' check_ae_aeacnoth(AE,preproc=roche_derive_rave_row)
+#' 
+#' AE$AEACNOTH[1] = NA
+#' AE$AEACNOT1[1] = NA
+#' AE$AEACNOT2[1] = NA
+#' AE$AEACNOT2[3] = NA 
+#' AE$AEACNOT1[4] = NA 
+#' AE$AEACNOT1[5] = NA
+#' AE$AEACNOT2[5] = NA
+#' 
+#' # fail
+#' check_ae_aeacnoth(AE)
+#' check_ae_aeacnoth(AE,preproc=roche_derive_rave_row)
+#' 
 #'
 #' AE$AEACNOTH <- NULL
 #' AE$AEACNOT1 <- NULL
@@ -83,7 +99,7 @@ check_ae_aeacnoth <- function(AE,preproc=identity,...){
       pass()
       ### Return subset dataframe if there are records with null AEACNOT[1/2] when AEACNOTH = 'MULTIPLE'
     }else if(nrow(mydf)>0){
-      fail(paste("AE has ",nrow(mydf)," records with null AEACNOT[1/2] when AEACNOTH = 'MULTIPLE'. ",sep=""), mydf)
+      fail(paste("AE has ",nrow(mydf)," record(s) with null AEACNOT[1/2] when AEACNOTH = 'MULTIPLE'. ",sep=""), mydf)
     }
   }
 }

@@ -13,10 +13,12 @@
 #' OERESCAT, VISIT, OEDTC, OEDY
 #'
 #' @importFrom dplyr %>% filter mutate select lag lead rename arrange summarise group_by ungroup
-#' 
+#'
 #' @family OPHTH
-#' 
+#'
 #' @keywords OPHTH
+#'
+#' @return boolean value if check failed or passed with 'msg' attribute if the test failed
 #'
 #' @export
 #'
@@ -29,12 +31,12 @@
 #'   OETSTDTL = c(rep("TESTING DISTANCE: 4M", 4), rep("TESTING DISTANCE: 1M", 3)),
 #'   OESCAT = c(rep("", 3), "TOTAL", rep("", 2), "TOTAL"),
 #'   OESTAT = rep("", 7),
-#'   OERESCAT = c("ROW 1 - SNELLEN 20/200", 
-#'                "ROW 2 - SNELLEN 20/160", 
-#'                "ROW 3 - SNELLEN 20/125", 
+#'   OERESCAT = c("ROW 1 - SNELLEN 20/200",
+#'                "ROW 2 - SNELLEN 20/160",
+#'                "ROW 3 - SNELLEN 20/125",
 #'                "",
-#'                "ROW 1 - SNELLEN 20/200", 
-#'                "ROW 2 - SNELLEN 20/160", 
+#'                "ROW 1 - SNELLEN 20/200",
+#'                "ROW 2 - SNELLEN 20/160",
 #'                ""),
 #'   VISIT = "WEEK 1",
 #'   VISITNUM = 5,
@@ -52,9 +54,9 @@
 #'   OETSTDTL = "TESTING DISTANCE: 4M",
 #'   OESCAT = c(rep("", 3), "TOTAL"),
 #'   OESTAT = "",
-#'   OERESCAT = c("ROW 1 - SNELLEN 20/200", 
-#'                "ROW 2 - SNELLEN 20/160", 
-#'                "ROW 3 - SNELLEN 20/125", 
+#'   OERESCAT = c("ROW 1 - SNELLEN 20/200",
+#'                "ROW 2 - SNELLEN 20/160",
+#'                "ROW 3 - SNELLEN 20/125",
 #'                ""),
 #'   VISIT = "WEEK 1",
 #'   VISITNUM = 5,

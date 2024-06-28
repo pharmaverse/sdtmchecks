@@ -14,6 +14,9 @@ AEDECOD, AETERM, AESTDTC (if present), AESPID (if present)}
 
 \item{...}{Other arguments passed to methods}
 }
+\value{
+boolean value if check failed or passed with 'msg' attribute if the test failed
+}
 \description{
 This check looks if AESOC has Eye, and AELAT is missing.
 }

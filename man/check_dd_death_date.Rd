@@ -15,6 +15,9 @@ check_dd_death_date(AE, DS, preproc = identity, ...)
 
 \item{...}{Other arguments passed to methods}
 }
+\value{
+boolean value if check failed or passed with 'msg' attribute if the test failed
+}
 \description{
 Flag if patient has a Death in AE (i.e. AE record with non-missing AE.AEDTHDTC)
 but no Death in DS (i.e. record where DS.DSDECOD=DEATH and

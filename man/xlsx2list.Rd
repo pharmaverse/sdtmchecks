@@ -21,8 +21,6 @@ This creates a list based on the sdtmchecks_yyyy-mm-dd.xlsx file, such as report
 
 \dontrun{
 
-library(openxlsx)
-
 rptfile <- "Downloads/sdtmchecks_GO12345_2021-03-12.xlsx"
 rptwb <- openxlsx::loadWorkbook(rptfile)
 names(rptwb)

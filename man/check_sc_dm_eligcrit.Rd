@@ -12,6 +12,9 @@ check_sc_dm_eligcrit(DM, SC)
 \item{SC}{Subject Characteristics SDTM dataset for Ophtho Study with variables
 USUBJID, SCTESTCD, SCTEST, SCCAT, SCORRES, SCDTC}
 }
+\value{
+boolean value if check failed or passed with 'msg' attribute if the test failed
+}
 \description{
 Check if SC.SCCAT = "STUDY EYE SELECTION" and SC.SCTESTCD = "ELIGEYE",
 then SC.SCORRES should have "OS", "OD", or "OU" values. Flag if subject is in

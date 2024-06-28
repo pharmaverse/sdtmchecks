@@ -20,7 +20,7 @@ Function that uses sdtmchecksmeta as input and creates .R file with function cal
 \examples{
 
 \dontrun{
-
+# All checks are output to the file
 create_R_script(file = "run_the_checks.R")
 
 # Only include selected checks
@@ -34,8 +34,8 @@ mymetads = sdtmchecksmeta \%>\%
 mutate(fxn_in=fxn_in_roche)
 
 create_R_script(metads = mymetads, file = "run_the_checks.R")
-
 }
+
 }
 \seealso{
 Reporting-related utility functions

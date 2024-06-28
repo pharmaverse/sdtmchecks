@@ -15,6 +15,9 @@ PRSTDTC (if Present), PRINDC (if Present)}
 
 \item{...}{Other arguments passed to methods}
 }
+\value{
+boolean value if check failed or passed with 'msg' attribute if the test failed
+}
 \description{
 This check assesses observations where PRCAT contains the word OCULAR and flags records with missing/inconsistent laterality
 }
