@@ -175,7 +175,8 @@ old results not in the new report because they were presumably resolved.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Step 2: Use the run_all_checks() function to generate list of check results on this "old" data</span></span></span>
 <span class="r-in"><span> </span></span>
-<span class="r-in"><span><span class="va">metads</span> <span class="op">&lt;-</span> <span class="va">sdtmchecksmeta</span><span class="op">[</span><span class="va">sdtmchecksmeta</span><span class="op">$</span><span class="va">check</span><span class="op">==</span><span class="st">"check_ae_aedecod"</span>,<span class="op">]</span> <span class="co"># Filter sdtmchecksmeta so that only one check is present</span></span></span>
+<span class="r-in"><span><span class="co"># Filter sdtmchecksmeta so that only one check is present</span></span></span>
+<span class="r-in"><span><span class="va">metads</span> <span class="op">&lt;-</span> <span class="va">sdtmchecksmeta</span><span class="op">[</span><span class="va">sdtmchecksmeta</span><span class="op">$</span><span class="va">check</span><span class="op">==</span><span class="st">"check_ae_aedecod"</span>,<span class="op">]</span> </span></span>
 <span class="r-in"><span><span class="va">old</span> <span class="op">&lt;-</span> <span class="fu"><a href="run_all_checks.html">run_all_checks</a></span><span class="op">(</span>metads<span class="op">=</span><span class="va">metads</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Domain not found: ae. Checks requiring this domain were not run.</span>
