@@ -1,7 +1,7 @@
 #' @title Check for treatment discontinuation consistency between DS and AE
 #'
 #' @description This check looks for consistency when DS.DSSPID=DISCTX*
-#'              then there should be AE.AEACN[n]=DRUG WITHDRAWN
+#'              then there should be AE.AEACN*=DRUG WITHDRAWN
 #'
 #' @param AE Adverse Events SDTM dataset with variables USUBJID, AEDECOD,
 #' AESTDTC, AEACN[n]
