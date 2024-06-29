@@ -5,7 +5,7 @@
 
 <!-- package hex logo -->
 
-<img src="man/figures/logo_em.png" alt="drawing" align="right" width="50"/>
+<img src="man/figures/logo_em.png" alt="drawing" align="right" width="100"/>
 
 <!-- badges: start -->
 

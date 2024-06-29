@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 # sdtmchecks
 
 <!-- package hex logo -->
-<img src="man/figures/logo_em.png" alt="drawing" align="right" width="50"/>
+<img src="man/figures/logo_em.png" alt="drawing" align="right" width="100"/>
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/pharmaverse/sdtmchecks/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/pharmaverse/sdtmchecks/actions/workflows/R-CMD-check.yml) 
