@@ -11,7 +11,7 @@ check_ds_ae_discon(DS, AE)
 DSDECOD, DSSTDTC}
 
 \item{AE}{Adverse Events SDTM dataset with variables USUBJID, AEDECOD,
-AESTDTC, AEACN\link{n}}
+AESTDTC, AEACN*}
 }
 \value{
 boolean value if check failed or passed with 'msg' attribute if the
