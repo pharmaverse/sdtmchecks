@@ -5,12 +5,12 @@
 
 <!-- package hex logo -->
 
-<a href="https://pharmaverse.github.io/sdtmchecks/"><img src="man/figures/logo_em.png" align="right" height="138"/></a>
+<img src="man/figures/logo_em.png" alt="drawing" align="right" width="50"/>
 
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/pharmaverse/sdtmchecks/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/pharmaverse/sdtmchecks/actions/workflows/R-CMD-check.yml)
-[![codecov](https://codecov.io/github/pharmaverse/sdtmchecks/branch/devel/graph/badge.svg?token=ICYI400VDZ)](https://codecov.io/github/pharmaverse/sdtmchecks)
+[![codecov](https://codecov.io/github/pharmaverse/sdtmchecks/branch/devel/graph/badge.svg)](https://app.codecov.io/github/pharmaverse/sdtmchecks)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/sdtmchecks)](https://cran.r-project.org/package=sdtmchecks)
 <!-- badges: end -->
@@ -21,18 +21,13 @@ in SDTM data. These checks are intended to be **generalizable**,
 
 ## Installation
 
-### Main version (main branch)
+### CRAN
 
-You can install {sdtmchecks} from [GitHub](https://github.com/) repo
-`pharmaverse/sdtmchecks@main`:
+You can install {sdtmchecks} from [CRAN](https://cran.r-project.org/):
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("pharmaverse/sdtmchecks", ref = "main")
+install.packages("sdtmchecks")
 ```
-
-Note: The release from *main branch* is the recommended version for end
-users.
 
 ### Development version (devel branch)
 
