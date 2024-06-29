@@ -4,7 +4,7 @@
 #'              then there should be AE.AEACN*=DRUG WITHDRAWN
 #'
 #' @param AE Adverse Events SDTM dataset with variables USUBJID, AEDECOD,
-#' AESTDTC, AEACN[n]
+#' AESTDTC, AEACN*
 #'
 #' @param DS Disposition SDTM dataset with variables USUBJID, DSSPID, DSCAT,
 #' DSDECOD, DSSTDTC
