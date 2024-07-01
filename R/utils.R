@@ -335,7 +335,7 @@ truncate_var_strings <- function(dt, var_name, trunc_length) {
 #'
 #' @examples
 #' 
-#' \dontrun{
+#' \donttest{
 #' 
 #' ae = haven::read_sas("path/to/ae.sas7bdat")
 #' cm = haven::read_sas("path/to/cm.sas7bdat")
@@ -484,7 +484,7 @@ report_to_xlsx = function(res,outfile,extrastring=""){
 #'
 #' @examples
 #' 
-#' \dontrun{
+#' \donttest{
 #' # All checks are output to the file
 #' create_R_script(file = "run_the_checks.R")
 #' 
@@ -560,7 +560,7 @@ create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R") 
 #'
 #' @examples
 #'
-#' \dontrun{
+#' \donttest{
 #'
 #' rptfile <- "Downloads/sdtmchecks_GO12345_2021-03-12.xlsx"
 #' rptwb <- openxlsx::loadWorkbook(rptfile)
