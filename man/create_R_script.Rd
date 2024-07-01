@@ -19,7 +19,7 @@ Function that uses sdtmchecksmeta as input and creates .R file with function cal
 }
 \examples{
 
-\dontrun{
+\donttest{
 # All checks are output to the file
 create_R_script(file = "run_the_checks.R")
 

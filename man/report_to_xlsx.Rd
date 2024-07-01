@@ -21,7 +21,7 @@ Save report as an xlsx file
 }
 \examples{
 
-\dontrun{
+\donttest{
 
 ae = haven::read_sas("path/to/ae.sas7bdat")
 cm = haven::read_sas("path/to/cm.sas7bdat")
