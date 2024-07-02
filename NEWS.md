@@ -1,3 +1,12 @@
+# sdtmchecks 0.1.12.9003 "CRAN Try Again"
+
+
+## Refinements of existing data check functions
+
+* [`check_vs_height`](https://pharmaverse.github.io/sdtmchecks/reference/check_vs_height.html) minor update to return message [#379](https://github.com/pharmaverse/sdtmchecks/issues/328)
+
+
+
 # sdtmchecks 0.1.12 "CRAN Try"
 
 
