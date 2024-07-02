@@ -91,3 +91,21 @@ The package
 provide additional information you are looking for. If not, please feel
 free to post your question as [an
 issue](https://github.com/pharmaverse/sdtmchecks/issues).
+
+## Acknowledgments
+
+This package has been created from the contributions, ideas, and support
+of numerous individuals:
+
+Josue Alcaraz, Anastasiia Andriushchenko, Yuliia Bahatska, Stella Banjo,
+Tim Barnett, Ben Byrne, Jen Chen, Jingyuan Chen, Shumei Chi, Tina Cho,
+Saibah Chohan, Ross Farrugia, Kim Fernandes, Pasha Foroudi, Martin
+Hewing, Antony Howard, Anastasiia Khmelnytska, Dinakar Kulkarni, Joel
+Laxamana, Jennifer Li, Rosemary Li, Jennifer Lomax, Simon Luo, Madeleine
+Ma, Edoardo Mancini, Chandra Mannem, Ashley Mao, Ryan Marinelli, Kieran
+Martin, Yinghui Miao, Bonita Viegas Monteiro, Vani Nimbal, Katie Patel,
+Nina Ting Qi, Beeya Na, Sam Parmar, Hiral Raval, Mij Rehman, Reza Rezai,
+Jim Rothstein, Aldrich Salva, Monarch Shah, Sarwan Singh, Natalie
+Springfield, Lasya Sreeramagiri, Tom Stone, Vira Vrakina, Betty Wang,
+Laura Wang, Rena Wang, Fang Yuan, Ying Yuen, James Zhang, Iris Zhao, Lei
+Zhao.
