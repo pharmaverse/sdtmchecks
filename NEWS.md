@@ -1,11 +1,3 @@
-# sdtmchecks 0.1.12.9001 "CRAN Try Again"
-
-## Misc package updates
-
-* Remove `rm(list=ls())` from sdtmchecksmeta.R ([#375](https://github.com/pharmaverse/sdtmchecks/issues/375))
-
-
-
 # sdtmchecks 0.1.12 "CRAN Try"
 
 
@@ -15,7 +7,8 @@
 
 ## Misc package updates
 
-* General updates for CRAN compliance, e.g. to DESCRIPTION file, Roxygen headers, etc
+* General updates for CRAN compliance, e.g. to DESCRIPTION file, Roxygen headers, etc.
+* Remove `rm(list=ls())` from sdtmchecksmeta.R ([#375](https://github.com/pharmaverse/sdtmchecks/issues/375))
 
 
 
