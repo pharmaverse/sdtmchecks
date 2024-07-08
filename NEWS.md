@@ -1,18 +1,10 @@
-# sdtmchecks 0.1.12.9003 "CRAN Try Again"
-
-
-## Refinements of existing data check functions
-
-* [`check_vs_height`](https://pharmaverse.github.io/sdtmchecks/reference/check_vs_height.html) minor update to return message [#379](https://github.com/pharmaverse/sdtmchecks/issues/328)
-
-
-
 # sdtmchecks 0.1.12 "CRAN Try"
 
 
 ## Refinements of existing data check functions
 
-* Covid related checks have been updated to expect a character vector of terms identifying covid related AEs.  Specifically [`check_ae_aeacn_ds_disctx_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeacn_ds_disctx_covid.html),[`check_ae_aeacnoth_ds_stddisc_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeacnoth_ds_stddisc_covid.html),[`check_dv_ae_aedecod_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_dv_ae_aedecod_covid.html) are affected.
+* Covid related checks have been updated to expect a character vector of terms identifying covid related AEs.  Specifically [`check_ae_aeacn_ds_disctx_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeacn_ds_disctx_covid.html), [`check_ae_aeacnoth_ds_stddisc_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeacnoth_ds_stddisc_covid.html), [`check_dv_ae_aedecod_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_dv_ae_aedecod_covid.html) are affected.
+* [`check_vs_height`](https://pharmaverse.github.io/sdtmchecks/reference/check_vs_height.html) minor update to return message [#379](https://github.com/pharmaverse/sdtmchecks/issues/379)
 
 ## Misc package updates
 
