@@ -1,11 +1,3 @@
-# sdtmchecks 0.1.12.9002 "CRAN Try Again"
-
-## Misc package updates
-
-* Swap `dontrun` out and replace with  `donttest` wrappers for functions in utils.R ([#374](https://github.com/pharmaverse/sdtmchecks/issues/374))
-
-
-
 # sdtmchecks 0.1.12 "CRAN Try"
 
 
@@ -16,6 +8,7 @@
 ## Misc package updates
 
 * General updates for CRAN compliance, e.g. to DESCRIPTION file, Roxygen headers, etc
+* Swap `dontrun` out and replace with  `donttest` wrappers for functions in utils.R ([#374](https://github.com/pharmaverse/sdtmchecks/issues/374))
 
 
 
