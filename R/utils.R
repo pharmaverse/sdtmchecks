@@ -326,7 +326,6 @@ truncate_var_strings <- function(dt, var_name, trunc_length) {
 #' @import openxlsx
 #' @importFrom utils packageDescription
 #' @importFrom tidyselect any_of
-#' @imfortFrom haven read_sas
 #'
 #' @return xlsx file
 #' @export
@@ -345,7 +344,6 @@ truncate_var_strings <- function(dt, var_name, trunc_length) {
 #' all_rec=run_all_checks(verbose = TRUE)
 #' 
 #' report_to_xlsx(res=all_rec,outfile="check_results.xlsx")
-#' 
 #' 
 #' }
 
@@ -476,7 +474,6 @@ report_to_xlsx = function(res,outfile,extrastring=""){
 #' @export
 #'
 #' @importFrom dplyr %>% mutate row_number
-#' @importFrom haven read_sas
 #'
 #' @author Monarch Shah
 #' 
@@ -507,6 +504,7 @@ report_to_xlsx = function(res,outfile,extrastring=""){
 #' create_R_script(metads = mymetads2, file = "run_the_checks.R")
 #' 
 #' }
+#' 
 
 create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R") {
   

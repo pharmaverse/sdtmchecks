@@ -18,24 +18,31 @@ R script with user specified sdtmchecks based on sdtmchecksmeta file
 Function that uses sdtmchecksmeta as input and creates .R file with function calls
 }
 \examples{
+\dontshow{if ({False}{) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
-\donttest{
+\donttest{ 
+
+## Example ---- 
 # All checks are output to the file
 create_R_script(file = "run_the_checks.R")
 
+
+## Example ---- 
 # Only include selected checks
-mymetads = sdtmchecksmeta \%>\% 
-filter(category == "ALL" & priority == "High")
-
+mymetads <- sdtmchecksmeta[sdtmchecksmeta$category=="ALL" & sdtmchecksmeta$priority=="High",]  
 create_R_script(metads = mymetads, file = "run_the_checks.R")
 
-#Roche specific function calls
-mymetads = sdtmchecksmeta \%>\% 
-mutate(fxn_in=fxn_in_roche)
 
-create_R_script(metads = mymetads, file = "run_the_checks.R")
+## Example ---- 
+# Roche-specific function calls
+mymetads2 <- sdtmchecksmeta
+mymetads2$fxn_in <- mymetads2$fxn_in_roche
+
+create_R_script(metads = mymetads2, file = "run_the_checks.R")
+
 }
-
+}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Reporting-related utility functions

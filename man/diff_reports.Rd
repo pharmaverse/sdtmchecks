@@ -31,7 +31,7 @@ old results not in the new report because they were presumably resolved.
 }
 \examples{
 
-# Step 1: Simular an older AE dataset with one missing preferred term
+# Step 1: Simulate an older AE dataset with one missing preferred term
 
  ae <- data.frame(
  USUBJID = 1:5,
@@ -58,7 +58,7 @@ old <- run_all_checks(metads=metads)
 
 
 
-#Step 3: Simulate a newer, updated AE dataset with another record with a new missing preferred term
+# Step 3: Simulate a newer, updated AE dataset with another record with a new missing preferred term
 
  ae <- data.frame(
  USUBJID = 1:6,
