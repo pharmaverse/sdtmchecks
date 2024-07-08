@@ -326,6 +326,7 @@ truncate_var_strings <- function(dt, var_name, trunc_length) {
 #' @import openxlsx
 #' @importFrom utils packageDescription
 #' @importFrom tidyselect any_of
+#' @imfortFrom haven read_sas
 #'
 #' @return xlsx file
 #' @export
@@ -475,6 +476,7 @@ report_to_xlsx = function(res,outfile,extrastring=""){
 #' @export
 #'
 #' @importFrom dplyr %>% mutate row_number
+#' @importFrom haven read_sas
 #'
 #' @author Monarch Shah
 #' 
@@ -484,23 +486,27 @@ report_to_xlsx = function(res,outfile,extrastring=""){
 #'
 #' @examples
 #' 
-#' \donttest{
+#' \donttest{ 
+#' 
+#' ## Example ---- 
 #' # All checks are output to the file
 #' create_R_script(file = "run_the_checks.R")
 #' 
+#' 
+#' ## Example ---- 
 #' # Only include selected checks
-#' mymetads = sdtmchecksmeta %>% 
-#' filter(category == "ALL" & priority == "High")
-#' 
+#' mymetads <- sdtmchecksmeta[sdtmchecksmeta$category=="ALL" & sdtmchecksmeta$priority=="High",]  
 #' create_R_script(metads = mymetads, file = "run_the_checks.R")
 #' 
-#' #Roche specific function calls
-#' mymetads = sdtmchecksmeta %>% 
-#' mutate(fxn_in=fxn_in_roche)
 #' 
-#' create_R_script(metads = mymetads, file = "run_the_checks.R")
+#' ## Example ---- 
+#' # Roche-specific function calls
+#' mymetads2 <- sdtmchecksmeta
+#' mymetads2$fxn_in <- mymetads2$fxn_in_roche
+#' 
+#' create_R_script(metads = mymetads2, file = "run_the_checks.R")
+#' 
 #' }
-#' 
 
 create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R") {
   
@@ -512,20 +518,20 @@ create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R") 
   
   write_this <-
     c(
-      "# load packages",
+      "# load packages ---- ",
       "library(sdtmchecks)",
       "library(dplyr)",
       "",
-      "# Read your SDTM Domains, e.g.:",
+      "# Read your SDTM Domains, e.g.: ----",
       "# dm = haven::read_sas('path/to/sdtms/dm.sas7bdat')",
       "# ae = haven::read_sas('path/to/sdtms/ae.sas7bdat')",
       "",
-      "# Run selected checks",
+      "# Run selected checks ---- ",
       "res = list(",
       paste("  ",eval(filterchecks$check_args)),
       ")",
       "",
-      "# Write results to an excel file",
+      "# Write results to an excel file ---- ",
       "report_to_xlsx(res=res,outfile='check_results.xlsx')"
     )
   
@@ -623,7 +629,7 @@ xlsx2list <-function(rptwb, firstrow=1){
 #' 
 #' @examples 
 #' 
-#' # Step 1: Simular an older AE dataset with one missing preferred term
+#' # Step 1: Simulate an older AE dataset with one missing preferred term
 #' 
 #'  ae <- data.frame(
 #'  USUBJID = 1:5,
@@ -650,7 +656,7 @@ xlsx2list <-function(rptwb, firstrow=1){
 #' 
 #' 
 #' 
-#' #Step 3: Simulate a newer, updated AE dataset with another record with a new missing preferred term
+#' # Step 3: Simulate a newer, updated AE dataset with another record with a new missing preferred term
 #' 
 #'  ae <- data.frame(
 #'  USUBJID = 1:6,
@@ -701,7 +707,7 @@ diff_reports=function(old_report,new_report){
     
   
   ###
-  # First: subset to only results with flagged issues in the new report
+  # First: subset to only results with flagged issues in the new report ----
   ###
   
   new_issues=sapply(names(new_report),function(check_name){
@@ -719,14 +725,15 @@ diff_reports=function(old_report,new_report){
   new_issues=names(new_issues[new_issues==TRUE]) #filter to just flagged records
   new_report=new_report[new_issues] #subset new report to just flagged records
   
-  ### -------------------------
-  # Second: Do the diff 
+  
+  ###  
+  # Second: Do the diff ----
   #
   #    i.e., Compare the flagged records in the new vs. old report.
   #          A new column "Status" will be added to all results of the 
   #          "new_report" based on the flagged record comparison.
   #          The new column will have either "NEW" or "OLD" populated.
-  ### -------------------------
+  ###  
   
   res=sapply(new_issues,function(check_name){
     
