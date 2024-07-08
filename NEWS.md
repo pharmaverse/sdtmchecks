@@ -1,12 +1,3 @@
-# sdtmchecks 0.1.12.9004 "CRAN Try Again"
-
-
-## Misc package updates
-
-* Acknowledgment to many contributors to sdtmchecks over the years [#336](https://github.com/pharmaverse/sdtmchecks/issues/336)
-
-
-
 # sdtmchecks 0.1.12 "CRAN Try"
 
 
@@ -17,7 +8,7 @@
 ## Misc package updates
 
 * General updates for CRAN compliance, e.g. to DESCRIPTION file, Roxygen headers, etc
-
+* Acknowledgment to many contributors to sdtmchecks over the years [#336](https://github.com/pharmaverse/sdtmchecks/issues/336)
 
 
 # sdtmchecks 0.1.11.9008 "Light Ice"
