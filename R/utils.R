@@ -469,6 +469,7 @@ report_to_xlsx = function(res,outfile,extrastring=""){
 #'
 #' @param metads sdtmchecksmeta file
 #' @param file filename and/or path to save to
+#' @param verbose Print information to console
 #'
 #' @return R script with user specified sdtmchecks based on sdtmchecksmeta file
 #'
@@ -502,7 +503,7 @@ report_to_xlsx = function(res,outfile,extrastring=""){
 #' }
 #' 
 
-create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R") {
+create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R",verbose=TRUE) {
   
   filterchecks <- metads %>%
     mutate(
@@ -530,7 +531,7 @@ create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R") 
     )
   
   fileConn <- file(file)
-  cat("sdtmchecks calls R script written here:", file)
+  if(verbose){cat("sdtmchecks calls R script written here:", file)}
   writeLines(write_this, fileConn)
   close(fileConn)
   
@@ -547,6 +548,8 @@ create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R") 
 #' @param rptwb List of check results in newer report read in via openxlsx::loadWorkbook
 #' 
 #' @param firstrow Row input for startRow parameter of openxlsx::read.xlsx, default is 1
+#' 
+#' @param verbose Print information to console
 #' 
 #' @return list named xlsxfile
 #'
@@ -571,12 +574,12 @@ create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R") 
 #'
 #' }
 
-xlsx2list <-function(rptwb, firstrow=1){
+xlsx2list <-function(rptwb, firstrow=1,verbose=TRUE){
   
   rptlist <- list()
   
   for (rpttab in names(rptwb)){
-    print(names(rptwb))
+    if(verbose){print(names(rptwb))}
     
     # startRow is the row with variable/column names
     # default is 1
@@ -584,7 +587,7 @@ xlsx2list <-function(rptwb, firstrow=1){
     rptlist[[rpttab]] <- list(rptsheet)
   }
   
-  print("xlsx")
+  if(verbose){print("xlsx")}
   return(rptlist)
 }
 
