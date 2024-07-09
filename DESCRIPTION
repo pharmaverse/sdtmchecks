@@ -15,6 +15,9 @@ Authors@R: c(
     person(given="Adrian", 
            family="Waddell", 
            role = "aut"),
+    person(given="Ross", 
+           family="Farrugia", 
+           role = "aut"),
     person(given="F. Hoffmann-La Roche AG", 
            role = c("cph", "fnd"))
     )
