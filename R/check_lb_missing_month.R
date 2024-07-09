@@ -4,7 +4,9 @@
 #' has known year and day
 #'
 #' @param LB Laboratory data SDTM dataset with variables USUBJID,LBTEST,LBDTC,VISIT
-#'
+#' @param preproc An optional company specific preprocessing script
+#' @param ... Other arguments passed to methods
+#' 
 #' @return boolean value if check failed or passed with 'msg' attribute if the
 #'   test failed
 #'
@@ -26,12 +28,15 @@
 #'
 #' check_lb_missing_month(LB)
 #'
+#' LB$LBSPID= "FORMNAME-R:2/L:2XXXX"
+#' 
+#' check_lb_missing_month(LB,preproc=roche_derive_rave_row)
+#' 
 #' LB$LBDTC = NULL
 #'
 #' check_lb_missing_month(LB)
-#'
 
-check_lb_missing_month <- function(LB){
+check_lb_missing_month <- function(LB, preproc=identity,...){
 
     ###First check that required variables exist and return a message if they don't
     if(LB %lacks_any% c("USUBJID", "LBTEST", "LBDTC","VISIT")){
@@ -40,9 +45,12 @@ check_lb_missing_month <- function(LB){
 
     } else{
 
+        #Apply company specific preprocessing function
+        LB = preproc(LB,...)
+        
         # check if LBDTC has missing month and is in format 'yyyy---dd'
         mydf <- LB %>%
-                   select("USUBJID", "LBTEST", "LBDTC","VISIT")%>%
+                   select(any_of(c("USUBJID", "LBTEST", "LBDTC","VISIT","RAVE")))%>%
                    filter(missing_month(LBDTC))
         rownames(mydf)=NULL
 
