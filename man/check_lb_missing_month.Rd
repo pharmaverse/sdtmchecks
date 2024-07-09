@@ -4,10 +4,14 @@
 \alias{check_lb_missing_month}
 \title{Check for lab dates with year and day known but month unknown}
 \usage{
-check_lb_missing_month(LB)
+check_lb_missing_month(LB, preproc = identity, ...)
 }
 \arguments{
 \item{LB}{Laboratory data SDTM dataset with variables USUBJID,LBTEST,LBDTC,VISIT}
+
+\item{preproc}{An optional company specific preprocessing script}
+
+\item{...}{Other arguments passed to methods}
 }
 \value{
 boolean value if check failed or passed with 'msg' attribute if the
@@ -29,10 +33,13 @@ LB <- data.frame(
 
 check_lb_missing_month(LB)
 
+LB$LBSPID= "FORMNAME-R:2/L:2XXXX"
+
+check_lb_missing_month(LB,preproc=roche_derive_rave_row)
+
 LB$LBDTC = NULL
 
 check_lb_missing_month(LB)
-
 }
 \author{
 Sara Bodach
