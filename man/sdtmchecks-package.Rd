@@ -25,6 +25,7 @@ Authors:
   \item Sara Bodach
   \item Edgar Manukyan
   \item Adrian Waddell
+  \item Ross Farrugia
 }
 
 Other contributors:

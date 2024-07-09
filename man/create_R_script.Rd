@@ -4,12 +4,18 @@
 \alias{create_R_script}
 \title{Create .R file with sdtmchecks function calls}
 \usage{
-create_R_script(metads = sdtmchecksmeta, file = "sdtmchecks_run_all.R")
+create_R_script(
+  metads = sdtmchecksmeta,
+  file = "sdtmchecks_run_all.R",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{metads}{sdtmchecksmeta file}
 
 \item{file}{filename and/or path to save to}
+
+\item{verbose}{Print information to console}
 }
 \value{
 R script with user specified sdtmchecks based on sdtmchecksmeta file
