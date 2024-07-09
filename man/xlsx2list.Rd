@@ -4,12 +4,14 @@
 \alias{xlsx2list}
 \title{Create list from tabs of spreadsheet (*xlsx)}
 \usage{
-xlsx2list(rptwb, firstrow = 1)
+xlsx2list(rptwb, firstrow = 1, verbose = TRUE)
 }
 \arguments{
 \item{rptwb}{List of check results in newer report read in via openxlsx::loadWorkbook}
 
 \item{firstrow}{Row input for startRow parameter of openxlsx::read.xlsx, default is 1}
+
+\item{verbose}{Print information to console}
 }
 \value{
 list named xlsxfile
