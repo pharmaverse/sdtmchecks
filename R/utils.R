@@ -337,9 +337,9 @@ truncate_var_strings <- function(dt, var_name, trunc_length) {
 #' 
 #' \donttest{
 #' 
-#' ae = haven::read_sas("path/to/ae.sas7bdat")
-#' cm = haven::read_sas("path/to/cm.sas7bdat")
-#' dm = haven::read_sas("path/to/dm.sas7bdat")
+#' #ae = haven::read_sas("path/to/ae.sas7bdat")
+#' #cm = haven::read_sas("path/to/cm.sas7bdat")
+#' #dm = haven::read_sas("path/to/dm.sas7bdat")
 #' 
 #' all_rec=run_all_checks(verbose = TRUE)
 #' 

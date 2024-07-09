@@ -8,7 +8,7 @@
 ## Misc package updates
 
 * General updates for CRAN compliance, e.g. to DESCRIPTION file, Roxygen headers, etc
-* Swap `dontrun` out and replace with  `donttest` wrappers for functions in utils.R ([#374](https://github.com/pharmaverse/sdtmchecks/issues/374))
+* Swap `dontrun` out and replace with `donttest` wrappers for functions in utils.R ([#374](https://github.com/pharmaverse/sdtmchecks/issues/374))
 
 
 
