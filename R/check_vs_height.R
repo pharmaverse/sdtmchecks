@@ -1,7 +1,7 @@
 #' @title Check for missing height values
 #'
 #' @description This check looks for both records where height is missing
-#' as well as patients with no height records at all
+#' as well as DM patients with no height records at all
 #'
 #' @param VS Vital Signs SDTM dataset with variables USUBJID,VSTEST,VSTESTCD,VSSTRESN,VISIT
 #' @param DM Demographics SDTM dataset with variable USUBJID
@@ -19,7 +19,7 @@
 #'
 #' DM <- data.frame(
 #'  STUDYID = 1,
-#'  USUBJID = 1:11
+#'  USUBJID = 1:10
 #' )
 #'
 #' VS <- data.frame(
@@ -29,6 +29,13 @@
 #'  VSTESTCD = "HEIGHT",
 #'  VSSTRESN = 1:10,
 #'  VISIT = 1:10
+#' )
+#' 
+#' check_vs_height(VS,DM)
+#' 
+#' DM <- data.frame(
+#'  STUDYID = 1,
+#'  USUBJID = 1:11
 #' )
 #'
 #' VS$VSSTRESN[1] = NA
@@ -76,7 +83,7 @@ check_vs_height <- function(VS,DM){
       ### Return subset dataframe if there are records with missing HEIGHT
     }else{
       fail(
-        paste0("There are ",nrow(mydf)," patients with no recorded height at any visit. "),
+        paste0(nrow(mydf)," patient(s) in DM with no recorded height at any visit. "),
         mydf)
     }
   }
