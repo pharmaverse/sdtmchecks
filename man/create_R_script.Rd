@@ -18,7 +18,6 @@ R script with user specified sdtmchecks based on sdtmchecksmeta file
 Function that uses sdtmchecksmeta as input and creates .R file with function calls
 }
 \examples{
-\dontshow{if ({False}{) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
 \donttest{ 
 
@@ -41,8 +40,7 @@ mymetads2$fxn_in <- mymetads2$fxn_in_roche
 create_R_script(metads = mymetads2, file = "run_the_checks.R")
 
 }
-}
-\dontshow{\}) # examplesIf}
+
 }
 \seealso{
 Reporting-related utility functions

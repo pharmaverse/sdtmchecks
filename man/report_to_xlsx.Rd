@@ -21,13 +21,11 @@ Save report as an xlsx file
 }
 \examples{
 
-\dontrun{
-ae = haven::read_sas("path/to/ae.sas7bdat")
-cm = haven::read_sas("path/to/cm.sas7bdat")
-dm = haven::read_sas("path/to/dm.sas7bdat")
-}
-
 \donttest{
+
+#ae = haven::read_sas("path/to/ae.sas7bdat")
+#cm = haven::read_sas("path/to/cm.sas7bdat")
+#dm = haven::read_sas("path/to/dm.sas7bdat")
 
 all_rec=run_all_checks(verbose = TRUE)
 
