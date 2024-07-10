@@ -31,7 +31,7 @@ old results not in the new report because they were presumably resolved.
 }
 \examples{
 
-# Step 1: Simular an older AE dataset with one missing preferred term
+# Step 1: Simulate an older AE dataset with one missing preferred term
 
  ae <- data.frame(
  USUBJID = 1:5,
