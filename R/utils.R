@@ -510,7 +510,6 @@ report_to_xlsx = function(res,outfile,extrastring=""){
 #'
 #' @examples
 #' 
-#' \dontrun{
 #' 
 #' # All checks are output to a file
 #' fileName <- file.path(tempdir(), "run_all_checks.R")
@@ -527,7 +526,6 @@ report_to_xlsx = function(res,outfile,extrastring=""){
 #' mymetads = sdtmchecksmeta %>% 
 #'   dplyr::mutate(fxn_in=fxn_in_roche)
 #' create_R_script(metads = mymetads, file = fileName)
-#' }
 #' 
 
 create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R",verbose=TRUE) {
