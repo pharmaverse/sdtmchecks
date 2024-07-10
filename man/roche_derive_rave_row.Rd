@@ -6,7 +6,7 @@
 \usage{
 roche_derive_rave_row(
   dts,
-  domains = c("ae", "ce", "cm", "ds", "lb", "pr", "rs", "ss", "tr", "tu")
+  domains = c("ae", "ce", "cm", "ds", "lb", "mh", "pr", "rs", "ss", "tr", "tu")
 )
 }
 \arguments{

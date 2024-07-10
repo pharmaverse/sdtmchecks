@@ -4,10 +4,14 @@
 \alias{check_mh_missing_month}
 \title{Check for MH dates with year and day known but month unknown}
 \usage{
-check_mh_missing_month(MH)
+check_mh_missing_month(MH, preproc = identity, ...)
 }
 \arguments{
 \item{MH}{Medical History SDTM dataset with variables USUBJID, MHTERM and MHSTDTC}
+
+\item{preproc}{An optional company specific preprocessing script}
+
+\item{...}{Other arguments passed to methods}
 }
 \value{
 Boolean value for whether the check passed or failed, with 'msg'
@@ -27,6 +31,9 @@ MH <- data.frame(USUBJID = LETTERS[1:5],
 
 check_mh_missing_month(MH)
 
+MH$MHSPID= "FORMNAME-R:2/L:2XXXX"
+
+check_mh_missing_month(MH,preproc=roche_derive_rave_row)
 
 }
 \author{
