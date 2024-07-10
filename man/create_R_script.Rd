@@ -25,7 +25,6 @@ Function that uses sdtmchecksmeta as input and creates .R file with function cal
 }
 \examples{
 
-\dontrun{
 
 # All checks are output to a file
 fileName <- file.path(tempdir(), "run_all_checks.R")
@@ -42,7 +41,6 @@ fileName <- file.path(tempdir(), "run_all_checks_roche.R")
 mymetads = sdtmchecksmeta \%>\% 
   dplyr::mutate(fxn_in=fxn_in_roche)
 create_R_script(metads = mymetads, file = fileName)
-}
 
 }
 \seealso{
