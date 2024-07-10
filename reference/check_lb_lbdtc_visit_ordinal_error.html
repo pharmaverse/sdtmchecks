@@ -6,7 +6,7 @@ visits (VISIT with the string &quot;UNSCHEDU&quot;) and treatment discon visits
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]--></head><body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-reference-topic">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -20,7 +20,7 @@ visits (VISIT with the string &quot;UNSCHEDU&quot;) and treatment discon visits
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -34,7 +34,7 @@ visits (VISIT with the string &quot;UNSCHEDU&quot;) and treatment discon visits
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
@@ -50,10 +50,13 @@ visits (VISIT with the string &quot;UNSCHEDU&quot;) and treatment discon visits
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     News
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li class="dropdown-header">Releases</li>
+    <li>
+      <a href="../news/index.html#sdtmchecks-0112-cran-try">sdtmchecks 0.1.12</a>
+    </li>
     <li>
       <a href="../news/index.html#sdtmchecks-0111-light-ice">sdtmchecks 0.1.11</a>
     </li>
@@ -83,20 +86,20 @@ visits (VISIT with the string &quot;UNSCHEDU&quot;) and treatment discon visits
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/pharmaverse/sdtmchecks" class="external-link">
     <span class="fa fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Check that all LB dates are duplicated or earlier than last visit's (possible datetime data entry error)</h1>
-    <small class="dont-index">Source: <a href="https://github.com/pharmaverse/sdtmchecks/blob/HEAD/R/check_lb_lbdtc_visit_ordinal_error.R" class="external-link"><code>R/check_lb_lbdtc_visit_ordinal_error.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/pharmaverse/sdtmchecks/blob/main/R/check_lb_lbdtc_visit_ordinal_error.R" class="external-link"><code>R/check_lb_lbdtc_visit_ordinal_error.R</code></a></small>
     <div class="hidden name"><code>check_lb_lbdtc_visit_ordinal_error.Rd</code></div>
     </div>
 
@@ -113,15 +116,15 @@ visits (VISIT with the string "UNSCHEDU") and treatment discon visits
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>LB</dt>
+
+
+<dl><dt id="arg-lb">LB<a class="anchor" aria-label="anchor" href="#arg-lb"></a></dt>
 <dd><p>SDTM dataset with variables USUBJID, VISITNUM, VISIT, LBDTC, LBTESTCD, LBSTAT</p></dd>
 
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    
-
-<p>boolean value if check failed or passed with 'msg' attribute if the
+    <p>boolean value if check failed or passed with 'msg' attribute if the
 test failed</p>
     </div>
     <div id="author">
@@ -215,19 +218,19 @@ test failed</p>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Will Harris, Sara Bodach, Edgar Manukyan, Adrian Waddell, F. Hoffmann-La Roche AG.</p>
+  <p></p><p>Developed by Will Harris, Sara Bodach, Edgar Manukyan, Adrian Waddell, Ross Farrugia, F. Hoffmann-La Roche AG.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
       </footer></div>
 
-  
 
 
-  
+
+
 
   </body></html>
 

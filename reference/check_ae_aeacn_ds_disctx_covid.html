@@ -9,7 +9,7 @@ drug(s).'><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/ma
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]--></head><body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-reference-topic">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -23,7 +23,7 @@ drug(s).'><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/ma
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdtmchecks</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -37,7 +37,7 @@ drug(s).'><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/ma
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
@@ -53,10 +53,13 @@ drug(s).'><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/ma
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     News
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li class="dropdown-header">Releases</li>
+    <li>
+      <a href="../news/index.html#sdtmchecks-0112-cran-try">sdtmchecks 0.1.12</a>
+    </li>
     <li>
       <a href="../news/index.html#sdtmchecks-0111-light-ice">sdtmchecks 0.1.11</a>
     </li>
@@ -86,20 +89,20 @@ drug(s).'><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/ma
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/pharmaverse/sdtmchecks" class="external-link">
     <span class="fa fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Check for COVID-19 AE with DRUG WITHDRAWN action without "ADVERSE EVENT" for DS Trt Discon</h1>
-    <small class="dont-index">Source: <a href="https://github.com/pharmaverse/sdtmchecks/blob/HEAD/R/check_ae_aeacn_ds_disctx_covid.R" class="external-link"><code>R/check_ae_aeacn_ds_disctx_covid.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/pharmaverse/sdtmchecks/blob/main/R/check_ae_aeacn_ds_disctx_covid.R" class="external-link"><code>R/check_ae_aeacn_ds_disctx_covid.R</code></a></small>
     <div class="hidden name"><code>check_ae_aeacn_ds_disctx_covid.Rd</code></div>
     </div>
 
@@ -123,28 +126,28 @@ drug(s).</p>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>AE</dt>
+
+
+<dl><dt id="arg-ae">AE<a class="anchor" aria-label="anchor" href="#arg-ae"></a></dt>
 <dd><p>Adverse Events SDTM dataset with variables USUBJID, AETERM, AEDECOD,
 AESTDTC, AEACNx</p></dd>
 
 
-<dt>DS</dt>
+<dt id="arg-ds">DS<a class="anchor" aria-label="anchor" href="#arg-ds"></a></dt>
 <dd><p>Disposition SDTM dataset with variables USUBJID, DSSPID, DSCAT, DSDECOD</p></dd>
 
 
-<dt>covid_terms</dt>
+<dt id="arg-covid-terms">covid_terms<a class="anchor" aria-label="anchor" href="#arg-covid-terms"></a></dt>
 <dd><p>A length &gt;=1 vector of AE terms identifying COVID-19 (case does not matter)</p></dd>
 
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    
-
-<p>boolean value if check returns 0 obs, otherwise return subset dataframe.</p>
+    <p>boolean value if check returns 0 obs, otherwise return subset dataframe.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p>Other COVID: 
+    <div class="dont-index"><p>Other COVID:
 <code><a href="check_ae_aeacnoth_ds_stddisc_covid.html">check_ae_aeacnoth_ds_stddisc_covid</a>()</code>,
 <code><a href="check_dv_ae_aedecod_covid.html">check_dv_ae_aedecod_covid</a>()</code>,
 <code><a href="check_dv_covid.html">check_dv_covid</a>()</code></p></div>
@@ -241,19 +244,19 @@ AESTDTC, AEACNx</p></dd>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Will Harris, Sara Bodach, Edgar Manukyan, Adrian Waddell, F. Hoffmann-La Roche AG.</p>
+  <p></p><p>Developed by Will Harris, Sara Bodach, Edgar Manukyan, Adrian Waddell, Ross Farrugia, F. Hoffmann-La Roche AG.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
       </footer></div>
 
-  
 
 
-  
+
+
 
   </body></html>
 
