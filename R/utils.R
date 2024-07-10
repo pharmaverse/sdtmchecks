@@ -517,13 +517,13 @@ report_to_xlsx = function(res,outfile,extrastring=""){
 #' 
 #' # Only include selected checks
 #' fileName <- file.path(tempdir(), "run_some_checks.R")
-#' mymetads = sdtmchecksmeta %>% 
+#' mymetads = sdtmchecksmeta |> 
 #'   dplyr::filter(category == "ALL" & priority == "High")
 #' create_R_script(metads = mymetads, file = fileName)
 #' 
 #' # Roche specific function calls
 #' fileName <- file.path(tempdir(), "run_all_checks_roche.R")
-#' mymetads = sdtmchecksmeta %>% 
+#' mymetads = sdtmchecksmeta |> 
 #'   dplyr::mutate(fxn_in=fxn_in_roche)
 #' create_R_script(metads = mymetads, file = fileName)
 #' 
