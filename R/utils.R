@@ -335,18 +335,43 @@ truncate_var_strings <- function(dt, var_name, trunc_length) {
 #'
 #' @examples
 #' 
-#' \dontrun{
+#' # Create Dummy data
 #' 
-#' ae = haven::read_sas("path/to/ae.sas7bdat")
-#' cm = haven::read_sas("path/to/cm.sas7bdat")
-#' dm = haven::read_sas("path/to/dm.sas7bdat")
+#' ae = data.frame(
+#'  USUBJID = 1:5,
+#'  DOMAIN = c(rep("AE", 5)),
+#'  AESEQ = 1:5,
+#'  AESTDTC = 1:5,
+#'  AETERM = 1:5,
+#'  AEDECOD = 1:5,
+#'   AESPID = c("FORMNAME-R:13/L:13XXXX",
+#'              "FORMNAME-R:16/L:16XXXX",
+#'              "FORMNAME-R:2/L:2XXXX",
+#'              "FORMNAME-R:19/L:19XXXX",
+#'              "FORMNAME-R:5/L:5XXXX"),
+#'  stringsAsFactors = FALSE
+#' )
 #' 
-#' all_rec=run_all_checks(verbose = TRUE)
+#' cm = data.frame(
+#'  USUBJID = 1:5,
+#'  DOMAIN = rep("CM", 5),
+#'  CMTRT = rep("DRUG TERM", 5),
+#'  CMDECOD = rep("CODED DRUG TERM", 5),
+#'  CMSTDTC = 1:5,
+#'  CMENDTC = 1:5,
+#'  CMCAT = "CONCOMITANT MEDICATIONS",
+#'  CMSPID = c("FORMNAME-R:13/L:13XXXX",
+#'              "FORMNAME-R:16/L:16XXXX",
+#'              "FORMNAME-R:2/L:2XXXX",
+#'              "FORMNAME-R:19/L:19XXXX",
+#'              "FORMNAME-R:5/L:5XXXX"),
+#'  stringsAsFactors=FALSE
+#' )
 #' 
-#' report_to_xlsx(res=all_rec,outfile="check_results.xlsx")
+#' res=run_all_checks(verbose = FALSE)
+#' fileName <- file.path(tempdir(), "check_results.xlsx")
+#' report_to_xlsx(res=res,outfile=fileName)
 #' 
-#' 
-#' }
 
 
 report_to_xlsx = function(res,outfile,extrastring=""){
@@ -469,6 +494,7 @@ report_to_xlsx = function(res,outfile,extrastring=""){
 #'
 #' @param metads sdtmchecksmeta file
 #' @param file filename and/or path to save to
+#' @param verbose Print information to console
 #'
 #' @return R script with user specified sdtmchecks based on sdtmchecksmeta file
 #'
@@ -485,24 +511,26 @@ report_to_xlsx = function(res,outfile,extrastring=""){
 #' @examples
 #' 
 #' \dontrun{
-#' # All checks are output to the file
-#' create_R_script(file = "run_the_checks.R")
+#' 
+#' # All checks are output to a file
+#' fileName <- file.path(tempdir(), "run_all_checks.R")
+#' create_R_script(file = fileName)
 #' 
 #' # Only include selected checks
+#' fileName <- file.path(tempdir(), "run_some_checks.R")
 #' mymetads = sdtmchecksmeta %>% 
-#' filter(category == "ALL" & priority == "High")
+#'   dplyr::filter(category == "ALL" & priority == "High")
+#' create_R_script(metads = mymetads, file = fileName)
 #' 
-#' create_R_script(metads = mymetads, file = "run_the_checks.R")
-#' 
-#' #Roche specific function calls
+#' # Roche specific function calls
+#' fileName <- file.path(tempdir(), "run_all_checks_roche.R")
 #' mymetads = sdtmchecksmeta %>% 
-#' mutate(fxn_in=fxn_in_roche)
-#' 
-#' create_R_script(metads = mymetads, file = "run_the_checks.R")
+#'   dplyr::mutate(fxn_in=fxn_in_roche)
+#' create_R_script(metads = mymetads, file = fileName)
 #' }
 #' 
 
-create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R") {
+create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R",verbose=TRUE) {
   
   filterchecks <- metads %>%
     mutate(
@@ -530,67 +558,13 @@ create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R") 
     )
   
   fileConn <- file(file)
-  cat("sdtmchecks calls R script written here:", file)
+  if(verbose){cat("sdtmchecks calls R script written here:", file)}
   writeLines(write_this, fileConn)
   close(fileConn)
   
   return(invisible())
   
 }
-
-
-
-#' @title Create list from tabs of spreadsheet (*xlsx)
-#'
-#' @description This creates a list based on the sdtmchecks_yyyy-mm-dd.xlsx file, such as report created via `report_to_xlsx()` 
-#'
-#' @param rptwb List of check results in newer report read in via openxlsx::loadWorkbook
-#' 
-#' @param firstrow Row input for startRow parameter of openxlsx::read.xlsx, default is 1
-#' 
-#' @return list named xlsxfile
-#'
-#' @export
-#'
-#' @importFrom openxlsx read.xlsx
-#' 
-#' @keywords utils_rpt
-#' 
-#' @family utils_rpt
-#'
-#' @examples
-#'
-#' \dontrun{
-#'
-#' rptfile <- "Downloads/sdtmchecks_GO12345_2021-03-12.xlsx"
-#' rptwb <- openxlsx::loadWorkbook(rptfile)
-#' names(rptwb)
-#' rptwb
-#'
-#' xlsx2list(rptwb=rptwb, firstrow=1)
-#'
-#' }
-
-xlsx2list <-function(rptwb, firstrow=1){
-  
-  rptlist <- list()
-  
-  for (rpttab in names(rptwb)){
-    print(names(rptwb))
-    
-    # startRow is the row with variable/column names
-    # default is 1
-    rptsheet <- read.xlsx(xlsxFile = rptwb, sheet = rpttab, startRow=firstrow, skipEmptyRows = TRUE, detectDates = TRUE)
-    rptlist[[rpttab]] <- list(rptsheet)
-  }
-  
-  print("xlsx")
-  return(rptlist)
-}
-
-
-
-
 
 
 
@@ -623,7 +597,7 @@ xlsx2list <-function(rptwb, firstrow=1){
 #' 
 #' @examples 
 #' 
-#' # Step 1: Simular an older AE dataset with one missing preferred term
+#' # Step 1: Simulate an older AE dataset with one missing preferred term
 #' 
 #'  ae <- data.frame(
 #'  USUBJID = 1:5,

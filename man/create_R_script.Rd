@@ -4,12 +4,18 @@
 \alias{create_R_script}
 \title{Create .R file with sdtmchecks function calls}
 \usage{
-create_R_script(metads = sdtmchecksmeta, file = "sdtmchecks_run_all.R")
+create_R_script(
+  metads = sdtmchecksmeta,
+  file = "sdtmchecks_run_all.R",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{metads}{sdtmchecksmeta file}
 
 \item{file}{filename and/or path to save to}
+
+\item{verbose}{Print information to console}
 }
 \value{
 R script with user specified sdtmchecks based on sdtmchecksmeta file
@@ -20,28 +26,29 @@ Function that uses sdtmchecksmeta as input and creates .R file with function cal
 \examples{
 
 \dontrun{
-# All checks are output to the file
-create_R_script(file = "run_the_checks.R")
+
+# All checks are output to a file
+fileName <- file.path(tempdir(), "run_all_checks.R")
+create_R_script(file = fileName)
 
 # Only include selected checks
+fileName <- file.path(tempdir(), "run_some_checks.R")
 mymetads = sdtmchecksmeta \%>\% 
-filter(category == "ALL" & priority == "High")
+  dplyr::filter(category == "ALL" & priority == "High")
+create_R_script(metads = mymetads, file = fileName)
 
-create_R_script(metads = mymetads, file = "run_the_checks.R")
-
-#Roche specific function calls
+# Roche specific function calls
+fileName <- file.path(tempdir(), "run_all_checks_roche.R")
 mymetads = sdtmchecksmeta \%>\% 
-mutate(fxn_in=fxn_in_roche)
-
-create_R_script(metads = mymetads, file = "run_the_checks.R")
+  dplyr::mutate(fxn_in=fxn_in_roche)
+create_R_script(metads = mymetads, file = fileName)
 }
 
 }
 \seealso{
 Reporting-related utility functions
 \code{\link{convert_var_to_ascii}()},
-\code{\link{truncate_var_strings}()},
-\code{\link{xlsx2list}()}
+\code{\link{truncate_var_strings}()}
 }
 \author{
 Monarch Shah

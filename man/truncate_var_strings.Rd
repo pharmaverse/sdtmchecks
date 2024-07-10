@@ -46,8 +46,7 @@ truncate_var_strings(AE, var_name = "AETERM", trunc_length = 50)
 \seealso{
 Reporting-related utility functions
 \code{\link{convert_var_to_ascii}()},
-\code{\link{create_R_script}()},
-\code{\link{xlsx2list}()}
+\code{\link{create_R_script}()}
 }
 \author{
 Stella Banjo(HackR 2021)

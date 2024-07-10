@@ -1,14 +1,17 @@
-# sdtmchecks 0.1.12 "CRAN Try"
+# sdtmchecks 1.0.0 "CRAN Try"
 
 
 ## Refinements of existing data check functions
 
-* Covid related checks have been updated to expect a character vector of terms identifying covid related AEs.  Specifically [`check_ae_aeacn_ds_disctx_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeacn_ds_disctx_covid.html),[`check_ae_aeacnoth_ds_stddisc_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeacnoth_ds_stddisc_covid.html),[`check_dv_ae_aedecod_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_dv_ae_aedecod_covid.html) are affected.
+* Covid related checks have been updated to expect a character vector of terms identifying covid related AEs.  Specifically [`check_ae_aeacn_ds_disctx_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeacn_ds_disctx_covid.html), [`check_ae_aeacnoth_ds_stddisc_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_ae_aeacnoth_ds_stddisc_covid.html), [`check_dv_ae_aedecod_covid`](https://pharmaverse.github.io/sdtmchecks/reference/check_dv_ae_aedecod_covid.html) are affected.
+* [`check_vs_height`](https://pharmaverse.github.io/sdtmchecks/reference/check_vs_height.html) minor update to return message [#379](https://github.com/pharmaverse/sdtmchecks/issues/379)
+* [`check_lb_missing_month`](https://pharmaverse.github.io/sdtmchecks/reference/check_lb_missing_month.html) and [`check_mh_missing_month`](https://pharmaverse.github.io/sdtmchecks/reference/check_mh_missing_month.html) were both updated to have flexibility for Roche functions parsing `--SPID`
 
 ## Misc package updates
 
-* General updates for CRAN compliance, e.g. to DESCRIPTION file, Roxygen headers, etc
-
+* General updates for CRAN compliance, e.g. to DESCRIPTION file, Roxygen headers, etc.
+* Remove `rm(list=ls())` from sdtmchecksmeta.R ([#375](https://github.com/pharmaverse/sdtmchecks/issues/375))
+* Removed `xls2list()` function.  If working with the results of `run_all_checks()` it's recommended to output results to to .rds instead of parsing .xlsx files.
 
 
 # sdtmchecks 0.1.11.9008 "Light Ice"
