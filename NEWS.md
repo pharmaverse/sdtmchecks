@@ -1,4 +1,4 @@
-# sdtmchecks 0.1.12 "CRAN Try"
+# sdtmchecks 1.0.0 "CRAN Try"
 
 
 ## Refinements of existing data check functions

@@ -1,6 +1,6 @@
 Package: sdtmchecks
 Title: Data Quality Checks for Study Data Tabulation Model (SDTM) Datasets
-Version: 0.1.12
+Version: 1.0.0
 Authors@R: c(
     person(given="Will", 
            family="Harris",
