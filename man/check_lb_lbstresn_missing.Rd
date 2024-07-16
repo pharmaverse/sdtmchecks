@@ -4,11 +4,13 @@
 \alias{check_lb_lbstresn_missing}
 \title{Check missing standard lab values (LBSTRESN/LBSTRESC)}
 \usage{
-check_lb_lbstresn_missing(LB, preproc = identity, ...)
+check_lb_lbstresn_missing(LB, DM, preproc = identity, ...)
 }
 \arguments{
 \item{LB}{Lab SDTM dataset with variables USUBJID, LBTESTCD, LBDTC, LBORRES,
 LBORRESU, LBSTRESN, LBSTRESC, VISIT (optional), LBSPID (optional)}
+
+\item{DM}{Demographics SDTM with variables USUBJID, SITEID}
 
 \item{preproc}{An optional company specific preprocessing script}
 
@@ -20,7 +22,8 @@ test failed
 }
 \description{
 This check looks for missing standardized finding (LBSTRESN/LBSTRESC)
-when original finding (LBORRES) is not missing
+when original finding (LBORRES) is not missing. Merges with DM dataset
+when DM$SITEID is present
 }
 \examples{
 
@@ -35,26 +38,40 @@ LB <- data.frame(
  LBSTRESN  = c(5,6,NA),
  stringsAsFactors=FALSE
  )
+ 
+ DM <- data.frame(
+ USUBJID = c("Patient 1","Patient 2","Patient 3"),
+ SITEID = c("123","124","125"),
+ stringsAsFactors=FALSE
+ )
 
-check_lb_lbstresn_missing(LB)
+ DM2 <- data.frame(
+ USUBJID = c("Patient 1","Patient 2","Patient 3"),
+ stringsAsFactors=FALSE
+ )
+
+check_lb_lbstresn_missing(LB, DM)
 
 LB$LBSTRESC[3] = ""
-check_lb_lbstresn_missing(LB)
+check_lb_lbstresn_missing(LB, DM)
+
+LB$LBSTRESC[3] = ""
+check_lb_lbstresn_missing(LB, DM2)
 
 LB$LBSTRESC[1] = ""
-check_lb_lbstresn_missing(LB)
+check_lb_lbstresn_missing(LB, DM)
 
 LB$VISIT = "SCREENING"
-check_lb_lbstresn_missing(LB)
+check_lb_lbstresn_missing(LB, DM)
 
 LB$LBSPID= "FORMNAME-R:2/L:2XXXX"
 check_lb_lbstresn_missing(LB,preproc=roche_derive_rave_row)
 
 LB$LBSTRESN = NULL
-check_lb_lbstresn_missing(LB)
+check_lb_lbstresn_missing(LB, DM)
 
 LB$LBSTRESC = NULL
-check_lb_lbstresn_missing(LB)
+check_lb_lbstresn_missing(LB, DM)
 
 }
 \author{
