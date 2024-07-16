@@ -568,7 +568,7 @@ create_R_script <- function(metads=sdtmchecksmeta, file="sdtmchecks_run_all.R",v
 
 
 
-#' @title Create a sdtmchecks list object with column indicating whether the issue was previously seen
+#' @title Create a new sdtmchecks list with column flagging changes between two sdtmchecks list
 #'
 #' @description This report will identify flagged records from an sdtmchecks report
 #' that are "new" and those that are "old" for a study. This will help quickly target 

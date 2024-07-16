@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{diff_reports}
 \alias{diff_reports}
-\title{Create a sdtmchecks list object with column indicating whether the issue was previously seen}
+\title{Create a new sdtmchecks list with column flagging changes between two sdtmchecks list}
 \usage{
 diff_reports(old_report, new_report)
 }
