@@ -6,7 +6,7 @@
 #'
 #' @param LB Lab SDTM dataset with variables USUBJID, LBTESTCD, LBDTC, LBORRES,
 #' LBORRESU, LBSTRESN, LBSTRESC, VISIT (optional), LBSPID (optional)
-#' @param DM Demographics SDTM with variables USUBJID, SITEID
+#' @param DM Demographics SDTM with variables USUBJID, SITEID. Set to NULL.
 #' @param preproc An optional company specific preprocessing script
 #' @param ... Other arguments passed to methods
 #'
@@ -47,31 +47,32 @@
 #'  stringsAsFactors=FALSE
 #'  )
 #'
-#' check_lb_lbstresn_missing(LB, DM)
+#' check_lb_lbstresn_missing(LB)
 #'
 #' LB$LBSTRESC[3] = ""
+#' check_lb_lbstresn_missing(LB)
+#' 
 #' check_lb_lbstresn_missing(LB, DM)
 #' 
-#' LB$LBSTRESC[3] = ""
 #' check_lb_lbstresn_missing(LB, DM2)
 #'
 #' LB$LBSTRESC[1] = ""
-#' check_lb_lbstresn_missing(LB, DM)
+#' check_lb_lbstresn_missing(LB)
 #'
 #' LB$VISIT = "SCREENING"
-#' check_lb_lbstresn_missing(LB, DM)
+#' check_lb_lbstresn_missing(LB)
 #'
 #' LB$LBSPID= "FORMNAME-R:2/L:2XXXX"
 #' check_lb_lbstresn_missing(LB,preproc=roche_derive_rave_row)
 #'
 #' LB$LBSTRESN = NULL
-#' check_lb_lbstresn_missing(LB, DM)
+#' check_lb_lbstresn_missing(LB)
 #'
 #' LB$LBSTRESC = NULL
-#' check_lb_lbstresn_missing(LB, DM)
+#' check_lb_lbstresn_missing(LB)
 #'
 
-check_lb_lbstresn_missing <- function(LB, DM,preproc=identity,...){
+check_lb_lbstresn_missing <- function(LB, DM = NULL,preproc=identity,...){
   
   if(LB %lacks_any% c("USUBJID", "LBTESTCD", "LBDTC", "LBORRES", "LBORRESU", "LBSTRESN", "LBSTRESC")){
     
@@ -79,12 +80,12 @@ check_lb_lbstresn_missing <- function(LB, DM,preproc=identity,...){
     
   }else{
     
-    # Subset DM to fewer variables
-    DM <- DM %>%
-      select(any_of(c("USUBJID", "SITEID")))
-    
-    # Merge DM to LB if SITEID exists
-    if("SITEID" %in% names(DM)){
+    # If DM is present, merge by USUBJID
+    if(!is.null(DM) & "SITEID" %in% names(DM)){
+      
+      DM <- DM %>%
+        select(any_of(c("USUBJID", "SITEID")))
+      
       LB <- left_join(LB, DM, by="USUBJID")
     }
     
@@ -111,3 +112,4 @@ check_lb_lbstresn_missing <- function(LB, DM,preproc=identity,...){
     }
   }
 }
+
