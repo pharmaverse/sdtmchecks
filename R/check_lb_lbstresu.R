@@ -8,7 +8,7 @@
 #' @param LB Lab SDTM dataset with variables USUBJID, LBSTRESC, LBSTRESN,
 #'   LBORRES, LBSTRESU, LBTESTCD, LBDTC, LBMETHOD (optional),
 #'   LBSPID (optional), and VISIT (optional)
-#' @param DM Demographics SDTM with variables USUBJID, SITEID
+#' @param DM Demographics SDTM with variables USUBJID, SITEID. Set to NULL.
 #' @param preproc An optional company specific preprocessing script
 #' @param ... Other arguments passed to methods
 #'
@@ -47,31 +47,35 @@
 #'  )
 #'
 #'
-#' check_lb_lbstresu(LB, DM)
+#' check_lb_lbstresu(LB)
 #'
 #' LB$LBSTRESU[1]=""
+#' check_lb_lbstresu(LB)
+#' 
+#' check_lb_lbstresu(LB, DM2)
+#' 
 #' check_lb_lbstresu(LB, DM)
 #' 
 #' LB$LBSTRESU[1]=""
-#' check_lb_lbstresu(LB, DM2)
+#' check_lb_lbstresu(LB)
 #'
 #' LB$LBSTRESU[2]="NA"
-#' check_lb_lbstresu(LB, DM)
+#' check_lb_lbstresu(LB)
 #'
 #' LB$LBSTRESU[3]=NA
-#' check_lb_lbstresu(LB, DM)
+#' check_lb_lbstresu(LB)
 #'
 #' LB$LBSPID= "FORMNAME-R:2/L:2XXXX"
 #' check_lb_lbstresu(LB, DM, preproc=roche_derive_rave_row)
 #'
 #' LB$VISIT= "SCREENING"
-#' check_lb_lbstresu(LB, DM)
+#' check_lb_lbstresu(LB)
 #'
 #' LB$LBSTRESU=NULL
-#' check_lb_lbstresu(LB, DM)
+#' check_lb_lbstresu(LB)
 #'
 
-check_lb_lbstresu <- function(LB, DM, preproc=identity,...){
+check_lb_lbstresu <- function(LB, DM = NULL, preproc=identity,...){
     
     ###Check that required variables exist and return a message if they don't.
     if(LB %lacks_any% c("USUBJID", "LBSTRESC", "LBSTRESN", "LBSTRESU", "LBORRES",
@@ -80,15 +84,14 @@ check_lb_lbstresu <- function(LB, DM, preproc=identity,...){
                              "LBTESTCD", "LBDTC")))
     } else{
         
-        # Subset DM to fewer variables
-        DM <- DM %>%
-            select(any_of(c("USUBJID", "SITEID")))
-        
-        # Merge DM to LB if SITEID exists
-        if("SITEID" %in% names(DM)){
+        # If DM is present, merge by USUBJID
+        if(!is.null(DM) & "SITEID" %in% names(DM)){
+            
+            DM <- DM %>%
+                select(any_of(c("USUBJID", "SITEID")))
+            
             LB <- left_join(LB, DM, by="USUBJID")
         }
-        
         
         #Apply company specific preprocessing function
         LB = preproc(LB,...)
@@ -134,3 +137,7 @@ check_lb_lbstresu <- function(LB, DM, preproc=identity,...){
     }
     
 }
+
+
+
+
