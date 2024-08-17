@@ -150,20 +150,20 @@
 <span class="r-in"><span><span class="co"># All checks are output to a file</span></span></span>
 <span class="r-in"><span><span class="va">fileName</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"run_all_checks.R"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">create_R_script</span><span class="op">(</span>file <span class="op">=</span> <span class="va">fileName</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdtmchecks calls R script written here: /tmp/Rtmpt9kzBn/run_all_checks.R</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdtmchecks calls R script written here: /tmp/Rtmp7mXBpT/run_all_checks.R</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Only include selected checks</span></span></span>
 <span class="r-in"><span><span class="va">fileName</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"run_some_checks.R"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">mymetads</span> <span class="op">=</span> <span class="va">sdtmchecksmeta</span><span class="op">[</span><span class="va">sdtmchecksmeta</span><span class="op">$</span><span class="va">category</span> <span class="op">==</span> <span class="st">"ALL"</span> <span class="op">&amp;</span> <span class="va">sdtmchecksmeta</span><span class="op">$</span><span class="va">priority</span> <span class="op">==</span> <span class="st">"High"</span>,<span class="op">]</span></span></span>
 <span class="r-in"><span><span class="fu">create_R_script</span><span class="op">(</span>metads <span class="op">=</span> <span class="va">mymetads</span>, file <span class="op">=</span> <span class="va">fileName</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdtmchecks calls R script written here: /tmp/Rtmpt9kzBn/run_some_checks.R</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdtmchecks calls R script written here: /tmp/Rtmp7mXBpT/run_some_checks.R</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Roche specific function calls</span></span></span>
 <span class="r-in"><span><span class="va">fileName</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"run_all_checks_roche.R"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">mymetads</span> <span class="op">=</span> <span class="va">sdtmchecksmeta</span></span></span>
 <span class="r-in"><span><span class="va">mymetads</span><span class="op">$</span><span class="va">fxn_in</span><span class="op">=</span><span class="va">mymetads</span><span class="op">$</span><span class="va">fxn_in_roche</span></span></span>
 <span class="r-in"><span><span class="fu">create_R_script</span><span class="op">(</span>metads <span class="op">=</span> <span class="va">mymetads</span>, file <span class="op">=</span> <span class="va">fileName</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sdtmchecks calls R script written here: /tmp/Rtmpt9kzBn/run_all_checks_roche.R</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sdtmchecks calls R script written here: /tmp/Rtmp7mXBpT/run_all_checks_roche.R</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
