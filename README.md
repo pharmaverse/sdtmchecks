@@ -13,6 +13,7 @@
 [![codecov](https://codecov.io/github/pharmaverse/sdtmchecks/branch/devel/graph/badge.svg)](https://app.codecov.io/github/pharmaverse/sdtmchecks)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/sdtmchecks)](https://cran.r-project.org/package=sdtmchecks)
+![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/sdtmchecks)
 <!-- badges: end -->
 
 The sdtmchecks package contains functions to identify common data issues
