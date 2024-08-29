@@ -12,7 +12,7 @@ test_that("Function returns true when no errors are present" ,{
                                "",
                                "STUDY EYE SELECTION",
                                "STUDY EYE SELECTION", ""),
-                  SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
+                  SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
                   SCDTC    = rep("2021-01-01", 6),
                   stringsAsFactors = FALSE)
 
@@ -34,7 +34,7 @@ test_that("Function returns false when errors present", {
                                "",
                                "STUDY EYE SELECTION",
                                "STUDY EYE SELECTION", ""),
-                  SCORRES  = c("LEFT", "OS", "", "RIGHT", "", ""),
+                  SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "", ""),
                   SCDTC    = rep("2021-01-01", 6),
                   stringsAsFactors = FALSE)
 
@@ -57,11 +57,10 @@ test_that("Function returns false when expected column not present", {
                                 "",
                                 "STUDY EYE SELECTION",
                                 "STUDY EYE SELECTION", ""),
-                   SCORRES  = c("LEFT", "OS", "", "RIGHT", "", ""),
+                   SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "", ""),
                    SCDTC    = rep("2021-01-01", 6),
                    stringsAsFactors = FALSE)
   
-  sc$SCORRES <- NULL
+  sc$SCSTRESC <- NULL
   expect_false(check_sc_dm_eligcrit(SC=sc, DM=dm))
 })
- 

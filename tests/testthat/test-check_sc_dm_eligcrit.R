@@ -14,11 +14,11 @@ test_that("Function returns true when no errors are present", {
                                 "STUDY EYE SELECTION",
                                 "STUDY EYE SELECTION",
                                 ""),
-                   SCORRES  = c("OS", "OS", "", "", "OU", ""),
+                   SCSTRESC  = c("OS", "OS", "", "", "OU", ""),
                    SCDTC    = rep("2021-01-01", 6),
                    stringsAsFactors = FALSE)
   
-  sc$SCORRES[4] = "OS"
+  sc$SCSTRESC[4] = "OS"
   expect_true(check_sc_dm_eligcrit(SC=sc, DM=dm))
 })
 
@@ -39,13 +39,13 @@ test_that("Function returns false when errors present", {
                                 "STUDY EYE SELECTION",
                                 "STUDY EYE SELECTION",
                                 ""),
-                   SCORRES  = c("OS", "OS", "", "", "OU", ""),
+                   SCSTRESC  = c("OS", "OS", "", "", "OU", ""),
                    SCDTC    = rep("2021-01-01", 6),
                    stringsAsFactors = FALSE)
   
   #missing values
   dm <- data.frame(USUBJID = c(1,2,3,4))
-  sc$SCORRES[4] = "OS"
+  sc$SCSTRESC[4] = "OS"
   
   
   expect_false(check_sc_dm_eligcrit(SC=sc, DM=dm))
@@ -69,14 +69,13 @@ test_that("Function returns false when expected column not present",{
                                 "STUDY EYE SELECTION",
                                 "STUDY EYE SELECTION",
                                 ""),
-                   SCORRES  = c("OS", "OS", "", "", "OU", ""),
+                   SCSTRESC  = c("OS", "OS", "", "", "OU", ""),
                    SCDTC    = rep("2021-01-01", 6),
                    stringsAsFactors = FALSE)
   
   
-  sc$SCORRES <- NULL
+  sc$SCSTRESC <- NULL
   expect_false(check_sc_dm_eligcrit(SC=sc, DM=dm))
   
 })
-
                     
