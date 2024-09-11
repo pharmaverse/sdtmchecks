@@ -54,7 +54,14 @@ check_rs_rsdtc_visit_ordinal_error <- function(RS){
         #only keep INV overall responses not indicated as Not Done
         subsetdf = subset(RS,RS$RSTESTCD=="OVRLRESP" & RS$RSEVAL=="INVESTIGATOR" & RS$RSSTAT != "NOT DONE" & !grepl("UNSCHEDU",toupper(RS$VISIT)),)
 
-        if(nrow(subsetdf)>0){
+        ### re-check if the subset has VISITNUM all missing 
+        if (length(unique(subsetdf[["VISITNUM"]]))<=1) {
+            
+            fail("VISITNUM exists but only a single value. ")
+            
+        } 
+        
+        else if(nrow(subsetdf)>0){
 
             mydf2 <- dtc_dupl_early(dts = subsetdf, vars = vars,
                                     ### groupby variables used for grouping and visit.order derivation
