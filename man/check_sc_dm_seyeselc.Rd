@@ -17,9 +17,9 @@ boolean value if check failed or passed with 'msg' attribute if the test failed
 }
 \description{
 Check if SC.SCCAT = "STUDY EYE SELECTION" and SC.SCTESTCD = "FOCID",
-then SC.SCSTRESC should have "OS", "OD", or "OU" values. Flag if subject is in
+then SC.SCSTRESC should have "OS" or "OD" values. Flag if subject is in
 DM and without an associated SC.SCSTRESC value or the STUDY EYE SELECTION value
-is not "OS", "OD", or "OU".
+is not "OS" or "OD".
 }
 \examples{
 
