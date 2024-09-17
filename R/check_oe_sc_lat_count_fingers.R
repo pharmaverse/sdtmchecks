@@ -3,7 +3,7 @@
 #' @description Check If Post Treatment Count Fingers in Study Eye is done on the actual Study eye by comparing laterality from OE domain with SC domain.
 #' Check is ignored if Post Treatment Count Fingers is not collected in study as it is quite common for EP studies
 #'
-#' @param SC Subject Characteristics Dataset for Ophtho Study with variables USUBJID, SCTEST, SCTESTCD, SCCAT, SCORRES, SCDTC
+#' @param SC Subject Characteristics Dataset for Ophtho Study with variables USUBJID, SCTEST, SCTESTCD, SCCAT, SCSTRESC, SCDTC
 #' @param OE Ophthalmic Examination Dataset for Ophtho Study with variables USUBJID, OECAT, OELAT, VISIT, OEDTC, OETEST, OELOC, OESTAT (if present)
 #'
 #' @importFrom dplyr %>% filter mutate select
@@ -30,7 +30,7 @@
 #'                  SCTESTCD = c("ELIGEYE", "FOCID", "", "ELIGEYE", "FOCID", ""),
 #'                  SCCAT    = c("STUDY EYE SELECTION", "STUDY EYE SELECTION", "",
 #'                               "STUDY EYE SELECTION", "STUDY EYE SELECTION", ""),
-#'                  SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
+#'                  SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
 #'                  SCDTC    = rep("2021-01-01", 6),
 #'                  stringsAsFactors = FALSE)
 #'
@@ -60,7 +60,7 @@
 #'                  SCTESTCD = c("ELIGEYE", "FOCID", "", "ELIGEYE", "FOCID", ""),
 #'                  SCCAT    = c("STUDY EYE SELECTION", "STUDY EYE SELECTION", "",
 #'                               "STUDY EYE SELECTION", "STUDY EYE SELECTION", ""),
-#'                  SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
+#'                  SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
 #'                  SCDTC    = rep("2021-01-01", 6),
 #'                  stringsAsFactors = FALSE)
 #'
@@ -93,7 +93,7 @@
 #'                  SCCAT    = c("STUDY EYE SELECTION", "STUDY EYE SELECTION", "",
 #'                               "STUDY EYE SELECTION", "STUDY EYE SELECTION",
 #'                               "", "STUDY EYE SELECTION"),
-#'                  SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", "", "OS"),
+#'                  SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", "", "OS"),
 #'                  SCDTC    = "2021-01-01",
 #'                  stringsAsFactors = FALSE)
 #'
@@ -119,9 +119,9 @@
 
 check_oe_sc_lat_count_fingers <- function(OE, SC) {
 
-    if (SC %lacks_any% c("USUBJID", "SCTEST", "SCTESTCD", "SCCAT", "SCORRES", "SCDTC")) {
+    if (SC %lacks_any% c("USUBJID", "SCTEST", "SCTESTCD", "SCCAT", "SCSTRESC", "SCDTC")) {
 
-        fail(lacks_msg(SC, c("USUBJID","SCTEST","SCTESTCD","SCCAT","SCORRES", "SCDTC")))
+        fail(lacks_msg(SC, c("USUBJID","SCTEST","SCTESTCD","SCCAT","SCSTRESC", "SCDTC")))
 
     }
 
@@ -138,12 +138,12 @@ check_oe_sc_lat_count_fingers <- function(OE, SC) {
 
     else {
 
-        # Subset SC data on SC.SCCAT = "STUDY EYE SELECTION", and  and SCTESTCD = "FOCID". SC.SCORRES OS (oculus sinister) means the left
+        # Subset SC data on SC.SCCAT = "STUDY EYE SELECTION", and  and SCTESTCD = "FOCID". SC.SCSTRESC OS (oculus sinister) means the left
         #       eye and OD (oculus dextrus) means the right eye.
-        SC <- SC %>% select(USUBJID, SCTESTCD, SCTEST, SCCAT, SCORRES, SCDTC) %>%
+        SC <- SC %>% select(USUBJID, SCTESTCD, SCTEST, SCCAT, SCSTRESC, SCDTC) %>%
             filter(SCTESTCD %in% c("FOCID")) %>%
-            mutate(SC_STUDYEYE = ifelse(SCORRES == "OS", "LEFT",
-                                ifelse(SCORRES == "OD", "RIGHT", "SCORRES Value not OS or OD")))
+            mutate(SC_STUDYEYE = ifelse(SCSTRESC == "OS", "LEFT",
+                                ifelse(SCSTRESC == "OD", "RIGHT", "SCSTRESC Value not OS or OD")))
 
         # Remove OESTAT NOT DONE
         if ((any(names(OE) == "OESTAT")) == TRUE) {
@@ -166,7 +166,7 @@ check_oe_sc_lat_count_fingers <- function(OE, SC) {
         mydf1 <- left_join(SC, OE, by="USUBJID") %>%
             mutate(MISFLAG = ifelse((toupper(SC_STUDYEYE) != toupper(OELAT)) | is.na(toupper(OELAT)), 1, 0))
 
-        mydf = mydf1 %>% filter(MISFLAG == 1) %>% select(-MISFLAG, -SCTESTCD, -SCTEST, -SCCAT, -SCORRES, -OELOC, -OECAT)
+        mydf = mydf1 %>% filter(MISFLAG == 1) %>% select(-MISFLAG, -SCTESTCD, -SCTEST, -SCCAT, -SCSTRESC, -OELOC, -OECAT)
 
         if ((nrow(mydf) > 0 ) == FALSE) {
             pass()

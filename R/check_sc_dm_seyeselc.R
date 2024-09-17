@@ -1,9 +1,9 @@
 #' @title Check SC Study Eye Selection assignments among DM patients
 #'
 #' @description Check if SC.SCCAT = "STUDY EYE SELECTION" and SC.SCTESTCD = "FOCID",
-#' then SC.SCSTRESC should have "OS", "OD", or "OU" values. Flag if subject is in
+#' then SC.SCSTRESC should have "OS" or "OD" values. Flag if subject is in
 #' DM and without an associated SC.SCSTRESC value or the STUDY EYE SELECTION value
-#' is not "OS", "OD", or "OU".
+#' is not "OS" or "OD".
 #'
 #' @param DM Subject Demographics SDTM dataset with variable USUBJID
 #' @param SC Subject Characteristics SDTM dataset for Ophtho Study with variables
