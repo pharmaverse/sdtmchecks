@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_ex_exstdtc_after_rs_rsdtc.R
 \name{check_ex_exstdtc_after_rs_rsdtc}
 \alias{check_ex_exstdtc_after_rs_rsdtc}
-\title{Check EXSTDTC records occuring on or after RSDTC}
+\title{Check EXSTDTC records occurring on or after RSDTC}
 \usage{
 check_ex_exstdtc_after_rs_rsdtc(EX, RS, preproc = identity, ...)
 }
