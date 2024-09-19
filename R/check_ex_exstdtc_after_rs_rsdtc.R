@@ -147,22 +147,18 @@ check_ex_exstdtc_after_rs_rsdtc <- function(EX, RS, preproc=identity,...){
       group_by(USUBJID)%>%
       summarise(EXSTDTC = min(EXSTDTC, na.rm = TRUE), .groups = "drop")
     
-    # Merging domains and checking for dates where RS_Date on or before EX_Date
+    # Merging domains and checking for dates where EXSTDTC on or after RSDTC
     df <- FirstDoseDateEX %>%
       inner_join(rsSub, by = "USUBJID")%>%
       filter(EXSTDTC >= RSDTC)%>%
-      select(any_of(c("USUBJID", "RSDTC", "EXSTDTC", "RAVE")))%>%
-      distinct()
+      select(any_of(c("USUBJID", "RSDTC", "EXSTDTC", "RAVE")))
     
     # Message based on results.
-    
     if(nrow(df)==0){
       pass()
-      
-    }else if(nrow(df)>0){
-      fail(paste("EX has ",nrow(df)," records with EXSTDTC on or before RSSTDTC. "), df)
+      }else if(nrow(df)>0){
+        fail(paste("EX has ",nrow(df)," records with EXSTDTC on or before RSSTDTC. "), df)
     }
   }
 }
-
 
