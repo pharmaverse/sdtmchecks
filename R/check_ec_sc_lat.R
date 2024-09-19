@@ -7,10 +7,10 @@
 #'    assuming drug administration is collected for study eye only.
 #'    2.> Subset Subject Characteristics dataset (SC) for only Study Eye Selection
 #'    3.> Compare Exposure dataset laterality (EC.ECLAT) with Subject Characteristics dataset laterality
-#'    (SC.SCORRES - OS = LEFT, OD = RIGHT) and report if there is any mismatch.
+#'    (SC.SCSTRESC - OS = LEFT, OD = RIGHT) and report if there is any mismatch.
 #'
 #' @param SC Subject Characteristics Dataset for Ophtha Study with variables
-#'           USUBJID, SCTEST, SCTESTCD, SCCAT, SCORRES, SCDTC
+#'           USUBJID, SCTEST, SCTESTCD, SCCAT, SCSTRESC, SCDTC
 #' @param EC Subject Exposure Dataset with variables
 #'           USUBJID, ECCAT (if available), ECLOC, ECMOOD, ECLAT, ECSTDY, VISIT, ECSTDTC, ECOCCUR, ECROUTE
 #'
@@ -34,7 +34,7 @@
 #'                  SCTESTCD = c("ELIGEYE", "FOCID", "", "ELIGEYE", "FOCID", ""),
 #'                  SCCAT    = c("STUDY EYE SELECTION", "STUDY EYE SELECTION", "",
 #'                               "STUDY EYE SELECTION", "STUDY EYE SELECTION", ""),
-#'                  SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
+#'                  SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
 #'                  SCDTC    = "2021-01-01",
 #'                  stringsAsFactors = FALSE)
 #'
@@ -67,7 +67,7 @@
 #'                  SCTESTCD = c("ELIGEYE", "FOCID", "", "ELIGEYE", "FOCID", ""),
 #'                  SCCAT    = c("STUDY EYE SELECTION", "STUDY EYE SELECTION", "",
 #'                               "STUDY EYE SELECTION", "STUDY EYE SELECTION", ""),
-#'                  SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
+#'                  SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
 #'                  SCDTC    = "2021-01-01",
 #'                  stringsAsFactors = FALSE)
 #'
@@ -102,7 +102,7 @@
 #'                  SCCAT    = c("STUDY EYE SELECTION", "STUDY EYE SELECTION", "",
 #'                               "STUDY EYE SELECTION",
 #'                               "STUDY EYE SELECTION", "", "STUDY EYE SELECTION"),
-#'                  SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", "", "RIGHT"),
+#'                  SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", "", "RIGHT"),
 #'                  SCDTC    = "2021-01-01",
 #'                  stringsAsFactors = FALSE)
 #'
@@ -127,9 +127,9 @@
 
 check_ec_sc_lat <- function(EC,SC) {
 
-    if (SC %lacks_any% c("USUBJID", "SCTEST", "SCTESTCD", "SCCAT", "SCORRES", "SCDTC")) {
+    if (SC %lacks_any% c("USUBJID", "SCTEST", "SCTESTCD", "SCCAT", "SCSTRESC", "SCDTC")) {
 
-        fail(lacks_msg(SC, c("USUBJID","SCTEST","SCTESTCD","SCCAT","SCORRES", "SCDTC")))
+        fail(lacks_msg(SC, c("USUBJID","SCTEST","SCTESTCD","SCCAT","SCSTRESC", "SCDTC")))
 
     }
 
@@ -164,13 +164,13 @@ check_ec_sc_lat <- function(EC,SC) {
             }
 
             # Subset SC data on SC.SCCAT = "STUDY EYE SELECTION", and
-            # SCTESTCD = "FOCID". SC.SCORRES OS (oculus sinister) means the left
+            # SCTESTCD = "FOCID". SC.SCSTRESC OS (oculus sinister) means the left
             # eye and OD (oculus dextrus) means the right eye.
             SC <- SC %>%
-                select(USUBJID, SCTESTCD, SCTEST, SCCAT, SCORRES, SCDTC) %>%
+                select(USUBJID, SCTESTCD, SCTEST, SCCAT, SCSTRESC, SCDTC) %>%
                 filter(toupper(SCTESTCD) == "FOCID") %>%
-                mutate(SC_STUDYEYE = ifelse(toupper(SCORRES) == "OS", "LEFT",
-                                            ifelse(toupper(SCORRES) == "OD", "RIGHT","SCORRES Value not OS or OD")))
+                mutate(SC_STUDYEYE = ifelse(toupper(SCSTRESC) == "OS", "LEFT",
+                                            ifelse(toupper(SCSTRESC) == "OD", "RIGHT","SCSTRESC Value not OS or OD")))
 
             # Subset EC data on EC.ECCAT (if available) remove Fellow Eye Records,
             # EC.ECMOOD = "PERFORMED" EC.ECOCCUR = "Y"
@@ -197,7 +197,7 @@ check_ec_sc_lat <- function(EC,SC) {
 
             mydf = mydf1 %>% filter(MISFLAG == 1)%>%
                 filter(ECROUTE != "NON-OCULAR ROUTE" | is.na(ECROUTE)) %>%
-                select(-MISFLAG, -SCTESTCD, -SCTEST, -SCCAT, -ECLOC, -ECMOOD, -ECOCCUR, -SCORRES)
+                select(-MISFLAG, -SCTESTCD, -SCTEST, -SCCAT, -ECLOC, -ECMOOD, -ECOCCUR, -SCSTRESC)
 
             if ((nrow(mydf) > 0 ) == FALSE) {
                 pass()

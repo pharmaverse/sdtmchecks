@@ -9,7 +9,7 @@ check_oe_sc_lat_count_fingers(OE, SC)
 \arguments{
 \item{OE}{Ophthalmic Examination Dataset for Ophtho Study with variables USUBJID, OECAT, OELAT, VISIT, OEDTC, OETEST, OELOC, OESTAT (if present)}
 
-\item{SC}{Subject Characteristics Dataset for Ophtho Study with variables USUBJID, SCTEST, SCTESTCD, SCCAT, SCORRES, SCDTC}
+\item{SC}{Subject Characteristics Dataset for Ophtho Study with variables USUBJID, SCTEST, SCTESTCD, SCCAT, SCSTRESC, SCDTC}
 }
 \value{
 boolean value if check failed or passed with 'msg' attribute if the test failed
@@ -30,7 +30,7 @@ sc <- data.frame(USUBJID  = c(1,1,1,2,2,2),
                  SCTESTCD = c("ELIGEYE", "FOCID", "", "ELIGEYE", "FOCID", ""),
                  SCCAT    = c("STUDY EYE SELECTION", "STUDY EYE SELECTION", "",
                               "STUDY EYE SELECTION", "STUDY EYE SELECTION", ""),
-                 SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
+                 SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
                  SCDTC    = rep("2021-01-01", 6),
                  stringsAsFactors = FALSE)
 
@@ -60,7 +60,7 @@ sc <- data.frame(USUBJID  = c(1,1,1,2,2,2),
                  SCTESTCD = c("ELIGEYE", "FOCID", "", "ELIGEYE", "FOCID", ""),
                  SCCAT    = c("STUDY EYE SELECTION", "STUDY EYE SELECTION", "",
                               "STUDY EYE SELECTION", "STUDY EYE SELECTION", ""),
-                 SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
+                 SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
                  SCDTC    = rep("2021-01-01", 6),
                  stringsAsFactors = FALSE)
 
@@ -93,7 +93,7 @@ sc <- data.frame(USUBJID  = c(1,1,1,2,2,2,3),
                  SCCAT    = c("STUDY EYE SELECTION", "STUDY EYE SELECTION", "",
                               "STUDY EYE SELECTION", "STUDY EYE SELECTION",
                               "", "STUDY EYE SELECTION"),
-                 SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", "", "OS"),
+                 SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", "", "OS"),
                  SCDTC    = "2021-01-01",
                  stringsAsFactors = FALSE)
 

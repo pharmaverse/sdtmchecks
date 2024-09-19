@@ -10,16 +10,16 @@ check_sc_dm_seyeselc(DM, SC)
 \item{DM}{Subject Demographics SDTM dataset with variable USUBJID}
 
 \item{SC}{Subject Characteristics SDTM dataset for Ophtho Study with variables
-USUBJID, SCTESTCD, SCTEST, SCCAT, SCORRES, SCDTC}
+USUBJID, SCTESTCD, SCTEST, SCCAT, SCSTRESC, SCDTC}
 }
 \value{
 boolean value if check failed or passed with 'msg' attribute if the test failed
 }
 \description{
 Check if SC.SCCAT = "STUDY EYE SELECTION" and SC.SCTESTCD = "FOCID",
-then SC.SCORRES should have "OS", "OD", or "OU" values. Flag if subject is in
-DM and without an associated SC.SCORRES value or the STUDY EYE SELECTION value
-is not "OS", "OD", or "OU".
+then SC.SCSTRESC should have "OS" or "OD" values. Flag if subject is in
+DM and without an associated SC.SCSTRESC value or the STUDY EYE SELECTION value
+is not "OS" or "OD".
 }
 \examples{
 
@@ -36,7 +36,7 @@ sc <- data.frame(USUBJID  = c(1,1,1,2,2,2),
                               "",
                               "STUDY EYE SELECTION",
                               "STUDY EYE SELECTION", ""),
-                 SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
+                 SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
                  SCDTC    = rep("2021-01-01", 6),
                  stringsAsFactors = FALSE)
 
@@ -56,7 +56,7 @@ sc <- data.frame(USUBJID  = c(1,1,1,2,2,2),
                               "",
                               "STUDY EYE SELECTION",
                               "STUDY EYE SELECTION", ""),
-                 SCORRES  = c("LEFT", "OS", "", "RIGHT", "", ""),
+                 SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "", ""),
                  SCDTC    = rep("2021-01-01", 6),
                  stringsAsFactors = FALSE)
 
