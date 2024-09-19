@@ -1,4 +1,4 @@
-#' @title Check EXSTDTC records occuring on or after RSDTC
+#' @title Check EXSTDTC records occurring on or after RSDTC
 #' 
 #' @description This check identifies records where EXSTDTC dates occurs
 #'  on or after RSDTC. Only applies to assessments by investigator, 
