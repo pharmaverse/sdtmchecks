@@ -4,12 +4,14 @@
 \alias{check_lb_lbstresu}
 \title{Check for missing lab units (LBSTRESU)}
 \usage{
-check_lb_lbstresu(LB, preproc = identity, ...)
+check_lb_lbstresu(LB, DM = NULL, preproc = identity, ...)
 }
 \arguments{
 \item{LB}{Lab SDTM dataset with variables USUBJID, LBSTRESC, LBSTRESN,
 LBORRES, LBSTRESU, LBTESTCD, LBDTC, LBMETHOD (optional),
 LBSPID (optional), and VISIT (optional)}
+
+\item{DM}{Demographics SDTM with variables USUBJID, SITEID. Set to NULL.}
 
 \item{preproc}{An optional company specific preprocessing script}
 
@@ -23,7 +25,7 @@ test failed
 This check identifies records where original lab values (LBORRES)
 exist but standard lab units (LBSTRESU) are not populated, excluding
 qualitative results (LBMETHOD) and excluding records when LBTESTCD in
-("PH" "SPGRAV")
+("PH" "SPGRAV"). Merges with DM dataset when DM$SITEID is present
 }
 \examples{
 
@@ -38,7 +40,26 @@ LBDTC = 1:10,
 stringsAsFactors=FALSE
 )
 
+ DM <- data.frame(
+ USUBJID = 1:10,
+ SITEID = 111:120,
+ stringsAsFactors=FALSE
+ )
+ 
+ DM2 <- data.frame(
+ USUBJID = 1:10,
+ stringsAsFactors=FALSE
+ )
+
+
 check_lb_lbstresu(LB)
+
+LB$LBSTRESU[1]=""
+check_lb_lbstresu(LB)
+
+check_lb_lbstresu(LB, DM2)
+
+check_lb_lbstresu(LB, DM)
 
 LB$LBSTRESU[1]=""
 check_lb_lbstresu(LB)
@@ -50,7 +71,7 @@ LB$LBSTRESU[3]=NA
 check_lb_lbstresu(LB)
 
 LB$LBSPID= "FORMNAME-R:2/L:2XXXX"
-check_lb_lbstresu(LB,preproc=roche_derive_rave_row)
+check_lb_lbstresu(LB, DM, preproc=roche_derive_rave_row)
 
 LB$VISIT= "SCREENING"
 check_lb_lbstresu(LB)
