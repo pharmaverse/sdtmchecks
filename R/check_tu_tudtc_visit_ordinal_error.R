@@ -55,7 +55,16 @@ check_tu_tudtc_visit_ordinal_error <- function(TU){
 
         subsetdf = subset(TU, TU$TUEVAL=="INVESTIGATOR" & !grepl("UNSCHEDU",toupper(TU$VISIT)),)
 
-        if(nrow(subsetdf)>0){
+        ### re-check if the subset has VISITNUM all missing 
+        if (length(unique(subsetdf[["VISITNUM"]]))<=1) {
+            
+            fail(msg="VISITNUM exists but only a single value. ")
+            
+        }
+        
+        
+        
+        else if(nrow(subsetdf)>0){
 
         mydf2 <- dtc_dupl_early(
             dts = subsetdf,

@@ -69,7 +69,7 @@ reference:
   # - convert_var_to_ascii 
   # - truncate_var_strings
   # - create_R_script
-  # - xlsx2list
+  # - xlsx2list (no longer in the package)
   
 - title: "Company-specific utility functions"
   desc: Helper functions for data checks tailored to company-specific data inputs.
@@ -79,8 +79,10 @@ reference:
   
 news:
  releases:
+ - text: "sdtmchecks 1.0.0"  
+   href: news/index.html#sdtmchecks-100-cran-try
  - text: "sdtmchecks 0.1.12"  
-   href: news/index.html#sdtmchecks-0112-cran-try
+   href: news/index.html#sdtmchecks-0112-light-ice
  - text: "sdtmchecks 0.1.11"  
    href: news/index.html#sdtmchecks-0111-light-ice
  - text: "sdtmchecks 0.1.10"  

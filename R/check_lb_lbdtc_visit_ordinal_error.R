@@ -84,7 +84,16 @@ check_lb_lbdtc_visit_ordinal_error <- function(LB){
         subsetdf = subset(LB, LB$LBSTAT != "NOT DONE"  & !grepl("UNSCHEDU|TREATMENT OR OBSERVATION FU COMP EARLY DISC", toupper(LB$VISIT)))
 
 
-        if(nrow(subsetdf)>0){
+        ### re-check if the subset has VISITNUM all missing 
+        if (length(unique(subsetdf[["VISITNUM"]]))<=1) {
+            
+            fail(msg="VISITNUM exists but only a single value. ")
+            
+        }
+        
+        
+        
+        else if(nrow(subsetdf)>0){
 
             mydf2 <- dtc_dupl_early(
                 dts = subsetdf,
