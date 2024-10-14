@@ -82,14 +82,32 @@ check_cm_cmlat <- function(CM,preproc = identity,...) {
 
         mydf = CM %>%
                filter(CMCAT == "CONCOMITANT MEDICATIONS") %>%
-               mutate(MISFLAG =  ifelse((toupper(CMROUTE) %in% c("OPHTHALMIC", "INTRAVITREAL", "INTRAOCULAR",
-                                                                 "CONJUNCTIVAL", "INTRACAMERAL", "INTRACORNEAL",
-                                                                 "RETROBULBAR", "SUBTENON", "SUBRETINAL",
-                                                                 "SUBCONJUNCTIVAL") &
+               mutate(MISFLAG =  ifelse((toupper(CMROUTE) %in% c("CONJUNCTIVAL", 
+                                                                 "INTRACAMERAL", 
+                                                                 "INTRACORNEAL", 
+                                                                 "INTRAOCULAR", 
+                                                                 "INTRAVITREAL", 
+                                                                 "INTRAVITREAL VIA OCULAR IMPLANT", 
+                                                                 "OPHTHALMIC", 
+                                                                 "RETROBULBAR", 
+                                                                 "SUBCONJUNCTIVAL", 
+                                                                 "SUBRETINAL", 
+                                                                 "SUBTENON", 
+                                                                 "SUPRACHOROIDAL", 
+                                                                 "TOPICAL") &
                                         !(toupper(CMLAT) %in% c("LEFT", "RIGHT", "BILATERAL"))) |
-                                        (!(toupper(CMROUTE) %in% c("OPHTHALMIC", "INTRAVITREAL", "INTRAOCULAR",
-                                                                   "CONJUNCTIVAL", "INTRACAMERAL", "INTRACORNEAL",
-                                                                   "RETROBULBAR", "SUBTENON", "SUBRETINAL",
+                                        (!(toupper(CMROUTE) %in% c("CONJUNCTIVAL", 
+                                                                   "INTRACAMERAL", 
+                                                                   "INTRACORNEAL", 
+                                                                   "INTRAOCULAR", 
+                                                                   "INTRAVITREAL", 
+                                                                   "INTRAVITREAL VIA OCULAR IMPLANT", 
+                                                                   "OPHTHALMIC", 
+                                                                   "RETROBULBAR", 
+                                                                   "SUBCONJUNCTIVAL", 
+                                                                   "SUBRETINAL", 
+                                                                   "SUBTENON", 
+                                                                   "SUPRACHOROIDAL", 
                                                                    "TOPICAL")) &
                                         (toupper(CMLAT) %in% c("LEFT", "RIGHT", "BILATERAL"))), 1, 0))
 
