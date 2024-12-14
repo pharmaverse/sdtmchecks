@@ -1,13 +1,13 @@
 #' @title Check SC Study Eye Selection assignments among DM patients
 #'
 #' @description Check if SC.SCCAT = "STUDY EYE SELECTION" and SC.SCTESTCD = "FOCID",
-#' then SC.SCORRES should have "OS", "OD", or "OU" values. Flag if subject is in
-#' DM and without an associated SC.SCORRES value or the STUDY EYE SELECTION value
-#' is not "OS", "OD", or "OU".
+#' then SC.SCSTRESC should have "OS" or "OD" values. Flag if subject is in
+#' DM and without an associated SC.SCSTRESC value or the STUDY EYE SELECTION value
+#' is not "OS" or "OD".
 #'
 #' @param DM Subject Demographics SDTM dataset with variable USUBJID
 #' @param SC Subject Characteristics SDTM dataset for Ophtho Study with variables
-#' USUBJID, SCTESTCD, SCTEST, SCCAT, SCORRES, SCDTC
+#' USUBJID, SCTESTCD, SCTEST, SCCAT, SCSTRESC, SCDTC
 #'
 #' @importFrom dplyr %>% filter mutate select
 #'
@@ -36,7 +36,7 @@
 #'                               "",
 #'                               "STUDY EYE SELECTION",
 #'                               "STUDY EYE SELECTION", ""),
-#'                  SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
+#'                  SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
 #'                  SCDTC    = rep("2021-01-01", 6),
 #'                  stringsAsFactors = FALSE)
 #'
@@ -56,7 +56,7 @@
 #'                               "",
 #'                               "STUDY EYE SELECTION",
 #'                               "STUDY EYE SELECTION", ""),
-#'                  SCORRES  = c("LEFT", "OS", "", "RIGHT", "", ""),
+#'                  SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "", ""),
 #'                  SCDTC    = rep("2021-01-01", 6),
 #'                  stringsAsFactors = FALSE)
 #'
@@ -73,22 +73,22 @@ check_sc_dm_seyeselc <- function(DM, SC) {
 
     }
 
-    else if (SC %lacks_any% c("USUBJID", "SCTEST", "SCTESTCD", "SCCAT", "SCORRES", "SCDTC")) {
+    else if (SC %lacks_any% c("USUBJID", "SCTEST", "SCTESTCD", "SCCAT", "SCSTRESC", "SCDTC")) {
 
-        fail(lacks_msg(SC, c("USUBJID", "SCTEST", "SCTESTCD", "SCCAT", "SCORRES", "SCDTC")))
+        fail(lacks_msg(SC, c("USUBJID", "SCTEST", "SCTESTCD", "SCCAT", "SCSTRESC", "SCDTC")))
     }
 
     else {
 
         DM = DM %>% select(USUBJID)
 
-        SC = SC %>% select(USUBJID, SCTESTCD, SCTEST, SCCAT, SCORRES, SCDTC) %>%
+        SC = SC %>% select(USUBJID, SCTESTCD, SCTEST, SCCAT, SCSTRESC, SCDTC) %>%
                           mutate(MISFLAG =  ifelse((grepl("FOCID", SCTESTCD, ignore.case=TRUE) == TRUE) &
-                                                    (!(SCORRES %in% c("OD", "OS"))), 1, 0))
+                                                    (!(SCSTRESC %in% c("OD", "OS"))), 1, 0))
 
         mydf = left_join(DM, SC, by="USUBJID")
 
-        mydf = mydf %>% filter(MISFLAG == 1 | is.na(SCORRES)) %>% select(-MISFLAG)
+        mydf = mydf %>% filter(MISFLAG == 1 | is.na(SCSTRESC)) %>% select(-MISFLAG)
 
         if ((nrow(mydf) > 0 ) == FALSE) {
             pass()
