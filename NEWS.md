@@ -1,3 +1,10 @@
+# sdtmchecks 1.0.0.01 "CRAN Try"
+
+## Refinements of existing data check functions
+
+* Updates to several ophthalmology related checks
+
+
 # sdtmchecks 1.0.0 "CRAN Try"
 
 

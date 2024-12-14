@@ -11,7 +11,7 @@ test_that("Function returns true when no errors are present", {
                    SCTESTCD = c("ELIGEYE", "FOCID", "", "ELIGEYE", "FOCID", ""),
                    SCCAT    = c("STUDY EYE SELECTION", "STUDY EYE SELECTION", "",
                                 "STUDY EYE SELECTION", "STUDY EYE SELECTION", ""),
-                   SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
+                   SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
                    SCDTC    = "2021-01-01",
                    stringsAsFactors = FALSE)
   
@@ -47,7 +47,7 @@ test_that("Function returns false when errors are present", {
                    SCTESTCD = c("ELIGEYE", "FOCID", "", "ELIGEYE", "FOCID", ""),
                    SCCAT    = c("STUDY EYE SELECTION", "STUDY EYE SELECTION", "",
                                 "STUDY EYE SELECTION", "STUDY EYE SELECTION", ""),
-                   SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
+                   SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
                    SCDTC    = "2021-01-01",
                    stringsAsFactors = FALSE)
   
@@ -72,7 +72,7 @@ test_that("Function returns false when errors are present", {
 })
 
 
-test_that("Function returns false when errors are present", {
+test_that("Function returns false when missing required variables", {
   
   sc <- data.frame(USUBJID  = c(1,1,1,2,2,2,3),
                    SCTEST   = c("Eye Meeting Eligibility Criteria",
@@ -86,7 +86,7 @@ test_that("Function returns false when errors are present", {
                    SCCAT    = c("STUDY EYE SELECTION", "STUDY EYE SELECTION", "",
                                 "STUDY EYE SELECTION",
                                 "STUDY EYE SELECTION", "", "STUDY EYE SELECTION"),
-                   SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", "", "RIGHT"),
+                   SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", "", "RIGHT"),
                    SCDTC    = "2021-01-01",
                    stringsAsFactors = FALSE)
   

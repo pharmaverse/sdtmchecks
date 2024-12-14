@@ -10,7 +10,7 @@ test_that("Returns true when no errors present", {
                    SCTESTCD = c("ELIGEYE", "FOCID", "", "ELIGEYE", "FOCID", ""),
                    SCCAT    = c("STUDY EYE SELECTION", "STUDY EYE SELECTION", "", 
                                 "STUDY EYE SELECTION", "STUDY EYE SELECTION", ""),
-                   SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
+                   SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
                    SCDTC    = rep("2021-01-01", 6),
                    stringsAsFactors = FALSE)
   
@@ -44,7 +44,7 @@ test_that("Returns false when errors present - 1", {
                    SCTESTCD = c("ELIGEYE", "FOCID", "", "ELIGEYE", "FOCID", ""),
                    SCCAT    = c("STUDY EYE SELECTION", "STUDY EYE SELECTION", "", 
                                 "STUDY EYE SELECTION", "STUDY EYE SELECTION", ""),
-                   SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
+                   SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
                    SCDTC    = rep("2021-01-01", 6),
                    stringsAsFactors = FALSE)
   
@@ -81,7 +81,7 @@ test_that("Returns false when errors present - 2", {
                    SCCAT    = c("STUDY EYE SELECTION", "STUDY EYE SELECTION", "", 
                                 "STUDY EYE SELECTION", "STUDY EYE SELECTION", 
                                 "", "STUDY EYE SELECTION"),
-                   SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", "", "OS"),
+                   SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", "", "OS"),
                    SCDTC    = "2021-01-01",
                    stringsAsFactors = FALSE)
   
@@ -153,7 +153,7 @@ test_that("Returns false when expected column not present - 2", {
                    SCTESTCD = c("ELIGEYE", "FOCID", "", "ELIGEYE", "FOCID", ""),
                    SCCAT    = c("STUDY EYE SELECTION", "STUDY EYE SELECTION", "", 
                                 "STUDY EYE SELECTION", "STUDY EYE SELECTION", ""),
-                   SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
+                   SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
                    SCDTC    = rep("2021-01-01", 6),
                    stringsAsFactors = FALSE)
   

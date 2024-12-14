@@ -11,7 +11,7 @@ check_ec_sc_lat(EC, SC)
 USUBJID, ECCAT (if available), ECLOC, ECMOOD, ECLAT, ECSTDY, VISIT, ECSTDTC, ECOCCUR, ECROUTE}
 
 \item{SC}{Subject Characteristics Dataset for Ophtha Study with variables
-USUBJID, SCTEST, SCTESTCD, SCCAT, SCORRES, SCDTC}
+USUBJID, SCTEST, SCTESTCD, SCCAT, SCSTRESC, SCDTC}
 }
 \value{
 boolean value if check failed or passed with 'msg' attribute if the test failed
@@ -24,7 +24,7 @@ containing EC.ECCAT = “FELLOW”. If EC.ECCAT variable is not available then i
 assuming drug administration is collected for study eye only.
 2.> Subset Subject Characteristics dataset (SC) for only Study Eye Selection
 3.> Compare Exposure dataset laterality (EC.ECLAT) with Subject Characteristics dataset laterality
-(SC.SCORRES - OS = LEFT, OD = RIGHT) and report if there is any mismatch.
+(SC.SCSTRESC - OS = LEFT, OD = RIGHT) and report if there is any mismatch.
 }
 \examples{
 
@@ -38,7 +38,7 @@ sc <- data.frame(USUBJID  = c(1,1,1,2,2,2),
                  SCTESTCD = c("ELIGEYE", "FOCID", "", "ELIGEYE", "FOCID", ""),
                  SCCAT    = c("STUDY EYE SELECTION", "STUDY EYE SELECTION", "",
                               "STUDY EYE SELECTION", "STUDY EYE SELECTION", ""),
-                 SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
+                 SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
                  SCDTC    = "2021-01-01",
                  stringsAsFactors = FALSE)
 
@@ -71,7 +71,7 @@ sc <- data.frame(USUBJID  = c(1,1,1,2,2,2),
                  SCTESTCD = c("ELIGEYE", "FOCID", "", "ELIGEYE", "FOCID", ""),
                  SCCAT    = c("STUDY EYE SELECTION", "STUDY EYE SELECTION", "",
                               "STUDY EYE SELECTION", "STUDY EYE SELECTION", ""),
-                 SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
+                 SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", ""),
                  SCDTC    = "2021-01-01",
                  stringsAsFactors = FALSE)
 
@@ -106,7 +106,7 @@ sc <- data.frame(USUBJID  = c(1,1,1,2,2,2,3),
                  SCCAT    = c("STUDY EYE SELECTION", "STUDY EYE SELECTION", "",
                               "STUDY EYE SELECTION",
                               "STUDY EYE SELECTION", "", "STUDY EYE SELECTION"),
-                 SCORRES  = c("LEFT", "OS", "", "RIGHT", "OD", "", "RIGHT"),
+                 SCSTRESC  = c("LEFT", "OS", "", "RIGHT", "OD", "", "RIGHT"),
                  SCDTC    = "2021-01-01",
                  stringsAsFactors = FALSE)
 
