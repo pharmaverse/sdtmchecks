@@ -108,3 +108,28 @@ test_that("Function returns false when expected column not present", {
   expect_false(check_lb_lbdtc_visit_ordinal_error(LB1))
 })
 
+
+
+test_that("Function returns false when subset has VISITNUM all missing ", {
+  
+  LB2 <- data.frame(USUBJID = c(rep("101", 5), rep("102", 5)),
+                    LBCAT = "Hematology",
+                    LBDTC = rep(c(
+                      "2017-01-01T08:25",
+                      "2017-01-05T09:25",
+                      "2017-01-15T10:25",
+                      "2017-01-20T08:25",
+                      "2017-01-25T08:25"), 2),
+                    VISITNUM = rep(c(rep(1, 4), 2),2), 
+                    VISIT = rep(c(
+                      "Visit 1",
+                      "Visit 2",
+                      "Visit 3",
+                      "VIsit 5",
+                      "UNSCheduled!!!"), 2),
+                    LBSTAT = c(rep("", 9), "NOT DONE"),
+                    stringsAsFactors = FALSE)
+  
+  
+  expect_false(check_lb_lbdtc_visit_ordinal_error(LB2))
+})

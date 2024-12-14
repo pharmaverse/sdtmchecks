@@ -104,3 +104,19 @@ test_that("Function returns false when Investigator (INV) records but not OVRLRE
   expect_false(check_rs_rsdtc_visit_ordinal_error(RS))
 })
 
+
+
+test_that("Function returns false when subset has VISITNUM all missing", {
+  
+  RS2<- data.frame(USUBJID = 101:102,
+                   RSDTC=rep(c("2017-01-01T08:25", "2017-01-05T09:25",
+                               "2017-01-15T10:25","2017-01-20T08:25","2017-01-25T08:25"), 2),
+                   VISITNUM=rep(c(rep(1, 4), 2),2), 
+                   VISIT=rep(c("Screening", "Cycle 1", "Cycle 2","Cycle 3","UNSCHEDULED"),2),
+                   RSTESTCD="OVRLRESP",
+                   RSEVAL="INVESTIGATOR",
+                   RSSTAT="",
+                   stringsAsFactors=FALSE)
+  
+  expect_false(check_rs_rsdtc_visit_ordinal_error(RS2))
+})

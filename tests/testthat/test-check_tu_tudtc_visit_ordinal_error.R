@@ -222,3 +222,18 @@ test_that("Returns false when VISITNUM exists but only a single non-missing valu
 })
 
 
+
+test_that("Function returns false when subset has VISITNUM all missing", {
+  
+  TU <- data.frame(USUBJID = 101:102,
+                   TUORRES = rep(c("NEW", "TARGET"), 5),
+                   TULOC=rep(c("BONE","LIVER"),5),
+                   TUDTC = rep(c("2017-01-01T08:25", "2017-01-05T09:25",
+                                 "2017-01-15T10:25","2017-01-20T08:25","2017-01-25T08:25"), 2),
+                   VISITNUM = rep(c(rep(1, 4), 2),2),
+                   VISIT = rep(c( "Visit 1", "Visit 2", "Visit 3", "Visit 4","UNSCHEDULED"), 2),
+                   TUEVAL="INVESTIGATOR",
+                   stringsAsFactors = FALSE)
+  
+  expect_false(check_tu_tudtc_visit_ordinal_error(TU))
+})

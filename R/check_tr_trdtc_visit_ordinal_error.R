@@ -53,8 +53,17 @@ check_tr_trdtc_visit_ordinal_error <- function(TR){
     } else {
 
         subsetdf = subset(TR, TR$TREVAL=="INVESTIGATOR" & TR$TRSTAT !="NOT DONE" & !grepl("UNSCHEDU",toupper(TR$VISIT)),)
+        
+        ### re-check if the subset has VISITNUM all missing 
+        if (length(unique(subsetdf[["VISITNUM"]]))<=1) {
+            
+            fail(msg="VISITNUM exists but only a single value. ")
+            
+        }
+        
+        
 
-        if(nrow(subsetdf)>0){
+        else if(nrow(subsetdf)>0){
 
         mydf2 <- dtc_dupl_early(dts = subsetdf, vars = vars,
                                 ### groupby variables used for grouping and visit.order derivation
